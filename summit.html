@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join our free annual summit for dental practice owners. 3-day virtual event with expert sessions on PPO strategy, financial planning, and practice independence.">
+  <meta name="keywords" content="dental summit, continuing education, dental conference, practice strategy, dental training">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="RID Academy Annual Summit 2026 - Free Virtual Event">
+  <meta property="og:description" content="Join our free annual summit for dental practice owners. Expert sessions on PPO strategy, financial planning, and practice independence.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="summit.html">
+  <title>RID Academy Annual Summit 2026 - Free Virtual Event</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-subtle: #111111;
+      --bg-card: #161616;
+      --bg-elevated: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --border-2: rgba(255,255,255,0.10);
+      --text: #f5f5f5;
+      --text-2: rgba(255,255,255,0.70);
+      --text-3: rgba(255,255,255,0.45);
+      --text-4: rgba(255,255,255,0.25);
+      --accent: #E2D603;
+      --accent-2: #F0E440;
+      --accent-bg: rgba(226,214,3,0.08);
+      --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --ff-serif: 'Lora', Georgia, serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 72px;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 1000; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: #f5f5f5; }
+    .nav-cta { background: #E2D603; color: #000 !important; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
+    .nav-cta:hover { background: #F0E440 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #f5f5f5; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 20px 40px; gap: 16px; z-index: 999; }
+      .nav-links.active { display: flex; }
+      .nav-cta { width: 100%; text-align: center; }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+
+    /* Hero Section */
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(226, 214, 3, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 20s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-30px) translateX(20px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-2);
+      margin-bottom: 24px;
+    }
+
+    .hero-details {
+      font-size: 14px;
+      color: var(--text-3);
+      margin-bottom: 40px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 16px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-bottom: 12px;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--text-4);
+      margin-top: 12px;
+    }
+
+
+    /* Event Details Section */
+    .event-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 80px 0;
+    }
+
+    .detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .detail-card:hover {
+      background: var(--bg-elevated);
+      border-color: var(--border-2);
+    }
+
+    .detail-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .detail-card p {
+      font-size: 14px;
+      color: var(--text-3);
+      line-height: 1.6;
+    }
+
+    /* Session Tracks Section */
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
+
+    .sessions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 80px 0;
+    }
+
+    .session-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .session-card::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-bg));
+    }
+
+    .session-card:nth-child(1)::before {
+      background: linear-gradient(90deg, #FF6B6B, rgba(255, 107, 107, 0.1));
+    }
+
+    .session-card:nth-child(2)::before {
+      background: linear-gradient(90deg, #4ECDC4, rgba(78, 205, 196, 0.1));
+    }
+
+    .session-card:nth-child(3)::before {
+      background: linear-gradient(90deg, #FFD93D, rgba(255, 217, 61, 0.1));
+    }
+
+    .session-card:nth-child(4)::before {
+      background: linear-gradient(90deg, #6C5CE7, rgba(108, 92, 231, 0.1));
+    }
+
+    .session-card:nth-child(5)::before {
+      background: linear-gradient(90deg, #00B894, rgba(0, 184, 148, 0.1));
+    }
+
+    .session-content {
+      padding: 28px 24px;
+    }
+
+    .session-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .session-label {
+      display: inline-block;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .session-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .session-card p {
+      font-size: 14px;
+      color: var(--text-3);
+      line-height: 1.6;
+    }
+
+    .session-card:hover {
+      background: var(--bg-elevated);
+      border-color: var(--border-2);
+      transform: translateY(-4px);
+    }
+
+    /* Speakers Section */
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin: 80px 0;
+    }
+
+    .speaker-card {
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .speaker-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    .speaker-card:nth-child(1) .speaker-avatar {
+      background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+    }
+
+    .speaker-card:nth-child(2) .speaker-avatar {
+      background: linear-gradient(135deg, #4ECDC4, #6EE7DE);
+    }
+
+    .speaker-card:nth-child(3) .speaker-avatar {
+      background: linear-gradient(135deg, #FFD93D, #FFE66D);
+    }
+
+    .speaker-card:nth-child(4) .speaker-avatar {
+      background: linear-gradient(135deg, #6C5CE7, #A29BFE);
+    }
+
+    .speaker-card:nth-child(5) .speaker-avatar {
+      background: linear-gradient(135deg, #00B894, #55EFC4);
+    }
+
+    .speaker-card:nth-child(6) .speaker-avatar {
+      background: linear-gradient(135deg, #FD79A8, #FDCB6E);
+    }
+
+    .speaker-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .speaker-title {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .speaker-topic {
+      font-size: 13px;
+      color: var(--text-3);
+      line-height: 1.5;
+    }
+
+    .speaker-card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* Testimonial Section */
+    .testimonial {
+      margin: 100px 0;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, var(--accent-bg), transparent);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .testimonial-text {
+      font-family: var(--ff-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      font-size: 14px;
+      color: var(--text-2);
+      font-weight: 600;
+    }
+
+
+    /* Waitlist CTA Section */
+    .waitlist-cta {
+      margin: 100px 0;
+      padding: 60px 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .waitlist-title {
+      font-family: var(--ff-serif);
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .waitlist-form {
+      display: flex;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto 24px;
+    }
+
+    .waitlist-input {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: var(--ff-sans);
+      transition: border-color 0.3s ease;
+    }
+
+    .waitlist-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .waitlist-input::placeholder {
+      color: var(--text-4);
+    }
+
+    .waitlist-button {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .waitlist-button:hover {
+      background: var(--accent-2);
+      transform: translateX(2px);
+    }
+
+    .waitlist-note {
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+
+    /* FAQ Section */
+    .faq {
+      margin: 100px 0;
+    }
+
+    .faq-items {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      background: var(--bg-card);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .faq-question:hover {
+      background: var(--bg-elevated);
+    }
+
+    .faq-toggle {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: var(--text-2);
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 24px 20px;
+      max-height: 500px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+
+/* FOOTER */
+footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.footer-section a {
+  display: block;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.footer-logo {
+  font-size: 0;
+  height: 28px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  footer { padding: 40px 0 30px; }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+}
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+    </a>
+        <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html" style="color: var(--accent)">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">November 3-5, 2026</div>
+        <h1>RID Academy Annual Summit 2026</h1>
+        <p class="hero-subtitle">The premier virtual event for dental practices reducing insurance dependence.</p>
+        <p class="hero-details">3-Day Virtual Event · Free Registration · 5+ CE Credits · Live + On-Demand</p>
+        <a href="#waitlist" class="hero-cta">Get on the Waitlist →</a>
+        <p class="hero-note">Completely free. No credit card required.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Details -->
+  <div class="container">
+    <div class="event-details">
+      <div class="detail-card">
+        <h3>3-Day Virtual Event</h3>
+        <p>November 3-5, 2026 - Live sessions plus on-demand replay access for all registered attendees.</p>
+      </div>
+      <div class="detail-card">
+        <h3>5+ CE Credits</h3>
+        <p>AGD-PACE approved continuing education credits recognized by dental boards nationwide.</p>
+      </div>
+      <div class="detail-card">
+        <h3>100% Free</h3>
+        <p>No hidden fees, no credit card, no catches. Pure value for your practice and team.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session Tracks -->
+  <div class="container">
+    <h2 class="section-title">Summit Session Tracks</h2>
+    <div class="sessions-grid">
+      <div class="session-card">
+        <div class="session-content">
+          <div class="session-icon">⚡</div>
+          <div class="session-label">Workshop</div>
+          <h3>PPO Resignation Strategy</h3>
+          <p>Step-by-step guidance on plan selection, team preparation, and disruption minimization.</p>
+        </div>
+      </div>
+
+      <div class="session-card">
+        <div class="session-content">
+          <div class="session-icon">💬</div>
+          <div class="session-label">Presentation</div>
+          <h3>Patient Communication</h3>
+          <p>Scripts and templates for discussing fee changes and membership options with your patients.</p>
+        </div>
+      </div>
+
+      <div class="session-card">
+        <div class="session-content">
+          <div class="session-icon">🎯</div>
+          <div class="session-label">Workshop</div>
+          <h3>Membership Plans</h3>
+          <p>Design and pricing models for in-house membership programs that boost patient retention.</p>
+        </div>
+      </div>
+
+      <div class="session-card">
+        <div class="session-content">
+          <div class="session-icon">📊</div>
+          <div class="session-label">Masterclass</div>
+          <h3>Financial Planning</h3>
+          <p>Revenue modeling, cash flow forecasting, and 12-24 month transition planning strategies.</p>
+        </div>
+      </div>
+
+      <div class="session-card">
+        <div class="session-content">
+          <div class="session-icon">🎓</div>
+          <div class="session-label">CE Credits</div>
+          <h3>CE Credits Session</h3>
+          <p>5+ hours of AGD-PACE approved continuing education credits integrated throughout the summit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speakers -->
+  <div class="container">
+    <h2 class="section-title">Featured Speakers</h2>
+    <div class="speakers-grid">
+      <div class="speaker-card">
+        <div class="speaker-avatar">G</div>
+        <div class="speaker-name">Gary Takacs</div>
+        <div class="speaker-title">Thriving Dentist Podcast Founder</div>
+        <div class="speaker-topic">PPO Negotiation & Practice Philosophy</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-avatar">P</div>
+        <div class="speaker-name">Dr. Paul Henny</div>
+        <div class="speaker-title">Practice Growth Expert</div>
+        <div class="speaker-topic">Building 100% Fee-For-Service Practices</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-avatar">N</div>
+        <div class="speaker-name">Dr. Nikki Green</div>
+        <div class="speaker-title">Practice Owner & Consultant</div>
+        <div class="speaker-topic">Patient Retention During Transitions</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-avatar">U</div>
+        <div class="speaker-name">Uche Odiatu</div>
+        <div class="speaker-title">Business Coach & Author</div>
+        <div class="speaker-topic">The Business of Dentistry</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-avatar">A</div>
+        <div class="speaker-name">Art Wiederman, CPA</div>
+        <div class="speaker-title">American Dental CPA Association</div>
+        <div class="speaker-topic">Financial Planning & Tax Strategy</div>
+      </div>
+
+      <div class="speaker-card">
+        <div class="speaker-avatar">N</div>
+        <div class="speaker-name">Naiara Wireman</div>
+        <div class="speaker-title">Practice Consultant</div>
+        <div class="speaker-topic">Team Communication & Leadership</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonial -->
+  <div class="container">
+    <div class="testimonial">
+      <p class="testimonial-text">"The summit gave me the confidence to finally resign from two PPO plans. The financial planning session alone was worth it - I knew exactly what to expect in months 1-6. Three months in and revenue is already recovering."</p>
+      <p class="testimonial-author">- Dr. Michelle T., General Dentist, California</p>
+    </div>
+  </div>
+
+  <!-- Waitlist CTA -->
+  <div class="container">
+    <div class="waitlist-cta" id="waitlist">
+      <h2 class="waitlist-title">Registration Opens Soon</h2>
+      <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+        <input type="email" class="waitlist-input" placeholder="Enter your email" required>
+        <button type="submit" class="waitlist-button">Notify Me →</button>
+      </form>
+      <p class="waitlist-note">Join 10,000+ dental professionals preparing for independence</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-items">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is the summit really free?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, completely free. There are no hidden fees, no credit card required, and no premium tiers. We believe access to this education should be available to every dental practice ready to reduce their insurance dependence.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Will sessions be recorded?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, all registered attendees get on-demand access to all sessions. If you can't attend live, you'll be able to watch at your own pace for 30 days after the event concludes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I earn CE credits?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Attend the live sessions and complete a brief assessment to earn AGD-PACE approved continuing education credits. Credits are tracked and managed through our platform, and you'll receive your certificate immediately upon completion.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What technology do I need?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Just a web browser and an internet connection. The summit runs entirely online through your browser - no special software to download or complex setup required. Works on desktop, tablet, or mobile.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can my whole team attend?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely! We encourage team participation. Register as many team members as you'd like - your front desk, hygienists, and office manager will all benefit from the content. It's a great opportunity to align your whole practice on the transition strategy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  
+gation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+
+<footer style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 40px;">
+  <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="font-size:0;height:28px;margin-bottom:16px;">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">Navigation</h3>
+        <a href="index.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Home</a>
+        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Tools</a>
+        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Podcast</a>
+        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Resources</a>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">More</h3>
+        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Webinar Archive</a>
+        <a href="about.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">About</a>
+        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Marketing Consultation</a>
+        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Partner With Us</a>
+        <a href="events.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Events</a>
+      </div>
+    </div>
+    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:13px;">
+      © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color:#E2D603;text-decoration:none;">team@rid.academy</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

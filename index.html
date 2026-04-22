@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RID Academy - Reducing Insurance Dependence for Dental Practices</title>
+<meta name="description" content="RID Academy helps dental practices reduce insurance dependence with free tools, expert training, and proven strategies to increase revenue and patient loyalty.">
+<meta name="keywords" content="dental insurance independence, PPO write-offs, dental membership plans, fee-for-service dentistry, RID Academy">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="RID Academy - Reducing Insurance Dependence for Dental Practices">
+<meta property="og:description" content="Free tools, expert training, and proven strategies to help dental practices reduce insurance dependence and increase profitability.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rid.academy/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS
+   ═══════════════════════════════════════════════════════ */
+:root {
+  --bg:          #0a0a0a;
+  --bg-subtle:   #111111;
+  --bg-card:     #161616;
+  --bg-elevated: #1a1a1a;
+  --border:      rgba(255,255,255,0.06);
+  --border-2:    rgba(255,255,255,0.10);
+  --text:        #f5f5f5;
+  --text-2:      rgba(255,255,255,0.70);
+  --text-3:      rgba(255,255,255,0.45);
+  --text-4:      rgba(255,255,255,0.25);
+  --accent:      #E2D603;
+  --accent-2:    #F0E440;
+  --accent-bg:   rgba(226,214,3,0.08);
+  --gold:        #E2D603;
+  --ff-sans:     'Inter', system-ui, -apple-system, sans-serif;
+  --ff-serif:    'Lora', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 72px;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5%, 80px);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 0.82rem; font-weight: 500; color: var(--text-3);
+  text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent) !important; color: #0a0a0a !important;
+  padding: 0.45rem 1.1rem; border-radius: 6px;
+  font-weight: 600 !important; font-size: 0.82rem;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--accent-2) !important; }
+.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+/* ═══════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════ */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5%, 80px); }
+section { padding: 96px 0; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.25rem;
+}
+h2.sh {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600; line-height: 1.15;
+  letter-spacing: -0.025em; color: var(--text);
+  margin-bottom: 1rem;
+}
+h2.sh em { font-style: italic; }
+.sb { font-size: 1rem; color: var(--text-3); max-width: 540px; line-height: 1.75; margin-bottom: 3rem; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--ff-sans); font-weight: 600; font-size: 0.88rem;
+  text-decoration: none; border-radius: 8px; transition: all 0.2s; cursor: pointer; border: none;
+}
+.btn-fill { background: var(--accent); color: #000; padding: 0.78rem 1.7rem; }
+.btn-fill:hover { background: var(--accent-2); }
+.btn-outline {
+  background: transparent; color: var(--text-2);
+  border: 1.5px solid var(--border-2); padding: 0.75rem 1.6rem;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════ */
+.hero {
+  position: relative; overflow: hidden;
+  padding-top: 72px;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(226,214,3,0.05), transparent 70%);
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 820px; margin: 0 auto;
+  padding: 4rem 1.5rem; text-align: center;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-2);
+  border-radius: 100px; padding: 0.35rem 1rem;
+  margin-bottom: 2rem;
+}
+.hero-tag em { font-style: normal; color: var(--accent); }
+
+.hero h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  font-weight: 600; line-height: 1.12;
+  letter-spacing: -0.03em; color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.hero h1 .accent { color: var(--accent); }
+
+.hero-sub {
+  font-size: 1.08rem; color: var(--text-3);
+  max-width: 600px; margin: 0 auto 2.5rem;
+  line-height: 1.75;
+}
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+
+.hero-scroll {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-4); animation: pulse 2s ease infinite;
+}
+.hero-scroll-line { width: 1px; height: 32px; background: linear-gradient(to bottom, var(--text-4), transparent); }
+@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL-STOP VIDEO SECTION
+   ═══════════════════════════════════════════════════════ */
+.scroll-video-section {
+  position: relative; z-index: 2;
+  height: 400vh;
+}
+.scroll-video-sticky {
+  position: sticky; top: 0;
+  height: 100vh; width: 100%;
+  overflow: hidden; background: #000;
+}
+.scroll-video-sticky canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+
+.scroll-card {
+  position: absolute; bottom: 8vh; left: 5vw;
+  max-width: 380px;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  border-radius: 20px; padding: 28px;
+  z-index: 10;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+.scroll-card.active {
+  opacity: 1; transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-card-num {
+  font-family: monospace; font-size: 0.72rem;
+  color: var(--accent); margin-bottom: 0.5rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.scroll-card h3 {
+  font-size: 1.15rem; font-weight: 600;
+  color: #fff; margin-bottom: 0.5rem; line-height: 1.35;
+}
+.scroll-card p {
+  font-size: 0.85rem; color: rgba(255,255,255,0.55);
+  line-height: 1.65; margin-bottom: 1rem;
+}
+.scroll-card-stat {
+  font-size: 1.75rem; font-weight: 700;
+  color: var(--accent); line-height: 1;
+}
+.scroll-card-stat-label {
+  font-size: 0.72rem; color: rgba(255,255,255,0.45);
+  margin-top: 0.25rem;
+}
+
+/* Scroll hint at bottom of sticky */
+.scroll-hint {
+  position: absolute; bottom: 2rem; right: 5vw;
+  font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.2);
+  display: flex; align-items: center; gap: 0.5rem;
+  z-index: 10;
+}
+.scroll-hint-line {
+  width: 40px; height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+/* Progress bar */
+.scroll-progress {
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  z-index: 20;
+  transition: width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════════════════
+   LOGOS BAR
+   ═══════════════════════════════════════════════════════ */
+.logos-bar {
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 0;
+  text-align: center;
+}
+.logos-bar-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  gap: 2rem; flex-wrap: wrap; padding: 0 1.5rem;
+}
+.logos-label {
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-4); width: 100%; margin-bottom: 0.5rem;
+}
+.logo-word {
+  font-size: 0.88rem; font-weight: 600;
+  color: var(--text-3); opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PROBLEM SECTION
+   ═══════════════════════════════════════════════════════ */
+.problem-section { padding: 96px 0; }
+.problem-section .wrap { max-width: 900px; }
+
+.problem-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.p-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem;
+  transition: border-color 0.2s;
+}
+.p-card:hover { border-color: var(--border-2); }
+.p-n {
+  font-family: var(--ff-serif); font-size: 2.5rem;
+  font-weight: 600; color: var(--accent);
+  letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.75rem;
+}
+.p-card h3 {
+  font-size: 0.9rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.5rem; line-height: 1.35;
+}
+.p-card p { font-size: 0.8rem; color: var(--text-3); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════════════
+   TOOLS SECTION
+   ═══════════════════════════════════════════════════════ */
+.tools-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+.tools-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+}
+.tool-card {
+  background: var(--bg-card); padding: 2rem;
+  display: flex; gap: 1rem;
+  text-decoration: none; transition: background 0.2s;
+  position: relative;
+}
+.tool-card:hover { background: var(--bg-elevated); }
+.tool-num {
+  font-family: var(--ff-serif); font-style: italic;
+  font-size: 1rem; color: var(--text-4);
+  flex-shrink: 0; padding-top: 0.1rem; min-width: 26px;
+}
+.tool-body h3 {
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.5rem; line-height: 1.35;
+}
+.tool-body p { font-size: 0.82rem; color: var(--text-3); line-height: 1.65; margin-bottom: 0.8rem; }
+.tool-arrow { font-size: 0.78rem; font-weight: 600; color: var(--accent); }
+.tool-badge {
+  position: absolute; top: 1rem; right: 1rem;
+  background: var(--accent-bg); border: 1px solid rgba(226,214,3,0.15);
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); padding: 0.18rem 0.5rem; border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ROADMAP SECTION
+   ═══════════════════════════════════════════════════════ */
+.roadmap-section { padding: 96px 0; }
+.roadmap-layout {
+  display: grid; grid-template-columns: 380px 1fr;
+  gap: 5rem; align-items: start;
+}
+.roadmap-steps { display: flex; flex-direction: column; }
+.r-step {
+  display: flex; gap: 1.4rem;
+  padding: 1.4rem 0; border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.r-step:last-child { border-bottom: none; }
+.r-n {
+  font-family: var(--ff-serif); font-style: italic;
+  font-size: 1rem; color: var(--text-4);
+  min-width: 26px; padding-top: 0.1rem;
+}
+.r-body h3 { font-size: 0.94rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+.r-body p { font-size: 0.82rem; color: var(--text-3); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════════════
+   PODCAST SECTION
+   ═══════════════════════════════════════════════════════ */
+.podcast-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+.podcast-layout {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 3rem; align-items: start;
+}
+.pod-latest {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+}
+.pod-cover { background: #111; padding: 2rem; position: relative; }
+.pod-cover-eye {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.75rem;
+}
+.pod-cover h3 {
+  font-family: var(--ff-serif); font-size: 1.1rem;
+  font-weight: 600; color: var(--text);
+  line-height: 1.4; margin-bottom: 0.5rem;
+}
+.pod-cover-meta { font-size: 0.77rem; color: var(--text-4); }
+
+.pod-player-wrap { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+.pod-player-lbl {
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-4); margin-bottom: 0.5rem;
+}
+audio { width: 100%; height: 34px; border-radius: 4px; }
+
+.listen-on { padding: 1rem 1.5rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.l-chip {
+  font-size: 0.74rem; font-weight: 500; color: var(--text-3);
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 5px; padding: 0.3rem 0.75rem; text-decoration: none; transition: all 0.15s;
+}
+.l-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+.ep-list { display: flex; flex-direction: column; }
+.ep-row {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 0; border-bottom: 1px solid var(--border);
+  text-decoration: none;
+}
+.ep-row:last-child { border-bottom: none; }
+.ep-row:hover .ep-t { color: var(--accent); }
+.ep-n { font-family: var(--ff-serif); font-style: italic; font-size: 0.8rem; color: var(--text-4); min-width: 26px; padding-top: 0.15rem; }
+.ep-d { flex: 1; min-width: 0; }
+.ep-t { font-size: 0.86rem; font-weight: 600; color: var(--text); line-height: 1.35; transition: color 0.15s; margin-bottom: 0.2rem; }
+.ep-m { font-size: 0.73rem; color: var(--text-4); }
+.ep-play {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.5rem; color: var(--text-3); flex-shrink: 0;
+}
+.ep-all {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.84rem; font-weight: 600;
+  color: var(--accent); text-decoration: none; margin-top: 1.25rem; transition: gap 0.15s;
+}
+.ep-all:hover { gap: 0.65rem; }
+
+/* ═══════════════════════════════════════════════════════
+   ARTICLES SECTION
+   ═══════════════════════════════════════════════════════ */
+.articles-section { padding: 96px 0; }
+.art-grid {
+  display: grid; grid-template-columns: 1.3fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+}
+.a-card {
+  background: var(--bg-card); text-decoration: none;
+  display: flex; flex-direction: column; padding: 1.75rem;
+  transition: background 0.15s;
+}
+.a-card:hover { background: var(--bg-elevated); }
+.a-card.a-feat { grid-row: span 2; padding: 2.25rem 2rem; }
+.a-cat { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
+.a-card h3 {
+  font-family: var(--ff-serif); font-size: 0.98rem;
+  font-weight: 600; color: var(--text); line-height: 1.38; margin-bottom: 0.55rem; flex: 1;
+}
+.a-card.a-feat h3 { font-size: 1.3rem; line-height: 1.25; margin-bottom: 0.85rem; }
+.a-card p { font-size: 0.82rem; color: var(--text-3); line-height: 1.65; margin-bottom: 1rem; }
+.a-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--border); padding-top: 0.8rem; margin-top: auto;
+  font-size: 0.73rem; color: var(--text-4);
+}
+.a-read { font-size: 0.78rem; font-weight: 600; color: var(--accent); }
+.art-cta { display: flex; justify-content: center; margin-top: 2.5rem; }
+
+/* ═══════════════════════════════════════════════════════
+   TESTIMONIALS
+   ═══════════════════════════════════════════════════════ */
+.testi-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.t-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.75rem;
+  display: flex; flex-direction: column;
+}
+.t-q {
+  font-family: var(--ff-serif); font-size: 0.88rem;
+  font-style: italic; color: var(--text-2);
+  line-height: 1.75; flex: 1; margin-bottom: 1.25rem;
+}
+.t-stat {
+  font-size: 0.77rem; font-weight: 600; color: var(--accent);
+  background: var(--accent-bg); border-left: 2px solid var(--accent);
+  padding: 0.4rem 0.8rem; border-radius: 0 5px 5px 0; margin-bottom: 1.25rem;
+}
+.t-author {
+  display: flex; align-items: center; gap: 0.75rem;
+  border-top: 1px solid var(--border); padding-top: 1rem;
+}
+.t-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-serif); font-size: 0.72rem;
+  font-style: italic; color: var(--text-3); flex-shrink: 0;
+}
+.t-name { font-size: 0.83rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+.t-prac { font-size: 0.73rem; color: var(--text-4); }
+
+/* ═══════════════════════════════════════════════════════
+   FOUNDERS SECTION
+   ═══════════════════════════════════════════════════════ */
+.founders-section { padding: 96px 0; }
+.founders-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2rem; margin-top: 2rem;
+}
+.founder-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem;
+}
+.founder-card h3 {
+  font-family: var(--ff-serif); font-size: 1.15rem;
+  font-weight: 600; color: var(--text); margin-bottom: 0.25rem;
+}
+.founder-role {
+  font-size: 0.78rem; color: var(--accent);
+  font-weight: 600; margin-bottom: 0.75rem;
+}
+.founder-card p { font-size: 0.85rem; color: var(--text-3); line-height: 1.7; }
+
+/* ═══════════════════════════════════════════════════════
+   CTA SECTION
+   ═══════════════════════════════════════════════════════ */
+.cta-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg-subtle);
+  padding: 100px 0; position: relative; overflow: hidden;
+  text-align: center;
+}
+.cta-section::before {
+  content: 'Free';
+  position: absolute; font-family: var(--ff-serif);
+  font-style: italic; font-size: 22vw;
+  color: rgba(255,255,255,0.015); line-height: 1;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none; white-space: nowrap;
+}
+.cta-inner { max-width: 560px; margin: 0 auto; position: relative; }
+.cta-section h2 {
+  font-family: var(--ff-serif); font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600; letter-spacing: -0.025em; color: var(--text);
+  line-height: 1.15; margin-bottom: 1rem;
+}
+.cta-section h2 em { font-style: italic; }
+.cta-section > .wrap > .cta-inner > p { font-size: 1rem; color: var(--text-3); line-height: 1.75; margin-bottom: 2rem; }
+.cta-form { display: flex; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; justify-content: center; }
+.cta-form input {
+  flex: 1; min-width: 220px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border-2);
+  border-radius: 8px; padding: 0.75rem 1rem;
+  font-family: var(--ff-sans); font-size: 0.88rem;
+  color: var(--text); outline: none; transition: border-color 0.2s;
+}
+.cta-form input::placeholder { color: var(--text-4); }
+.cta-form input:focus { border-color: var(--accent); }
+.cta-form button {
+  background: var(--accent); color: #000; border: none;
+  border-radius: 8px; padding: 0.75rem 1.6rem;
+  font-family: var(--ff-sans); font-size: 0.88rem;
+  font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.cta-form button:hover { background: var(--accent-2); }
+.cta-note { font-size: 0.73rem; color: var(--text-4); }
+
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════ */
+footer {
+  background: #050505; padding: 56px clamp(1.5rem, 5%, 80px) 28px;
+  border-top: 1px solid var(--border);
+}
+.ft {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 3rem;
+  padding-bottom: 3rem; border-bottom: 1px solid var(--border);
+}
+.fb-name { font-family: var(--ff-serif); font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; }
+.fb-name em { font-style: normal; color: var(--accent); }
+.fb p { font-size: 0.82rem; color: var(--text-4); line-height: 1.75; margin-bottom: 1.25rem; }
+.fc h4 { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-4); margin-bottom: 0.9rem; }
+.fc ul { list-style: none; }
+.fc li { margin-bottom: 0.5rem; }
+.fc a { font-size: 0.82rem; color: var(--text-3); text-decoration: none; transition: color 0.15s; }
+.fc a:hover { color: var(--accent); }
+.fb-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.fb-copy { font-size: 0.74rem; color: var(--text-4); }
+.fb-links { display: flex; gap: 1.5rem; }
+.fb-links a { font-size: 0.74rem; color: var(--text-4); text-decoration: none; transition: color 0.15s; }
+.fb-links a:hover { color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 20px 40px; gap: 16px; z-index: 999; }
+  .nav-links.active { display: flex; }
+  .nav-cta { width: 100%; text-align: center; }
+  .hero h1 { font-size: 2.4rem; }
+  .problem-grid, .testi-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .roadmap-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .podcast-layout { grid-template-columns: 1fr; }
+  .art-grid { grid-template-columns: 1fr; }
+  .a-card.a-feat { grid-row: span 1; }
+  .founders-grid { grid-template-columns: 1fr; }
+  .ft { grid-template-columns: 1fr 1fr; }
+  .scroll-card { left: 1rem; right: 1rem; max-width: none; bottom: 4vh; padding: 20px; }
+  .scroll-card p { display: none; }
+  .scroll-hint { display: none; }
+}
+
+@media (max-width: 480px) {
+  h1, .hero h1 { font-size: 28px !important; }
+  .hero .lead, .hero p, .hero-subtitle { font-size: 14px !important; }
+  .wrap, .container, section > div { padding-left: 16px !important; padding-right: 16px !important; }
+}
+
+/* ENTRANCE ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-inner > * { animation: fadeUp 0.7s ease both; }
+.hero-inner > *:nth-child(2) { animation-delay: 0.1s; }
+.hero-inner > *:nth-child(3) { animation-delay: 0.18s; }
+.hero-inner > *:nth-child(4) { animation-delay: 0.25s; }
+.hero-inner > *:nth-child(5) { animation-delay: 0.32s; }
+.hero-inner > *:nth-child(6) { animation-delay: 0.38s; }
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: var(--text); }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: var(--text); }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAV
+     ═══════════════════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+  </a>
+      <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Reducing Insurance Dependence &nbsp;·&nbsp; <em>10,000+ members</em></div>
+    <h1>Stop Losing <span class="accent">42%</span> of Your Revenue to PPO Write-Offs</h1>
+    <p class="hero-sub">Join 10,000+ dental practice owners who are successfully reducing insurance dependence. Free tools, expert guidance, and a supportive community to guide your journey.</p>
+    <div class="hero-actions">
+      <a href="#tools" class="btn btn-fill">Get Instant Analysis (Free) →</a>
+      <a href="#how-it-works" class="btn btn-outline">See How It Works</a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll to experience</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCROLL-STOP VIDEO SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="scroll-video-section" id="video-section">
+  <div class="scroll-video-sticky">
+    <!-- Loading screen -->
+    <div id="loadingScreen" style="position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:#000;">
+      <div style="text-align:center;">
+        <p style="font-family:monospace;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:1rem;">Loading</p>
+        <div style="width:200px;height:3px;background:rgba(255,255,255,0.08);border-radius:4px;margin:0 auto;overflow:hidden;">
+          <div id="loadBar" style="height:100%;width:0;background:#E2D603;border-radius:4px;transition:width 0.2s;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Frame canvas -->
+    <canvas id="scrollCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+
+    <!-- Card 1: Assess -->
+    <div class="scroll-card" id="card-0">
+      <div class="scroll-card-num">Step 01</div>
+      <h3>Assess Your Current Situation</h3>
+      <p>Use our free calculators to understand exactly how much you're losing to PPO write-offs and how ready your practice is for the transition.</p>
+      <div class="scroll-card-stat">42%</div>
+      <div class="scroll-card-stat-label">Average revenue lost to PPO write-offs</div>
+    </div>
+
+    <!-- Card 2: Learn -->
+    <div class="scroll-card" id="card-1">
+      <div class="scroll-card-num">Step 02</div>
+      <h3>Learn the Strategy</h3>
+      <p>Access 383+ podcast episodes, summit presentations, and expert articles covering every aspect of the transition - from negotiation to patient communication.</p>
+      <div class="scroll-card-stat">383+</div>
+      <div class="scroll-card-stat-label">Hours of expert guidance and strategy</div>
+    </div>
+
+    <!-- Card 3: Build -->
+    <div class="scroll-card" id="card-2">
+      <div class="scroll-card-num">Step 03</div>
+      <h3>Build Your Plan</h3>
+      <p>Use our Revenue Impact Simulator and templates to create a customized transition plan. Know which plans to drop first and how to replace revenue.</p>
+      <div class="scroll-card-stat">$250K+</div>
+      <div class="scroll-card-stat-label">Typical annual revenue recovered</div>
+    </div>
+
+    <!-- Card 4: Execute -->
+    <div class="scroll-card" id="card-3">
+      <div class="scroll-card-num">Step 04</div>
+      <h3>Execute with Community Support</h3>
+      <p>Join 10,000+ practice owners for real-time advice, shared wins, and lessons from those who've already made the leap to independence.</p>
+      <div class="scroll-card-stat">10,000+</div>
+      <div class="scroll-card-stat-label">Dental professionals in the community</div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      Scroll to explore
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     LOGOS BAR
+     ═══════════════════════════════════════════════════════ -->
+<div class="logos-bar">
+  <div class="logos-bar-inner">
+    <div class="logos-label">Featured alongside leaders in dental practice management</div>
+    <span class="logo-word">Thriving Dentist</span>
+    <span class="logo-word">Dental Intel</span>
+    <span class="logo-word">Veritas</span>
+    <span class="logo-word">BoomCloud</span>
+    <span class="logo-word">ADCPA</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PROBLEM SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="problem-section" id="problem">
+  <div class="wrap">
+    <span class="eyebrow">The Problem</span>
+    <h2 class="sh">The Dental Insurance<br>System Is <em>Broken</em></h2>
+    <p class="sb">Over 95% of dental practices are locked into PPO plans that haven't kept pace with inflation. You're working harder than ever while insurance companies dictate your fees, your schedule, and your profitability.</p>
+    <div class="problem-grid">
+      <div class="p-card">
+        <div class="p-n">42–45%</div>
+        <h3>Average revenue lost to PPO write-offs</h3>
+        <p>Based on analysis of 1,000+ dental practices. This gap widens every year.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-n">$250K+</div>
+        <h3>Typical annual loss for a single-doctor practice</h3>
+        <p>Industry research on $1M+ practices. Straight to insurance companies.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-n">95%</div>
+        <h3>Of practices still dependent on PPO plans</h3>
+        <p>Based on ADA practice survey data - but the tide is turning for those who act.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOOLS SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="tools-section" id="tools">
+  <div class="wrap">
+    <span class="eyebrow">Free Tools</span>
+    <h2 class="sh">Know Your Numbers<br>Before You Act</h2>
+    <p class="sb">Interactive tools to make confident decisions about your PPO relationships.</p>
+    <div class="tools-grid">
+      <a href="ppo-calculator.html" class="tool-card" target="_blank">
+        <span class="tool-badge">Most Popular</span>
+        <span class="tool-num">01.</span>
+        <div class="tool-body">
+          <h3>PPO Write-Off Calculator</h3>
+          <p>See exactly how much revenue you're losing to PPO write-offs each year. Enter your real numbers, get real answers.</p>
+          <span class="tool-arrow">Open calculator →</span>
+        </div>
+      </a>
+      <a href="readiness-scorecard.html" class="tool-card">
+        <span class="tool-num">02.</span>
+        <div class="tool-body">
+          <h3>Insurance Independence Scorecard</h3>
+          <p>Answer 15 questions and get a personalized readiness score with a step-by-step roadmap for your practice.</p>
+          <span class="tool-arrow">Take assessment →</span>
+        </div>
+      </a>
+      <a href="revenue-simulator.html" class="tool-card">
+        <span class="tool-num">03.</span>
+        <div class="tool-body">
+          <h3>Revenue Impact Simulator</h3>
+          <p>Model what happens to your revenue when you drop 1, 2, or 3 PPO plans over the next 12–24 months.</p>
+          <span class="tool-arrow">Run simulation →</span>
+        </div>
+      </a>
+      <a href="membership-calculator.html" class="tool-card">
+        <span class="tool-num">04.</span>
+        <div class="tool-body">
+          <h3>Membership Plan Pricing Calculator</h3>
+          <p>Find the optimal pricing for your in-house membership plan based on your market, services, and goals.</p>
+          <span class="tool-arrow">Calculate pricing →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     ROADMAP SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="roadmap-section" id="how-it-works">
+  <div class="wrap">
+    <div class="roadmap-layout">
+      <div>
+        <span class="eyebrow">The RID Roadmap</span>
+        <h2 class="sh">Your Path to Insurance Independence</h2>
+        <p class="sb">A proven, step-by-step approach used by thousands of dental practices across the US.</p>
+        <a href="readiness-scorecard.html" class="btn btn-fill">Start your scorecard →</a>
+      </div>
+      <div class="roadmap-steps">
+        <div class="r-step"><span class="r-n">i.</span><div class="r-body"><h3>Assess Your Current Situation</h3><p>Use our free calculators to understand exactly how much you're losing to PPO write-offs and how ready your practice is for the transition.</p></div></div>
+        <div class="r-step"><span class="r-n">ii.</span><div class="r-body"><h3>Learn the Strategy</h3><p>Access 383+ podcast episodes, summit presentations, and expert articles covering every aspect of the transition - from negotiation tactics to patient communication.</p></div></div>
+        <div class="r-step"><span class="r-n">iii.</span><div class="r-body"><h3>Build Your Plan</h3><p>Use our Revenue Impact Simulator and templates to create a customized transition plan. Know which plans to drop first and how to replace revenue.</p></div></div>
+        <div class="r-step"><span class="r-n">iv.</span><div class="r-body"><h3>Execute with Support</h3><p>Join 10,000+ practice owners for real-time advice, shared wins, and lessons from those who've already made the leap.</p></div></div>
+        <div class="r-step"><span class="r-n">v.</span><div class="r-body"><h3>Get RID Certified</h3><p>Complete the certification program, earn CE credits, and display the RID Certified Practice badge - showing patients and peers you practice on your own terms.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     PODCAST SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="podcast-section" id="podcast">
+  <div class="wrap">
+    <span class="eyebrow">383+ Episodes</span>
+    <h2 class="sh" style="margin-bottom:0.5rem;">Less Insurance Dependence Podcast</h2>
+    <p class="sb">Co-hosted by Gary Takacs, Lester De Alwis, and Naren Arulrajah. New episodes every week - dentists who've done it, sharing what actually works.</p>
+    <div class="podcast-layout">
+      <div class="pod-latest">
+        <div class="pod-cover">
+          <div class="pod-cover-eye">Latest Episode · Ep 383</div>
+          <h3>Operational Clarity That Reduces Insurance Pressure with Kristine Haynes</h3>
+          <div class="pod-cover-meta">March 2026 · Kristine Haynes</div>
+        </div>
+        <div class="pod-player-wrap">
+          <div class="pod-player-lbl">Play episode</div>
+          <audio controls>
+            <source src="https://traffic.libsyn.com/preview/secure/lessinsurancedependance/LID_Ep_383_audio.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+        <div class="listen-on">
+          <a href="https://podcasts.apple.com/podcast/less-insurance-dependence/id1440263338" class="l-chip" target="_blank">Apple Podcasts</a>
+          <a href="https://open.spotify.com/show/4tVp2Jad48JA5TvhRGLoo2" class="l-chip" target="_blank">Spotify</a>
+          <a href="https://www.youtube.com/playlist?list=PLzQs_vQ9E-fiNaw8mw464TVk6mhkba--B" class="l-chip" target="_blank">YouTube</a>
+        </div>
+      </div>
+      <div>
+        <div class="ep-list">
+          <a href="https://www.lessinsurancedependence.com/the-numbers-dentists-must-know-to-reduce-insurance-dependence-with-gerilyn-alfe/" class="ep-row" target="_blank">
+            <span class="ep-n">382</span><div class="ep-d"><div class="ep-t">The Numbers Dentists Must Know to Reduce Insurance Dependence</div><div class="ep-m">Gerilyn Alfe · March 2026</div></div><div class="ep-play">▶</div>
+          </a>
+          <a href="https://www.lessinsurancedependence.com/helping-your-practice-grow-with-less-insurance-dependence-with-kelly-fox/" class="ep-row" target="_blank">
+            <span class="ep-n">381</span><div class="ep-d"><div class="ep-t">Helping Your Practice Grow With Less Insurance Dependence</div><div class="ep-m">Kelly Fox-Galvagni · Feb 2026</div></div><div class="ep-play">▶</div>
+          </a>
+          <a href="https://www.lessinsurancedependence.com/why-dentists-cant-rely-on-word-of-mouth-and-insurance-referrals-alone-anymore/" class="ep-row" target="_blank">
+            <span class="ep-n">380</span><div class="ep-d"><div class="ep-t">Why Dentists Can't Rely on Word of Mouth Alone Anymore</div><div class="ep-m">Naren Arulrajah · Feb 2026</div></div><div class="ep-play">▶</div>
+          </a>
+          <a href="https://rid.academy/blog/financial-steps-that-help-dentists-reduce-ppo-pressure.html" class="ep-row" target="_blank">
+            <span class="ep-n">379</span><div class="ep-d"><div class="ep-t">Financial Steps That Help Dentists Reduce PPO Pressure</div><div class="ep-m">Jim Alley · Feb 2026</div></div><div class="ep-play">▶</div>
+          </a>
+          <a href="https://rid.academy/blog/every-number-tells-a-story-using-data-to-drive-dental-success.html" class="ep-row" target="_blank">
+            <span class="ep-n">378</span><div class="ep-d"><div class="ep-t">Every Number Tells a Story: Using Data to Drive Dental Success</div><div class="ep-m">Shawn Peers · Feb 2026</div></div><div class="ep-play">▶</div>
+          </a>
+          <a href="https://rid.academy/blog/legal-essentials-that-help-dentists-grow-with-confidence.html" class="ep-row" target="_blank">
+            <span class="ep-n">377</span><div class="ep-d"><div class="ep-t">Legal Essentials That Help Dentists Grow with Confidence</div><div class="ep-m">Evan Sampson · Jan 2026</div></div><div class="ep-play">▶</div>
+          </a>
+        </div>
+        <a href="https://www.lessinsurancedependence.com/podcast-show/" class="ep-all" target="_blank">Browse all 383 episodes →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     ARTICLES SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="articles-section" id="learn">
+  <div class="wrap">
+    <span class="eyebrow">Expert Content</span>
+    <h2 class="sh" style="margin-bottom:0.5rem;">Learn From Those<br>Who've Done It</h2>
+    <p class="sb">Deep-dive articles, podcast breakdowns, and guides written by dental practice owners and industry experts.</p>
+    <div class="art-grid">
+      <a href="https://rid.academy/blog/how-to-drop-ppo-plans.html" class="a-card a-feat" target="_blank">
+        <div class="a-cat">Pillar Guide · PPO Strategy</div>
+        <h3>The Complete Guide to Dropping PPO Plans</h3>
+        <p>Everything from first analysis to last termination letter. Strategy, communication, and execution - all in one comprehensive guide.</p>
+        <div class="a-foot"><span>15 min read · March 2026</span><span class="a-read">Read guide →</span></div>
+      </a>
+      <a href="https://rid.academy/blog/dropping-delta-dental-guide.html" class="a-card" target="_blank">
+        <div class="a-cat">PPO Strategy</div>
+        <h3>Dropping Delta Dental: What Every Dentist Needs to Know in 2026</h3>
+        <div class="a-foot"><span>12 min · March 2026</span><span class="a-read">Read →</span></div>
+      </a>
+      <a href="https://rid.academy/blog/ppo-write-offs-costing-practice.html" class="a-card" target="_blank">
+        <div class="a-cat">Financial Planning</div>
+        <h3>PPO Write-Offs Are Costing Your Practice More Than You Think</h3>
+        <div class="a-foot"><span>9 min · March 2026</span><span class="a-read">Read →</span></div>
+      </a>
+      <a href="https://rid.academy/blog/dental-membership-plan-guide.html" class="a-card" target="_blank">
+        <div class="a-cat">Membership Plans</div>
+        <h3>Building a Dental Membership Plan from Scratch</h3>
+        <div class="a-foot"><span>22 min · Guide</span><span class="a-read">Read →</span></div>
+      </a>
+      <a href="https://rid.academy/blog/fee-for-service-dental-practice.html" class="a-card" target="_blank">
+        <div class="a-cat">PPO Strategy</div>
+        <h3>Fee-for-Service Dental Practice: The Ultimate Guide</h3>
+        <div class="a-foot"><span>12 min · Guide</span><span class="a-read">Read →</span></div>
+      </a>
+    </div>
+    <div class="art-cta">
+      <a href="https://rid.academy/blog/" class="btn btn-fill" target="_blank">Browse all 320+ articles →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     TESTIMONIALS
+     ═══════════════════════════════════════════════════════ -->
+<section class="testi-section">
+  <div class="wrap">
+    <span class="eyebrow">Success Stories</span>
+    <h2 class="sh" style="margin-bottom:2.5rem;">Practices That Made the Leap</h2>
+    <div class="testi-grid">
+      <div class="t-card">
+        <p class="t-q">"We dropped our first PPO 18 months ago. Revenue dipped for two months, then surpassed our previous levels. We kept 87% of those patients. I wish we'd done it sooner."</p>
+        <div class="t-stat">87% patient retention after first PPO drop</div>
+        <div class="t-author"><div class="t-av">SM</div><div><div class="t-name">Dr. Sarah Martinez</div><div class="t-prac">Lone Star Family Dental, Austin TX · 8-chair</div></div></div>
+      </div>
+      <div class="t-card">
+        <p class="t-q">"The PPO calculator was the wake-up call. I was losing $312,000 per year. After following the RID roadmap, I recovered $240,000 in year one. Profitability went from 22% to 38%."</p>
+        <div class="t-stat">$240K recovered in year one</div>
+        <div class="t-author"><div class="t-av">JR</div><div><div class="t-name">Dr. James Richardson</div><div class="t-prac">Dental Wellness Group, Columbus OH · Solo</div></div></div>
+      </div>
+      <div class="t-card">
+        <p class="t-q">"PPO networks were killing our margins as a specialty practice. We transitioned to 100% fee-for-service. Revenue is up 34%, and we invest in the latest technology without worrying about reimbursement rates."</p>
+        <div class="t-stat">34% revenue increase, 100% fee-for-service</div>
+        <div class="t-author"><div class="t-av">MC</div><div><div class="t-name">Dr. Marcus Chen</div><div class="t-prac">Elite Periodontal Specialists, Portland OR</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOUNDERS SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="founders-section" id="about">
+  <div class="wrap">
+    <span class="eyebrow">Founded By</span>
+    <h2 class="sh">The Team Behind RID Academy</h2>
+    <div class="founders-grid">
+      <div class="founder-card">
+        <h3>Naren Arulrajah</h3>
+        <div class="founder-role">CEO & Founder, Ekwa Marketing</div>
+        <p>Digital marketing visionary serving 1,000+ dental practices across all 50 states. Co-host of the Less Insurance Dependence Podcast and architect of RID Academy's digital platform.</p>
+      </div>
+      <div class="founder-card">
+        <h3>Gary Takacs</h3>
+        <div class="founder-role">Founder of Thriving Dentist</div>
+        <p>Creator of the #1 dental podcast, co-owner of a thriving dental practice, and coach to 2,200+ dental professionals in achieving insurance independence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     CTA SECTION
+     ═══════════════════════════════════════════════════════ -->
+<section class="cta-section" id="join">
+  <div class="wrap">
+    <div class="cta-inner">
+      <span class="eyebrow">Free Forever</span>
+      <h2>Ready to Practice<br><em>on Your Terms?</em></h2>
+      <p>Join RID Academy for free. Get instant access to all calculators, 383+ podcast episodes, expert guides, and our community of 10,000+ dental professionals.</p>
+      <div class="cta-form">
+        <input type="email" placeholder="Enter your email">
+        <button onclick="window.location.href='events.html'">Join Our Events →</button>
+      </div>
+      <p class="cta-note">Free forever. No credit card required. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════ -->
+<footer style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 40px;">
+  <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="font-size:0;height:28px;margin-bottom:16px;">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">Navigation</h3>
+        <a href="index.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Home</a>
+        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Tools</a>
+        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Podcast</a>
+        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Resources</a>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">More</h3>
+        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Webinar Archive</a>
+        <a href="about.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">About</a>
+        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Marketing Consultation</a>
+        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Partner With Us</a>
+        <a href="events.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Events</a>
+      </div>
+    </div>
+    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:13px;">
+      © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color:#E2D603;text-decoration:none;">team@rid.academy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCROLL-STOP VIDEO SCRIPT
+     ═══════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  // ── CONFIG (from scroll-stop-builder-guide) ───────────
+  var FRAME_COUNT = 120;
+  var HOLD_MS     = 600;
+  var SNAP_ZONE   = 0.04;
+
+  var CARDS = [
+    { show: 0.08, hide: 0.26 },
+    { show: 0.28, hide: 0.48 },
+    { show: 0.50, hide: 0.70 },
+    { show: 0.72, hide: 0.92 }
+  ];
+
+  // ── DOM REFS ──────────────────────────────────────────
+  var sectionEl  = document.querySelector('.scroll-video-section');
+  var canvas     = document.getElementById('scrollCanvas');
+  var loadBar    = document.getElementById('loadBar');
+  var loadScreen = document.getElementById('loadingScreen');
+  var progressEl = document.getElementById('scrollProgress');
+  var cardEls    = [
+    document.getElementById('card-0'),
+    document.getElementById('card-1'),
+    document.getElementById('card-2'),
+    document.getElementById('card-3')
+  ];
+
+  // ── STATE ─────────────────────────────────────────────
+  var frames      = [];
+  var loaded      = false;
+  var curFrame    = -1;
+  var snapped     = [false, false, false, false];
+  var snapping    = false;
+  var snapTimeout = 0;
+  var ticking     = false;
+
+  // ── PRELOAD ALL FRAMES ────────────────────────────────
+  var loadedCount = 0;
+
+  function finishLoading() {
+    if (loaded) return;
+    loaded = true;
+    if (loadScreen) loadScreen.style.display = 'none';
+    sizeCanvas();
+    curFrame = 0;
+    draw(0);
+  }
+
+  // Safety timeout: skip loading screen after 8s no matter what
+  setTimeout(finishLoading, 8000);
+
+  for (var i = 1; i <= FRAME_COUNT; i++) {
+    (function(idx) {
+      var img = new Image();
+      img.src = 'scroll-stop/frames/frame_' + String(idx).padStart(4, '0') + '.jpg';
+      var tick = function() {
+        loadedCount++;
+        if (loadBar) loadBar.style.width = Math.round((loadedCount / FRAME_COUNT) * 100) + '%';
+        if (loadedCount === FRAME_COUNT) {
+          finishLoading();
+        }
+      };
+      img.onload  = tick;
+      img.onerror = tick;
+      frames.push(img);
+    })(i);
+  }
+
+  // ── CANVAS DRAWING ────────────────────────────────────
+  function draw(index) {
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var img = frames[index];
+    if (!img || !img.complete || !img.naturalWidth) return;
+
+    var cw = canvas.width, ch = canvas.height;
+    if (!cw || !ch) return;
+    ctx.clearRect(0, 0, cw, ch);
+
+    // Cover-fit the frame to the canvas
+    var ir = img.naturalWidth / img.naturalHeight;
+    var cr = cw / ch;
+    var dw, dh;
+    if (window.innerWidth > 768) {
+      // Desktop: cover
+      if (cr > ir) { dw = cw; dh = cw / ir; }
+      else         { dh = ch; dw = ch * ir; }
+    } else {
+      // Mobile: zoomed contain
+      var z = 1.2;
+      if (cr > ir) { dh = ch * z; dw = dh * ir; }
+      else         { dw = cw * z; dh = dw / ir; }
+    }
+    ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+  }
+
+  function sizeCanvas() {
+    if (!canvas) return;
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width  = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width  = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    if (curFrame >= 0) draw(curFrame);
+  }
+
+  window.addEventListener('resize', sizeCanvas);
+
+  // ── SCROLL BLOCKING DURING SNAP ───────────────────────
+  function blockWheel(e) { if (snapping) e.preventDefault(); }
+  function blockTouch(e) { if (snapping) e.preventDefault(); }
+  function blockKey(e)   {
+    if (snapping && ['ArrowDown','ArrowUp',' ','PageDown','PageUp'].indexOf(e.key) !== -1)
+      e.preventDefault();
+  }
+  window.addEventListener('wheel',    blockWheel, { passive: false });
+  window.addEventListener('touchmove', blockTouch, { passive: false });
+  window.addEventListener('keydown',   blockKey);
+
+  // ── SCROLL HANDLER ────────────────────────────────────
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(function() {
+      ticking = false;
+      if (!sectionEl || !loaded) return;
+
+      var rect    = sectionEl.getBoundingClientRect();
+      var scrollH = sectionEl.offsetHeight - window.innerHeight;
+      if (scrollH <= 0) return;
+
+      var progress = Math.min(1, Math.max(0, -rect.top / scrollH));
+
+      // Draw the correct frame
+      var fi = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
+      if (fi !== curFrame) {
+        curFrame = fi;
+        draw(fi);
+      }
+
+      // Update progress bar
+      if (progressEl) progressEl.style.width = (progress * 100) + '%';
+
+      // Show/hide annotation cards
+      var activeCard = -1;
+      for (var i = 0; i < CARDS.length; i++) {
+        if (progress >= CARDS[i].show && progress <= CARDS[i].hide) {
+          activeCard = i;
+          break;
+        }
+      }
+      for (var j = 0; j < cardEls.length; j++) {
+        if (j === activeCard) {
+          cardEls[j].classList.add('active');
+        } else {
+          cardEls[j].classList.remove('active');
+        }
+      }
+
+      // Snap-hold: briefly pause scroll when entering a card zone
+      if (!snapping) {
+        for (var k = 0; k < CARDS.length; k++) {
+          var entering = progress >= CARDS[k].show && progress < CARDS[k].show + SNAP_ZONE;
+          if (entering && !snapped[k]) {
+            snapped[k] = true;
+            snapping   = true;
+            clearTimeout(snapTimeout);
+            snapTimeout = setTimeout(function() { snapping = false; }, HOLD_MS);
+            break;
+          }
+          if (progress < CARDS[k].show - 0.02) snapped[k] = false;
+        }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('load', function() { onScroll(); });
+})();
+</script>
+
+
+<!-- ============================================================
+     LATEST EVENT POPUP BANNER
+     To update: change title/date/url in the three data-* attributes below
+     ============================================================ -->
+<div id="ridaEventPopup" onclick="if(event.target===this) ridaClosePopup()" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,0.68);backdrop-filter:blur(6px);">
+  <div style="position:relative;max-width:720px;width:min(100%,720px);">
+    <button onclick="ridaClosePopup()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,0.45);font-size:20px;cursor:pointer;line-height:1;" title="Close">&#x2715;</button>
+    <img id="popupEventBanner" src="" alt="" style="display:none;width:100%;max-height:80vh;height:auto;object-fit:contain;border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.08);background:#111;">
+  </div>
+</div>
+<style>
+@keyframes ridaPopupIn {
+  from { opacity:0; transform:scale(0.96); }
+  to   { opacity:1; transform:scale(1); }
+}
+</style>
+<script src="data/sheets.js"></script>
+</body>
+</html>

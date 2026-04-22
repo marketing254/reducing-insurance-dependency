@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<!-- RID Academy Resources & Learning Hub - Updated 2026-03-16 -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="30+ free guides, templates, playbooks, and expert articles for reducing insurance dependence and growing your dental practice.">
+  <meta name="keywords" content="dental resources, practice guides, templates, PPO strategy, dental articles, dental education">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Resources & Learning Hub | RID Academy">
+  <meta property="og:description" content="Free guides, templates, playbooks, and expert articles for dental practice independence.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="resources.html">
+  <title>Resources & Learning Hub | RID Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-subtle: #111111;
+      --bg-card: #161616;
+      --bg-elevated: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --border-2: rgba(255,255,255,0.10);
+      --text: #f5f5f5;
+      --text-2: rgba(255,255,255,0.70);
+      --text-3: rgba(255,255,255,0.45);
+      --text-4: rgba(255,255,255,0.25);
+      --accent: #E2D603;
+      --accent-2: #F0E440;
+      --accent-bg: rgba(226,214,3,0.08);
+      --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --ff-serif: 'Lora', Georgia, serif;
+
+      --cat-insurance: linear-gradient(135deg, #ff6b5b 0%, #ff8873 100%);
+      --cat-pricing: linear-gradient(135deg, #4ade80 0%, #6ee7a0 100%);
+      --cat-patient: linear-gradient(135deg, #a78bfa 0%, #d8b4fe 100%);
+      --cat-growth: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+      --cat-mindset: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a { color: var(--text); text-decoration: none; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 72px;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 1000; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: #f5f5f5; }
+    .nav-cta { background: #E2D603; color: #000 !important; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
+    .nav-cta:hover { background: #F0E440 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #f5f5f5; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 20px 40px; gap: 16px; z-index: 999; }
+      .nav-links.active { display: flex; }
+      .nav-cta { width: 100%; text-align: center; }
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+    /* Hero */
+    .hero { padding-top: 120px; padding-bottom: 60px; text-align: center; }
+    .hero .eyebrow { display: inline-block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 16px; }
+    .hero h1 { font-family: var(--ff-serif); font-size: 56px; font-weight: 600; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero .subtitle { font-size: 18px; color: var(--text-2); max-width: 700px; margin: 0 auto 40px; line-height: 1.6; }
+    .stats-row { display: flex; justify-content: center; gap: 32px; margin-top: 40px; flex-wrap: wrap; }
+    .stat { font-size: 14px; color: var(--text-3); font-weight: 500; }
+    .stat strong { color: var(--accent); font-weight: 600; }
+
+
+    /* Tab Switcher */
+    .tab-switcher {
+      display: flex; justify-content: center; gap: 4px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 4px;
+      max-width: 480px; margin: 0 auto 40px;
+    }
+    .tab-btn {
+      flex: 1; padding: 12px 20px;
+      background: transparent; border: none; border-radius: 8px;
+      color: var(--text-3); font-family: var(--ff-sans);
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--text-2); }
+    .tab-btn.active {
+      background: var(--accent); color: #000;
+    }
+
+    /* Controls */
+    .controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 20px; flex-wrap: wrap; }
+    .search-box { flex: 1; min-width: 250px; position: relative; }
+    .search-box input { width: 100%; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--ff-sans); font-size: 14px; transition: all 0.2s; }
+    .search-box input::placeholder { color: var(--text-3); }
+    .search-box input:focus { outline: none; border-color: var(--accent); background: var(--bg-elevated); }
+
+    /* Filter pills */
+    .filters { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 30px; }
+    .filters::-webkit-scrollbar { height: 4px; }
+    .filters::-webkit-scrollbar-track { background: transparent; }
+    .filters::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .filter-pill { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; color: var(--text-2); font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+    .filter-pill:hover { border-color: var(--border-2); color: var(--text); }
+    .filter-pill.active { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+
+
+    /* Tab Content */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ===== GUIDES TAB ===== */
+    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+    @media (max-width: 1024px) { .resources-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .resources-grid { grid-template-columns: 1fr; } }
+
+    .resource-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; cursor: pointer; }
+    .resource-card:hover { border-color: var(--border-2); transform: translateY(-4px); }
+    .resource-card.hidden { display: none; }
+    .resource-header { height: 110px; background: var(--cat-insurance); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .resource-header::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.3; }
+    .header-icon { position: relative; z-index: 1; opacity: 0.25; }
+    .header-icon svg { width: 64px; height: 64px; fill: #fff; }
+    .header-label { position: relative; z-index: 1; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.15); padding: 5px 12px; border-radius: 20px; }
+    .resource-card[data-category="fee-for-service"] .resource-header { background: var(--cat-pricing); }
+    .resource-card[data-category="patient-experience"] .resource-header { background: var(--cat-patient); }
+    .resource-card[data-category="practice-growth"] .resource-header { background: var(--cat-growth); }
+    .resource-card[data-category="mindset"] .resource-header { background: var(--cat-mindset); }
+
+    .resource-content { padding: 24px; flex-grow: 1; display: flex; flex-direction: column; }
+    .resource-badge { display: inline-block; background: var(--accent-bg); border: 1px solid var(--accent); color: var(--accent); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; width: fit-content; }
+    .resource-title { font-family: var(--ff-serif); font-size: 18px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; color: var(--text); }
+    .resource-description { font-size: 14px; color: var(--text-3); line-height: 1.5; margin-bottom: 24px; flex-grow: 1; }
+    .resource-btn { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 10px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--ff-sans); display: inline-flex; align-items: center; gap: 6px; width: 100%; justify-content: center; }
+    .resource-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ===== ARTICLES TAB ===== */
+    .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 60px; }
+    .featured-card { border: 1px solid var(--border); background: var(--bg-card); border-radius: 12px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; }
+    .featured-card:hover { border-color: var(--border-2); transform: translateY(-4px); }
+    .featured-header { height: 160px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .featured-header .featured-icon { position: relative; z-index: 1; opacity: 0.2; }
+    .featured-header .featured-icon svg { width: 80px; height: 80px; fill: #fff; }
+    .featured-header.accent-yellow { background: linear-gradient(135deg, rgba(226,214,3,0.15), rgba(226,214,3,0.05)); border-bottom: 3px solid var(--accent); }
+    .featured-header.accent-green { background: linear-gradient(135deg, rgba(102,187,106,0.15), rgba(102,187,106,0.05)); border-bottom: 3px solid #66bb6a; }
+    .featured-header.accent-blue { background: linear-gradient(135deg, rgba(66,165,245,0.15), rgba(66,165,245,0.05)); border-bottom: 3px solid #42a5f5; }
+    .featured-header::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px); pointer-events: none; }
+    .featured-content { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+    .featured-category { display: inline-block; background: var(--accent-bg); color: var(--accent); padding: 5px 12px; border-radius: 16px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; width: fit-content; border: 1px solid rgba(226,214,3,0.2); }
+    .featured-title { font-family: var(--ff-serif); font-size: 22px; font-weight: 600; line-height: 1.3; margin-bottom: 10px; color: var(--text); }
+    .featured-description { color: var(--text-2); font-size: 14px; line-height: 1.6; margin-bottom: auto; padding-bottom: 14px; }
+    .featured-meta { display: flex; justify-content: space-between; align-items: center; color: var(--text-3); font-size: 13px; margin-bottom: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .featured-link { color: var(--accent); font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+    .featured-link:hover { gap: 12px; }
+
+    @media (max-width: 1024px) { .featured-grid { grid-template-columns: 1fr 1fr; } }
+
+    .articles-heading { font-family: var(--ff-serif); font-size: 32px; font-weight: 600; margin-bottom: 40px; color: var(--text); }
+    .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+
+    .article-card { border: 1px solid var(--border); background: var(--bg-card); border-radius: 12px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; cursor: pointer; }
+    .article-card:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(226,214,3,0.1); transform: translateY(-4px); }
+    .article-card.hidden { display: none; }
+    .article-header { height: 80px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .article-header .article-icon { position: relative; z-index: 1; opacity: 0.2; }
+    .article-header .article-icon svg { width: 40px; height: 40px; fill: #fff; }
+    .article-header.color-ppo { background: linear-gradient(90deg, #ef5350, rgba(239,83,80,0.8)); }
+    .article-header.color-financial { background: linear-gradient(90deg, #66bb6a, rgba(102,187,106,0.8)); }
+    .article-header.color-patient { background: linear-gradient(90deg, #ab47bc, rgba(171,71,188,0.8)); }
+    .article-header.color-membership { background: linear-gradient(90deg, #42a5f5, rgba(66,165,245,0.8)); }
+    .article-header.color-team { background: linear-gradient(90deg, #ff9800, rgba(255,152,0,0.8)); }
+    .article-header.color-marketing { background: linear-gradient(90deg, #29b6f6, rgba(41,182,246,0.8)); }
+    .article-header.color-management { background: linear-gradient(90deg, #26c6da, rgba(38,198,218,0.8)); }
+    .article-header.color-legal { background: linear-gradient(90deg, #7c4dff, rgba(124,77,255,0.8)); }
+    .article-header::before { content: ''; position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; transform: translate(-50%, -50%); }
+
+    .article-content { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .article-category { display: inline-block; padding: 5px 12px; border-radius: 16px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; width: fit-content; }
+    .article-category.ppo { background: rgba(239,83,80,0.15); color: #ff9999; }
+    .article-category.financial { background: rgba(102,187,106,0.15); color: #99ff99; }
+    .article-category.patient { background: rgba(171,71,188,0.15); color: #dd99ff; }
+    .article-category.membership { background: rgba(66,165,245,0.15); color: #99ddff; }
+    .article-category.team { background: rgba(255,152,0,0.15); color: #ffcc99; }
+    .article-category.marketing { background: rgba(41,182,246,0.15); color: #99e6ff; }
+    .article-category.management { background: rgba(38,198,218,0.15); color: #99f0ff; }
+    .article-category.legal { background: rgba(124,77,255,0.15); color: #cc99ff; }
+    .article-episode { display: inline-block; background: var(--bg-elevated); color: var(--text-3); padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; margin-left: 8px; }
+    .article-title { font-family: var(--ff-serif); font-size: 16px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; color: var(--text); }
+    .article-guest { color: var(--text-3); font-size: 12px; margin-bottom: 16px; }
+    .article-meta { display: flex; justify-content: space-between; color: var(--text-3); font-size: 12px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); }
+
+    @media (max-width: 1024px) { .articles-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* Newsletter */
+    .newsletter-card { background: var(--bg-elevated); border: 1px solid var(--border-2); border-radius: 12px; padding: 60px 40px; text-align: center; max-width: 600px; margin: 0 auto 80px; }
+    .newsletter-heading { font-family: var(--ff-serif); font-size: 32px; font-weight: 600; margin-bottom: 12px; }
+    .newsletter-subtitle { color: var(--text-2); font-size: 16px; margin-bottom: 32px; line-height: 1.6; }
+    .newsletter-form { display: flex; gap: 12px; }
+    .newsletter-form input { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; color: var(--text); font-family: var(--ff-sans); font-size: 14px; transition: border-color 0.2s; }
+    .newsletter-form input::placeholder { color: var(--text-3); }
+    .newsletter-form input:focus { outline: none; border-color: var(--accent); }
+    .newsletter-form button { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 6px; border: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .newsletter-form button:hover { background: var(--accent-2); transform: translateY(-2px); }
+
+
+    /* Lead Modal */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 40px; max-width: 450px; width: 100%; animation: slideUp 0.3s ease; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-3); font-size: 24px; cursor: pointer; padding: 4px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
+    .modal-close:hover { color: var(--text); }
+    .modal-title { font-family: var(--ff-serif); font-size: 28px; font-weight: 600; margin-bottom: 24px; line-height: 1.3; padding-right: 40px; }
+    .modal-form { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-group input { padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: var(--ff-sans); font-size: 14px; transition: all 0.2s; }
+    .form-group input::placeholder { color: var(--text-3); }
+    .form-group input:focus { outline: none; border-color: var(--accent); background: var(--bg-elevated); }
+    .modal-submit { background: var(--accent); color: #000; padding: 12px 24px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; width: 100%; font-family: var(--ff-sans); }
+    .modal-submit:hover { background: var(--accent-2); transform: translateY(-2px); }
+    .modal-footer { font-size: 12px; color: var(--text-3); text-align: center; margin-top: 12px; }
+    .success-message { display: none; text-align: center; }
+    .success-message.show { display: block; }
+    .success-icon { width: 60px; height: 60px; background: var(--accent-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px; }
+    .success-title { font-family: var(--ff-serif); font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+    .success-text { color: var(--text-2); margin-bottom: 24px; }
+    .success-cta { background: var(--accent); color: #000; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; display: inline-block; transition: all 0.2s; }
+    .success-cta:hover { background: var(--accent-2); }
+
+    /* Bottom CTA */
+    .bottom-cta { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 60px 40px; text-align: center; margin-bottom: 80px; }
+    .bottom-cta h2 { font-family: var(--ff-serif); font-size: 36px; font-weight: 600; margin-bottom: 16px; }
+    .bottom-cta p { font-size: 18px; color: var(--text-2); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .bottom-cta-btn { background: var(--accent); color: #000; padding: 14px 32px; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .bottom-cta-btn:hover { background: var(--accent-2); transform: translateY(-2px); }
+
+
+    /* Footer uses inline styles — no CSS classes needed */
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+    </a>
+        <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false" style="color:var(--accent,#E2D603)">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">KNOWLEDGE HUB</div>
+        <h1>Resources & Learning Center</h1>
+        <p class="subtitle">30+ free guides, templates, playbooks, and expert articles covering every stage of your insurance independence journey.</p>
+        <div class="stats-row">
+          <div class="stat"><strong>30+</strong> Guides & Templates</div>
+          <div class="stat"><strong>20+</strong> Expert Articles</div>
+          <div class="stat"><strong>100%</strong> Free</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab Switcher -->
+    <div class="container">
+      <div class="tab-switcher">
+        <button class="tab-btn active" data-tab="guides">Guides & Templates</button>
+        <button class="tab-btn" data-tab="articles">Articles & Insights</button>
+      </div>
+    </div>
+
+    <!-- ===== GUIDES TAB ===== -->
+    <div class="tab-content active" id="tab-guides">
+      <section class="controls-section">
+        <div class="container">
+          <div class="controls">
+            <div class="search-box">
+              <input type="text" id="searchInput" placeholder="Search guides & templates...">
+            </div>
+          </div>
+          <div class="filters" id="filterContainer">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="insurance">Insurance Strategy</button>
+            <button class="filter-pill" data-filter="fee-for-service">Fee-for-Service & Pricing</button>
+            <button class="filter-pill" data-filter="patient-experience">Patient Experience</button>
+            <button class="filter-pill" data-filter="practice-growth">Practice Growth</button>
+            <button class="filter-pill" data-filter="mindset">Mindset & Strategy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="resources-section">
+        <div class="container">
+          <div class="resources-grid" id="resourcesGrid"></div>
+          <div class="no-results" id="noResults" style="display: none;">
+            <h3>No resources found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-cta">
+        <div class="container">
+          <h2>Want All Guides in One Package?</h2>
+          <p>Join our free community to get instant access to every resource, plus exclusive tools and peer support.</p>
+          <button class="bottom-cta-btn" onclick="openModal('Join RID Academy Community')">Join Free Community →</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== ARTICLES TAB ===== -->
+    <div class="tab-content" id="tab-articles">
+      <!-- Featured Guides -->
+      <section style="margin-bottom: 20px;">
+        <div class="container">
+          <div class="featured-grid">
+            <div class="featured-card">
+              <div class="featured-header accent-yellow"><div class="featured-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg></div></div>
+              <div class="featured-content">
+                <span class="featured-category">PPO Strategy</span>
+                <h3 class="featured-title">The Complete Guide to Dropping PPO Plans</h3>
+                <p class="featured-description">Everything you need to know, from first analysis to last termination letter.</p>
+                <div class="featured-meta"><span>15 min read</span></div>
+                <a href="https://rid.academy/blog/dropping-ppo-plans" class="featured-link">Read Guide →</a>
+              </div>
+            </div>
+            <div class="featured-card">
+              <div class="featured-header accent-green"><div class="featured-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg></div></div>
+              <div class="featured-content">
+                <span class="featured-category">Membership Plans</span>
+                <h3 class="featured-title">Building a Dental Membership Plan from Scratch</h3>
+                <p class="featured-description">Design, price, launch, and grow your in-house membership program.</p>
+                <div class="featured-meta"><span>22 min read</span></div>
+                <a href="https://rid.academy/blog/building-membership-plan" class="featured-link">Read Guide →</a>
+              </div>
+            </div>
+            <div class="featured-card">
+              <div class="featured-header accent-blue"><div class="featured-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div></div>
+              <div class="featured-content">
+                <span class="featured-category">Financial Planning</span>
+                <h3 class="featured-title">Fee-for-Service Dental Practice: The Ultimate Guide</h3>
+                <p class="featured-description">Everything about building a successful FFS practice.</p>
+                <div class="featured-meta"><span>12 min read</span></div>
+                <a href="https://rid.academy/blog/fee-for-service-guide" class="featured-link">Read Guide →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Articles Filter -->
+      <div class="container">
+        <div class="filters" id="articleFilterContainer">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="ppo">PPO Strategy</button>
+          <button class="filter-pill" data-filter="financial">Financial Planning</button>
+          <button class="filter-pill" data-filter="patient">Patient Communication</button>
+          <button class="filter-pill" data-filter="membership">Membership Plans</button>
+          <button class="filter-pill" data-filter="team">Team Training</button>
+          <button class="filter-pill" data-filter="marketing">Marketing</button>
+          <button class="filter-pill" data-filter="management">Practice Management</button>
+          <button class="filter-pill" data-filter="legal">Legal & Compliance</button>
+        </div>
+      </div>
+
+      <!-- Articles Grid -->
+      <section>
+        <div class="container">
+          <h2 class="articles-heading">Recent Articles & Episodes</h2>
+          <div class="articles-grid" id="articlesGrid">
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">Dropping Delta Dental: What Every Dentist Needs to Know</h3><div class="article-meta"><span>12 min</span><span>Mar 2026</span></div></div></div>
+            <div class="article-card" data-category="financial"><div class="article-header color-financial"></div><div class="article-content"><span class="article-category financial">Financial Planning</span><h3 class="article-title">PPO Write-Offs Are Costing Your Practice More Than You Think</h3><div class="article-meta"><span>9 min</span><span>Mar 2026</span></div></div></div>
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">Helping Your Practice Grow With Less Insurance Dependence</h3><span class="article-episode">Ep 381</span><p class="article-guest">Guest: Kelly Fox-Galvagni</p><div class="article-meta"><span>15 min</span><span>Feb 2026</span></div></div></div>
+            <div class="article-card" data-category="marketing"><div class="article-header color-marketing"></div><div class="article-content"><span class="article-category marketing">Marketing</span><h3 class="article-title">Why Dentists Can't Rely on Word of Mouth and Insurance Referrals Alone Anymore</h3><span class="article-episode">Ep 380</span><div class="article-meta"><span>11 min</span><span>Feb 2026</span></div></div></div>
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">Financial Steps That Help Dentists Reduce PPO Pressure</h3><span class="article-episode">Ep 379</span><p class="article-guest">Guest: Jim Alley</p><div class="article-meta"><span>9 min</span><span>Feb 2026</span></div></div></div>
+            <div class="article-card" data-category="financial"><div class="article-header color-financial"></div><div class="article-content"><span class="article-category financial">Financial Planning</span><h3 class="article-title">Every Number Tells a Story: Using Data to Drive Dental Success</h3><span class="article-episode">Ep 378</span><p class="article-guest">Guest: Shawn Peers</p><div class="article-meta"><span>14 min</span><span>Feb 2026</span></div></div></div>
+            <div class="article-card" data-category="legal"><div class="article-header color-legal"></div><div class="article-content"><span class="article-category legal">Legal & Compliance</span><h3 class="article-title">Legal Essentials That Help Dentists Grow With Confidence</h3><span class="article-episode">Ep 377</span><p class="article-guest">Guest: Evan Sampson</p><div class="article-meta"><span>10 min</span><span>Jan 2026</span></div></div></div>
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">How Virtual Assistants Help Dentists Reduce Insurance Dependence</h3><span class="article-episode">Ep 376</span><p class="article-guest">Guest: Timothy Boyle</p><div class="article-meta"><span>13 min</span><span>Jan 2026</span></div></div></div>
+            <div class="article-card" data-category="patient"><div class="article-header color-patient"></div><div class="article-content"><span class="article-category patient">Patient Communication</span><h3 class="article-title">Building a Practice Patients Trust More Than Their Insurance Company</h3><span class="article-episode">Ep 375</span><div class="article-meta"><span>15 min</span><span>Jan 2026</span></div></div></div>
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">Setting Your Team Up for Success When Reducing Insurance Dependence</h3><span class="article-episode">Ep 374</span><p class="article-guest">Guest: Callie Ward</p><div class="article-meta"><span>17 min</span><span>Jan 2026</span></div></div></div>
+            <div class="article-card" data-category="team"><div class="article-header color-team"></div><div class="article-content"><span class="article-category team">Team Training</span><h3 class="article-title">How Hybrid Training Is Transforming Dentistry</h3><span class="article-episode">Ep 373</span><p class="article-guest">Guest: Dr. Vishal Sharma</p><div class="article-meta"><span>12 min</span><span>Dec 2025</span></div></div></div>
+            <div class="article-card" data-category="management"><div class="article-header color-management"></div><div class="article-content"><span class="article-category management">Practice Management</span><h3 class="article-title">How to Attract More Patients That Prefer Fee-for-Service Care?</h3><span class="article-episode">Ep 370</span><div class="article-meta"><span>14 min</span><span>Dec 2025</span></div></div></div>
+            <div class="article-card" data-category="financial"><div class="article-header color-financial"></div><div class="article-content"><span class="article-category financial">Financial Planning</span><h3 class="article-title">Increasing Case Acceptance: Grow Fee-for-Service Revenue</h3><span class="article-episode">Ep 369</span><p class="article-guest">Guest: Joanne Villani</p><div class="article-meta"><span>20 min</span><span>Dec 2025</span></div></div></div>
+            <div class="article-card" data-category="management"><div class="article-header color-management"></div><div class="article-content"><span class="article-category management">Practice Management</span><h3 class="article-title">Insurance and Legislative Environment Affecting Dental Practice Sales</h3><span class="article-episode">Ep 368</span><p class="article-guest">Guest: Ryan Mingus</p><div class="article-meta"><span>14 min</span><span>Nov 2025</span></div></div></div>
+            <div class="article-card" data-category="financial"><div class="article-header color-financial"></div><div class="article-content"><span class="article-category financial">Financial Planning</span><h3 class="article-title">Building Financial Freedom in Dental Practice</h3><span class="article-episode">Ep 367</span><p class="article-guest">Guest: Scott Plantenberg</p><div class="article-meta"><span>9 min</span><span>Nov 2025</span></div></div></div>
+            <div class="article-card" data-category="management"><div class="article-header color-management"></div><div class="article-content"><span class="article-category management">Practice Management</span><h3 class="article-title">The Hybrid Approach to Insurance Participation</h3><span class="article-episode">Ep 366</span><p class="article-guest">Guest: Dr. Tarun Agarwal</p><div class="article-meta"><span>14 min</span><span>Nov 2025</span></div></div></div>
+            <div class="article-card" data-category="management"><div class="article-header color-management"></div><div class="article-content"><span class="article-category management">Practice Management</span><h3 class="article-title">Standing Out as a Dental Practice in the Age of AI</h3><span class="article-episode">Ep 365</span><div class="article-meta"><span>15 min</span><span>Nov 2025</span></div></div></div>
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">First Steps to Reduce Insurance, Build a Thriving FFS Practice</h3><span class="article-episode">Ep 364</span><p class="article-guest">Guest: Sandy Bair</p><div class="article-meta"><span>14 min</span><span>Oct 2025</span></div></div></div>
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">What Really Happens When Practices Drop PPO Plans</h3><span class="article-episode">Ep 356</span><p class="article-guest">Guest: Art Wiederman</p><div class="article-meta"><span>25 min</span><span>Sep 2025</span></div></div></div>
+            <div class="article-card" data-category="ppo"><div class="article-header color-ppo"></div><div class="article-content"><span class="article-category ppo">PPO Strategy</span><h3 class="article-title">Will PPO Plans Be Relevant in 10 Years?</h3><span class="article-episode">Ep 355</span><div class="article-meta"><span>12 min</span><span>Aug 2025</span></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section>
+        <div class="container">
+          <div class="newsletter-card">
+            <h2 class="newsletter-heading">Stay Updated</h2>
+            <p class="newsletter-subtitle">Get the latest articles, guides, and podcast episodes delivered to your inbox.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+              <input type="email" placeholder="Enter your email" required>
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">×</button>
+      <div id="formView">
+        <h3 class="modal-title" id="modalTitle">Resource Title</h3>
+        <form class="modal-form" id="leadForm">
+          <div class="form-group"><label for="nameInput">Full Name</label><input type="text" id="nameInput" placeholder="Enter your name" required></div>
+          <div class="form-group"><label for="emailInput">Email Address</label><input type="email" id="emailInput" placeholder="Enter your email" required></div>
+          <button type="submit" class="modal-submit">Download Free Guide →</button>
+          <p class="modal-footer">We'll email you the guide. No spam, unsubscribe anytime.</p>
+        </form>
+      </div>
+      <div id="successView" class="success-message">
+        <div class="success-icon">✓</div>
+        <h3 class="success-title">Success!</h3>
+        <p class="success-text">Check your email for your free guide.</p>
+        <button class="success-close" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const resources = [
+      { id: 1, title: "PPO Analysis & Strategy Guide", description: "Step-by-step methodology for analyzing your PPO contracts and building a strategic exit plan", category: "insurance", badge: "Guide" },
+      { id: 2, title: "Insurance Fee Schedule Analyzer", description: "Compare your fee schedule against PPO reimbursement rates to identify worst-performing plans", category: "insurance", badge: "Tool" },
+      { id: 3, title: "PPO Negotiation Playbook", description: "Proven scripts and strategies for negotiating better PPO reimbursement rates", category: "insurance", badge: "Playbook" },
+      { id: 4, title: "Patient Communication Templates", description: "Ready-to-use letter templates for notifying patients about insurance network changes", category: "insurance", badge: "Templates" },
+      { id: 5, title: "Insurance Credentialing Guide", description: "Navigate the credentialing and de-credentialing process with step-by-step checklists", category: "insurance", badge: "Guide" },
+      { id: 6, title: "PPO True Cost Analysis Workbook", description: "Calculate the true cost including write-offs, overhead, administrative burden", category: "insurance", badge: "Workbook" },
+      { id: 7, title: "Insurance Independence Roadmap", description: "Comprehensive 12-month roadmap to systematically reduce insurance dependence", category: "insurance", badge: "Roadmap" },
+      { id: 8, title: "Insurance Trends Monitoring System", description: "Stay ahead of insurance industry changes with tracking and analysis system", category: "insurance", badge: "System" },
+      { id: 9, title: "Dental Fee Setting Guide", description: "Research-backed methodology for setting fees that maximize revenue", category: "fee-for-service", badge: "Guide" },
+      { id: 10, title: "Fee-For-Service Practice Blueprint", description: "Complete blueprint for structuring and operating successful FFS practice", category: "fee-for-service", badge: "Blueprint" },
+      { id: 11, title: "FFS Marketing Playbook", description: "Proven marketing strategies specifically for fee-for-service practices", category: "fee-for-service", badge: "Playbook" },
+      { id: 12, title: "Membership Plan Design & Launch Guide", description: "Step-by-step guide to designing, pricing, and launching membership plans", category: "fee-for-service", badge: "Guide" },
+      { id: 13, title: "Patient Financing Options Guide", description: "Comprehensive guide to financing solutions helping patients afford care", category: "fee-for-service", badge: "Guide" },
+      { id: 14, title: "Patient Attraction Blueprint", description: "Data-driven strategies to attract high-value patients", category: "patient-experience", badge: "Blueprint" },
+      { id: 15, title: "Patient Retention Playbook", description: "Proven systems to keep existing patients engaged and turning them into advocates", category: "patient-experience", badge: "Playbook" },
+      { id: 16, title: "Patient Experience Optimization Playbook", description: "Transform every touchpoint to create exceptional experiences driving referrals", category: "patient-experience", badge: "Playbook" },
+      { id: 17, title: "Case Acceptance Mastery Guide", description: "Advanced techniques for presenting cases and increasing acceptance rates", category: "patient-experience", badge: "Guide" },
+      { id: 18, title: "Patient Objection Handling Guide", description: "Scripts and strategies for overcoming top 20 patient objections", category: "patient-experience", badge: "Guide" },
+      { id: 19, title: "Referral System Building Guide", description: "Create systems turning satisfied patients into steady new patient source", category: "patient-experience", badge: "Guide" },
+      { id: 20, title: "Referral System Playbook", description: "Advanced playbook for systematizing and scaling referral generation efforts", category: "patient-experience", badge: "Playbook" },
+      { id: 21, title: "Production Optimization Guide", description: "Maximize production without adding hours through scheduling optimization", category: "practice-growth", badge: "Guide" },
+      { id: 22, title: "Overhead Reduction Guide", description: "Identify and eliminate unnecessary expenses without sacrificing quality", category: "practice-growth", badge: "Guide" },
+      { id: 23, title: "Team Building & Culture Guide", description: "Create team culture that attracts top talent aligned with your vision", category: "practice-growth", badge: "Guide" },
+      { id: 24, title: "Morning Huddle Playbook", description: "Daily huddle templates and scripts to align team and boost performance", category: "practice-growth", badge: "Playbook" },
+      { id: 25, title: "Dental Brand Building Guide", description: "Build strong practice brand attracting ideal patients and commanding premium fees", category: "practice-growth", badge: "Guide" },
+      { id: 26, title: "Financial Freedom Blueprint", description: "Strategic planning for achieving true financial independence through practice", category: "practice-growth", badge: "Blueprint" },
+      { id: 27, title: "Thriving Practice Playbook", description: "Comprehensive system for building practice thriving with or without insurance", category: "practice-growth", badge: "Playbook" },
+      { id: 28, title: "Thriving Mindset Guide", description: "Develop entrepreneurial mindset required to build independent practice", category: "mindset", badge: "Guide" },
+      { id: 29, title: "Recession-Proof Practice Guide", description: "Strategies to keep practice resilient and profitable regardless of conditions", category: "mindset", badge: "Guide" },
+      { id: 30, title: "Future of Dentistry Report", description: "Industry insights and trends shaping future of dental practice and business", category: "mindset", badge: "Report" }
+    ];
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    // Category SVG icons
+    const categoryIcons = {
+      insurance: '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>',
+      'fee-for-service': '<svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>',
+      'patient-experience': '<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
+      'practice-growth': '<svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z"/></svg>',
+      mindset: '<svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>'
+    };
+    const categoryLabels = {
+      insurance: 'Insurance Strategy',
+      'fee-for-service': 'Fee-for-Service',
+      'patient-experience': 'Patient Experience',
+      'practice-growth': 'Practice Growth',
+      mindset: 'Mindset & Strategy'
+    };
+
+    // Article category SVG icons
+    const articleIcons = {
+      ppo: '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>',
+      financial: '<svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z"/></svg>',
+      patient: '<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
+      membership: '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>',
+      team: '<svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>',
+      marketing: '<svg viewBox="0 0 24 24"><path d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1l5 3V6L5 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z"/></svg>',
+      management: '<svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>',
+      legal: '<svg viewBox="0 0 24 24"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/></svg>'
+    };
+
+    // ===== GUIDES TAB =====
+    function renderResources() {
+      const grid = document.getElementById('resourcesGrid');
+      const noResults = document.getElementById('noResults');
+      let filtered = resources.filter(r => {
+        const matchesFilter = currentFilter === 'all' || r.category === currentFilter;
+        const matchesSearch = currentSearch === '' || r.title.toLowerCase().includes(currentSearch.toLowerCase()) || r.description.toLowerCase().includes(currentSearch.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+      if (filtered.length === 0) { grid.innerHTML = ''; noResults.style.display = 'block'; return; }
+      noResults.style.display = 'none';
+      grid.innerHTML = filtered.map(r => `
+        <div class="resource-card" data-category="${r.category}">
+          <div class="resource-header">
+            <span class="header-label">${categoryLabels[r.category] || r.category}</span>
+            <div class="header-icon">${categoryIcons[r.category] || ''}</div>
+          </div>
+          <div class="resource-content">
+            <span class="resource-badge">${r.badge}</span>
+            <h3 class="resource-title">${r.title}</h3>
+            <p class="resource-description">${r.description}</p>
+            <button class="resource-btn" onclick="openModal('${r.title.replace(/'/g, "\\'")}')">Get Free Access →</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ===== MODAL =====
+    function openModal(title) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.getElementById('formView').style.display = 'block';
+      document.getElementById('successView').classList.remove('show');
+      document.getElementById('leadForm').reset();
+    }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', e => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
+    document.getElementById('leadForm').addEventListener('submit', e => {
+      e.preventDefault();
+      if (document.getElementById('nameInput').value && document.getElementById('emailInput').value) {
+        document.getElementById('formView').style.display = 'none';
+        document.getElementById('successView').classList.add('show');
+      }
+    });
+
+    // ===== GUIDES FILTERS =====
+    document.querySelectorAll('#filterContainer .filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#filterContainer .filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentFilter = pill.dataset.filter;
+        renderResources();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', e => { currentSearch = e.target.value; renderResources(); });
+
+    // ===== ARTICLES FILTERS =====
+    document.querySelectorAll('#articleFilterContainer .filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#articleFilterContainer .filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filterValue = pill.dataset.filter;
+        document.querySelectorAll('.article-card').forEach(card => {
+          if (filterValue === 'all' || card.dataset.category === filterValue) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Make article cards clickable
+    document.querySelectorAll('.article-card').forEach(card => {
+      card.addEventListener('click', () => { window.location.href = 'https://rid.academy/blog/'; });
+    });
+
+    // ===== TAB SWITCHING =====
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ===== INJECT ARTICLE ICONS =====
+    document.querySelectorAll('.article-card').forEach(card => {
+      const cat = card.dataset.category;
+      const header = card.querySelector('.article-header');
+      if (header && articleIcons[cat]) {
+        header.innerHTML = '<div class="article-icon">' + articleIcons[cat] + '</div>';
+      }
+    });
+
+    // Initial render
+    renderResources();
+  </script>
+
+
+<footer style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 40px;">
+  <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="font-size:0;height:28px;margin-bottom:16px;">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">Navigation</h3>
+        <a href="index.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Home</a>
+        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Tools</a>
+        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Podcast</a>
+        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Resources</a>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">More</h3>
+        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Webinar Archive</a>
+        <a href="about.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">About</a>
+        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Marketing Consultation</a>
+        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Partner With Us</a>
+        <a href="events.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Events</a>
+      </div>
+    </div>
+    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:13px;">
+      © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color:#E2D603;text-decoration:none;">team@rid.academy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     LATEST EVENT POPUP BANNER
+     To update: change title/date/url in the three data-* attributes below
+     ============================================================ -->
+<div id="ridaEventPopup" onclick="if(event.target===this) ridaClosePopup()" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,0.68);backdrop-filter:blur(6px);">
+  <div style="position:relative;max-width:720px;width:min(100%,720px);">
+    <button onclick="ridaClosePopup()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,0.45);font-size:20px;cursor:pointer;line-height:1;" title="Close">&#x2715;</button>
+    <img id="popupEventBanner" src="" alt="" style="display:none;width:100%;max-height:80vh;height:auto;object-fit:contain;border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.08);background:#111;">
+  </div>
+</div>
+<style>
+@keyframes ridaPopupIn {
+  from { opacity:0; transform:scale(0.96); }
+  to   { opacity:1; transform:scale(1); }
+}
+</style>
+<script src="data/sheets.js"></script>
+</body>
+</html>

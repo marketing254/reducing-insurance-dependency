@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Independence Readiness Scorecard | RID Academy</title>
+  <meta name="description" content="Take the free Insurance Independence Readiness Scorecard to assess your dental practice's preparedness to reduce PPO dependence and transition to fee-for-service.">
+  <meta name="keywords" content="dental readiness assessment, insurance independence scorecard, PPO transition readiness, dental practice evaluation">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Insurance Independence Readiness Scorecard | RID Academy">
+  <meta property="og:description" content="Assess your dental practice's readiness to reduce insurance dependence with our free 15-question scorecard.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://rid.academy/tools/readiness-scorecard">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-subtle: #111111;
+      --bg-card: #161616;
+      --bg-elevated: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --border-2: rgba(255,255,255,0.10);
+      --text: #f5f5f5;
+      --text-2: rgba(255,255,255,0.70);
+      --text-3: rgba(255,255,255,0.45);
+      --text-4: rgba(255,255,255,0.25);
+      --accent: #E2D603;
+      --accent-2: #F0E440;
+      --accent-bg: rgba(226,214,3,0.08);
+      --red: #ef4444;
+      --red-bg: rgba(239,68,68,0.08);
+      --green: #10b981;
+      --green-bg: rgba(16,185,129,0.08);
+      --teal: #14b8a6;
+      --teal-bg: rgba(20,184,166,0.08);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245,158,11,0.08);
+      --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --ff-serif: 'Lora', Georgia, serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      font-weight: 400;
+      line-height: 1.6;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 72px;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 1000; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: #f5f5f5; }
+    .nav-cta { background: #E2D603; color: #000 !important; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
+    .nav-cta:hover { background: #F0E440 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #f5f5f5; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 20px 40px; gap: 16px; z-index: 999; }
+      .nav-links.active { display: flex; }
+      .nav-cta { width: 100%; text-align: center; }
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      margin-top: 72px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 48px 48px;
+      background: linear-gradient(135deg, rgba(226,214,3,0.04) 0%, rgba(226,214,3,0) 100%);
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: var(--accent-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-2);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Assessment Container */
+    .assessment-container {
+      display: flex;
+      justify-content: center;
+      padding: 0 48px 60px;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto 32px;
+      padding: 0 48px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .progress-text {
+      font-size: 14px;
+      color: var(--text-3);
+      font-weight: 500;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background-color: var(--bg-elevated);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    /* Assessment Content */
+    .assessment-content {
+      width: 100%;
+      max-width: 700px;
+      padding: 48px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .assessment-content.hidden {
+      display: none;
+    }
+
+    .question {
+      margin-bottom: 32px;
+    }
+
+    .question-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 28px;
+      line-height: 1.4;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--border-2);
+    }
+
+    .option input[type="radio"] {
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+
+    .option label {
+      cursor: pointer;
+      flex: 1;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .option input[type="radio"]:checked + label {
+      color: var(--accent);
+    }
+
+    .option.selected {
+      background-color: var(--accent-bg);
+      border-color: var(--accent);
+    }
+
+    /* Results Screen */
+    .results-container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .results-container.hidden {
+      display: none;
+    }
+
+    .results-content {
+      padding: 48px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .score-section {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .score-ring-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 32px;
+    }
+
+    .score-ring {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .score-value {
+      text-align: center;
+    }
+
+    .score-value .number {
+      font-family: var(--ff-serif);
+      font-size: 64px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .score-value .total {
+      font-size: 18px;
+      color: var(--text-3);
+      margin-top: 4px;
+    }
+
+    .tier-label {
+      font-family: var(--ff-serif);
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .tier-description {
+      font-size: 16px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Category Breakdown */
+    .categories-section {
+      margin-bottom: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .categories-title {
+      font-family: var(--ff-serif);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+
+    .category {
+      margin-bottom: 28px;
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .category-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .category-score {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-3);
+    }
+
+    .category-progress {
+      width: 100%;
+      height: 6px;
+      background-color: var(--bg-elevated);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .category-progress-fill {
+      height: 100%;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    /* Recommendations */
+    .recommendations-section {
+      margin-bottom: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .recommendations-title {
+      font-family: var(--ff-serif);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .recommendations-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .recommendation-item {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      background-color: var(--bg-elevated);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+    }
+
+    .recommendation-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .recommendation-text {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Share Section */
+    .share-section {
+      margin-bottom: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .share-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 20px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .share-btn:hover {
+      background-color: var(--accent-bg);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .share-btn.primary {
+      background-color: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    .share-btn.primary:hover {
+      background-color: var(--accent-2);
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 200px;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--border-2);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-title {
+      font-family: var(--ff-serif);
+      font-size: 36px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .faq-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .faq-question:hover {
+      background-color: var(--bg-elevated);
+    }
+
+    .faq-question-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .faq-toggle {
+      font-size: 20px;
+      color: var(--accent);
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0 20px 20px 20px;
+      color: var(--text-2);
+      font-size: 14px;
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+
+    /* Footer */
+
+
+
+
+
+
+
+
+    /* Responsive */
+/* FOOTER */
+footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.footer-section a {
+  display: block;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.footer-logo {
+  font-size: 0;
+  height: 28px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  footer { padding: 40px 0 30px; }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+}
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+    </a>
+        <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false" style="color:var(--accent,#E2D603)">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-eyebrow">FREE ASSESSMENT</div>
+      <h1>Insurance Independence Readiness Scorecard</h1>
+      <p>Discover where your practice stands and get a personalized roadmap to reduce insurance dependence.</p>
+    </section>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container" id="progressContainer">
+      <div class="progress-info">
+        <span class="progress-text"><span id="currentQuestion">1</span> of 15</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Assessment Container -->
+    <div class="assessment-container" id="assessmentContainer">
+      <div class="assessment-content" id="assessmentContent"></div>
+    </div>
+
+    <!-- Results Container -->
+    <div class="assessment-container">
+      <div class="results-container hidden" id="resultsContainer">
+        <div class="results-content" id="resultsContent"></div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faqSection">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+      <div class="faq-items" id="faqItems"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  
+s", value: 3 },
+          { label: "Resistant", value: 2 },
+          { label: "Haven't discussed", value: 1 }
+        ]
+      },
+      {
+        question: "Do you have a patient communication strategy for insurance changes?",
+        options: [
+          { label: "Yes, tested and refined", value: 5 },
+          { label: "Yes, basic scripts", value: 4 },
+          { label: "Working on one", value: 3 },
+          { label: "No, but plan to", value: 2 },
+          { label: "No", value: 1 }
+        ]
+      },
+      {
+        question: "How is your practice's current cash flow?",
+        options: [
+          { label: "Very strong", value: 5 },
+          { label: "Healthy", value: 4 },
+          { label: "Adequate", value: 3 },
+          { label: "Tight", value: 2 },
+          { label: "Struggling", value: 1 }
+        ]
+      },
+      {
+        question: "Do you track your PPO write-offs by plan?",
+        options: [
+          { label: "Yes, detailed tracking", value: 5 },
+          { label: "Yes, basic tracking", value: 4 },
+          { label: "Somewhat", value: 3 },
+          { label: "Rarely", value: 2 },
+          { label: "Never", value: 1 }
+        ]
+      },
+      {
+        question: "Have you negotiated better PPO rates recently?",
+        options: [
+          { label: "Yes, successfully", value: 5 },
+          { label: "Yes, some improvement", value: 4 },
+          { label: "Tried, no luck", value: 3 },
+          { label: "Haven't tried", value: 2 },
+          { label: "Didn't know you could", value: 1 }
+        ]
+      },
+      {
+        question: "What's your new patient flow like?",
+        options: [
+          { label: "Very strong (30+/month)", value: 5 },
+          { label: "Good (20-30/month)", value: 4 },
+          { label: "Moderate (10-20/month)", value: 3 },
+          { label: "Low (5-10/month)", value: 2 },
+          { label: "Very low (<5/month)", value: 1 }
+        ]
+      },
+      {
+        question: "Do you have a dental marketing strategy beyond insurance directories?",
+        options: [
+          { label: "Comprehensive multi-channel", value: 5 },
+          { label: "Good digital marketing", value: 4 },
+          { label: "Some marketing", value: 3 },
+          { label: "Minimal", value: 2 },
+          { label: "Only insurance directories", value: 1 }
+        ]
+      },
+      {
+        question: "How comfortable are you with fee-for-service conversations?",
+        options: [
+          { label: "Very comfortable", value: 5 },
+          { label: "Comfortable", value: 4 },
+          { label: "Somewhat", value: 3 },
+          { label: "Uncomfortable", value: 2 },
+          { label: "Very uncomfortable", value: 1 }
+        ]
+      },
+      {
+        question: "Have any colleagues in your area successfully dropped PPOs?",
+        options: [
+          { label: "Yes, several", value: 5 },
+          { label: "Yes, a few", value: 4 },
+          { label: "One or two", value: 3 },
+          { label: "Not sure", value: 2 },
+          { label: "No", value: 1 }
+        ]
+      },
+      {
+        question: "How urgently do you want to reduce insurance dependence?",
+        options: [
+          { label: "Starting immediately", value: 5 },
+          { label: "Within 6 months", value: 4 },
+          { label: "Within a year", value: 3 },
+          { label: "Exploring options", value: 2 },
+          { label: "Just curious", value: 1 }
+        ]
+      }
+    ];
+
+    const faqData = [
+      {
+        question: "What is the Insurance Independence Readiness Scorecard?",
+        answer: "The Readiness Scorecard is a comprehensive assessment designed to evaluate your dental practice's readiness to reduce insurance dependence. It provides a personalized score from 15-75 and generates a customized roadmap based on your responses across financial health, operational readiness, and market position."
+      },
+      {
+        question: "What does the Readiness Score mean?",
+        answer: "Your score falls into four tiers: Ready to Launch (60-75) means you're positioned to take immediate action; Almost There (45-59) indicates you're close with some areas to strengthen; Building Foundation (30-44) shows you're making progress with more preparation needed; Early Stage (15-29) suggests you have foundational work to complete before major transitions."
+      },
+      {
+        question: "How long does the assessment take?",
+        answer: "The assessment typically takes 5-10 minutes to complete. You can answer the 15 questions at your own pace, and we'll show your results immediately once you finish."
+      },
+      {
+        question: "Can I retake the assessment?",
+        answer: "Yes, absolutely! You can retake the assessment anytime to track your progress. Many practices use it quarterly to monitor improvements in readiness and identify areas that need additional focus."
+      },
+      {
+        question: "What if I score low?",
+        answer: "A lower score isn't a setback-it's a roadmap. It shows you the specific areas to focus on first. Use the personalized recommendations to build your foundation, then use our other tools like the PPO Calculator and Revenue Simulator to plan your next steps."
+      }
+    ];
+
+    let currentQuestion = 0;
+    let scores = {};
+
+    function init() {
+      renderQuestion();
+      renderFAQ();
+    }
+
+    function renderQuestion() {
+      const container = document.getElementById('assessmentContent');
+      const q = questions[currentQuestion];
+
+      let html = `
+        <div class="question">
+          <div class="question-text">${q.question}</div>
+          <div class="options">
+      `;
+
+      q.options.forEach((opt, idx) => {
+        const id = `option-${currentQuestion}-${idx}`;
+        html += `
+          <div class="option">
+            <input type="radio" id="${id}" name="q${currentQuestion}" value="${opt.value}" data-label="${opt.label}">
+            <label for="${id}">${opt.label}</label>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+
+      // Add event listeners
+      container.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', handleAnswer);
+      });
+
+      updateProgressBar();
+    }
+
+    function handleAnswer(e) {
+      const value = parseInt(e.target.value);
+      const label = e.target.dataset.label;
+      scores[currentQuestion] = value;
+
+      // Visual feedback
+      const option = e.target.closest('.option');
+      option.classList.add('selected');
+
+      // Auto-advance after delay
+      setTimeout(() => {
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          renderQuestion();
+          document.getElementById('assessmentContent').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          showResults();
+        }
+      }, 300);
+    }
+
+    function updateProgressBar() {
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+    }
+
+    function showResults() {
+      document.getElementById('assessmentContent').style.display = 'none';
+      document.getElementById('progressContainer').style.display = 'none';
+
+      const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+
+      // Determine tier
+      let tier, tierColor, tierBg;
+      if (totalScore >= 60) {
+        tier = { name: 'Ready to Launch', color: '#10b981', bg: 'rgba(16,185,129,0.08)' };
+      } else if (totalScore >= 45) {
+        tier = { name: 'Almost There', color: '#14b8a6', bg: 'rgba(20,184,166,0.08)' };
+      } else if (totalScore >= 30) {
+        tier = { name: 'Building Foundation', color: '#f59e0b', bg: 'rgba(245,158,11,0.08)' };
+      } else {
+        tier = { name: 'Early Stage', color: '#ef4444', bg: 'rgba(239,68,68,0.08)' };
+      }
+
+      // Calculate category scores
+      const categoryScores = {
+        financial: scores[0] + scores[7] + scores[8] + scores[9], // Q1, Q8, Q9, Q10
+        operational: scores[1] + scores[2] + scores[3] + scores[5] + scores[6], // Q2, Q3, Q4, Q6, Q7
+        market: scores[4] + scores[10] + scores[11] + scores[12] + scores[13] + scores[14] // Q5, Q11, Q12, Q13, Q14, Q15
+      };
+
+      const recommendations = getRecommendations(totalScore);
+
+      let html = `
+        <div class="score-section">
+          <div class="score-ring-container">
+            <div class="score-ring" style="background: conic-gradient(${tier.color} ${(totalScore/75)*360}deg, var(--bg-elevated) 0deg); border: 6px solid ${tier.color};">
+              <div class="score-value">
+                <div class="number">${totalScore}</div>
+                <div class="total">out of 75</div>
+              </div>
+            </div>
+          </div>
+          <div class="tier-label" style="color: ${tier.color};">${tier.name}</div>
+          <div class="tier-description">${getTierDescription(totalScore)}</div>
+        </div>
+
+        <div class="categories-section">
+          <h3 class="categories-title">Category Breakdown</h3>
+          <div class="category">
+            <div class="category-header">
+              <span class="category-name">Financial Health</span>
+              <span class="category-score">${categoryScores.financial} / 20</span>
+            </div>
+            <div class="category-progress">
+              <div class="category-progress-fill" style="width: ${(categoryScores.financial/20)*100}%"></div>
+            </div>
+          </div>
+          <div class="category">
+            <div class="category-header">
+              <span class="category-name">Operational Readiness</span>
+              <span class="category-score">${categoryScores.operational} / 25</span>
+            </div>
+            <div class="category-progress">
+              <div class="category-progress-fill" style="width: ${(categoryScores.operational/25)*100}%"></div>
+            </div>
+          </div>
+          <div class="category">
+            <div class="category-header">
+              <span class="category-name">Market Position</span>
+              <span class="category-score">${categoryScores.market} / 30</span>
+            </div>
+            <div class="category-progress">
+              <div class="category-progress-fill" style="width: ${(categoryScores.market/30)*100}%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="recommendations-section">
+          <h3 class="recommendations-title">Recommended Next Steps</h3>
+          <ul class="recommendations-list">
+            ${recommendations.map(rec => `
+              <li class="recommendation-item">
+                <span class="recommendation-icon">→</span>
+                <span class="recommendation-text">${rec}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div class="share-section">
+          <h3 class="share-title">Share Your Results</h3>
+          <div class="share-buttons">
+            <a href="https://twitter.com/intent/tweet?text=I%20scored%20${totalScore}%20on%20the%20Insurance%20Independence%20Readiness%20Scorecard%20and%20I'm%20%23${tier.name.replace(/\s/g, '')}%20to%20reduce%20insurance%20dependence%21%20Take%20the%20assessment%20yourself%20at%20rid.academy" target="_blank" class="share-btn">Share on Twitter</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=rid.academy" target="_blank" class="share-btn">Share on Facebook</a>
+            <a href="mailto:?subject=Check%20Out%20My%20Insurance%20Independence%20Score&body=I%20just%20took%20the%20Insurance%20Independence%20Readiness%20Scorecard%20and%20scored%20${totalScore}%20(${tier.name})%21%20Take%20it%20yourself%20at%20rid.academy" class="share-btn">Share via Email</a>
+            <button class="share-btn primary" onclick="copyToClipboard()">Copy Link</button>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn btn-primary" onclick="resetAssessment()">Retake Assessment</button>
+          <a href="ppo-calculator.html" class="btn btn-secondary">PPO Calculator</a>
+          <a href="revenue-simulator.html" class="btn btn-secondary">Revenue Simulator</a>
+        </div>
+      `;
+
+      document.getElementById('resultsContent').innerHTML = html;
+      document.getElementById('resultsContainer').classList.remove('hidden');
+      document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function getTierDescription(score) {
+      if (score >= 60) {
+        return "Your practice shows strong readiness across all key areas. You have the financial stability, operational foundation, and market position to execute a significant shift away from PPO dependence. Consider a detailed action plan.";
+      } else if (score >= 45) {
+        return "You're positioned well in most areas with a few strategic gaps. Focus on strengthening operational systems and market positioning before making major PPO changes.";
+      } else if (score >= 30) {
+        return "You're making solid progress, but there's important groundwork to complete. Build your membership programs, improve cash flow, and strengthen your team alignment before major transitions.";
+      } else {
+        return "You're at an exploratory stage. Use this as your roadmap to build the foundations needed. Start with the recommendations below and revisit your score quarterly.";
+      }
+    }
+
+    function getRecommendations(score) {
+      const recs = [];
+
+      if (score >= 60) {
+        recs.push("Develop a detailed 90-day action plan for PPO reduction");
+        recs.push("Run scenarios in the Revenue Simulator to model different fee-for-service strategies");
+        recs.push("Schedule training for your team on direct patient conversations");
+        recs.push("Consider joining peer groups implementing similar transitions");
+      } else if (score >= 45) {
+        recs.push("Strengthen your patient retention systems and online presence");
+        recs.push("Establish clear team alignment on insurance independence goals");
+        recs.push("Optimize your membership or savings plan offering");
+        recs.push("Calculate your true PPO cost impact using the PPO Calculator");
+      } else if (score >= 30) {
+        recs.push("Build or enhance your in-house membership/savings plan");
+        recs.push("Improve cash flow management and PPO tracking systems");
+        recs.push("Develop a comprehensive patient communication strategy");
+        recs.push("Invest in marketing beyond insurance directories");
+      } else {
+        recs.push("Start with foundational cash flow and operational improvements");
+        recs.push("Build team alignment on the vision for independence");
+        recs.push("Explore your actual PPO write-offs using the PPO Calculator");
+        recs.push("Research membership plan options for your market");
+      }
+
+      return recs;
+    }
+
+    function resetAssessment() {
+      currentQuestion = 0;
+      scores = {};
+      document.getElementById('assessmentContent').style.display = 'block';
+      document.getElementById('progressContainer').style.display = 'block';
+      document.getElementById('resultsContainer').classList.add('hidden');
+      renderQuestion();
+      document.getElementById('assessmentContent').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderFAQ() {
+      const container = document.getElementById('faqItems');
+      let html = '';
+
+      faqData.forEach((item, idx) => {
+        html += `
+          <div class="faq-item" data-idx="${idx}">
+            <div class="faq-question" onclick="toggleFAQ(${idx})">
+              <span class="faq-question-text">${item.question}</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">${item.answer}</div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function toggleFAQ(idx) {
+      const item = document.querySelector(`[data-idx="${idx}"]`);
+      item.classList.toggle('open');
+    }
+
+    function copyToClipboard() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard!');
+      });
+    }
+
+    // Initialize
+    init();
+  </script>
+
+
+<footer style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 40px;">
+  <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="font-size:0;height:28px;margin-bottom:16px;">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">Navigation</h3>
+        <a href="index.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Home</a>
+        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Tools</a>
+        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Podcast</a>
+        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Resources</a>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">More</h3>
+        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Webinar Archive</a>
+        <a href="about.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">About</a>
+        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Marketing Consultation</a>
+        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Partner With Us</a>
+        <a href="events.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Events</a>
+      </div>
+    </div>
+    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:13px;">
+      © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color:#E2D603;text-decoration:none;">team@rid.academy</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

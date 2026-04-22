@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Expert interviews and practical strategies for dental practice owners on reducing PPO dependence. New episodes every Tuesday.">
+  <meta name="keywords" content="dental podcast, insurance independence, practice strategy, dental leadership">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Less Insurance Dependence Podcast | RID Academy">
+  <meta property="og:description" content="Expert interviews and practical strategies for dental practice owners on reducing PPO dependence. New episodes every Tuesday.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="podcast.html">
+  <title>Less Insurance Dependence Podcast | RID Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-subtle: #111111;
+      --bg-card: #161616;
+      --bg-elevated: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --border-2: rgba(255,255,255,0.10);
+      --text: #f5f5f5;
+      --text-2: rgba(255,255,255,0.70);
+      --text-3: rgba(255,255,255,0.45);
+      --text-4: rgba(255,255,255,0.25);
+      --accent: #E2D603;
+      --accent-2: #F0E440;
+      --accent-bg: rgba(226,214,3,0.08);
+      --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --ff-serif: 'Lora', Georgia, serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--accent-2);
+    }
+
+    /* ======================== NAV ======================== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 72px;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 1000; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: #f5f5f5; }
+    .nav-cta { background: #E2D603; color: #000 !important; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
+    .nav-cta:hover { background: #F0E440 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #f5f5f5; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+    /* ======================== MAIN CONTENT ======================== */
+    main {
+      margin-top: 72px;
+      background-color: var(--bg);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ======================== HERO ======================== */
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-2);
+      margin-bottom: 24px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .host-line {
+      font-size: 14px;
+      color: var(--text-3);
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    .platform-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .platform-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-2);
+      border-radius: 24px;
+      color: var(--text-2);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .platform-btn:hover {
+      background-color: var(--bg-elevated);
+      border-color: var(--border);
+      color: var(--accent-2);
+    }
+
+    /* ======================== LATEST EPISODE ======================== */
+    .latest-episode {
+      margin-bottom: 100px;
+    }
+
+    .episode-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      padding: 40px;
+      position: relative;
+    }
+
+    .episode-badge {
+      display: inline-block;
+      background-color: var(--accent-bg);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .episode-number {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .episode-title {
+      font-family: var(--ff-serif);
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .episode-guest {
+      color: var(--text-2);
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* ── Mini audio player (latest episode, landing page) ── */
+    .ep-audio-wrap {
+      margin-bottom: 24px;
+    }
+
+    .rida-mini {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg, rgba(226,214,3,0.06) 0%, rgba(255,255,255,0.03) 100%);
+      border: 1px solid rgba(226,214,3,0.18);
+      border-radius: 12px;
+      padding: 16px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rida-mini::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #E2D603, #F0E440, #fffab0);
+      border-radius: 3px 0 0 3px;
+    }
+
+    .rida-mini-play {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #E2D603, #F0E440);
+      color: #000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(226,214,3,0.32), 0 0 0 0 rgba(226,214,3,0);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .rida-mini-play:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 22px rgba(226,214,3,0.45), 0 0 0 6px rgba(226,214,3,0.08);
+    }
+
+    .rida-mini-play.is-playing {
+      box-shadow: 0 4px 18px rgba(226,214,3,0.28), 0 0 0 4px rgba(226,214,3,0.12);
+    }
+
+    .rida-mini-play svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .rida-mini-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rida-mini-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    .rida-mini-track {
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .rida-mini-track:hover .rida-mini-fill {
+      filter: brightness(1.12);
+    }
+
+    .rida-mini-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #a89f00, #E2D603, #F0E440);
+      border-radius: 999px;
+      transition: width 0.1s linear;
+      position: relative;
+    }
+
+    .rida-mini-fill::after {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #F0E440;
+      box-shadow: 0 0 6px rgba(226,214,3,0.5);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .rida-mini-track:hover .rida-mini-fill::after {
+      opacity: 1;
+    }
+
+    .rida-mini-times {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-3);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
+    }
+
+    .rida-mini-sep {
+      color: var(--text-4);
+    }
+
+    .rida-mini-dur {
+      color: var(--text-4);
+    }
+
+    .rida-mini-embed {
+      width: 100%;
+    }
+
+    .rida-mini-embed iframe {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      display: block;
+    }
+
+
+    .episode-description {
+      font-size: 16px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .episode-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .episode-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background-color: var(--accent);
+      color: #000;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: none;
+    }
+
+    .episode-link:hover {
+      background-color: var(--accent-2);
+    }
+
+    /* ======================== POPULAR TOPICS ======================== */
+    .popular-topics {
+      margin-bottom: 100px;
+    }
+
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .topic-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .topic-card:hover {
+      border-color: var(--border);
+      background-color: var(--bg-elevated);
+      transform: translateY(-4px);
+    }
+
+    .topic-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .topic-title {
+      font-family: var(--ff-serif);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .topic-description {
+      font-size: 14px;
+      color: var(--text-3);
+      line-height: 1.6;
+    }
+
+    /* ======================== RECENT EPISODES ======================== */
+    .recent-episodes {
+      margin-bottom: 100px;
+    }
+
+    .episodes-carousel {
+      position: relative;
+    }
+
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .ep-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ep-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(226,214,3,0.08);
+    }
+
+    .ep-card-top {
+      padding: 24px 24px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ep-num {
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .ep-date {
+      color: var(--text-4);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .ep-card-body {
+      padding: 16px 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ep-title {
+      font-family: var(--ff-serif);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .ep-guest {
+      color: var(--text-3);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .ep-listen {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 13px;
+      transition: gap 0.2s;
+    }
+
+    .ep-listen:hover {
+      gap: 10px;
+    }
+
+    /* Carousel navigation */
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border-2);
+      background: var(--bg-card);
+      color: var(--text-2);
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-bg);
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 1024px) {
+      .episodes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .episodes-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ======================== STATS BAR ======================== */
+    .stats-bar {
+      margin-bottom: 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 24px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-2);
+    }
+
+    /* ======================== SUBSCRIBE CTA ======================== */
+    .subscribe-cta {
+      margin-bottom: 100px;
+    }
+
+    .subscribe-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      padding: 48px;
+      text-align: center;
+    }
+
+    .subscribe-title {
+      font-family: var(--ff-serif);
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .subscribe-input {
+      flex: 1;
+      padding: 12px 16px;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-2);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--ff-sans);
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    .subscribe-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .subscribe-input::placeholder {
+      color: var(--text-4);
+    }
+
+    .subscribe-button {
+      padding: 12px 24px;
+      background-color: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .subscribe-button:hover {
+      background-color: var(--accent-2);
+    }
+
+    .subscribe-note {
+      font-size: 13px;
+      color: var(--text-3);
+    }
+
+    /* ======================== FOOTER ======================== */
+
+
+
+
+
+
+
+
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 20px 40px; gap: 16px; z-index: 999; }
+      .nav-links.active { display: flex; }
+      .nav-cta { width: 100%; text-align: center; }
+    }
+
+    /* ======================== RESPONSIVE ======================== */
+/* FOOTER */
+footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.footer-section a {
+  display: block;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.footer-logo {
+  font-size: 0;
+  height: 28px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  footer { padding: 40px 0 30px; }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+}
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+    </a>
+        <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html" style="color: var(--accent)">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Weekly Podcast</div>
+        <h1>Less Insurance Dependence Podcast</h1>
+        <p class="hero-subtitle">Expert interviews and practical strategies for dental practice owners dropping PPO plans. New episodes every Tuesday.</p>
+        <p class="host-line">Hosted by Naren Arulrajah</p>
+        <p class="host-line">Available on Apple Podcasts, Spotify, Amazon Music, Google Podcasts and all major platforms</p>
+        <div class="platform-buttons">
+          <a href="https://www.lessinsurancedependence.com/podcast-show/" class="platform-btn" style="background: var(--accent); color: #000; padding: 12px 24px; font-weight: 600; border-radius: 6px; display: inline-flex;">Listen on Less Insurance Dependence →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST EPISODE -->
+    <section class="latest-episode">
+      <div class="container">
+        <div class="episode-card" id="latestEpisodeCard">
+          <div class="episode-badge">Latest Episode</div>
+          <div class="episode-number" id="latestEpisodeNumber">Loading latest episode...</div>
+          <h2 class="episode-title" id="latestEpisodeTitle">Loading episode details...</h2>
+          <p class="episode-guest" id="latestEpisodeGuest">Fetching guest information...</p>
+
+          <div class="ep-audio-wrap" id="latestEpisodePlayerWrap">
+            <div class="rida-mini">
+              <div style="width:50px;height:50px;border-radius:50%;background:rgba(226,214,3,0.15);flex-shrink:0;"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+                <div style="height:5px;border-radius:999px;background:rgba(255,255,255,0.07);width:100%;"></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.25);">Loading audio…</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="episode-description" id="latestEpisodeDescription">Loading the latest podcast episode from RID Academy.</p>
+
+          <div class="episode-links">
+            <a class="episode-link" href="podcast.html">Loading links...</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POPULAR TOPICS -->
+    <section class="popular-topics">
+      <div class="container">
+        <h2 class="section-title">Popular Topics</h2>
+        <div class="topics-grid">
+          <div class="topic-card">
+            <div class="topic-icon">📋</div>
+            <h3 class="topic-title">The 4-Step Framework to Drop PPO Plans</h3>
+            <p class="topic-description">A proven approach for systematically eliminating PPO dependency and transitioning to a healthier practice model.</p>
+          </div>
+          <div class="topic-card">
+            <div class="topic-icon">💬</div>
+            <h3 class="topic-title">Case Acceptance & Presentation Mastery</h3>
+            <p class="topic-description">Master the art of presenting treatment plans and increasing case acceptance rates with confidence.</p>
+          </div>
+          <div class="topic-card">
+            <div class="topic-icon">👥</div>
+            <h3 class="topic-title">Building a Thriving Membership Plan</h3>
+            <p class="topic-description">Create a sustainable membership program that keeps patients engaged and generates predictable revenue.</p>
+          </div>
+          <div class="topic-card">
+            <div class="topic-icon">💰</div>
+            <h3 class="topic-title">Fee Setting for Maximum Revenue</h3>
+            <p class="topic-description">Strategic pricing techniques that reflect your value without driving patients away to competitors.</p>
+          </div>
+          <div class="topic-card">
+            <div class="topic-icon">📜</div>
+            <h3 class="topic-title">Insurance Contract Negotiation Secrets</h3>
+            <p class="topic-description">Advanced tactics for negotiating better contract terms and understanding your agreements.</p>
+          </div>
+          <div class="topic-card">
+            <div class="topic-icon">🎯</div>
+            <h3 class="topic-title">Patient Retention in Challenging Times</h3>
+            <p class="topic-description">Proven strategies to maintain patient loyalty and grow your practice during uncertain economic conditions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECENT EPISODES -->
+    <section class="recent-episodes">
+      <div class="container">
+        <h2 class="section-title">Recent Episodes</h2>
+        <div class="episodes-carousel">
+          <div class="episodes-grid" id="episodesGrid"></div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-btn" id="nextBtn" aria-label="Next">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar">
+      <div class="container" style="display: contents;">
+        <div class="stat-item">
+          <div class="stat-value">383+</div>
+          <div class="stat-label">Episodes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">10,000+</div>
+          <div class="stat-label">Listeners</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">Every Tuesday</div>
+          <div class="stat-label">New Episodes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">#1</div>
+          <div class="stat-label">Dental Independence Podcast</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE CTA -->
+    <section class="subscribe-cta">
+      <div class="container">
+        <div class="subscribe-card">
+          <h2 class="subscribe-title">Never Miss an Episode</h2>
+          <form class="subscribe-form" onsubmit="event.preventDefault();">
+            <input type="email" class="subscribe-input" placeholder="Enter your email" required>
+            <button type="submit" class="subscribe-button">Subscribe</button>
+          </form>
+          <p class="subscribe-note">Get notified when new episodes drop.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="data/rida-data.js"></script>
+  <script src="data/sheets.js"></script>
+  <script>
+    // ===== EPISODES DATA (static fallback; overridden by RIDA_PODCAST from data-loader) =====
+    const STATIC_EPISODES = [
+      { num: 383, title: "Operational Clarity That Reduces Insurance Pressure", guest: "Kristine Haynes", date: "Mar 2026" },
+      { num: 382, title: "The Numbers Dentists Must Know to Reduce Insurance Dependence", guest: "Gerilyn Alfe", date: "Mar 2026" },
+      { num: 381, title: "Helping Your Practice Grow With Less Insurance Dependence", guest: "Kelly Fox-Galvagni", date: "Feb 2026" },
+      { num: 380, title: "Why Dentists Can't Rely on Word of Mouth and Insurance Referrals Alone Anymore", guest: null, date: "Feb 2026" },
+      { num: 379, title: "Financial Steps That Help Dentists Reduce PPO Pressure", guest: "Jim Alley", date: "Feb 2026" },
+      { num: 378, title: "Every Number Tells a Story: Using Data to Drive Dental Success", guest: "Shawn Peers", date: "Feb 2026" },
+      { num: 377, title: "Legal Essentials That Help Dentists Grow With Confidence", guest: "Evan Sampson", date: "Jan 2026" },
+      { num: 376, title: "How Virtual Assistants Help Dentists Reduce Insurance Dependence", guest: "Timothy Boyle", date: "Jan 2026" },
+      { num: 375, title: "Building a Practice Patients Trust More Than Their Insurance Company", guest: null, date: "Jan 2026" },
+      { num: 374, title: "Setting Your Team Up for Success When Reducing Insurance Dependence", guest: "Callie Ward", date: "Jan 2026" },
+      { num: 373, title: "How Hybrid Training Is Transforming Dentistry", guest: "Dr. Vishal Sharma", date: "Dec 2025" },
+      { num: 372, title: "The Power of Dental Coaching for Practice Growth", guest: null, date: "Dec 2025" },
+      { num: 371, title: "Building a Fee-for-Service Practice from Day One", guest: null, date: "Dec 2025" },
+      { num: 370, title: "How to Attract More Patients That Prefer Fee-for-Service Care", guest: null, date: "Dec 2025" },
+      { num: 369, title: "Increasing Case Acceptance: Grow Fee-for-Service Revenue", guest: "Joanne Villani", date: "Dec 2025" },
+    ];
+
+    // Use live data from Google Sheets if available, else fall back to static list
+    function getEpisodes() {
+      if (typeof RIDA_PODCAST !== 'undefined' && RIDA_PODCAST.length) {
+        return RIDA_PODCAST.map(ep => ({
+          num: ep.episode,
+          title: ep.title,
+          guest: ep.guest_name || null,
+          date: ep.date || '',
+          spotify_url: ep.spotify_url || '',
+          apple_url: ep.apple_url || ''
+        }));
+      }
+      return STATIC_EPISODES;
+    }
+
+    let currentPage = 0;
+    const perPage = 6;
+
+    function renderEpisodes() {
+      if (window.RIDA_SHEETS_ACTIVE) return;
+      const episodes = getEpisodes();
+      const totalPages = Math.ceil(episodes.length / perPage);
+      const grid = document.getElementById('episodesGrid');
+      const start = currentPage * perPage;
+      const pageEps = episodes.slice(start, start + perPage);
+
+      grid.innerHTML = pageEps.map(ep => `
+        <div class="ep-card">
+          <div class="ep-card-top">
+            <span class="ep-num">Ep ${ep.num}</span>
+            <span class="ep-date">${ep.date}</span>
+          </div>
+          <div class="ep-card-body">
+            <h3 class="ep-title">${ep.title}</h3>
+            ${ep.guest ? `<p class="ep-guest">with ${ep.guest}</p>` : '<p class="ep-guest">&nbsp;</p>'}
+            <a href="podcast-episode/?ep=${ep.num}" class="ep-listen">Listen Now →</a>
+          </div>
+        </div>
+      `).join('');
+
+      const dots = document.getElementById('carouselDots');
+      dots.innerHTML = Array.from({length: totalPages}, (_, i) =>
+        `<button class="carousel-dot ${i === currentPage ? 'active' : ''}" data-page="${i}"></button>`
+      ).join('');
+      dots.querySelectorAll('.carousel-dot').forEach(dot => {
+        dot.addEventListener('click', () => { currentPage = parseInt(dot.dataset.page); renderEpisodes(); });
+      });
+
+      document.getElementById('prevBtn').disabled = currentPage === 0;
+      document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentPage > 0) { currentPage--; renderEpisodes(); }
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      const episodes = getEpisodes();
+      if (currentPage < Math.ceil(episodes.length / perPage) - 1) { currentPage++; renderEpisodes(); }
+    });
+
+    // Initial render; re-render if sheet data loads later
+    renderEpisodes();
+    document.addEventListener('ridaDataReady', () => { currentPage = 0; renderEpisodes(); });
+  </script>
+
+
+<footer style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 40px;">
+  <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="font-size:0;height:28px;margin-bottom:16px;">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">Navigation</h3>
+        <a href="index.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Home</a>
+        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Tools</a>
+        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Podcast</a>
+        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Resources</a>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">More</h3>
+        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Webinar Archive</a>
+        <a href="about.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">About</a>
+        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Marketing Consultation</a>
+        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Partner With Us</a>
+        <a href="events.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Events</a>
+      </div>
+    </div>
+    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:13px;">
+      © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color:#E2D603;text-decoration:none;">team@rid.academy</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner With Us — Speak, Collaborate & Grow | RID Academy</title>
+<meta name="description" content="Join RID Academy as a speaker, panelist, or partner. Share your expertise with thousands of dental professionals reducing insurance dependence.">
+<meta name="keywords" content="dental speaker, dental partnership, dental webinar speaker, dental podcast guest, dental industry collaboration">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Partner With Us — Speak, Collaborate & Grow | RID Academy">
+<meta property="og:description" content="Share your expertise with thousands of dental professionals. Apply to speak at events, join panels, or explore partnership opportunities.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="partner.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg-subtle: #111111;
+  --bg-card: #161616;
+  --bg-elevated: #1a1a1a;
+  --border: rgba(255,255,255,0.06);
+  --border-2: rgba(255,255,255,0.10);
+  --text: #f5f5f5;
+  --text-2: rgba(255,255,255,0.70);
+  --text-3: rgba(255,255,255,0.45);
+  --text-4: rgba(255,255,255,0.25);
+  --accent: #E2D603;
+  --accent-2: #F0E440;
+  --accent-bg: rgba(226,214,3,0.08);
+  --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --ff-serif: 'Lora', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--text); text-decoration: none; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 72px;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 clamp(1.5rem, 4vw, 3rem);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+.nav-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+.nav-links a:hover { color: #f5f5f5; }
+.nav-cta { background: #E2D603; color: #000 !important; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
+.nav-cta:hover { background: #F0E440 !important; }
+.nav-toggle { display: none; background: none; border: none; color: #f5f5f5; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 20px 40px; gap: 16px; z-index: 999; }
+  .nav-links.active { display: flex; }
+  .nav-cta { width: 100%; text-align: center; }
+}
+
+/* LAYOUT */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5%, 80px); }
+
+/* HERO */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 160px 0 80px;
+  text-align: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 20%, rgba(226,214,3,0.06), transparent 70%);
+}
+.hero-inner { position: relative; z-index: 2; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 600; line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.hero p {
+  font-size: 1.1rem; color: var(--text-2);
+  max-width: 640px; margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* BENEFITS */
+.benefits-section { padding: 40px 0 80px; }
+.section-label {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); text-align: center;
+  margin-bottom: 1rem;
+}
+.section-heading {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600; text-align: center;
+  margin-bottom: 3rem; letter-spacing: -0.02em;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.benefit-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color 0.3s, transform 0.2s;
+}
+.benefit-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.benefit-icon {
+  width: 48px; height: 48px;
+  background: var(--accent-bg);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--accent);
+}
+.benefit-icon svg {
+  width: 22px; height: 22px;
+}
+.benefit-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+.benefit-card p { font-size: 0.88rem; color: var(--text-3); line-height: 1.65; }
+
+@media (max-width: 768px) {
+  .benefits-grid { grid-template-columns: 1fr; }
+}
+
+/* FORM SECTION */
+.form-section { padding: 0 0 80px; }
+
+.speaker-form-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-2);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+.speaker-form-card h3 {
+  font-family: var(--ff-serif);
+  font-size: 1.6rem; font-weight: 600;
+  margin-bottom: 0.75rem; text-align: center;
+}
+.speaker-form-card .form-subtitle {
+  color: var(--text-3); font-size: 0.9rem;
+  text-align: center; margin-bottom: 2rem;
+}
+
+.speaker-form { display: flex; flex-direction: column; gap: 18px; }
+.speaker-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .speaker-form .form-row { grid-template-columns: 1fr; } }
+
+.speaker-form label {
+  font-size: 12px; font-weight: 600; color: var(--text-2);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 6px; display: block;
+}
+.speaker-form input, .speaker-form textarea, .speaker-form select {
+  width: 100%; padding: 12px 14px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text);
+  font-family: var(--ff-sans); font-size: 14px;
+  transition: border-color 0.2s;
+}
+.speaker-form input::placeholder, .speaker-form textarea::placeholder { color: var(--text-4); }
+.speaker-form input:focus, .speaker-form textarea:focus, .speaker-form select:focus { outline: none; border-color: var(--accent); }
+.speaker-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23999' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+.speaker-form select option { background: var(--bg-card); color: var(--text); }
+.speaker-form textarea { min-height: 100px; resize: vertical; }
+
+.speaker-submit {
+  background: var(--accent); color: #000;
+  padding: 14px 32px; border: none; border-radius: 8px;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: all 0.2s; width: 100%;
+  font-family: var(--ff-sans);
+}
+.speaker-submit:hover { background: var(--accent-2); transform: translateY(-2px); }
+.speaker-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-success { display: none; text-align: center; padding: 2rem 0; }
+.form-success.show { display: block; }
+.form-success .success-icon {
+  width: 60px; height: 60px;
+  background: var(--accent-bg); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px; font-size: 28px;
+}
+.form-success h4 { font-family: var(--ff-serif); font-size: 1.4rem; margin-bottom: 8px; }
+.form-success p { color: var(--text-3); font-size: 0.92rem; }
+
+/* CONTACT CTA */
+.contact-cta {
+  text-align: center; padding: 60px 0 80px;
+  border-top: 1px solid var(--border);
+}
+.contact-cta p { color: var(--text-3); font-size: 0.95rem; line-height: 1.7; }
+.contact-cta a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.contact-cta a:hover { text-decoration: underline; }
+
+/* FOOTER */
+footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+.footer-inner { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+.footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+.footer-logo { font-size: 0; height: 28px; margin-bottom: 16px; }
+.footer-section h3 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; color: var(--text); }
+.footer-section a { display: block; color: var(--text-2); text-decoration: none; font-size: 14px; margin-bottom: 12px; transition: color 0.2s; }
+.footer-section a:hover { color: var(--accent); }
+.footer-bottom { text-align: center; color: var(--text-3); font-size: 13px; }
+
+@media (max-width: 768px) {
+  footer { padding: 40px 0 30px; }
+  .footer-content { grid-template-columns: 1fr; gap: 30px; margin-bottom: 30px; padding-bottom: 30px; }
+  .footer-inner { padding: 0 20px; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 120px 0 60px; }
+  .nav-links { padding: 20px 16px; }
+}
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+  </a>
+      <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html" style="color: var(--accent)">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-inner">
+    <div class="hero-eyebrow">COLLABORATE WITH US</div>
+    <h1>Join as a Speaker or Partner</h1>
+    <p>Share your expertise with thousands of dental professionals reducing insurance dependence. Whether you're a consultant, vendor, or industry expert — there's a place for you on our stage.</p>
+  </div>
+</section>
+
+<!-- Application Form -->
+<section class="form-section">
+  <div class="container">
+    <div class="speaker-form-card">
+      <h3>Apply to Speak or Partner</h3>
+      <p class="form-subtitle">Fill out the form below and our team will get back to you within 48 hours.</p>
+
+      <form class="speaker-form" id="speakerForm">
+        <div class="form-row">
+          <div>
+            <label for="spkFirstName">First Name *</label>
+            <input type="text" id="spkFirstName" name="firstName" placeholder="John" required>
+          </div>
+          <div>
+            <label for="spkLastName">Last Name *</label>
+            <input type="text" id="spkLastName" name="lastName" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="spkEmail">Email Address *</label>
+            <input type="email" id="spkEmail" name="email" placeholder="john@example.com" required>
+          </div>
+          <div>
+            <label for="spkPhone">Phone Number</label>
+            <input type="tel" id="spkPhone" name="phone" placeholder="+1 (555) 123-4567">
+          </div>
+        </div>
+        <div>
+          <label for="spkCompany">Company / Organization *</label>
+          <input type="text" id="spkCompany" name="company" placeholder="Your company name" required>
+        </div>
+        <div>
+          <label for="spkRole">Your Role *</label>
+          <input type="text" id="spkRole" name="role" placeholder="e.g. CEO, Consultant, Dental Coach" required>
+        </div>
+        <div>
+          <label for="spkType">I'm Interested In *</label>
+          <select id="spkType" name="type" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Speaking">Speaking at an event or webinar</option>
+            <option value="Podcast Guest">Being a podcast guest</option>
+            <option value="Panel Participant">Joining a panel discussion</option>
+            <option value="Sponsorship">Sponsorship / Partnership</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="spkTopic">Proposed Topic or Area of Expertise *</label>
+          <textarea id="spkTopic" name="topic" placeholder="Briefly describe what you'd like to speak about or how you'd like to partner..." required></textarea>
+        </div>
+        <div>
+          <label for="spkLinkedin">LinkedIn Profile URL</label>
+          <input type="url" id="spkLinkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+        </div>
+        <button type="submit" class="speaker-submit" id="speakerSubmitBtn">Submit Application →</button>
+      </form>
+
+      <div class="form-success" id="speakerSuccess">
+        <div class="success-icon">✓</div>
+        <h4>Application Submitted!</h4>
+        <p>Thank you for your interest. Our team will review your application and reach out within 48 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="benefits-section">
+  <div class="container">
+    <div class="section-label">WHY PARTNER WITH US</div>
+    <h2 class="section-heading">6 Reasons to Get Involved</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+        <h3>No Financial Commitment</h3>
+        <p>Speaking is completely free, and so is attendance. We believe in open access to knowledge that helps practices grow.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>Targeted Audience</h3>
+        <p>Reach dental professionals who are actively investing in marketing and practice growth — decision-makers ready to take action.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3>Thought Leadership</h3>
+        <p>Position yourself as a go-to expert in the dental marketing and practice independence space.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Community Access</h3>
+        <p>Connect with a growing network of practice owners, marketers, and industry leaders who are shaping the future of dentistry.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <h3>Promotional Materials</h3>
+        <p>Ready-to-share assets provided so you can easily invite your network and amplify your reach.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+        <h3>Long-Term Partnership</h3>
+        <p>We run ongoing events, panels, and summits — this is the start of something great. Not a one-off engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="contact-cta">
+  <div class="container">
+    <p>Have questions about partnering? Reach out to us at <a href="mailto:team@rid.academy">team@rid.academy</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Navigation</h3>
+        <a href="index.html">Home</a>
+        <a href="tools.html">Tools</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer-section">
+        <h3>More</h3>
+        <a href="webinar-archive.html">Webinar Archive</a>
+        <a href="about.html">About</a>
+        <a href="growth-engine.html">Marketing Consultation</a>
+        <a href="partner.html">Partner With Us</a>
+        <a href="events.html">Events</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color: #E2D603; text-decoration: none;">team@rid.academy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== GOOGLE APPS SCRIPT INTEGRATION =====
+// WEBMASTER: Follow these steps to connect the form to Google Sheets:
+// 1. Create a Google Sheet with columns: Timestamp, First Name, Last Name, Email, Phone, Company, Role, Interested In, Topic, LinkedIn
+// 2. Go to Extensions > Apps Script and paste:
+//    function doPost(e) {
+//      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+//      var data = JSON.parse(e.postData.contents);
+//      sheet.appendRow([
+//        new Date(),
+//        data.firstName,
+//        data.lastName,
+//        data.email,
+//        data.phone,
+//        data.company,
+//        data.role,
+//        data.type,
+//        data.topic,
+//        data.linkedin
+//      ]);
+//      var subject = 'New Speaker/Partner Application: ' + data.firstName + ' ' + data.lastName;
+//      var body = 'New application received:\n\n' +
+//        'Name: ' + data.firstName + ' ' + data.lastName + '\n' +
+//        'Email: ' + data.email + '\n' +
+//        'Phone: ' + data.phone + '\n' +
+//        'Company: ' + data.company + '\n' +
+//        'Role: ' + data.role + '\n' +
+//        'Interested In: ' + data.type + '\n' +
+//        'Topic: ' + data.topic + '\n' +
+//        'LinkedIn: ' + data.linkedin;
+//      var recipients = 'chamika.p@ekwa.com,lester@ekwa.com,shezaan@ekwa.com';
+//      MailApp.sendEmail(recipients, subject, body);
+//      return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
+//    }
+// 3. Deploy as Web App (execute as you, access: anyone), copy the URL
+// 4. Replace GOOGLE_APPS_SCRIPT_URL below with that URL
+
+const GOOGLE_APPS_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+document.getElementById('speakerForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('speakerSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  const formData = {
+    firstName: document.getElementById('spkFirstName').value,
+    lastName: document.getElementById('spkLastName').value,
+    email: document.getElementById('spkEmail').value,
+    phone: document.getElementById('spkPhone').value,
+    company: document.getElementById('spkCompany').value,
+    role: document.getElementById('spkRole').value,
+    type: document.getElementById('spkType').value,
+    topic: document.getElementById('spkTopic').value,
+    linkedin: document.getElementById('spkLinkedin').value
+  };
+
+  try {
+    if (GOOGLE_APPS_SCRIPT_URL !== 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+      await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+    }
+  } catch (err) {
+    console.log('Form submission note:', err);
+  }
+
+  // Show success regardless (no-cors won't return readable response)
+  document.getElementById('speakerForm').style.display = 'none';
+  document.getElementById('speakerSuccess').classList.add('show');
+  btn.disabled = false;
+  btn.textContent = 'Submit Application →';
+});
+</script>
+
+</body>
+</html>

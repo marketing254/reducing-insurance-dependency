@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Expert articles, podcast episodes, and guides covering PPO strategy, practice management, and insurance independence for dentists.">
+  <meta name="keywords" content="dental articles, guides, insurance independence, practice management, dental education">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Articles, Guides & Insights for Dental Practice Independence | RID Academy">
+  <meta property="og:description" content="Expert articles, podcast episodes, and guides covering PPO strategy, practice management, and insurance independence for dentists.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="learn.html">
+  <title>Articles, Guides & Insights for Dental Practice Independence | RID Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-subtle: #111111;
+      --bg-card: #161616;
+      --bg-elevated: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --border-2: rgba(255,255,255,0.10);
+      --text: #f5f5f5;
+      --text-2: rgba(255,255,255,0.70);
+      --text-3: rgba(255,255,255,0.45);
+      --text-4: rgba(255,255,255,0.25);
+      --accent: #E2D603;
+      --accent-2: #F0E440;
+      --accent-bg: rgba(226,214,3,0.08);
+      --red: #ef4444;
+      --red-bg: rgba(239,68,68,0.08);
+      --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --ff-serif: 'Lora', Georgia, serif;
+
+      /* Category colors */
+      --color-ppo: #ef5350;
+      --color-financial: #66bb6a;
+      --color-patient: #ab47bc;
+      --color-membership: #42a5f5;
+      --color-team: #ff9800;
+      --color-marketing: #29b6f6;
+      --color-management: #26c6da;
+      --color-legal: #7c4dff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    button, input {
+      font-family: var(--ff-sans);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      height: 34px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 34px;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-2);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #000;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+    }
+
+    /* Mobile nav */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-center {
+        gap: 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-mobile-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 24px;
+        cursor: pointer;
+      }
+    }
+
+    /* Content container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(226, 214, 3, 0.2);
+    }
+
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-2);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 100px;
+        padding-bottom: 60px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      margin-bottom: 60px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .filter-bar::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    .filter-bar::-webkit-scrollbar-thumb {
+      background: var(--border-2);
+      border-radius: 2px;
+    }
+
+    .filter-pill {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-2);
+      background: var(--bg-elevated);
+      color: var(--text-2);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--border-2);
+      color: var(--text);
+    }
+
+    .filter-pill.active {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Featured Guides */
+    .featured-section {
+      margin-bottom: 80px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+      width: 100%;
+    }
+
+    .featured-card {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-4px);
+    }
+
+    .featured-header {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gradient patterns for featured cards */
+    .featured-header.accent-yellow {
+      background: linear-gradient(135deg, rgba(226, 214, 3, 0.15) 0%, rgba(226, 214, 3, 0.05) 100%);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .featured-header.accent-green {
+      background: linear-gradient(135deg, rgba(102, 187, 106, 0.15) 0%, rgba(102, 187, 106, 0.05) 100%);
+      border-bottom: 3px solid #66bb6a;
+    }
+
+    .featured-header.accent-blue {
+      background: linear-gradient(135deg, rgba(66, 165, 245, 0.15) 0%, rgba(66, 165, 245, 0.05) 100%);
+      border-bottom: 3px solid #42a5f5;
+    }
+
+    /* Geometric pattern overlay */
+    .featured-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.02) 35px, rgba(255,255,255,0.02) 70px);
+      pointer-events: none;
+    }
+
+    .featured-content {
+      padding: 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-category {
+      display: inline-block;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      width: fit-content;
+      border: 1px solid rgba(226, 214, 3, 0.2);
+    }
+
+    .featured-title {
+      font-family: var(--ff-serif);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .featured-description {
+      color: var(--text-2);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: auto;
+      padding-bottom: 16px;
+    }
+
+    .featured-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-3);
+      font-size: 13px;
+      margin-bottom: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .featured-link {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .featured-link:hover {
+      gap: 12px;
+    }
+
+    @media (max-width: 1024px) {
+      .featured-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-header {
+        height: 140px;
+      }
+
+      .featured-content {
+        padding: 24px;
+      }
+
+      .featured-title {
+        font-size: 20px;
+      }
+    }
+
+    /* Articles Grid */
+    .articles-section {
+      margin-bottom: 80px;
+    }
+
+    .articles-heading {
+      font-family: var(--ff-serif);
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+      width: 100%;
+    }
+
+    .article-card {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(226, 214, 3, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .article-card.hidden {
+      display: none;
+    }
+
+    .article-header {
+      height: 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Color stripes per category */
+    .article-header.color-ppo { background: linear-gradient(90deg, #ef5350 0%, rgba(239, 83, 80, 0.8) 100%); }
+    .article-header.color-financial { background: linear-gradient(90deg, #66bb6a 0%, rgba(102, 187, 106, 0.8) 100%); }
+    .article-header.color-patient { background: linear-gradient(90deg, #ab47bc 0%, rgba(171, 71, 188, 0.8) 100%); }
+    .article-header.color-membership { background: linear-gradient(90deg, #42a5f5 0%, rgba(66, 165, 245, 0.8) 100%); }
+    .article-header.color-team { background: linear-gradient(90deg, #ff9800 0%, rgba(255, 152, 0, 0.8) 100%); }
+    .article-header.color-marketing { background: linear-gradient(90deg, #29b6f6 0%, rgba(41, 182, 246, 0.8) 100%); }
+    .article-header.color-management { background: linear-gradient(90deg, #26c6da 0%, rgba(38, 198, 218, 0.8) 100%); }
+    .article-header.color-legal { background: linear-gradient(90deg, #7c4dff 0%, rgba(124, 77, 255, 0.8) 100%); }
+
+    .article-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .article-content {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-category {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .article-category.ppo { background: rgba(239, 83, 80, 0.15); color: #ff9999; }
+    .article-category.financial { background: rgba(102, 187, 106, 0.15); color: #99ff99; }
+    .article-category.patient { background: rgba(171, 71, 188, 0.15); color: #dd99ff; }
+    .article-category.membership { background: rgba(66, 165, 245, 0.15); color: #99ddff; }
+    .article-category.team { background: rgba(255, 152, 0, 0.15); color: #ffcc99; }
+    .article-category.marketing { background: rgba(41, 182, 246, 0.15); color: #99e6ff; }
+    .article-category.management { background: rgba(38, 198, 218, 0.15); color: #99f0ff; }
+    .article-category.legal { background: rgba(124, 77, 255, 0.15); color: #cc99ff; }
+
+    .article-episode {
+      display: inline-block;
+      background: var(--bg-elevated);
+      color: var(--text-3);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .article-title {
+      font-family: var(--ff-serif);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .article-guest {
+      color: var(--text-3);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-3);
+      font-size: 12px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 1024px) {
+      .articles-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .articles-heading {
+        font-size: 24px;
+      }
+
+      .article-title {
+        font-size: 15px;
+      }
+    }
+
+    /* Newsletter CTA */
+    .newsletter-section {
+      margin-bottom: 80px;
+    }
+
+    .newsletter-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      padding: 60px 40px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-heading {
+      font-family: var(--ff-serif);
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .newsletter-subtitle {
+      color: var(--text-2);
+      font-size: 16px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .newsletter-form input::placeholder {
+      color: var(--text-3);
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .newsletter-form button {
+      background: var(--accent);
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .newsletter-card {
+        padding: 40px 24px;
+      }
+
+      .newsletter-heading {
+        font-size: 24px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-form button {
+        width: 100%;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 60px 40px;
+      margin-top: 100px;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 40px;
+    }
+
+    .footer-logo {
+      height: 34px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      height: 34px;
+    }
+
+    .footer-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-nav a {
+      color: var(--text-2);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-3);
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 40px 20px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 28px !important; }
+      .hero p, .hero-subtitle, .lead { font-size: 14px !important; }
+      .container, .wrap { padding-left: 16px !important; padding-right: 16px !important; }
+      .nav-links { padding: 20px 16px; }
+    }
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-logo">
+      <img src="images/RIDA%20Logo%202.svg" alt="RID Academy" height="34">
+    </div>
+    <div class="nav-center">
+          <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false" style="color:var(--accent,#E2D603)">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+    </div>
+    <button class="nav-cta" onclick="window.location.href='events.html';">Join Our Events</button>
+    <button class="nav-mobile-toggle">☰</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Knowledge Hub</div>
+      <h1>Articles, Guides & Insights</h1>
+      <p class="hero-subtitle">Expert articles, podcast breakdowns, and comprehensive guides for every stage of your insurance independence journey.</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <div class="container">
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="ppo">PPO Strategy</button>
+      <button class="filter-pill" data-filter="financial">Financial Planning</button>
+      <button class="filter-pill" data-filter="patient">Patient Communication</button>
+      <button class="filter-pill" data-filter="membership">Membership Plans</button>
+      <button class="filter-pill" data-filter="team">Team Training</button>
+      <button class="filter-pill" data-filter="marketing">Marketing</button>
+      <button class="filter-pill" data-filter="management">Practice Management</button>
+      <button class="filter-pill" data-filter="legal">Legal & Compliance</button>
+    </div>
+  </div>
+
+  <!-- Featured Guides -->
+  <section class="featured-section">
+    <div class="container">
+      <div class="featured-grid">
+        <!-- Guide 1 -->
+        <div class="featured-card" data-category="ppo">
+          <div class="featured-header accent-yellow"></div>
+          <div class="featured-content">
+            <span class="featured-category">PPO Strategy</span>
+            <h3 class="featured-title">The Complete Guide to Dropping PPO Plans</h3>
+            <p class="featured-description">Everything you need to know, from first analysis to last termination letter.</p>
+            <div class="featured-meta">
+              <span>15 min read</span>
+            </div>
+            <a href="https://rid.academy/blog/dropping-ppo-plans" class="featured-link">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Guide 2 -->
+        <div class="featured-card" data-category="membership">
+          <div class="featured-header accent-green"></div>
+          <div class="featured-content">
+            <span class="featured-category">Membership Plans</span>
+            <h3 class="featured-title">Building a Dental Membership Plan from Scratch</h3>
+            <p class="featured-description">Design, price, launch, and grow your in-house membership program.</p>
+            <div class="featured-meta">
+              <span>22 min read</span>
+            </div>
+            <a href="https://rid.academy/blog/building-membership-plan" class="featured-link">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Guide 3 -->
+        <div class="featured-card" data-category="financial">
+          <div class="featured-header accent-blue"></div>
+          <div class="featured-content">
+            <span class="featured-category">Financial Planning</span>
+            <h3 class="featured-title">Fee-for-Service Dental Practice: The Ultimate Guide</h3>
+            <p class="featured-description">Everything about building a successful FFS practice.</p>
+            <div class="featured-meta">
+              <span>12 min read</span>
+            </div>
+            <a href="https://rid.academy/blog/fee-for-service-guide" class="featured-link">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Articles -->
+  <section class="articles-section">
+    <div class="container">
+      <h2 class="articles-heading">Recent Articles & Episodes</h2>
+      <div class="articles-grid" id="articlesGrid">
+        <!-- Article 1 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">Dropping Delta Dental: What Every Dentist Needs to Know</h3>
+            <div class="article-meta">
+              <span>12 min</span>
+              <span>Mar 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="article-card" data-category="financial">
+          <div class="article-header color-financial"></div>
+          <div class="article-content">
+            <span class="article-category financial">Financial Planning</span>
+            <h3 class="article-title">PPO Write-Offs Are Costing Your Practice More Than You Think</h3>
+            <div class="article-meta">
+              <span>9 min</span>
+              <span>Mar 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">Helping Your Practice Grow With Less Insurance Dependence</h3>
+            <span class="article-episode">Ep 381</span>
+            <p class="article-guest">Guest: Kelly Fox-Galvagni</p>
+            <div class="article-meta">
+              <span>15 min</span>
+              <span>Feb 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="article-card" data-category="marketing">
+          <div class="article-header color-marketing"></div>
+          <div class="article-content">
+            <span class="article-category marketing">Marketing</span>
+            <h3 class="article-title">Why Dentists Can't Rely on Word of Mouth and Insurance Referrals Alone Anymore</h3>
+            <span class="article-episode">Ep 380</span>
+            <div class="article-meta">
+              <span>11 min</span>
+              <span>Feb 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 5 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">Financial Steps That Help Dentists Reduce PPO Pressure</h3>
+            <span class="article-episode">Ep 379</span>
+            <p class="article-guest">Guest: Jim Alley</p>
+            <div class="article-meta">
+              <span>9 min</span>
+              <span>Feb 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 6 -->
+        <div class="article-card" data-category="financial">
+          <div class="article-header color-financial"></div>
+          <div class="article-content">
+            <span class="article-category financial">Financial Planning</span>
+            <h3 class="article-title">Every Number Tells a Story: Using Data to Drive Dental Success</h3>
+            <span class="article-episode">Ep 378</span>
+            <p class="article-guest">Guest: Shawn Peers</p>
+            <div class="article-meta">
+              <span>14 min</span>
+              <span>Feb 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 7 -->
+        <div class="article-card" data-category="legal">
+          <div class="article-header color-legal"></div>
+          <div class="article-content">
+            <span class="article-category legal">Legal & Compliance</span>
+            <h3 class="article-title">Legal Essentials That Help Dentists Grow With Confidence</h3>
+            <span class="article-episode">Ep 377</span>
+            <p class="article-guest">Guest: Evan Sampson</p>
+            <div class="article-meta">
+              <span>10 min</span>
+              <span>Jan 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 8 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">How Virtual Assistants Help Dentists Reduce Insurance Dependence</h3>
+            <span class="article-episode">Ep 376</span>
+            <p class="article-guest">Guest: Timothy Boyle</p>
+            <div class="article-meta">
+              <span>13 min</span>
+              <span>Jan 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 9 -->
+        <div class="article-card" data-category="patient">
+          <div class="article-header color-patient"></div>
+          <div class="article-content">
+            <span class="article-category patient">Patient Communication</span>
+            <h3 class="article-title">Building a Practice Patients Trust More Than Their Insurance Company</h3>
+            <span class="article-episode">Ep 375</span>
+            <div class="article-meta">
+              <span>15 min</span>
+              <span>Jan 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 10 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">Setting Your Team Up for Success When Reducing Insurance Dependence</h3>
+            <span class="article-episode">Ep 374</span>
+            <p class="article-guest">Guest: Callie Ward</p>
+            <div class="article-meta">
+              <span>17 min</span>
+              <span>Jan 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 11 -->
+        <div class="article-card" data-category="team">
+          <div class="article-header color-team"></div>
+          <div class="article-content">
+            <span class="article-category team">Team Training</span>
+            <h3 class="article-title">How Hybrid Training Is Transforming Dentistry</h3>
+            <span class="article-episode">Ep 373</span>
+            <p class="article-guest">Guest: Dr. Vishal Sharma</p>
+            <div class="article-meta">
+              <span>12 min</span>
+              <span>Dec 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 12 -->
+        <div class="article-card" data-category="management">
+          <div class="article-header color-management"></div>
+          <div class="article-content">
+            <span class="article-category management">Practice Management</span>
+            <h3 class="article-title">How to Attract More Patients That Prefer Fee-for-Service Care?</h3>
+            <span class="article-episode">Ep 370</span>
+            <div class="article-meta">
+              <span>14 min</span>
+              <span>Dec 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 13 -->
+        <div class="article-card" data-category="financial">
+          <div class="article-header color-financial"></div>
+          <div class="article-content">
+            <span class="article-category financial">Financial Planning</span>
+            <h3 class="article-title">Increasing Case Acceptance: Grow Fee-for-Service Revenue</h3>
+            <span class="article-episode">Ep 369</span>
+            <p class="article-guest">Guest: Joanne Villani</p>
+            <div class="article-meta">
+              <span>20 min</span>
+              <span>Dec 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 14 -->
+        <div class="article-card" data-category="management">
+          <div class="article-header color-management"></div>
+          <div class="article-content">
+            <span class="article-category management">Practice Management</span>
+            <h3 class="article-title">Insurance and Legislative Environment Affecting Dental Practice Sales</h3>
+            <span class="article-episode">Ep 368</span>
+            <p class="article-guest">Guest: Ryan Mingus</p>
+            <div class="article-meta">
+              <span>14 min</span>
+              <span>Nov 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 15 -->
+        <div class="article-card" data-category="financial">
+          <div class="article-header color-financial"></div>
+          <div class="article-content">
+            <span class="article-category financial">Financial Planning</span>
+            <h3 class="article-title">Building Financial Freedom in Dental Practice</h3>
+            <span class="article-episode">Ep 367</span>
+            <p class="article-guest">Guest: Scott Plantenberg</p>
+            <div class="article-meta">
+              <span>9 min</span>
+              <span>Nov 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 16 -->
+        <div class="article-card" data-category="management">
+          <div class="article-header color-management"></div>
+          <div class="article-content">
+            <span class="article-category management">Practice Management</span>
+            <h3 class="article-title">The Hybrid Approach to Insurance Participation</h3>
+            <span class="article-episode">Ep 366</span>
+            <p class="article-guest">Guest: Dr. Tarun Agarwal</p>
+            <div class="article-meta">
+              <span>14 min</span>
+              <span>Nov 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 17 -->
+        <div class="article-card" data-category="management">
+          <div class="article-header color-management"></div>
+          <div class="article-content">
+            <span class="article-category management">Practice Management</span>
+            <h3 class="article-title">Standing Out as a Dental Practice in the Age of AI</h3>
+            <span class="article-episode">Ep 365</span>
+            <div class="article-meta">
+              <span>15 min</span>
+              <span>Nov 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 18 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">First Steps to Reduce Insurance, Build a Thriving FFS Practice</h3>
+            <span class="article-episode">Ep 364</span>
+            <p class="article-guest">Guest: Sandy Bair</p>
+            <div class="article-meta">
+              <span>14 min</span>
+              <span>Oct 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 19 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">What Really Happens When Practices Drop PPO Plans</h3>
+            <span class="article-episode">Ep 356</span>
+            <p class="article-guest">Guest: Art Wiederman</p>
+            <div class="article-meta">
+              <span>25 min</span>
+              <span>Sep 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 20 -->
+        <div class="article-card" data-category="ppo">
+          <div class="article-header color-ppo"></div>
+          <div class="article-content">
+            <span class="article-category ppo">PPO Strategy</span>
+            <h3 class="article-title">Will PPO Plans Be Relevant in 10 Years?</h3>
+            <span class="article-episode">Ep 355</span>
+            <div class="article-meta">
+              <span>12 min</span>
+              <span>Aug 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card">
+        <h2 class="newsletter-heading">Stay Updated</h2>
+        <p class="newsletter-subtitle">Get the latest articles, guides, and podcast episodes delivered to your inbox.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">
+          <img src="images/RIDA%20Logo%202.svg" alt="RID Academy">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+        <p style="color: var(--text-3); font-size: 14px; margin-top: 8px;">Empowering dentists to build thriving, independent practices.</p>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="podcast.html">Podcast</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="webinar-archive.html">Webinar Archive</a></li>
+        <li><a href="growth-engine.html">Marketing Consultation</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 RID Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const articleCards = document.querySelectorAll('.article-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter articles
+        const filterValue = button.dataset.filter;
+        articleCards.forEach(card => {
+          if (filterValue === 'all' || card.dataset.category === filterValue) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Make article cards clickable
+    articleCards.forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        window.location.href = 'https://rid.academy/blog/';
+      });
+    });
+  </script>
+</body>
+</html>

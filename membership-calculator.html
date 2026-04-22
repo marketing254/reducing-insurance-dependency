@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership Plan Pricing Calculator - Find Your Optimal Price | RID Academy</title>
+<meta name="description" content="Calculate optimal membership plan pricing for your dental practice. Factor in state cost-of-living, specialty, services, and target members to find the right price.">
+<meta name="keywords" content="dental membership plan pricing, membership calculator, dental subscription plans, patient membership pricing, dental practice membership">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Membership Plan Pricing Calculator | RID Academy">
+<meta property="og:description" content="Find the optimal membership plan price for your dental practice with our free pricing calculator.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rid.academy/tools/membership-calculator">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bg:          #0a0a0a;
+  --bg-subtle:   #111111;
+  --bg-card:     #161616;
+  --bg-elevated: #1a1a1a;
+  --border:      rgba(255,255,255,0.06);
+  --border-2:    rgba(255,255,255,0.10);
+  --text:        #f5f5f5;
+  --text-2:      rgba(255,255,255,0.70);
+  --text-3:      rgba(255,255,255,0.45);
+  --text-4:      rgba(255,255,255,0.25);
+  --accent:      #E2D603;
+  --accent-2:    #F0E440;
+  --accent-bg:   rgba(226,214,3,0.08);
+  --red:         #ef4444;
+  --red-bg:      rgba(239,68,68,0.08);
+  --green:       #22c55e;
+  --green-bg:    rgba(34,197,94,0.08);
+  --ff-sans:     'Inter', system-ui, -apple-system, sans-serif;
+  --ff-serif:    'Lora', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 72px;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+}
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent) !important; color: #0a0a0a !important;
+  padding: 0.45rem 1.1rem; border-radius: 6px; font-weight: 600 !important;
+}
+.nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+/* HERO */
+.calc-hero {
+  padding: 140px 0 60px; text-align: center;
+  background: radial-gradient(ellipse 80% 50% at 50% 30%, rgba(226,214,3,0.04), transparent 70%);
+  border-bottom: 1px solid var(--border);
+}
+.calc-hero .eyebrow {
+  display: inline-block; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+  background: var(--accent-bg); border: 1px solid rgba(226,214,3,0.15);
+  padding: 0.3rem 0.9rem; border-radius: 100px;
+}
+.calc-hero h1 {
+  font-family: var(--ff-serif); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600; line-height: 1.15; letter-spacing: -0.025em;
+  color: var(--text); margin-bottom: 1rem;
+}
+.calc-hero p { font-size: 1.05rem; color: var(--text-3); max-width: 560px; margin: 0 auto; line-height: 1.75; }
+
+/* CONTAINER */
+.container { max-width: 780px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* FORM SECTION */
+.form-section {
+  padding: 60px 0;
+}
+.form-card {
+  background: var(--bg-card); border: 1px solid var(--border-2);
+  border-radius: 16px; padding: 2.5rem;
+}
+.form-group { margin-bottom: 2rem; }
+.form-group:last-of-type { margin-bottom: 0; }
+.form-label {
+  display: block; font-size: 0.88rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.5rem;
+}
+.form-helper {
+  font-size: 0.78rem; color: var(--text-3); margin-bottom: 0.75rem; line-height: 1.5;
+}
+
+/* SELECT */
+.form-select {
+  width: 100%; padding: 0.75rem 1rem;
+  background: var(--bg-elevated); border: 1px solid var(--border-2);
+  border-radius: 10px; color: var(--text); font-size: 0.92rem;
+  font-family: var(--ff-sans); appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.45)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center;
+}
+.form-select:focus { outline: none; border-color: var(--accent); }
+
+/* RADIO */
+.radio-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+.radio-option {
+  flex: 1; min-width: 180px; padding: 1rem 1.25rem;
+  background: var(--bg-elevated); border: 1px solid var(--border-2);
+  border-radius: 10px; cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.radio-option:hover { border-color: rgba(255,255,255,0.2); }
+.radio-option.active { border-color: var(--accent); background: var(--accent-bg); }
+.radio-option input { display: none; }
+.radio-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--text-4); transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.radio-option.active .radio-dot {
+  border-color: var(--accent);
+}
+.radio-option.active .radio-dot::after {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); display: block;
+}
+.radio-text { font-size: 0.88rem; font-weight: 500; }
+
+/* SERVICE CHECKBOXES */
+.service-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.service-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.25rem; background: var(--bg-elevated);
+  border: 1px solid var(--border-2); border-radius: 10px;
+  transition: all 0.2s; flex-wrap: wrap;
+}
+.service-item.active { border-color: rgba(226,214,3,0.3); }
+.service-check {
+  width: 20px; height: 20px; border-radius: 5px;
+  border: 2px solid var(--text-4); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.service-item.active .service-check {
+  background: var(--accent); border-color: var(--accent);
+}
+.service-item.active .service-check::after {
+  content: '✓'; font-size: 12px; color: #0a0a0a; font-weight: 700;
+}
+.service-info { flex: 1; min-width: 150px; }
+.service-name { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+.service-freq { font-size: 0.75rem; color: var(--text-3); }
+.service-fee {
+  display: flex; align-items: center; gap: 0.25rem;
+}
+.service-fee span { color: var(--text-3); font-size: 0.88rem; }
+.service-fee input {
+  width: 80px; padding: 0.4rem 0.6rem;
+  background: var(--bg); border: 1px solid var(--border-2);
+  border-radius: 6px; color: var(--text); font-size: 0.88rem;
+  font-family: var(--ff-sans); text-align: right;
+}
+.service-fee input:focus { outline: none; border-color: var(--accent); }
+
+/* SLIDER */
+.slider-wrap { position: relative; }
+.slider-labels {
+  display: flex; justify-content: space-between; margin-bottom: 0.5rem;
+}
+.slider-val {
+  font-size: 1.5rem; font-weight: 700; color: var(--accent);
+  text-align: center; margin-bottom: 0.5rem;
+}
+.slider-range {
+  width: 100%; height: 6px; -webkit-appearance: none; appearance: none;
+  background: var(--bg); border-radius: 3px; outline: none;
+  cursor: pointer;
+}
+.slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 22px; height: 22px;
+  border-radius: 50%; background: var(--accent); cursor: pointer;
+  border: 3px solid var(--bg-card);
+}
+.slider-range::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); cursor: pointer; border: 3px solid var(--bg-card);
+}
+.slider-minmax { display: flex; justify-content: space-between; margin-top: 0.35rem; }
+.slider-minmax span { font-size: 0.72rem; color: var(--text-4); }
+
+/* BUTTON */
+.calc-btn {
+  width: 100%; padding: 1rem; margin-top: 2rem;
+  background: var(--accent); color: #0a0a0a;
+  font-size: 1rem; font-weight: 700; border: none;
+  border-radius: 10px; cursor: pointer;
+  font-family: var(--ff-sans);
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.calc-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 30px rgba(226,214,3,0.2); }
+
+/* RESULTS */
+.results-section {
+  padding: 0 0 60px; display: none;
+}
+.results-section.show { display: block; }
+
+.results-header {
+  text-align: center; margin-bottom: 2.5rem;
+}
+.results-header h2 {
+  font-family: var(--ff-serif); font-size: 1.8rem; font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.results-header p { color: var(--text-3); font-size: 0.92rem; }
+
+/* PRICING DISPLAY */
+.pricing-hero {
+  text-align: center; padding: 2.5rem;
+  background: var(--bg-card); border: 1px solid var(--border-2);
+  border-radius: 16px; margin-bottom: 2rem;
+}
+.pricing-hero .monthly-label { font-size: 0.82rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+.pricing-hero .monthly-price { font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1.1; }
+.pricing-hero .monthly-unit { font-size: 1rem; color: var(--text-3); font-weight: 400; }
+.pricing-hero .annual-line { font-size: 0.95rem; color: var(--text-2); margin-top: 0.5rem; }
+.pricing-hero .annual-line strong { color: var(--text); }
+
+/* TIER CARDS */
+.tier-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  margin-top: 2rem;
+}
+.tier-card {
+  padding: 1.25rem; border-radius: 12px;
+  background: var(--bg-elevated); border: 1px solid var(--border-2);
+  text-align: center;
+}
+.tier-card.highlight {
+  border-color: var(--accent); background: var(--accent-bg);
+}
+.tier-card .tier-name { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); margin-bottom: 0.5rem; font-weight: 600; }
+.tier-card.highlight .tier-name { color: var(--accent); }
+.tier-card .tier-price { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+.tier-card.highlight .tier-price { color: var(--accent); }
+.tier-card .tier-annual { font-size: 0.75rem; color: var(--text-4); margin-top: 0.25rem; }
+
+/* VALUE BOXES */
+.value-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;
+}
+.value-box {
+  padding: 1.5rem; border-radius: 12px; text-align: center;
+}
+.value-box.green { background: var(--green-bg); border: 1px solid rgba(34,197,94,0.15); }
+.value-box.yellow { background: var(--accent-bg); border: 1px solid rgba(226,214,3,0.15); }
+.value-box .value-label { font-size: 0.78rem; color: var(--text-3); margin-bottom: 0.35rem; font-weight: 500; }
+.value-box .value-amount { font-size: 1.6rem; font-weight: 700; }
+.value-box.green .value-amount { color: var(--green); }
+.value-box.yellow .value-amount { color: var(--accent); }
+
+/* METRICS GRID */
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+  margin-bottom: 2rem;
+}
+.metric-card {
+  padding: 1.25rem; background: var(--bg-card);
+  border: 1px solid var(--border-2); border-radius: 12px;
+}
+.metric-card .metric-label { font-size: 0.75rem; color: var(--text-3); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.metric-card .metric-value { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+
+/* COMPARISON TABLE */
+.comparison-table-wrap {
+  background: var(--bg-card); border: 1px solid var(--border-2);
+  border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
+}
+.comparison-table-wrap h3 {
+  padding: 1.25rem 1.5rem 0; font-size: 1rem; font-weight: 600;
+}
+.comparison-table {
+  width: 100%; border-collapse: collapse; margin-top: 1rem;
+}
+.comparison-table th {
+  padding: 0.75rem 1.25rem; font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-3); text-align: left; border-bottom: 1px solid var(--border);
+}
+.comparison-table td {
+  padding: 0.85rem 1.25rem; font-size: 0.88rem; color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+}
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr.highlight td { color: var(--accent); font-weight: 600; }
+.comparison-table .na { color: var(--text-4); font-style: italic; }
+
+/* INSIGHTS */
+.insights-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+.insight-card {
+  padding: 1.25rem 1.5rem; background: var(--bg-card);
+  border: 1px solid var(--border-2); border-radius: 12px;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.insight-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--accent-bg); display: flex; align-items: center;
+  justify-content: center; font-size: 1rem; flex-shrink: 0;
+}
+.insight-text { font-size: 0.88rem; color: var(--text-2); line-height: 1.6; }
+.insight-text strong { color: var(--text); }
+
+/* SHARE & ACTIONS */
+.actions-row {
+  display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 2rem;
+}
+.share-btn {
+  padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.82rem;
+  font-weight: 500; border: 1px solid var(--border-2); background: var(--bg-card);
+  color: var(--text-2); cursor: pointer; font-family: var(--ff-sans);
+  transition: all 0.2s; display: flex; align-items: center; gap: 0.4rem;
+}
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
+.recalc-btn {
+  padding: 0.6rem 1.5rem; border-radius: 8px; font-size: 0.82rem;
+  font-weight: 600; border: 1px solid var(--accent); background: transparent;
+  color: var(--accent); cursor: pointer; font-family: var(--ff-sans);
+  transition: all 0.2s;
+}
+.recalc-btn:hover { background: var(--accent-bg); }
+
+/* NEXT STEPS */
+.next-steps {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  margin-bottom: 2rem;
+}
+.next-card {
+  padding: 1.5rem; background: var(--bg-card);
+  border: 1px solid var(--border-2); border-radius: 12px;
+  text-decoration: none; transition: all 0.25s;
+}
+.next-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.next-card .next-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.5rem; font-weight: 600; }
+.next-card .next-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
+.next-card .next-desc { font-size: 0.82rem; color: var(--text-3); line-height: 1.5; }
+
+/* FAQ */
+.faq-section { padding: 60px 0; border-top: 1px solid var(--border); }
+.faq-section h2 {
+  font-family: var(--ff-serif); font-size: 1.8rem; font-weight: 600;
+  text-align: center; margin-bottom: 2rem;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-q {
+  width: 100%; padding: 1.25rem 0; background: none; border: none;
+  color: var(--text); font-size: 0.95rem; font-weight: 500;
+  cursor: pointer; text-align: left; font-family: var(--ff-sans);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.faq-q::after { content: '+'; font-size: 1.25rem; color: var(--text-3); transition: transform 0.2s; }
+.faq-item.open .faq-q::after { content: '−'; color: var(--accent); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+}
+.faq-a-inner {
+  padding: 0 0 1.25rem; font-size: 0.88rem; color: var(--text-3); line-height: 1.75;
+}
+
+/* FOOTER */
+footer img { height: 28px; margin-bottom: 1rem; filter: brightness(1.15); }
+.footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
+.footer-links a { font-size: 0.78rem; color: var(--text-4); text-decoration: none; }
+.footer-links a:hover { color: var(--text-2); }
+.footer-copy { font-size: 0.72rem; color: var(--text-4); }
+
+/* MOBILE */
+
+@media (max-width: 640px) {
+  .form-card { padding: 1.5rem; }
+/* FOOTER */
+footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 60px 0 40px; }
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.footer-section a {
+  display: block;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.footer-logo {
+  font-size: 0;
+  height: 28px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  footer { padding: 40px 0 30px; }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+}
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/RIDA%20Logo%202.svg" alt="RID Academy"></a>
+      <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false" style="color:var(--accent,#E2D603)">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="calc-hero">
+  <div class="container">
+    <span class="eyebrow">Free Calculator</span>
+    <h1>Membership Plan Pricing Calculator</h1>
+    <p>Find the optimal monthly and annual pricing for your in-house membership plan.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="container">
+    <div class="form-card">
+
+      <!-- State -->
+      <div class="form-group">
+        <label class="form-label">Practice Location (State)</label>
+        <p class="form-helper">This helps adjust pricing for regional cost-of-living differences.</p>
+        <select id="stateSelect" class="form-select">
+          <option value="">Select your state...</option>
+        </select>
+      </div>
+
+      <!-- Practice Type -->
+      <div class="form-group">
+        <label class="form-label">Practice Type</label>
+        <p class="form-helper">This affects pricing recommendations and break-even calculations.</p>
+        <div class="radio-group">
+          <label class="radio-option active" onclick="selectRadio(this,'general')">
+            <input type="radio" name="practiceType" value="general" checked>
+            <span class="radio-dot"></span>
+            <span class="radio-text">General Dentistry</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this,'specialty')">
+            <input type="radio" name="practiceType" value="specialty">
+            <span class="radio-dot"></span>
+            <span class="radio-text">Specialty (Ortho, Perio, Implants, etc.)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="form-group">
+        <label class="form-label">Services Included in Basic Plan</label>
+        <p class="form-helper">Select the services and adjust fees to match your practice.</p>
+        <div class="service-list">
+          <div class="service-item active" data-service="cleanings" data-freq="2" onclick="toggleService(this)">
+            <span class="service-check"></span>
+            <div class="service-info">
+              <div class="service-name">Cleanings</div>
+              <div class="service-freq">2 per year</div>
+            </div>
+            <div class="service-fee">
+              <span>$</span>
+              <input type="number" value="150" min="0" onclick="event.stopPropagation()">
+              <span>each</span>
+            </div>
+          </div>
+          <div class="service-item active" data-service="exams" data-freq="2" onclick="toggleService(this)">
+            <span class="service-check"></span>
+            <div class="service-info">
+              <div class="service-name">Exams</div>
+              <div class="service-freq">2 per year</div>
+            </div>
+            <div class="service-fee">
+              <span>$</span>
+              <input type="number" value="75" min="0" onclick="event.stopPropagation()">
+              <span>each</span>
+            </div>
+          </div>
+          <div class="service-item active" data-service="xrays" data-freq="1" onclick="toggleService(this)">
+            <span class="service-check"></span>
+            <div class="service-info">
+              <div class="service-name">Full Mouth X-Rays</div>
+              <div class="service-freq">1 per year</div>
+            </div>
+            <div class="service-fee">
+              <span>$</span>
+              <input type="number" value="125" min="0" onclick="event.stopPropagation()">
+              <span>each</span>
+            </div>
+          </div>
+          <div class="service-item active" data-service="emergency" data-freq="1" onclick="toggleService(this)">
+            <span class="service-check"></span>
+            <div class="service-info">
+              <div class="service-name">Emergency Exam</div>
+              <div class="service-freq">1 per year</div>
+            </div>
+            <div class="service-fee">
+              <span>$</span>
+              <input type="number" value="100" min="0" onclick="event.stopPropagation()">
+              <span>each</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discount Slider -->
+      <div class="form-group">
+        <label class="form-label">Discount on Additional Treatment</label>
+        <p class="form-helper">Members get this discount on all other procedures beyond included services. Typical range is 10-30%.</p>
+        <div class="slider-wrap">
+          <div class="slider-val" id="discountVal">20%</div>
+          <input type="range" class="slider-range" id="discountSlider" min="10" max="30" value="20" oninput="document.getElementById('discountVal').textContent=this.value+'%'">
+          <div class="slider-minmax"><span>10%</span><span>30%</span></div>
+        </div>
+      </div>
+
+      <!-- Target Members Slider -->
+      <div class="form-group">
+        <label class="form-label">Target Number of Members (First Year)</label>
+        <p class="form-helper">How many members do you aim to enroll in the first year?</p>
+        <div class="slider-wrap">
+          <div class="slider-val" id="membersVal">150</div>
+          <input type="range" class="slider-range" id="membersSlider" min="25" max="500" value="150" step="5" oninput="document.getElementById('membersVal').textContent=this.value">
+          <div class="slider-minmax"><span>25</span><span>500</span></div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calculate()">Calculate Optimal Pricing →</button>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section" id="results">
+  <div class="container">
+    <div class="results-header">
+      <h2>Your Recommended Pricing</h2>
+      <p>Based on your practice details and included services</p>
+    </div>
+
+    <!-- Pricing Hero -->
+    <div class="pricing-hero">
+      <div class="monthly-label">Recommended Monthly Price</div>
+      <div class="monthly-price" id="recMonthly">$0</div>
+      <div class="annual-line">Annual option at <strong id="recAnnual">$0</strong> <span style="color:var(--green);font-size:0.82rem;">(1 month free)</span></div>
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div class="tier-name">Conservative</div>
+          <div class="tier-price" id="tierLow">$0</div>
+          <div class="tier-annual" id="tierLowAnn">/mo · $0/yr</div>
+        </div>
+        <div class="tier-card highlight">
+          <div class="tier-name">Recommended</div>
+          <div class="tier-price" id="tierMid">$0</div>
+          <div class="tier-annual" id="tierMidAnn">/mo · $0/yr</div>
+        </div>
+        <div class="tier-card">
+          <div class="tier-name">Premium</div>
+          <div class="tier-price" id="tierHigh">$0</div>
+          <div class="tier-annual" id="tierHighAnn">/mo · $0/yr</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Value Boxes -->
+    <div class="value-grid">
+      <div class="value-box green">
+        <div class="value-label">Patient Saves Per Year</div>
+        <div class="value-amount" id="patientSaves">$0</div>
+      </div>
+      <div class="value-box yellow">
+        <div class="value-label">Practice Earns vs PPO (Per Patient)</div>
+        <div class="value-amount" id="vssPPO">$0</div>
+      </div>
+    </div>
+
+    <!-- Financial Metrics -->
+    <div class="metrics-grid" id="metricsGrid"></div>
+
+    <!-- Comparison Table -->
+    <div class="comparison-table-wrap">
+      <h3>Pricing Model Comparison</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Model</th><th>Annual Patient Cost</th><th>Practice Revenue / Patient</th><th>Patient Savings</th></tr>
+        </thead>
+        <tbody id="compBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="insights-list" id="insightsList"></div>
+
+    <!-- Actions -->
+    <div class="actions-row">
+      <button class="share-btn" onclick="shareTwitter()">𝕏 Share</button>
+      <button class="share-btn" onclick="shareFB()">Facebook</button>
+      <button class="share-btn" onclick="shareEmail()">✉ Email</button>
+      <button class="share-btn" id="copyBtn" onclick="copyResults()">⎘ Copy</button>
+      <button class="recalc-btn" onclick="recalc()">← Recalculate</button>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="next-steps">
+      <a href="ppo-calculator.html" class="next-card">
+        <div class="next-label">Next Step</div>
+        <div class="next-title">Calculate PPO Losses</div>
+        <div class="next-desc">See how much you're losing to PPO write-offs and compare to membership revenue.</div>
+      </a>
+      <a href="revenue-simulator.html" class="next-card">
+        <div class="next-label">Next Step</div>
+        <div class="next-title">Model Your Transition</div>
+        <div class="next-desc">Simulate dropping PPO plans and replacing revenue with membership plans.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What is a dental membership plan?</button>
+      <div class="faq-a"><div class="faq-a-inner">A dental membership plan is a direct-pay model where patients pay your practice a monthly or annual fee in exchange for preventive services and discounts on treatment. Unlike insurance, there are no deductibles, no claim denials, no waiting periods, and no third-party involvement. It creates a direct financial relationship between patient and practice, increasing loyalty and predictable revenue.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How should I price my membership plan?</button>
+      <div class="faq-a"><div class="faq-a-inner">We recommend pricing your membership plan at 30-40% of the total annual value of included services. This ensures patients see clear savings compared to paying full fees, while your practice still earns significantly more per patient than through PPO reimbursements. The "sweet spot" is the Recommended tier at 35%, which balances patient value with practice profitability.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What services should I include in my membership plan?</button>
+      <div class="faq-a"><div class="faq-a-inner">Most successful dental membership plans include standard preventive services: 2 cleanings per year, 2 exams per year, annual full mouth x-rays, and emergency exams. Some practices also add fluoride treatments or additional periapical x-rays. Focus on predictable, high-value preventive services that establish regular patient relationships and keep chairs filled.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What discount should I offer on additional treatment?</button>
+      <div class="faq-a"><div class="faq-a-inner">A discount of 10-30% on additional treatment is typical, with 20% being the most common and competitive. Remember that a $200 discount on a $1,000 crown still means you collect $800 - compared to a PPO where you might lose 40% or more on the same procedure. The treatment discount is where the real profitability of membership plans comes in.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How many members do I need to break even?</button>
+      <div class="faq-a"><div class="faq-a-inner">Most practices need 40-100 members in the first year to break even on administrative and operational costs. After that, every additional member contributes directly to profit. The key is that membership revenue is recurring and predictable, and the treatment discounts you offer still generate significantly more revenue than PPO-discounted fees.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How does membership revenue compare to PPO?</button>
+      <div class=
+NH:1.05, NJ:1.14, NM:0.91, NY:1.18,
+  NC:0.94, ND:0.90, OH:0.88, OK:0.86, OR:1.03, PA:0.98, RI:1.06, SC:0.92,
+  SD:0.89, TN:0.89, TX:0.95, UT:0.97, VT:1.04, VA:1.02, WA:1.10, WV:0.84,
+  WI:0.92, WY:0.92, DC:1.22
+};
+
+var STATE_NAMES = {
+  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',
+  CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',
+  HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',
+  LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',
+  MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',
+  NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',
+  OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',
+  SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',
+  WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'
+};
+
+/* Populate state dropdown */
+(function(){
+  var sel = document.getElementById('stateSelect');
+  var codes = Object.keys(STATE_NAMES).sort(function(a,b){ return STATE_NAMES[a] < STATE_NAMES[b] ? -1 : 1; });
+  codes.forEach(function(c){
+    var o = document.createElement('option');
+    o.value = c; o.textContent = STATE_NAMES[c];
+    if(c === 'TX') o.selected = true;
+    sel.appendChild(o);
+  });
+})();
+
+/* ---- HELPERS ---- */
+function fmt(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+function fmtDec(n){ return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+function selectRadio(el, val){
+  document.querySelectorAll('.radio-option').forEach(function(r){ r.classList.remove('active'); });
+  el.classList.add('active');
+  el.querySelector('input').checked = true;
+}
+
+function toggleService(el){
+  el.classList.toggle('active');
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null; });
+  if(!wasOpen){
+    item.classList.add('open');
+    item.querySelector('.faq-a').style.maxHeight = item.querySelector('.faq-a').scrollHeight + 'px';
+  }
+}
+
+/* ---- STORED RESULTS FOR SHARING ---- */
+var LAST = {};
+
+/* ---- CALCULATE ---- */
+function calculate(){
+  var stateCode = document.getElementById('stateSelect').value;
+  if(!stateCode){ alert('Please select your state.'); return; }
+
+  var colFactor = COL[stateCode] || 1.0;
+  var isSpecialty = document.querySelector('input[name="practiceType"][value="specialty"]').checked;
+  var specialtyMult = isSpecialty ? 1.15 : 1.0;
+  var discount = parseInt(document.getElementById('discountSlider').value);
+  var targetMembers = parseInt(document.getElementById('membersSlider').value);
+
+  /* Sum services */
+  var totalAnnualValue = 0;
+  document.querySelectorAll('.service-item.active').forEach(function(item){
+    var freq = parseInt(item.getAttribute('data-freq'));
+    var fee = parseFloat(item.querySelector('input').value) || 0;
+    totalAnnualValue += freq * fee;
+  });
+
+  if(totalAnnualValue < 200){
+    alert('Total annual value of services must be at least $200. Please check your selections.');
+    return;
+  }
+
+  /* Pricing tiers */
+  var lowMonthly  = (totalAnnualValue * 0.30 * colFactor * specialtyMult) / 12;
+  var midMonthly  = (totalAnnualValue * 0.35 * colFactor * specialtyMult) / 12;
+  var highMonthly = (totalAnnualValue * 0.40 * colFactor * specialtyMult) / 12;
+
+  var midAnnual = midMonthly * 11;
+  var lowAnnual = lowMonthly * 11;
+  var highAnnual = highMonthly * 11;
+
+  var arr = midMonthly * 12 * targetMembers;
+  var revPerMember = midMonthly * 12;
+  var patientSavings = totalAnnualValue - midAnnual;
+  if(patientSavings < 0) patientSavings = 0;
+
+  var monthlyOpCost = isSpecialty ? 35 : 30;
+  var breakeven = Math.ceil((monthlyOpCost * 1.3) / midMonthly);
+
+  var ppoCollected = totalAnnualValue * 0.58;
+  var gainVsPPO = revPerMember - ppoCollected;
+
+  /* Store for sharing */
+  LAST = {
+    monthly: midMonthly, annual: midAnnual, totalValue: totalAnnualValue,
+    savings: patientSavings, arr: arr, breakeven: breakeven, gainVsPPO: gainVsPPO,
+    revPerMember: revPerMember, state: STATE_NAMES[stateCode]
+  };
+
+  /* ---- RENDER ---- */
+  document.getElementById('recMonthly').textContent = fmt(midMonthly);
+  document.getElementById('recAnnual').textContent = fmt(midAnnual);
+
+  document.getElementById('tierLow').textContent = fmt(lowMonthly);
+  document.getElementById('tierLowAnn').textContent = '/mo · ' + fmt(lowAnnual) + '/yr';
+  document.getElementById('tierMid').textContent = fmt(midMonthly);
+  document.getElementById('tierMidAnn').textContent = '/mo · ' + fmt(midAnnual) + '/yr';
+  document.getElementById('tierHigh').textContent = fmt(highMonthly);
+  document.getElementById('tierHighAnn').textContent = '/mo · ' + fmt(highAnnual) + '/yr';
+
+  document.getElementById('patientSaves').textContent = fmt(patientSavings);
+  document.getElementById('vssPPO').textContent = (gainVsPPO >= 0 ? '+' : '') + fmt(gainVsPPO);
+
+  /* Metrics grid */
+  var metricsHTML = '';
+  var metrics = [
+    ['Total Annual Value (Full Fees)', fmt(totalAnnualValue)],
+    ['Recommended Monthly Price', fmt(midMonthly)],
+    ['Recommended Annual Price', fmt(midAnnual)],
+    ['Patient Savings vs Full Fees', fmt(patientSavings)],
+    ['Projected Annual Revenue (ARR)', fmt(arr)],
+    ['Revenue Per Member / Year', fmt(revPerMember)],
+    ['Break-Even Members Needed', breakeven + ' members']
+  ];
+  metrics.forEach(function(m){
+    metricsHTML += '<div class="metric-card"><div class="metric-label">' + m[0] + '</div><div class="metric-value">' + m[1] + '</div></div>';
+  });
+  document.getElementById('metricsGrid').innerHTML = metricsHTML;
+
+  /* Comparison table */
+  var membershipSavings = totalAnnualValue - midAnnual;
+  document.getElementById('compBody').innerHTML =
+    '<tr class="highlight"><td>Membership Plan</td><td>' + fmt(midAnnual) + '</td><td>' + fmt(revPerMember) + '</td><td>' + fmt(membershipSavings > 0 ? membershipSavings : 0) + '</td></tr>' +
+    '<tr><td>PPO (Avg 42% Write-off)</td><td>Varies</td><td>' + fmt(ppoCollected) + '</td><td class="na">N/A</td></tr>' +
+    '<tr><td>Fee-for-Service (Full Fees)</td><td>' + fmt(totalAnnualValue) + '</td><td>' + fmt(totalAnnualValue) + '</td><td>$0</td></tr>';
+
+  /* Insights */
+  var savingsPct = Math.round((1 - midAnnual / totalAnnualValue) * 100);
+  var dailyEquiv = arr / 250;
+  var insightsHTML = '';
+
+  insightsHTML += '<div class="insight-card"><div class="insight-icon">💰</div><div class="insight-text">Your members save <strong>' + savingsPct + '% vs full fees</strong> - a clear value proposition. Meanwhile, your practice earns <strong>' + fmt(gainVsPPO) + ' more per patient</strong> compared to average PPO reimbursements.</div></div>';
+
+  insightsHTML += '<div class="insight-card"><div class="insight-icon">📈</div><div class="insight-text">With <strong>' + targetMembers + ' members</strong>, your projected annual recurring revenue is <strong>' + fmt(arr) + '</strong> - equivalent to <strong>' + fmt(dailyEquiv) + '/day</strong> in predictable production before any treatment revenue.</div></div>';
+
+  insightsHTML += '<div class="insight-card"><div class="insight-icon">✅</div><div class="insight-text">You need just <strong>' + breakeven + ' members to break even</strong> on operational costs. With a target of ' + targetMembers + ' members, your plan becomes profitable quickly and scales with every new enrollment.</div></div>';
+
+  document.getElementById('insightsList').innerHTML = insightsHTML;
+
+  /* Show results */
+  var res = document.getElementById('results');
+  res.classList.add('show');
+  setTimeout(function(){
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+/* ---- SHARE ---- */
+function shareTwitter(){
+  var text = 'I just calculated the optimal pricing for my dental membership plan: ' + fmt(LAST.monthly) + '/month (' + fmt(LAST.annual) + '/year). Patients save ' + fmt(LAST.savings) + ' vs full fees! Try it: https://rid.academy/tools/membership-calculator.html';
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+}
+function shareFB(){
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://rid.academy/tools/membership-calculator.html'), '_blank');
+}
+function shareEmail(){
+  var subject = 'My Membership Plan Pricing Analysis';
+  var body = 'Membership Plan Pricing Analysis (via RID Academy)\n\nMonthly Price: ' + fmt(LAST.monthly) + '\nAnnual Price: ' + fmt(LAST.annual) + '\nAnnual Value: ' + fmt(LAST.totalValue) + '\nPatient Saves: ' + fmt(LAST.savings) + '\nProjected Annual Revenue: ' + fmt(LAST.arr) + '\nBreak-Even Members: ' + LAST.breakeven + '\n\nTry it yourself: https://rid.academy/tools/membership-calculator.html';
+  window.open('mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body));
+}
+function copyResults(){
+  var text = 'Membership Plan Pricing Analysis (via RID Academy) - Monthly Price: ' + fmt(LAST.monthly) + ', Annual Price: ' + fmt(LAST.annual) + ', Annual Value: ' + fmt(LAST.totalValue) + ', Patient Saves: ' + fmt(LAST.savings) + ', Projected Annual Revenue: ' + fmt(LAST.arr) + ', Break-Even Members: ' + LAST.breakeven;
+  navigator.clipboard.writeText(text).then(function(){
+    var btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Copied';
+    setTimeout(function(){ btn.textContent = '⎘ Copy'; }, 2000);
+  });
+}
+function recalc(){
+  document.getElementById('results').classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+</script>
+
+
+<footer style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 40px;">
+  <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div>
+        <div style="font-size:0;height:28px;margin-bottom:16px;">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">Navigation</h3>
+        <a href="index.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Home</a>
+        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Tools</a>
+        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Podcast</a>
+        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Resources</a>
+      </div>
+      <div>
+        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">More</h3>
+        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Webinar Archive</a>
+        <a href="about.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">About</a>
+        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Marketing Consultation</a>
+        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Partner With Us</a>
+        <a href="events.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Events</a>
+      </div>
+    </div>
+    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:13px;">
+      © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color:#E2D603;text-decoration:none;">team@rid.academy</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

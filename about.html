@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about RID Academy's mission to help dental practices achieve independence and profitability without relying on insurance companies.">
+  <meta name="keywords" content="RID Academy, dental practice independence, dental education, insurance dependence, practice ownership">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="About RID Academy - Reducing Insurance Dependence for Dentists">
+  <meta property="og:description" content="Learn about RID Academy's mission to help dental practices achieve independence and profitability without relying on insurance companies.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="about.html">
+  <title>About RID Academy - Reducing Insurance Dependence for Dentists</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-subtle: #111111;
+      --bg-card: #161616;
+      --bg-elevated: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --border-2: rgba(255,255,255,0.10);
+      --text: #f5f5f5;
+      --text-2: rgba(255,255,255,0.70);
+      --text-3: rgba(255,255,255,0.45);
+      --text-4: rgba(255,255,255,0.25);
+      --accent: #E2D603;
+      --accent-2: #F0E440;
+      --accent-bg: rgba(226,214,3,0.08);
+      --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --ff-serif: 'Lora', Georgia, serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--ff-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 72px;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 1000; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .nav-logo img { height: 34px; width: auto; filter: brightness(1.15); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: #f5f5f5; }
+    .nav-cta { background: #E2D603; color: #000; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
+    .nav-cta:hover { background: #F0E440 !important; }
+    .nav-toggle { display: none; background: none; border: none; color: #f5f5f5; font-size: 1.5rem; cursor: pointer; padding: 8px; }
+
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 20px 40px; gap: 16px; z-index: 999; }
+      .nav-links.active { display: flex; }
+      .nav-cta { width: 100%; text-align: center; }
+    }
+
+    /* Main Content */
+    main {
+      padding-top: 72px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    h1 {
+      font-family: var(--ff-serif);
+      font-size: 56px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: var(--text-2);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+    }
+
+    /* Section */
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section h2 {
+      font-family: var(--ff-serif);
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    /* Problem Section */
+    .problem-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 48px;
+      margin-bottom: 40px;
+    }
+
+    .problem-card h3 {
+      font-family: var(--ff-serif);
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .problem-card p {
+      color: var(--text-2);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .stat-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-3);
+    }
+
+    @media (max-width: 768px) {
+      .problem-card {
+        padding: 32px 24px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      section h2 {
+        font-size: 28px;
+      }
+    }
+
+    /* Founders Section */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .founder-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      border: 3px solid var(--accent);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .founder-card h3 {
+      font-family: var(--ff-serif);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .founder-title {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .founder-bio {
+      color: var(--text-2);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .founders-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .value-card h3 {
+      font-family: var(--ff-serif);
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    .value-card p {
+      color: var(--text-2);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Numbers Grid */
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .number-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .number-value {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .number-label {
+      font-size: 14px;
+      color: var(--text-2);
+    }
+
+    @media (max-width: 768px) {
+      .numbers-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-section h2 {
+      margin-bottom: 32px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-bg);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px;
+      margin-top: 80px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .footer-section a {
+      display: block;
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--text-3);
+      font-size: 13px;
+    }
+
+    .footer-logo {
+      font-size: 0;
+      height: 28px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 40px 0 30px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 28px !important; }
+      .hero p, .hero-subtitle, .lead { font-size: 14px !important; }
+      .container, .wrap { padding-left: 16px !important; padding-right: 16px !important; }
+      .nav-links { padding: 20px 16px; }
+    }
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+    </a>
+        <ul class="nav-links">
+      <li><a href="about.html" style="color: var(--accent)">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <span class="eyebrow">Our Mission</span>
+      <h1>About RID Academy</h1>
+      <p class="subtitle">Every dental practice in America should operate on its own terms - setting its own fees, choosing its own patients, and delivering care without insurance company interference.</p>
+    </section>
+
+    <!-- The Problem -->
+    <section class="container">
+      <h2>Why We Exist</h2>
+      <div class="problem-card">
+        <h3>The Reality of PPO Contracts</h3>
+        <p>Over 95% of dental practices struggle with PPO contracts that fail to keep pace with inflation and operational costs. The average practice loses 42-45% of revenue to PPO write-offs - that's $250,000+ per year for a typical single-doctor practice. Meanwhile, 31.8% of US dentists are actively planning to drop PPOs.</p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">42-45%</div>
+            <div class="stat-label">Avg Write-Off</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">$250K+</div>
+            <div class="stat-label">Annual Loss</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">95%</div>
+            <div class="stat-label">Practices Affected</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">31.8%</div>
+            <div class="stat-label">Planning to Drop</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders -->
+    <section class="container">
+      <h2>Meet the Founders</h2>
+      <div class="founders-grid">
+        <div class="founder-card">
+          <div class="avatar"><img src="images/naren-arulrajah.jpg" alt="Naren Arulrajah"></div>
+          <h3>Naren Arulrajah</h3>
+          <div class="founder-title">CEO & Founder, Ekwa Marketing</div>
+          <p class="founder-bio">Digital marketing expert with 15+ years in dental practice growth. Leads Ekwa Marketing serving 1,000+ practices across all 50 states. Co-hosts the Less Insurance Dependence Podcast with 383+ episodes. Specializes in data-driven practice independence strategy.</p>
+        </div>
+        <div class="founder-card">
+          <div class="avatar"><img src="images/gary-takacs-portrait.jpg" alt="Gary Takacs"></div>
+          <h3>Gary Takacs</h3>
+          <div class="founder-title">Founder of Thriving Dentist</div>
+          <p class="founder-bio">Created the #1 dental podcast, co-owns a successful dental practice, and coaches 2,200+ dental practices. Recognized speaker known for real-world practice floor experience and passion for helping dentists achieve independence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Team -->
+    <section class="container">
+      <h2>Meet the Team</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:40px;">
+
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;">
+          <div style="width:100px;height:100px;border-radius:50%;margin:0 auto 16px;border:2px solid var(--accent);overflow:hidden;">
+            <img src="images/Amani Sanoon.jpeg" alt="Amani Sanoon" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          </div>
+          <h3 style="font-family:var(--ff-serif);font-size:17px;margin-bottom:6px;">Amani Sanoon</h3>
+          <div style="color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Product Manager</div>
+          <p style="color:var(--text-3);font-size:13px;line-height:1.7;">Leads product development and platform strategy at RIDA, ensuring every tool and resource is built with the dentist in mind.</p>
+        </div>
+
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;">
+          <div style="width:100px;height:100px;border-radius:50%;margin:0 auto 16px;border:2px solid var(--accent);overflow:hidden;">
+            <img src="images/Lester De Alwis.jpg" alt="Lester De Alwis" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          </div>
+          <h3 style="font-family:var(--ff-serif);font-size:17px;margin-bottom:6px;">Lester De Alwis</h3>
+          <div style="color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Marketing Manager</div>
+          <p style="color:var(--text-3);font-size:13px;line-height:1.7;">Strategic advisor with a people-first approach, Lester has driven growth across Ekwa Marketing, Thriving Dentist, and Dominate Law through partnerships and high-impact marketing. At RIDA, he helps dentists gain the clarity and confidence to build truly independent practices.</p>
+        </div>
+
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;">
+          <div style="width:100px;height:100px;border-radius:50%;margin:0 auto 16px;border:2px solid var(--accent);overflow:hidden;">
+            <img src="images/Adeesha.jpeg" alt="Don Adeesha" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          </div>
+          <h3 style="font-family:var(--ff-serif);font-size:17px;margin-bottom:6px;">Don Adeesha</h3>
+          <div style="color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Host &amp; Moderator</div>
+          <p style="color:var(--text-3);font-size:13px;line-height:1.7;">Hosts and moderates RIDA's live events and webinars, creating engaging experiences that help dental professionals learn and connect.</p>
+        </div>
+
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;">
+          <div style="width:100px;height:100px;border-radius:50%;margin:0 auto 16px;border:2px solid var(--accent);overflow:hidden;">
+            <img src="images/Reshani Tamasha.jpg" alt="Reshani Tamasha" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+          </div>
+          <h3 style="font-family:var(--ff-serif);font-size:17px;margin-bottom:6px;">Reshani Tamasha</h3>
+          <div style="color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Partnership Consultant</div>
+          <p style="color:var(--text-3);font-size:13px;line-height:1.7;">Builds and manages strategic partnerships that bring the best dental industry experts and sponsors to the RIDA community.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- By the Numbers -->
+    <section class="container">
+      <h2>By the Numbers</h2>
+      <div class="numbers-grid">
+        <div class="number-card">
+          <div class="number-value">383+</div>
+          <div class="number-label">Podcast Episodes</div>
+        </div>
+        <div class="number-card">
+          <div class="number-value">10,000+</div>
+          <div class="number-label">Community Members</div>
+        </div>
+        <div class="number-card">
+          <div class="number-value">5+</div>
+          <div class="number-label">Annual Summits</div>
+        </div>
+        <div class="number-card">
+          <div class="number-value">50</div>
+          <div class="number-label">States Represented</div>
+        </div>
+        <div class="number-card">
+          <div class="number-value">30+</div>
+          <div class="number-label">Free Resources</div>
+        </div>
+        <div class="number-card">
+          <div class="number-value">4</div>
+          <div class="number-label">Free Practice Tools</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="container">
+      <h2>Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>Independence</h3>
+          <p>We believe practices thrive when they control their own destiny.</p>
+        </div>
+        <div class="value-card">
+          <h3>Education</h3>
+          <p>Knowledge is the foundation of every successful transition.</p>
+        </div>
+        <div class="value-card">
+          <h3>Community</h3>
+          <p>Shared experience accelerates everyone's journey.</p>
+        </div>
+        <div class="value-card">
+          <h3>Action</h3>
+          <p>Data-driven tools that turn insight into results.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section container">
+      <h2>Ready to Start Your Journey?</h2>
+      <div class="button-group">
+        <a href="events.html" class="btn btn-primary">Join Our Events</a>
+        <a href="tools.html" class="btn btn-secondary">Explore Tools</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <a href="index.html">Home</a>
+          <a href="tools.html">Tools</a>
+          <a href="podcast.html">Podcast</a>
+        </div>
+        <div class="footer-section">
+          <h3>More</h3>
+          <a href="resources.html">Resources</a>
+          <a href="growth-engine.html">Marketing Consultation</a>
+          <a href="partner.html">Partner With Us</a>
+          <a href="about.html">About</a>
+          <a href="https://rid.academy/community">Community</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color: #E2D603; font-size: 13px; text-decoration: none;">team@rid.academy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RID Academy Events - Webinars, Workshops & Summit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #161616;
+      --bg-elevated: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --text: #f5f5f5;
+      --text-secondary: rgba(255,255,255,0.70);
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #E2D603;
+      --accent-hover: #F0E440;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 34px;
+      width: auto;
+      filter: brightness(1.15);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.55rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-hover);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 20px 40px;
+        gap: 16px;
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-cta {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 72px;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 12px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Upcoming Events Section */
+    .upcoming-events {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .section-header p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .event-card:hover {
+      background: var(--bg-elevated);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .event-tag {
+      display: inline-block;
+      background: rgba(226, 214, 3, 0.15);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+
+    .event-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 16px 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      flex-grow: 1;
+    }
+
+    .event-meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .event-meta-item svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .event-description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 16px 0;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .event-cta {
+      display: inline-block;
+      margin-top: 20px;
+      background: rgba(226, 214, 3, 0.1);
+      color: var(--accent);
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      transition: all 0.2s;
+      border: 1px solid rgba(226, 214, 3, 0.2);
+    }
+
+    .event-cta:hover {
+      background: rgba(226, 214, 3, 0.2);
+      border-color: rgba(226, 214, 3, 0.4);
+    }
+
+    /* Summit Highlight Section */
+    .summit-highlight {
+      max-width: 1200px;
+      margin: 80px auto;
+      background: linear-gradient(135deg, rgba(226, 214, 3, 0.08) 0%, rgba(226, 214, 3, 0.02) 100%);
+      border: 1px solid rgba(226, 214, 3, 0.2);
+      border-radius: 16px;
+      padding: clamp(40px, 8vw, 60px);
+      text-align: center;
+    }
+
+    .summit-highlight h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .summit-highlight p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+
+    .summit-highlight a {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 12px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: all 0.2s;
+    }
+
+    .summit-highlight a:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Why Attend Section */
+    .why-attend {
+      max-width: 1200px;
+      margin: 80px auto 0;
+      padding: 80px 0;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .benefit-card {
+      text-align: center;
+    }
+
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 24px;
+      background: rgba(226, 214, 3, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .benefit-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--accent);
+    }
+
+    .benefit-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .benefit-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Archive Section */
+    .archive-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .archive-section h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .archive-section p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+
+    .archive-link {
+      display: inline-block;
+      background: var(--bg-card);
+      color: var(--accent);
+      padding: 12px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      border: 1px solid rgba(226, 214, 3, 0.3);
+      transition: all 0.2s;
+    }
+
+    .archive-link:hover {
+      background: rgba(226, 214, 3, 0.1);
+      border-color: var(--accent);
+    }
+
+    /* Newsletter Signup */
+    .newsletter {
+      max-width: 1200px;
+      margin: 80px auto 0;
+      padding: 60px clamp(2rem, 4vw, 3rem);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .newsletter p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 250px;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+
+    .newsletter-form input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: rgba(226, 214, 3, 0.5);
+      background: rgba(226, 214, 3, 0.02);
+    }
+
+    .newsletter-form button {
+      padding: 12px 28px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: #111111;
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px;
+      margin-top: 80px;
+    }
+
+    footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-logo img {
+      height: 28px;
+      width: auto;
+      filter: brightness(1.1);
+    }
+
+    .footer-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .footer-section a {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .footer-bottom a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-form input {
+        width: 100%;
+      }
+    }
+    
+    /* Resources dropdown */
+    .res-dd { position: relative; }
+    .res-dd-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: rgba(255,255,255,0.70);
+      font: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .res-dd-trigger:hover { color: #f5f5f5; }
+    .res-dd:hover .res-dd-trigger,
+    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
+    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
+    .res-dd:hover .res-dd-trigger svg,
+    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
+    .res-dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 320px;
+      margin-top: 8px;
+      padding: 10px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      list-style: none;
+      z-index: 9999;
+    }
+    .res-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -12px;
+      height: 12px;
+    }
+    .res-dd:hover .res-dd-menu,
+    .res-dd:focus-within .res-dd-menu { display: block; }
+    .res-dd-menu li + li { margin-top: 6px; }
+    .res-dd-menu li a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: rgba(255,255,255,0.82) !important;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .res-dd-menu li a:hover {
+      color: #E2D603 !important;
+      background: rgba(255,255,255,0.04);
+      transform: translateX(2px);
+    }
+    .res-dd-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(226,214,3,0.08);
+      border: 1px solid rgba(226,214,3,0.16);
+      color: #E2D603;
+    }
+    .res-dd-icon svg { width: 18px; height: 18px; }
+    .res-dd-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .res-dd-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .res-dd-sub {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+    }
+    @media (max-width: 900px) {
+      .res-dd-menu { display: none !important; }
+      .res-dd-trigger svg { display: none; }
+    }
+    </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
+    </a>
+        <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="podcast.html">Podcast</a></li>
+      <li class="res-dd">
+        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="res-dd-menu">
+          <li>
+            <a href="resources.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Articles</span>
+                <span class="res-dd-sub">Guides, downloads, and insights</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="tools.html">
+              <span class="res-dd-icon">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="res-dd-body">
+                <span class="res-dd-title">Tools</span>
+                <span class="res-dd-sub">Free calculators and simulators</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="webinar-archive.html">Webinar Archive</a></li>
+      <li><a href="growth-engine.html">Marketing Consultation</a></li>
+      <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Transform Your Practice at RID Academy Events</h1>
+      <p>Join dental practice owners and industry leaders at our webinars, workshops, and annual summit. Learn proven strategies to reduce insurance dependence and build predictable revenue.</p>
+      <a href="#upcoming" class="hero-cta">Explore Upcoming Events</a>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="upcoming-events" id="upcoming">
+      <div class="section-header">
+        <h2>Upcoming Events</h2>
+        <p>Join our community of forward-thinking practice owners and gain actionable insights to transform your business.</p>
+      </div>
+
+      <div class="events-grid" id="eventsGrid">
+        <!-- Event 1: Webinar -->
+        <div class="event-card">
+          <span class="event-tag">Webinar</span>
+          <h3>Insurance-Free Revenue Streams: Proven Models for 2026</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Tuesday, April 1st</span>
+            </div>
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"></circle>
+                <path d="M12 1v6m0 6v4"></path>
+                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
+              </svg>
+              <span>2:00 PM - 3:15 PM EST</span>
+            </div>
+          </div>
+          <p class="event-description">Discover how top-performing practices are building diversified revenue without relying on insurance reimbursements. Industry experts share case studies and implementation strategies.</p>
+          <a href="#register" class="event-cta">Register Now</a>
+        </div>
+
+        <!-- Event 2: Panel Discussion -->
+        <div class="event-card">
+          <span class="event-tag">Panel Discussion</span>
+          <h3>The Power of Membership Models in Dental Practice</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Thursday, April 10th</span>
+            </div>
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"></circle>
+                <path d="M12 1v6m0 6v4"></path>
+                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
+              </svg>
+              <span>1:00 PM - 2:30 PM EST</span>
+            </div>
+          </div>
+          <p class="event-description">Hear directly from practice owners who've successfully implemented membership and direct-pay models. Learn about patient communication, profitability, and scaling strategies.</p>
+          <a href="#register" class="event-cta">Register Now</a>
+        </div>
+
+        <!-- Event 3: Workshop -->
+        <div class="event-card">
+          <span class="event-tag">Workshop</span>
+          <h3>Building Your Insurance-Independent Strategy: 90-Minute Deep Dive</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Tuesday, April 22nd</span>
+            </div>
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"></circle>
+                <path d="M12 1v6m0 6v4"></path>
+                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
+              </svg>
+              <span>10:00 AM - 11:30 AM EST</span>
+            </div>
+          </div>
+          <p class="event-description">Interactive workshop where you'll develop your personalized transition plan. Includes templates, financial modeling tools, and direct feedback from RID Academy coaches.</p>
+          <a href="#register" class="event-cta">Register Now</a>
+        </div>
+
+        <!-- Event 4: Masterclass -->
+        <div class="event-card">
+          <span class="event-tag">Masterclass</span>
+          <h3>Financial Forecasting: Project Your Growth Without Insurance Dependency</h3>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Wednesday, May 7th</span>
+            </div>
+            <div class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="1"></circle>
+                <path d="M12 1v6m0 6v4"></path>
+                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
+              </svg>
+              <span>3:00 PM - 4:30 PM EST</span>
+            </div>
+          </div>
+          <p class="event-description">Master the financial modeling framework used by practices that have achieved 70%+ non-insurance revenue. Includes break-even analysis, ROI calculations, and cash flow optimization.</p>
+          <a href="#register" class="event-cta">Register Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summit Highlight Section -->
+    <section class="summit-highlight">
+      <h2>RID Academy Annual Summit</h2>
+      <p>Join 500+ practice owners for our flagship 3-day event. Network, learn from industry leaders, and leave with a complete roadmap for your practice transformation.</p>
+      <a href="summit.html">Explore the Summit</a>
+    </section>
+
+    <!-- Why Attend Section -->
+    <section class="why-attend">
+      <div class="section-header">
+        <h2>Why Attend RID Academy Events</h2>
+        <p>Discover what sets our events apart and how they can accelerate your practice growth.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <h3>Proven Strategies</h3>
+          <p>Learn battle-tested approaches from practices that have successfully reduced insurance dependence by 50-80%.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+          </div>
+          <h3>Expert Instructors</h3>
+          <p>Learn directly from successful practice owners, financial advisors, and industry consultants who've built thriving businesses.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+            </svg>
+          </div>
+          <h3>Actionable Resources</h3>
+          <p>Receive templates, tools, financial models, and playbooks you can implement immediately in your practice.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.99 5.4C6.85 5.4 2.73 7.61 0 11c2.73 3.39 6.85 5.6 11.99 5.6s9.26-2.21 12-5.6c-2.74-3.39-6.86-5.6-12-5.6zM12 16c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+            </svg>
+          </div>
+          <h3>Peer Network</h3>
+          <p>Connect with like-minded practice owners, share experiences, and build lasting professional relationships.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </div>
+          <h3>Personalized Guidance</h3>
+          <p>Get one-on-one feedback on your specific situation and tailored recommendations for your practice.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+            </svg>
+          </div>
+          <h3>Stay Current</h3>
+          <p>Keep up with industry trends, new opportunities, and market changes that affect your practice.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Archive Section -->
+    <section class="archive-section">
+      <h2>Access Past Webinars</h2>
+      <p>Can't make it to live events? Explore our growing library of past webinars, including comprehensive recordings of previous summits and exclusive interviews with industry leaders.</p>
+      <a href="webinar-archive.html" class="archive-link">View Webinar Archive</a>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+      <h2>Stay Updated on Upcoming Events</h2>
+      <p>Get notified about new webinars, workshops, and special announcements. Join 2,000+ practice owners in the RID Academy community.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit">Notify Me</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="data/rida-data.js"></script>
+  <script src="data/sheets.js"></script>
+  <script>
+  var CAL_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+  var CLK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+
+  function renderEvents(events) {
+    if (!events || !events.length) return;
+    var grid = document.getElementById('eventsGrid');
+    if (!grid) return;
+    grid.innerHTML = events.map(function(ev) {
+      var dateLabel = ev.day && ev.month_year ? ev.day + ' ' + ev.month_year : (ev.date_iso || '');
+      var panelStr = Array.isArray(ev.panelists) && ev.panelists.length
+        ? '<div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:8px;">With: ' + ev.panelists.join(' &bull; ') + '</div>'
+        : '';
+      return '<div class="event-card">'
+        + '<span class="event-tag">Webinar</span>'
+        + '<h3>' + ev.title + '</h3>'
+        + '<div class="event-meta">'
+        + '<div class="event-meta-item">' + CAL_SVG + '<span>' + dateLabel + '</span></div>'
+        + '<div class="event-meta-item">' + CLK_SVG + '<span>' + ev.time + '</span></div>'
+        + '</div>'
+        + '<p class="event-description">' + (ev.description || '').replace(/\n/g, '<br>') + '</p>'
+        + panelStr
+        + '<a href="' + (ev.register_url || '#') + '" target="_blank" rel="noopener" class="event-cta">Register Now</a>'
+        + '</div>';
+    }).join('');
+  }
+
+  // Try to render immediately (if rida-data.js loaded synchronously)
+  if (typeof RIDA_EVENTS !== 'undefined' && RIDA_EVENTS.length) renderEvents(RIDA_EVENTS);
+  // Also re-render when data-loader.js finishes fetching from Google Sheets
+  document.addEventListener('ridaDataReady', function() {
+    if (typeof RIDA_EVENTS !== 'undefined') renderEvents(RIDA_EVENTS);
+  });
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy">
+          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <a href="index.html">Home</a>
+          <a href="tools.html">Tools</a>
+          <a href="podcast.html">Podcast</a>
+          <a href="resources.html">Resources</a>
+        </div>
+        <div class="footer-section">
+          <h3>More</h3>
+          <a href="webinar-archive.html">Webinar Archive</a>
+          <a href="about.html">About</a>
+          <a href="growth-engine.html">Marketing Consultation</a>
+          <a href="partner.html">Partner With Us</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy">team@rid.academy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleNewsletterSignup(event) {
+      event.preventDefault();
+      const email = event.target.querySelector('input[type="email"]').value;
+      alert(`Thank you for signing up! We'll send updates to ${email}`);
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
