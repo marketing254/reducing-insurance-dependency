@@ -393,6 +393,10 @@ h2.sh em { font-style: italic; }
   letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--text-4); margin-bottom: 0.5rem;
 }
+.home-podcast-audio {
+  width: 100%;
+  display: block;
+}
 audio { width: 100%; height: 34px; border-radius: 4px; }
 
 .listen-on { padding: 1rem 1.5rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
@@ -982,22 +986,18 @@ footer {
     <h2 class="sh" style="margin-bottom:0.5rem;">Less Insurance Dependence Podcast</h2>
     <p class="sb">Co-hosted by Gary Takacs, Lester De Alwis, and Naren Arulrajah. New episodes every week - dentists who've done it, sharing what actually works.</p>
     <div class="podcast-layout">
-      <div class="pod-latest">
+      <div class="pod-latest" id="homeLatestPodcastCard">
         <div class="pod-cover">
-          <div class="pod-cover-eye">Latest Episode · Ep 383</div>
-          <h3>Operational Clarity That Reduces Insurance Pressure with Kristine Haynes</h3>
-          <div class="pod-cover-meta">March 2026 · Kristine Haynes</div>
+          <div class="pod-cover-eye" id="homeLatestPodcastEyebrow">Latest Episode</div>
+          <h3 id="homeLatestPodcastTitle">Loading latest episode...</h3>
+          <div class="pod-cover-meta" id="homeLatestPodcastMeta">Fetching latest podcast details...</div>
         </div>
-        <div class="pod-player-wrap">
+        <div class="pod-player-wrap" id="homeLatestPodcastPlayerWrap">
           <div class="pod-player-lbl">Play episode</div>
-          <audio controls>
-            <source src="https://traffic.libsyn.com/preview/secure/lessinsurancedependance/LID_Ep_383_audio.mp3" type="audio/mpeg">
-          </audio>
+          <div style="color:rgba(255,255,255,.6);font-size:.9rem;">Loading audio...</div>
         </div>
-        <div class="listen-on">
-          <a href="https://podcasts.apple.com/podcast/less-insurance-dependence/id1440263338" class="l-chip" target="_blank">Apple Podcasts</a>
-          <a href="https://open.spotify.com/show/4tVp2Jad48JA5TvhRGLoo2" class="l-chip" target="_blank">Spotify</a>
-          <a href="https://www.youtube.com/playlist?list=PLzQs_vQ9E-fiNaw8mw464TVk6mhkba--B" class="l-chip" target="_blank">YouTube</a>
+        <div class="listen-on" id="homeLatestPodcastLinks">
+          <a href="podcast.html" class="l-chip">Loading links...</a>
         </div>
       </div>
       <div>

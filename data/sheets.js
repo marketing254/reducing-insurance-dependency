@@ -49,6 +49,28 @@ function ridaParseDate(str) {
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
+function ridaPodcastEpisodeNumber(row) {
+  const raw = row && row.episode ? String(row.episode).trim() : '';
+  const match = raw.match(/\d+/);
+  return match ? parseInt(match[0], 10) : null;
+}
+
+function ridaSortPodcastEpisodes(rows) {
+  return (rows || []).slice().sort((a, b) => {
+    const epA = ridaPodcastEpisodeNumber(a);
+    const epB = ridaPodcastEpisodeNumber(b);
+    if (epA !== null && epB !== null && epA !== epB) return epA - epB;
+
+    const dateA = ridaParseDate(a && a.date);
+    const dateB = ridaParseDate(b && b.date);
+    if (dateA && dateB && dateA.getTime() !== dateB.getTime()) {
+      return dateA.getTime() - dateB.getTime();
+    }
+
+    return String(a && a.title || '').localeCompare(String(b && b.title || ''));
+  });
+}
+
 function ridaDriveId(url) {
   if (!url) return '';
   const value = String(url).trim();
@@ -256,6 +278,66 @@ function ridaInitAudioPlayers(scope) {
     audio.addEventListener('ended', sync);
     sync();
   });
+
+  root.querySelectorAll('.audio-player-mock').forEach(player => {
+    if (player.dataset.bound === '1') return;
+    player.dataset.bound = '1';
+
+    const audio = player.querySelector('audio');
+    const playBtn = player.querySelector('.player-button');
+    const bar = player.querySelector('.progress-bar');
+    const fill = player.querySelector('.progress-fill');
+    const curEl = player.querySelector('.player-cur');
+    const durEl = player.querySelector('.player-dur');
+    if (!audio || !playBtn) return;
+
+    const PLAY_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+    const PAUSE_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+    const fmt = t => {
+      const s = Math.max(0, Math.floor(Number.isFinite(t) ? t : 0));
+      return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    };
+
+    const sync = () => {
+      const dur = Number.isFinite(audio.duration) ? audio.duration : 0;
+      const cur = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+      const pct = dur > 0 ? Math.min(100, (cur / dur) * 100) : 0;
+      if (fill) fill.style.width = `${pct}%`;
+      if (curEl) curEl.textContent = fmt(cur);
+      if (durEl) durEl.textContent = dur ? fmt(dur) : '--:--';
+      playBtn.innerHTML = audio.paused ? PLAY_SVG : PAUSE_SVG;
+    };
+
+    playBtn.addEventListener('click', async () => {
+      try {
+        if (audio.paused) {
+          document.querySelectorAll('.audio-player-mock audio, .rida-mini-native audio, .rida-pc-native audio').forEach(a => {
+            if (a !== audio) a.pause();
+          });
+          await audio.play();
+        } else {
+          audio.pause();
+        }
+      } catch (_) {}
+      sync();
+    });
+
+    if (bar) bar.addEventListener('click', e => {
+      const rect = bar.getBoundingClientRect();
+      const ratio = rect.width ? (e.clientX - rect.left) / rect.width : 0;
+      if (Number.isFinite(audio.duration)) {
+        audio.currentTime = Math.max(0, Math.min(audio.duration, ratio * audio.duration));
+      }
+      sync();
+    });
+
+    audio.addEventListener('timeupdate', sync);
+    audio.addEventListener('loadedmetadata', sync);
+    audio.addEventListener('play', sync);
+    audio.addEventListener('pause', sync);
+    audio.addEventListener('ended', sync);
+    sync();
+  });
 }
 
 function ridaPodcastAudioMarkup(ep) {
@@ -376,6 +458,41 @@ function ridaMiniAudioMarkup(ep) {
           <span class="rida-mini-cur">0:00</span>
           <span class="rida-mini-sep">/</span>
           <span class="rida-mini-dur">--:--</span>
+        </div>
+      </div>
+      <audio preload="metadata" src="${ridaEscapeHtml(src)}" style="display:none"></audio>
+    </div>`;
+}
+
+function ridaLandingEpisodeAudioMarkup(ep) {
+  const isObj = ep && typeof ep === 'object';
+  const audioSource = isObj ? (ep.audio_source || '') : String(ep || '');
+  const src = ridaPodcastAudioSrc(audioSource);
+  if (!src) return '';
+
+  if (ridaIsLibsynAudio(src) && !ridaIsDirectAudioFile(src)) {
+    return `
+      <div class="audio-player-embed">
+        <iframe src="${ridaEscapeHtml(src)}" width="100%" height="52"
+          frameborder="0" allow="autoplay; encrypted-media" scrolling="no"
+          title="Podcast episode"></iframe>
+      </div>`;
+  }
+
+  return `
+    <div class="audio-player-mock">
+      <button class="player-button" type="button" aria-label="Play / Pause">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="player-info">
+        <div class="player-title">${ridaEscapeHtml(isObj && ep.title ? ep.title : 'Podcast episode')}</div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="player-time">
+          <span class="player-cur">0:00</span>
+          <span class="player-sep">/</span>
+          <span class="player-dur">--:--</span>
         </div>
       </div>
       <audio preload="metadata" src="${ridaEscapeHtml(src)}" style="display:none"></audio>
@@ -1158,7 +1275,7 @@ async function ridaLoadLatestPodcastSection() {
   const card = document.getElementById('latestEpisodeCard');
   if (!card) return;
   try {
-    const episodes = await ridaFetchSheet('podcast');
+    const episodes = ridaSortPodcastEpisodes(await ridaFetchSheet('podcast'));
     if (!episodes.length) return;
     const latest = episodes[episodes.length - 1];
     const episodeHref = ridaPodcastHref(latest);
@@ -1176,7 +1293,7 @@ async function ridaLoadLatestPodcastSection() {
 
     if (playerWrap) {
       if (latest.audio_source) {
-        const markup = ridaMiniAudioMarkup(latest);
+        const markup = ridaLandingEpisodeAudioMarkup(latest);
         playerWrap.innerHTML = markup;
         ridaInitAudioPlayers(playerWrap);
       } else {
@@ -1196,11 +1313,64 @@ async function ridaLoadLatestPodcastSection() {
   }
 }
 
+async function ridaLoadHomeLatestPodcast() {
+  const card = document.getElementById('homeLatestPodcastCard');
+  if (!card) return;
+  try {
+    const episodes = ridaSortPodcastEpisodes(await ridaFetchSheet('podcast'));
+    if (!episodes.length) return;
+
+    const latest = episodes[episodes.length - 1];
+    const episodeHref = ridaPodcastHref(latest);
+    const eyebrowEl = document.getElementById('homeLatestPodcastEyebrow');
+    const titleEl = document.getElementById('homeLatestPodcastTitle');
+    const metaEl = document.getElementById('homeLatestPodcastMeta');
+    const playerWrap = document.getElementById('homeLatestPodcastPlayerWrap');
+    const linksWrap = document.getElementById('homeLatestPodcastLinks');
+
+    if (eyebrowEl) eyebrowEl.textContent = `Latest Episode · Ep ${latest.episode || ''}`;
+    if (titleEl) titleEl.textContent = latest.title || 'Latest Episode';
+    if (metaEl) {
+      const metaParts = [];
+      if (latest.date) metaParts.push(latest.date);
+      if (latest.guest_name) metaParts.push(latest.guest_name);
+      metaEl.textContent = metaParts.join(' · ') || 'Latest RID Academy episode';
+    }
+
+    if (playerWrap) {
+      const homeAudioSrc = ridaPodcastAudioSrc(latest.audio_source || '');
+      const homeAudioMarkup = homeAudioSrc
+        ? (ridaIsDirectAudioFile(homeAudioSrc)
+          ? `<audio class="home-podcast-audio" controls><source src="${ridaEscapeHtml(homeAudioSrc)}" type="audio/mpeg"></audio>`
+          : ridaMiniAudioMarkup(latest))
+        : '<div style="color:rgba(255,255,255,.6);font-size:.9rem;">Audio unavailable for this episode.</div>';
+      playerWrap.innerHTML = `
+        <div class="pod-player-lbl">Play episode</div>
+        ${homeAudioMarkup}
+      `;
+      if (!ridaIsDirectAudioFile(homeAudioSrc)) {
+        ridaInitAudioPlayers(playerWrap);
+      }
+    }
+
+    if (linksWrap) {
+      linksWrap.innerHTML = `
+        <a href="${episodeHref}" class="l-chip">Open Episode</a>
+        ${latest.apple_url ? `<a href="${latest.apple_url}" class="l-chip" target="_blank" rel="noopener">Apple Podcasts</a>` : ''}
+        ${latest.spotify_url ? `<a href="${latest.spotify_url}" class="l-chip" target="_blank" rel="noopener">Spotify</a>` : ''}
+        ${latest.youtube_url ? `<a href="${latest.youtube_url}" class="l-chip" target="_blank" rel="noopener">YouTube</a>` : ''}
+      `;
+    }
+  } catch (e) {
+    console.warn('RIDA Sheets: Could not load home latest podcast', e);
+  }
+}
+
 async function ridaLoadPodcastGrid() {
   const grid = document.getElementById('episodesGrid');
   if (!grid) return;
   try {
-    const episodes = await ridaFetchSheet('podcast');
+    const episodes = ridaSortPodcastEpisodes(await ridaFetchSheet('podcast'));
     if (!episodes.length) return;
 
     const all = episodes.slice().reverse();
@@ -1278,7 +1448,7 @@ async function ridaLoadEpisodePage() {
   try {
     const params = new URLSearchParams(window.location.search);
     const targetEpisode = params.get('ep');
-    const rows = await ridaFetchSheet('podcast');
+    const rows = ridaSortPodcastEpisodes(await ridaFetchSheet('podcast'));
     if (!rows.length) throw new Error('No episodes found');
 
     const all = rows.slice().reverse();
@@ -1504,5 +1674,9 @@ async function ridaLoadWebinarPage() {
     ridaLoadEventsGrid();
   } else if (path.includes('podcast')) {
     ridaLoadPodcastGrid();
+  }
+
+  if (document.getElementById('homeLatestPodcastCard')) {
+    ridaLoadHomeLatestPodcast();
   }
 })();
