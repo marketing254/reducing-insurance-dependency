@@ -38,6 +38,7 @@ ls public/scroll-stop/frames | wc -l
 Create `components/ScrollStopAnimation.tsx` with the code below.
 **Only customize the `CARDS` array and `FRAME_COUNT`** — everything else is ready to go.
 
+{% raw %}
 ```tsx
 "use client"
 
@@ -289,6 +290,7 @@ export function ScrollStopAnimation() {
   )
 }
 ```
+{% endraw %}
 
 ---
 
@@ -296,6 +298,7 @@ export function ScrollStopAnimation() {
 
 Import and place it between your hero and the next section:
 
+{% raw %}
 ```tsx
 import { ScrollStopAnimation } from "@/components/ScrollStopAnimation"
 
@@ -317,6 +320,7 @@ export default function Page() {
   )
 }
 ```
+{% endraw %}
 
 ---
 
