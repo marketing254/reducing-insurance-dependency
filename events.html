@@ -3,1061 +3,393 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RID Academy Events - Webinars, Workshops & Summit</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
-
+  <title>RID Academy Events — Webinars, Workshops & Summit</title>
+  <meta name="description" content="Join RID Academy webinars, workshops, and events. Learn proven strategies to reduce insurance dependence and build a profitable dental practice.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #0a0a0a;
-      --bg-card: #161616;
-      --bg-elevated: #1a1a1a;
-      --border: rgba(255,255,255,0.06);
-      --text: #f5f5f5;
-      --text-secondary: rgba(255,255,255,0.70);
-      --text-muted: rgba(255,255,255,0.45);
-      --accent: #E2D603;
-      --accent-hover: #F0E440;
-    }
-
-    html, body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 72px;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 clamp(1.5rem, 4vw, 3rem);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-    }
-
-    .nav-logo img {
-      height: 34px;
-      width: auto;
-      filter: brightness(1.15);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.75rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-cta {
-      background: var(--accent);
-      color: #000 !important;
-      padding: 0.55rem 1.25rem;
-      border-radius: 6px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      border: none;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .nav-cta:hover {
-      background: var(--accent-hover);
-    }
-
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 8px;
-    }
-
-    @media (max-width: 900px) {
-      .nav-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background: rgba(10, 10, 10, 0.95);
-        backdrop-filter: blur(20px);
-        padding: 20px 40px;
-        gap: 16px;
-        z-index: 999;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .nav-cta {
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    /* Main Content */
-    main {
-      margin-top: 72px;
-      padding: 0 clamp(1.5rem, 4vw, 3rem);
-    }
-
-    /* Hero Section */
-    .hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 0;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-family: 'Lora', serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 600;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    .hero p {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.8;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      background: var(--accent);
-      color: #000;
-      padding: 12px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.01em;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .hero-cta:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-    }
-
-    /* Upcoming Events Section */
-    .upcoming-events {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 0;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header h2 {
-      font-family: 'Lora', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-
-    .section-header p {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      margin-bottom: 60px;
-    }
-
-    .event-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .event-card:hover {
-      background: var(--bg-elevated);
-      border-color: rgba(255, 255, 255, 0.12);
-      transform: translateY(-4px);
-    }
-
-    .event-tag {
-      display: inline-block;
-      background: rgba(226, 214, 3, 0.15);
-      color: var(--accent);
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      width: fit-content;
-    }
-
-    .event-card h3 {
-      font-family: 'Lora', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
-
-    .event-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin: 16px 0;
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      flex-grow: 1;
-    }
-
-    .event-meta-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .event-meta-item svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .event-description {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin: 16px 0;
-      line-height: 1.6;
-      flex-grow: 1;
-    }
-
-    .event-cta {
-      display: inline-block;
-      margin-top: 20px;
-      background: rgba(226, 214, 3, 0.1);
-      color: var(--accent);
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.01em;
-      transition: all 0.2s;
-      border: 1px solid rgba(226, 214, 3, 0.2);
-    }
-
-    .event-cta:hover {
-      background: rgba(226, 214, 3, 0.2);
-      border-color: rgba(226, 214, 3, 0.4);
-    }
-
-    /* Summit Highlight Section */
-    .summit-highlight {
-      max-width: 1200px;
-      margin: 80px auto;
-      background: linear-gradient(135deg, rgba(226, 214, 3, 0.08) 0%, rgba(226, 214, 3, 0.02) 100%);
-      border: 1px solid rgba(226, 214, 3, 0.2);
-      border-radius: 16px;
-      padding: clamp(40px, 8vw, 60px);
-      text-align: center;
-    }
-
-    .summit-highlight h2 {
-      font-family: 'Lora', serif;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .summit-highlight p {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      max-width: 600px;
-      margin: 0 auto 32px;
-      line-height: 1.8;
-    }
-
-    .summit-highlight a {
-      display: inline-block;
-      background: var(--accent);
-      color: #000;
-      padding: 12px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.01em;
-      transition: all 0.2s;
-    }
-
-    .summit-highlight a:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-    }
-
-    /* Why Attend Section */
-    .why-attend {
-      max-width: 1200px;
-      margin: 80px auto 0;
-      padding: 80px 0;
-    }
-
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
-    }
-
-    .benefit-card {
-      text-align: center;
-    }
-
-    .benefit-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 24px;
-      background: rgba(226, 214, 3, 0.1);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .benefit-icon svg {
-      width: 32px;
-      height: 32px;
-      color: var(--accent);
-    }
-
-    .benefit-card h3 {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .benefit-card p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    /* Archive Section */
-    .archive-section {
-      max-width: 1200px;
-      margin: 80px auto;
-      padding: 60px 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .archive-section h2 {
-      font-family: 'Lora', serif;
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .archive-section p {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 0 auto 32px;
-      line-height: 1.8;
-    }
-
-    .archive-link {
-      display: inline-block;
-      background: var(--bg-card);
-      color: var(--accent);
-      padding: 12px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.01em;
-      border: 1px solid rgba(226, 214, 3, 0.3);
-      transition: all 0.2s;
-    }
-
-    .archive-link:hover {
-      background: rgba(226, 214, 3, 0.1);
-      border-color: var(--accent);
-    }
-
-    /* Newsletter Signup */
-    .newsletter {
-      max-width: 1200px;
-      margin: 80px auto 0;
-      padding: 60px clamp(2rem, 4vw, 3rem);
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      text-align: center;
-    }
-
-    .newsletter h2 {
-      font-family: 'Lora', serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .newsletter p {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      max-width: 500px;
-      margin: 0 auto 32px;
-    }
-
-    .newsletter-form {
-      display: flex;
-      gap: 12px;
-      max-width: 500px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      min-width: 250px;
-      padding: 12px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 0.95rem;
-      font-family: 'Inter', sans-serif;
-      transition: border-color 0.2s;
-    }
-
-    .newsletter-form input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .newsletter-form input:focus {
-      outline: none;
-      border-color: rgba(226, 214, 3, 0.5);
-      background: rgba(226, 214, 3, 0.02);
-    }
-
-    .newsletter-form button {
-      padding: 12px 28px;
-      background: var(--accent);
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .newsletter-form button:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-    }
-
-    /* Footer */
-    footer {
-      background: #111111;
-      border-top: 1px solid var(--border);
-      padding: 40px 0 24px;
-      margin-top: 80px;
-    }
-
-    footer-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: minmax(320px, 1.4fr) minmax(150px, 0.8fr) minmax(190px, 1fr);
-      gap: 22px 28px;
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .footer-logo img {
-      height: 28px;
-      width: auto;
-      filter: brightness(1.1);
-    }
-
-    .footer-section h3 {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 14px;
-      color: var(--text);
-    }
-
-    .footer-section a {
-      display: block;
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 13px;
-      margin-bottom: 9px;
-      line-height: 1.5;
-      transition: color 0.2s;
-    }
-
-    .footer-section a:hover {
-      color: var(--text);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .footer-bottom a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .events-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .benefits-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .newsletter-form {
-        flex-direction: column;
-      }
-
-      .newsletter-form input {
-        width: 100%;
-      }
-    }
-    
-    /* Resources dropdown */
-    .res-dd { position: relative; }
-    .res-dd-trigger {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: none;
-      border: none;
-      padding: 0;
-      color: rgba(255,255,255,0.70);
-      font: inherit;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-    .res-dd-trigger:hover { color: #f5f5f5; }
-    .res-dd:hover .res-dd-trigger,
-    .res-dd:focus-within .res-dd-trigger { color: #f5f5f5; }
-    .res-dd-trigger svg { width: 10px; height: 6px; transition: transform 0.18s ease; }
-    .res-dd:hover .res-dd-trigger svg,
-    .res-dd:focus-within .res-dd-trigger svg { transform: rotate(180deg); }
-    .res-dd-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 320px;
-      margin-top: 8px;
-      padding: 10px;
-      background: #111111;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
-      list-style: none;
-      z-index: 9999;
-    }
-    .res-dd-menu::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: -12px;
-      height: 12px;
-    }
-    .res-dd:hover .res-dd-menu,
-    .res-dd:focus-within .res-dd-menu { display: block; }
-    .res-dd-menu li + li { margin-top: 6px; }
-    .res-dd-menu li a {
-      display: grid;
-      grid-template-columns: 36px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
-      padding: 12px;
-      color: rgba(255,255,255,0.82) !important;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: background 0.15s, color 0.15s, transform 0.15s;
-    }
-    .res-dd-menu li a:hover {
-      color: #E2D603 !important;
-      background: rgba(255,255,255,0.04);
-      transform: translateX(2px);
-    }
-    .res-dd-icon {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: rgba(226,214,3,0.08);
-      border: 1px solid rgba(226,214,3,0.16);
-      color: #E2D603;
-    }
-    .res-dd-icon svg { width: 18px; height: 18px; }
-    .res-dd-body {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-    }
-    .res-dd-title {
-      font-size: 0.84rem;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-    .res-dd-sub {
-      font-size: 0.73rem;
-      color: rgba(255,255,255,0.52);
-      line-height: 1.35;
-    }
-    @media (max-width: 900px) {
-      .res-dd-menu { display: none !important; }
-      .res-dd-trigger svg { display: none; }
-    }
-    </style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#f5f5f5;overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}button{cursor:pointer;font:inherit;border:none;background:none}
+:root{--bg:#0a0a0a;--bg-card:#161616;--bg-elevated:#1a1a1a;--border:rgba(255,255,255,.06);--border-2:rgba(255,255,255,.1);--text:#f5f5f5;--text-2:rgba(255,255,255,.7);--text-3:rgba(255,255,255,.45);--accent:#E2D603;--accent-2:#F0E440;--ff-serif:'Lora',Georgia,serif}
+
+/* ── Nav ── */
+nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,4vw,3rem)}
+.nav-logo img{height:34px;filter:brightness(1.15)}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center}.nav-links a{color:var(--text-2);font-size:.875rem;font-weight:500;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{background:var(--accent);color:#000!important;padding:.55rem 1.25rem;border-radius:6px;font-size:.82rem;font-weight:700}.nav-cta:hover{background:var(--accent-2)!important}
+.nav-toggle{display:none;color:var(--text);font-size:1.5rem;padding:8px}
+.res-dd{position:relative}.res-dd-trigger{display:inline-flex;align-items:center;gap:5px;color:var(--text-2);font-size:.875rem;font-weight:500;cursor:pointer;transition:color .2s}.res-dd-trigger:hover,.res-dd:hover .res-dd-trigger,.res-dd:focus-within .res-dd-trigger{color:var(--text)}.res-dd-trigger svg{width:10px;height:6px;transition:transform .18s}.res-dd:hover .res-dd-trigger svg,.res-dd:focus-within .res-dd-trigger svg{transform:rotate(180deg)}.res-dd-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:300px;margin-top:8px;padding:10px;background:#111;border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 18px 44px rgba(0,0,0,.55);list-style:none;z-index:9999}.res-dd-menu::before{content:'';position:absolute;left:0;right:0;top:-12px;height:12px}.res-dd:hover .res-dd-menu,.res-dd:focus-within .res-dd-menu{display:block}.res-dd-menu li+li{margin-top:6px}.res-dd-menu li a{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;padding:12px;color:rgba(255,255,255,.82)!important;border-radius:10px;transition:background .15s,color .15s,transform .15s}.res-dd-menu li a:hover{color:#E2D603!important;background:rgba(255,255,255,.04);transform:translateX(2px)}.res-dd-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(226,214,3,.08);border:1px solid rgba(226,214,3,.16);color:#E2D603}.res-dd-icon svg{width:18px;height:18px}.res-dd-body{display:flex;flex-direction:column;gap:2px}.res-dd-title{font-size:.84rem;font-weight:600}.res-dd-sub{font-size:.73rem;color:rgba(255,255,255,.52)}
+@media(max-width:900px){.nav-toggle{display:block}.nav-links{display:none;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(10,10,10,.97);backdrop-filter:blur(20px);padding:20px 40px;gap:16px;z-index:999}.nav-links.active{display:flex}.nav-cta{width:100%;text-align:center}.res-dd-menu{display:none!important}.res-dd-trigger svg{display:none}}
+
+/* ── Layout shell ── */
+.ev-wrap{max-width:960px;margin:0 auto;padding:0 40px}
+
+/* ── Hero ── */
+.ev-hero{padding:72px 0 64px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.ev-hero::after{content:'';position:absolute;top:-120px;right:-160px;width:520px;height:520px;background:radial-gradient(circle,rgba(226,214,3,.065),transparent 68%);pointer-events:none}
+.ev-hero .ev-wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+.ev-hero-label{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.ev-hero-label::before{content:'';width:20px;height:2px;background:var(--accent);border-radius:1px}
+.ev-hero h1{font-family:var(--ff-serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.18;max-width:680px;margin:0 auto 18px}
+.ev-hero p{font-size:1rem;color:var(--text-2);max-width:620px;line-height:1.8;margin:0 auto 32px}
+.ev-hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.ev-btn{display:inline-block;background:var(--accent);color:#000;padding:11px 26px;border-radius:7px;font-weight:700;font-size:.9rem;transition:background .2s}.ev-btn:hover{background:var(--accent-2)}
+.ev-btn-ghost{display:inline-block;border:1px solid var(--border-2);color:var(--text-2);padding:11px 26px;border-radius:7px;font-weight:600;font-size:.9rem;transition:border-color .2s,color .2s}.ev-btn-ghost:hover{border-color:rgba(255,255,255,.22);color:var(--text)}
+
+/* ── Section header ── */
+.ev-section{padding:72px 0}
+.ev-section-label{font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+.ev-section h2{font-family:var(--ff-serif);font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:600;margin-bottom:10px}
+.ev-section-sub{font-size:.95rem;color:var(--text-2);max-width:500px;line-height:1.75;margin-bottom:44px}
+
+/* ── Events grid ── */
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+/* ── Regular card ── */
+.event-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s,border-color .22s}
+.event-card:hover{transform:translateY(-5px);box-shadow:0 20px 52px rgba(0,0,0,.42);border-color:rgba(255,255,255,.1)}
+.event-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 18px;background:rgba(255,255,255,.025);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.event-tag{font-size:.63rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(226,214,3,.1);border:1px solid rgba(226,214,3,.18);padding:3px 9px;border-radius:4px;white-space:nowrap}
+.event-card-date{font-size:.74rem;color:var(--text-3);font-weight:500}
+.event-card-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.event-card-body h3{font-family:var(--ff-serif);font-size:1.05rem;font-weight:600;line-height:1.4;color:var(--text);margin-bottom:10px}
+.event-description{font-size:.855rem;color:var(--text-3);line-height:1.72;flex:1;margin-bottom:14px}
+.ev-speakers{display:flex;flex-wrap:wrap;gap:9px;padding-top:13px;border-top:1px solid var(--border);margin-bottom:16px}
+.ev-speaker{display:flex;align-items:center;gap:7px}
+.ev-speaker-photo{width:38px;height:38px;border-radius:50%;overflow:hidden;background:var(--bg-elevated);border:1.5px solid rgba(255,255,255,.1);flex-shrink:0}
+.ev-speaker-photo img{width:100%;height:100%;object-fit:cover}
+.ev-speaker-name{font-size:.76rem;color:var(--text-2);font-weight:500;line-height:1.3}
+.event-cta{display:inline-block;background:var(--accent);color:#000;padding:9px 18px;border-radius:6px;font-size:.8rem;font-weight:700;transition:background .2s;width:fit-content;margin-top:auto}.event-cta:hover{background:var(--accent-2)}
+.event-cta--lg{padding:12px 28px;font-size:.88rem}
+
+/* ── Featured card (next-up) ── */
+.event-card--featured{grid-column:1/-1;display:grid;grid-template-columns:460px 1fr;min-height:360px;background:var(--bg-card);border:1px solid rgba(226,214,3,.18);border-radius:16px;overflow:hidden;transition:box-shadow .25s}
+.event-card--featured:hover{box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.ev-featured-media{background:linear-gradient(145deg,#141408,#0e0e0a);position:relative;display:flex;align-items:center;justify-content:center;padding:28px 18px;overflow:hidden;border-right:1px solid rgba(226,214,3,.1)}
+.ev-featured-media::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(226,214,3,.06),transparent);pointer-events:none}
+.ev-featured-badge{position:absolute;top:18px;left:18px;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:#000;padding:4px 10px;border-radius:4px}
+.ev-portraits{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;position:relative;z-index:1;max-width:100%}
+.ev-portrait{display:flex;flex-direction:column;align-items:center;gap:6px}
+.ev-portrait-img{width:96px;height:96px;border-radius:50%;overflow:hidden;border:2.5px solid rgba(226,214,3,.25);background:var(--bg-elevated);box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.ev-portrait-img img{width:100%;height:100%;object-fit:cover}
+.ev-portrait-name{font-size:.68rem;color:rgba(255,255,255,.55);text-align:center;max-width:96px;line-height:1.3;font-weight:500}
+.ev-featured-placeholder{width:120px;height:120px;border-radius:50%;background:rgba(226,214,3,.06);border:1px solid rgba(226,214,3,.12)}
+.ev-featured-body{padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
+.ev-featured-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.ev-featured-title{font-family:var(--ff-serif);font-size:clamp(1.3rem,2.2vw,1.75rem);font-weight:600;line-height:1.3;color:var(--text);margin-bottom:14px}
+.ev-featured-desc{font-size:.9rem;color:var(--text-2);line-height:1.8;margin-bottom:28px;flex:1}
+
+@media(max-width:860px){
+  .events-grid{grid-template-columns:repeat(2,1fr)}
+  .event-card--featured{grid-template-columns:1fr;min-height:auto}
+  .ev-featured-media{min-height:240px;border-right:none;border-bottom:1px solid rgba(226,214,3,.1)}
+}
+@media(max-width:560px){
+  .events-grid{grid-template-columns:1fr}
+  .ev-featured-body{padding:24px}
+  .ev-portrait-img{width:72px;height:72px}
+}
+
+/* ── Summit banner ── */
+.ev-summit{padding:72px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ev-summit-card{background:linear-gradient(135deg,rgba(226,214,3,.07),rgba(226,214,3,.02));border:1px solid rgba(226,214,3,.18);border-radius:16px;padding:clamp(36px,6vw,56px);display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center}
+.ev-summit-card h2{font-family:var(--ff-serif);font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:600;margin-bottom:12px}
+.ev-summit-card p{color:var(--text-2);font-size:.95rem;line-height:1.8;max-width:520px}
+.ev-summit-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+
+/* ── Benefits ── */
+.ev-benefits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ev-benefit{padding:24px 26px;background:var(--bg-card);transition:background .2s}
+.ev-benefit:hover{background:var(--bg-elevated)}
+.ev-benefit-icon{width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(226,214,3,.1);border:1px solid rgba(226,214,3,.18);color:var(--accent);margin-bottom:16px}
+.ev-benefit-icon svg{width:22px;height:22px}
+.ev-benefit-num{font-size:.65rem;font-weight:800;letter-spacing:.1em;color:var(--accent);margin-bottom:10px}
+.ev-benefit h3{font-family:var(--ff-serif);font-size:1rem;font-weight:600;margin-bottom:7px}
+.ev-benefit p{font-size:.855rem;color:var(--text-3);line-height:1.7}
+
+/* ── Archive strip ── */
+.ev-archive{padding:56px 0;text-align:center;border-top:1px solid var(--border)}
+.ev-archive h2{font-family:var(--ff-serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:600;margin-bottom:10px}
+.ev-archive p{color:var(--text-2);font-size:.93rem;max-width:520px;margin:0 auto 24px;line-height:1.75}
+.ev-archive-link{display:inline-block;border:1px solid rgba(226,214,3,.3);color:var(--accent);padding:10px 26px;border-radius:7px;font-weight:600;font-size:.88rem;transition:background .2s,border-color .2s}.ev-archive-link:hover{background:rgba(226,214,3,.07);border-color:rgba(226,214,3,.5)}
+
+/* ── Newsletter ── */
+.ev-newsletter{margin:0 0 72px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:16px;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.ev-newsletter h2{font-family:var(--ff-serif);font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:600;margin-bottom:8px}
+.ev-newsletter p{color:var(--text-2);font-size:.9rem;max-width:420px;line-height:1.7}
+.ev-nl-form{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
+.ev-nl-input{padding:11px 16px;background:var(--bg-card);border:1px solid var(--border-2);border-radius:8px;color:var(--text);font-size:.9rem;font-family:inherit;width:240px;outline:none;transition:border-color .2s}.ev-nl-input::placeholder{color:var(--text-3)}.ev-nl-input:focus{border-color:rgba(226,214,3,.5)}
+.ev-nl-btn{padding:11px 22px;background:var(--accent);color:#000;border-radius:8px;font-weight:700;font-size:.88rem;font-family:inherit;cursor:pointer;transition:background .2s;white-space:nowrap}.ev-nl-btn:hover{background:var(--accent-2)}
+
+/* ── Mobile ── */
+@media(max-width:720px){
+  .ev-wrap{padding:0 20px}
+  .ev-summit-card{grid-template-columns:1fr}
+  .ev-summit-actions{flex-direction:row;flex-wrap:wrap}
+  .ev-newsletter{padding:32px 24px;flex-direction:column;align-items:flex-start}
+  .ev-nl-form{width:100%}.ev-nl-input{flex:1;min-width:0;width:auto}
+}
+  </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="images/RIDA%20Logo%202.svg" alt="RIDA - Reducing Insurance Dependence Academy">
-    </a>
-        <ul class="nav-links">
-      <li><a href="about.html">About</a></li>
-      <li><a href="podcast.html">Podcast</a></li>
-      <li class="res-dd">
-        <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">
-          Resources
-          <svg viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <ul class="res-dd-menu">
-          <li>
-            <a href="resources.html">
-              <span class="res-dd-icon">
-                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-              </span>
-              <span class="res-dd-body">
-                <span class="res-dd-title">Articles</span>
-                <span class="res-dd-sub">Guides, downloads, and insights</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="tools.html">
-              <span class="res-dd-icon">
-                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11l1.5-1.5L10 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-              </span>
-              <span class="res-dd-body">
-                <span class="res-dd-title">Tools</span>
-                <span class="res-dd-sub">Free calculators and simulators</span>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li><a href="webinar-archive.html">Webinar Archive</a></li>
-      <li><a href="growth-engine.html">Marketing Consultation</a></li>
-      <li><a href="partner.html">Partner With Us</a></li>
-      <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
-    </ul>
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
-  </nav>
 
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1>Transform Your Practice at RID Academy Events</h1>
-      <p>Join dental practice owners and industry leaders at our webinars, workshops, and annual summit. Learn proven strategies to reduce insurance dependence and build predictable revenue.</p>
-      <a href="#upcoming" class="hero-cta">Explore Upcoming Events</a>
-    </section>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/RIDA%20Logo%202.svg" alt="RID Academy"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">About</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li class="res-dd">
+      <button class="res-dd-trigger" aria-haspopup="true" aria-expanded="false">Resources<svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <ul class="res-dd-menu">
+        <li><a href="resources.html"><span class="res-dd-icon"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="res-dd-body"><span class="res-dd-title">Articles</span><span class="res-dd-sub">Guides, downloads, and insights</span></span></a></li>
+        <li><a href="tools.html"><span class="res-dd-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="res-dd-body"><span class="res-dd-title">Tools</span><span class="res-dd-sub">Free calculators and simulators</span></span></a></li>
+      </ul>
+    </li>
+    <li><a href="webinar-archive.html">Webinar Archive</a></li>
+    <li><a href="growth-engine.html">Marketing Consultation</a></li>
+    <li><a href="partner.html">Partner With Us</a></li>
+    <li><a href="events.html" class="nav-cta active">Join Our Events</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+</nav>
 
-    <!-- Upcoming Events Section -->
-    <section class="upcoming-events" id="upcoming">
-      <div class="section-header">
-        <h2>Upcoming Events</h2>
-        <p>Join our community of forward-thinking practice owners and gain actionable insights to transform your business.</p>
-      </div>
+<!-- Hero -->
+<section class="ev-hero">
+  <div class="ev-wrap">
+    <div class="ev-hero-label">Events &amp; Programs</div>
+    <h1>Webinars, Workshops<br>&amp; Live Events</h1>
+    <p>Join dental practice owners and industry leaders. Learn proven strategies to reduce insurance dependence and build predictable, profitable revenue.</p>
+    <div class="ev-hero-btns">
+      <a href="#upcoming" class="ev-btn">Explore Upcoming Events</a>
+      <a href="webinar-archive.html" class="ev-btn-ghost">View Past Replays</a>
+    </div>
+  </div>
+</section>
 
-      <div class="events-grid" id="eventsGrid">
-        <!-- Event 1: Webinar -->
-        <div class="event-card">
-          <span class="event-tag">Webinar</span>
-          <h3>Insurance-Free Revenue Streams: Proven Models for 2026</h3>
-          <div class="event-meta">
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span>Tuesday, April 1st</span>
-            </div>
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="1"></circle>
-                <path d="M12 1v6m0 6v4"></path>
-                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
-              </svg>
-              <span>2:00 PM - 3:15 PM EST</span>
-            </div>
-          </div>
-          <p class="event-description">Discover how top-performing practices are building diversified revenue without relying on insurance reimbursements. Industry experts share case studies and implementation strategies.</p>
-          <a href="#register" class="event-cta">Register Now</a>
-        </div>
-
-        <!-- Event 2: Panel Discussion -->
-        <div class="event-card">
-          <span class="event-tag">Panel Discussion</span>
-          <h3>The Power of Membership Models in Dental Practice</h3>
-          <div class="event-meta">
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span>Thursday, April 10th</span>
-            </div>
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="1"></circle>
-                <path d="M12 1v6m0 6v4"></path>
-                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
-              </svg>
-              <span>1:00 PM - 2:30 PM EST</span>
-            </div>
-          </div>
-          <p class="event-description">Hear directly from practice owners who've successfully implemented membership and direct-pay models. Learn about patient communication, profitability, and scaling strategies.</p>
-          <a href="#register" class="event-cta">Register Now</a>
-        </div>
-
-        <!-- Event 3: Workshop -->
-        <div class="event-card">
-          <span class="event-tag">Workshop</span>
-          <h3>Building Your Insurance-Independent Strategy: 90-Minute Deep Dive</h3>
-          <div class="event-meta">
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span>Tuesday, April 22nd</span>
-            </div>
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="1"></circle>
-                <path d="M12 1v6m0 6v4"></path>
-                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
-              </svg>
-              <span>10:00 AM - 11:30 AM EST</span>
-            </div>
-          </div>
-          <p class="event-description">Interactive workshop where you'll develop your personalized transition plan. Includes templates, financial modeling tools, and direct feedback from RID Academy coaches.</p>
-          <a href="#register" class="event-cta">Register Now</a>
-        </div>
-
-        <!-- Event 4: Masterclass -->
-        <div class="event-card">
-          <span class="event-tag">Masterclass</span>
-          <h3>Financial Forecasting: Project Your Growth Without Insurance Dependency</h3>
-          <div class="event-meta">
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span>Wednesday, May 7th</span>
-            </div>
-            <div class="event-meta-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="1"></circle>
-                <path d="M12 1v6m0 6v4"></path>
-                <path d="M4.22 4.22l4.24 4.24m-1.41 5.08l4.24 4.24m5.08-1.41l4.24 4.24m-8.48 0l4.24-4.24"></path>
-              </svg>
-              <span>3:00 PM - 4:30 PM EST</span>
-            </div>
-          </div>
-          <p class="event-description">Master the financial modeling framework used by practices that have achieved 70%+ non-insurance revenue. Includes break-even analysis, ROI calculations, and cash flow optimization.</p>
-          <a href="#register" class="event-cta">Register Now</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Summit Highlight Section -->
-    <section class="summit-highlight">
-      <h2>RID Academy Annual Summit</h2>
-      <p>Join 500+ practice owners for our flagship 3-day event. Network, learn from industry leaders, and leave with a complete roadmap for your practice transformation.</p>
-      <a href="summit.html">Explore the Summit</a>
-    </section>
-
-    <!-- Why Attend Section -->
-    <section class="why-attend">
-      <div class="section-header">
-        <h2>Why Attend RID Academy Events</h2>
-        <p>Discover what sets our events apart and how they can accelerate your practice growth.</p>
-      </div>
-
-      <div class="benefits-grid">
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-          </div>
-          <h3>Proven Strategies</h3>
-          <p>Learn battle-tested approaches from practices that have successfully reduced insurance dependence by 50-80%.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-            </svg>
-          </div>
-          <h3>Expert Instructors</h3>
-          <p>Learn directly from successful practice owners, financial advisors, and industry consultants who've built thriving businesses.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
-            </svg>
-          </div>
-          <h3>Actionable Resources</h3>
-          <p>Receive templates, tools, financial models, and playbooks you can implement immediately in your practice.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M11.99 5.4C6.85 5.4 2.73 7.61 0 11c2.73 3.39 6.85 5.6 11.99 5.6s9.26-2.21 12-5.6c-2.74-3.39-6.86-5.6-12-5.6zM12 16c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-            </svg>
-          </div>
-          <h3>Peer Network</h3>
-          <p>Connect with like-minded practice owners, share experiences, and build lasting professional relationships.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-            </svg>
-          </div>
-          <h3>Personalized Guidance</h3>
-          <p>Get one-on-one feedback on your specific situation and tailored recommendations for your practice.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-            </svg>
-          </div>
-          <h3>Stay Current</h3>
-          <p>Keep up with industry trends, new opportunities, and market changes that affect your practice.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Archive Section -->
-    <section class="archive-section">
-      <h2>Access Past Webinars</h2>
-      <p>Can't make it to live events? Explore our growing library of past webinars, including comprehensive recordings of previous summits and exclusive interviews with industry leaders.</p>
-      <a href="webinar-archive.html" class="archive-link">View Webinar Archive</a>
-    </section>
-
-    <!-- Newsletter Signup -->
-    <section class="newsletter">
-      <h2>Stay Updated on Upcoming Events</h2>
-      <p>Get notified about new webinars, workshops, and special announcements. Join 2,000+ practice owners in the RID Academy community.</p>
-      <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
-        <input type="email" placeholder="Enter your email address" required>
-        <button type="submit">Notify Me</button>
-      </form>
-    </section>
-  </main>
-
-  <script src="data/rida-data.js"></script>
-  <script src="data/sheets.js"></script>
-  <script>
-  var CAL_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
-  var CLK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
-
-  function renderEvents(events) {
-    if (!events || !events.length) return;
-    var grid = document.getElementById('eventsGrid');
-    if (!grid) return;
-    grid.innerHTML = events.map(function(ev) {
-      var dateLabel = ev.day && ev.month_year ? ev.day + ' ' + ev.month_year : (ev.date_iso || '');
-      var panelStr = Array.isArray(ev.panelists) && ev.panelists.length
-        ? '<div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:8px;">With: ' + ev.panelists.join(' &bull; ') + '</div>'
-        : '';
-      return '<div class="event-card">'
-        + '<span class="event-tag">Webinar</span>'
-        + '<h3>' + ev.title + '</h3>'
-        + '<div class="event-meta">'
-        + '<div class="event-meta-item">' + CAL_SVG + '<span>' + dateLabel + '</span></div>'
-        + '<div class="event-meta-item">' + CLK_SVG + '<span>' + ev.time + '</span></div>'
-        + '</div>'
-        + '<p class="event-description">' + (ev.description || '').replace(/\n/g, '<br>') + '</p>'
-        + panelStr
-        + '<a href="' + (ev.register_url || '#') + '" target="_blank" rel="noopener" class="event-cta">Register Now</a>'
-        + '</div>';
-    }).join('');
-  }
-
-  // Try to render immediately (if rida-data.js loaded synchronously)
-  if (typeof RIDA_EVENTS !== 'undefined' && RIDA_EVENTS.length) renderEvents(RIDA_EVENTS);
-  // Also re-render when data-loader.js finishes fetching from Google Sheets
-  document.addEventListener('ridaDataReady', function() {
-    if (typeof RIDA_EVENTS !== 'undefined') renderEvents(RIDA_EVENTS);
-  });
-  </script>
-
-  <!-- Footer -->
-  <footer>
-    <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
-      <div class="footer-grid">
-        <div class="footer-logo">
-          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy">
-          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
-            <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-            <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          </div>
-        </div>
-        <div class="footer-section">
-          <h3>Navigation</h3>
-          <a href="index.html">Home</a>
-          <a href="tools.html">Tools</a>
-          <a href="podcast.html">Podcast</a>
-          <a href="resources.html">Resources</a>
-        </div>
-        <div class="footer-section">
-          <h3>More</h3>
-          <a href="webinar-archive.html">Webinar Archive</a>
-          <a href="about.html">About</a>
-          <a href="growth-engine.html">Marketing Consultation</a>
-          <a href="partner.html">Partner With Us</a>
-          <a href="events.html">Events</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy">team@rid.academy</a>
+<!-- Upcoming Events -->
+<section class="ev-section" id="upcoming">
+  <div class="ev-wrap">
+    <span class="ev-section-label">Upcoming</span>
+    <h2>Upcoming Events</h2>
+    <p class="ev-section-sub">Register for live sessions and get direct access to expert Q&amp;A and peer networking.</p>
+    <div class="events-grid" id="eventsGrid">
+      <!-- Populated by sheets.js; static placeholders below -->
+      <div class="event-card">
+        <div class="event-card-head"><span class="event-tag">Webinar</span><span class="event-card-date">Loading…</span></div>
+        <div class="event-card-body"><h3 style="opacity:.4;font-family:inherit;background:rgba(255,255,255,.05);border-radius:6px;height:20px;margin-bottom:8px"></h3><p class="event-description" style="opacity:.3;background:rgba(255,255,255,.04);border-radius:6px;height:60px"></p></div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    function handleNewsletterSignup(event) {
-      event.preventDefault();
-      const email = event.target.querySelector('input[type="email"]').value;
-      alert(`Thank you for signing up! We'll send updates to ${email}`);
-      event.target.reset();
+<!-- Summit Banner -->
+<section class="ev-summit">
+  <div class="ev-wrap">
+    <div class="ev-summit-card">
+      <div>
+        <span class="ev-section-label">Flagship Event</span>
+        <h2>RID Academy Annual Summit</h2>
+        <p>Join 500+ practice owners for our 3-day flagship event. Network with industry leaders, attend intensive workshops, and leave with a complete roadmap for your practice transformation.</p>
+      </div>
+      <div class="ev-summit-actions">
+        <a href="summit.html" class="ev-btn">Explore the Summit</a>
+        <a href="events.html#upcoming" class="ev-btn-ghost">All Events</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Attend -->
+<section class="ev-section">
+  <div class="ev-wrap">
+    <span class="ev-section-label">Why Attend</span>
+    <h2>What Sets Our Events Apart</h2>
+    <p class="ev-section-sub">Every RID Academy event is built around one goal — giving you what you need to act.</p>
+    <div class="ev-benefits-grid">
+      <div class="ev-benefit">
+        <div class="ev-benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 9.2 17 19 7"/><path d="M19 12v7H5V5h10"/></svg>
+        </div>
+        <div class="ev-benefit-num">01</div>
+        <h3>Proven Strategies</h3>
+        <p>Battle-tested approaches from practices that have reduced insurance dependence by 50–80%.</p>
+      </div>
+      <div class="ev-benefit">
+        <div class="ev-benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 19c1.5-3.4 4-5 7-5s5.5 1.6 7 5"/><path d="M18 6l1.5 1.5L22 5"/></svg>
+        </div>
+        <div class="ev-benefit-num">02</div>
+        <h3>Expert Instructors</h3>
+        <p>Learn from practice owners, financial advisors, and consultants who've built thriving businesses.</p>
+      </div>
+      <div class="ev-benefit">
+        <div class="ev-benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h8l4 4v12H7z"/><path d="M15 4v4h4"/><path d="M10 13h4M10 17h6"/></svg>
+        </div>
+        <div class="ev-benefit-num">03</div>
+        <h3>Actionable Resources</h3>
+        <p>Templates, financial models, and playbooks you can implement immediately in your practice.</p>
+      </div>
+      <div class="ev-benefit">
+        <div class="ev-benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.5"/><circle cx="16" cy="9" r="2.5"/><path d="M3.5 18c1.2-2.5 3-3.8 4.5-3.8S11.3 15.5 12.5 18"/><path d="M11.5 18c1.2-2.5 3-3.8 4.5-3.8s3.3 1.3 4.5 3.8"/></svg>
+        </div>
+        <div class="ev-benefit-num">04</div>
+        <h3>Peer Network</h3>
+        <p>Connect with like-minded practice owners and build lasting professional relationships.</p>
+      </div>
+      <div class="ev-benefit">
+        <div class="ev-benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.4 8.5 8 9 4.6-.5 8-4 8-9V7z"/><path d="M9.5 12.5 11.5 14.5 15.5 10.5"/></svg>
+        </div>
+        <div class="ev-benefit-num">05</div>
+        <h3>Personalized Guidance</h3>
+        <p>Get direct feedback on your situation and tailored recommendations for your practice.</p>
+      </div>
+      <div class="ev-benefit">
+        <div class="ev-benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M6.5 7.5 12 3l5.5 4.5"/><path d="M6.5 16.5 12 21l5.5-4.5"/></svg>
+        </div>
+        <div class="ev-benefit-num">06</div>
+        <h3>Stay Current</h3>
+        <p>Keep up with industry trends and market changes that affect your revenue model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Archive Strip -->
+<div class="ev-archive">
+  <div class="ev-wrap">
+    <h2>Can't Attend Live?</h2>
+    <p>Browse our library of past webinar recordings, summit sessions, and expert interviews — all on demand.</p>
+    <a href="webinar-archive.html" class="ev-archive-link">View Webinar Archive →</a>
+  </div>
+</div>
+
+<!-- Newsletter -->
+<div class="ev-wrap">
+  <div class="ev-newsletter">
+    <div>
+      <h2>Stay in the Loop</h2>
+      <p>Get notified about new events, webinars, and announcements. Join 2,000+ practice owners in the RID Academy community.</p>
+    </div>
+    <form class="ev-nl-form" onsubmit="handleNewsletterSignup(event)">
+      <input class="ev-nl-input" type="email" placeholder="Your email address" required>
+      <button class="ev-nl-btn" type="submit">Notify Me</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer style="background:#0d0d0d;border-top:0.5px solid rgba(255,255,255,0.07);">
+  <div style="max-width:960px;margin:0 auto;padding:44px 32px 0;">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:36px;padding-bottom:36px;border-bottom:0.5px solid rgba(255,255,255,0.06);">
+      <div>
+        <img src="images/RIDA%20Logo%202.svg" alt="RID Academy" style="height:24px;width:auto;filter:brightness(1.1);display:block;margin-bottom:14px;" loading="lazy">
+        <p style="font-size:12.5px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:280px;margin-bottom:18px;">Practical guidance for dentists building independent, profitable practices free from PPO dependence.</p>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:18px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(226,214,3,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:team@rid.academy" style="font-size:12.5px;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">team@rid.academy</a>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" style="display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border:0.5px solid rgba(255,255,255,0.12);border-radius:50%;color:rgba(255,255,255,0.5);transition:all 0.2s;" onmouseover="this.style.background='#E2D603';this.style.borderColor='#E2D603';this.style.color='#111'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.5)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" style="display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border:0.5px solid rgba(255,255,255,0.12);border-radius:50%;color:rgba(255,255,255,0.5);transition:all 0.2s;" onmouseover="this.style.background='#E2D603';this.style.borderColor='#E2D603';this.style.color='#111'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.5)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1z"/></svg></a>
+          <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" style="display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border:0.5px solid rgba(255,255,255,0.12);border-radius:50%;color:rgba(255,255,255,0.5);transition:all 0.2s;" onmouseover="this.style.background='#E2D603';this.style.borderColor='#E2D603';this.style.color='#111'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.5)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm-1.69-1.56a1.97 1.97 0 1 0 0-3.94 1.97 1.97 0 0 0 0 3.94ZM20 20v-6.2c0-3.32-1.77-4.86-4.13-4.86-1.9 0-2.75 1.05-3.23 1.79V8.5H9.25c.04 1.47 0 11.5 0 11.5h3.39v-6.42c0-.34.02-.68.13-.92.27-.68.88-1.39 1.91-1.39 1.35 0 1.89 1.03 1.89 2.54V20H20Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:16px;">Navigation</h3>
+        <a href="index.html"     style="display:block;font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Home</a>
+        <a href="tools.html"     style="display:block;font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Tools</a>
+        <a href="podcast.html"   style="display:block;font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Podcast</a>
+        <a href="resources.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Resources</a>
+      </div>
+      <div>
+        <h3 style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:16px;">More</h3>
+        <a href="webinar-archive.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Webinar Archive</a>
+        <a href="about.html"           style="display:block;font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a>
+        <a href="growth-engine.html"   style="display:block;font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Marketing Consultation</a>
+        <a href="events.html"          style="display:block;font-size:13px;color:rgba(255,255,255,0.45);transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Events</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0;">
+      <span style="font-size:11px;color:rgba(255,255,255,0.25);">© 2026 RID Academy by Ekwa Marketing. All rights reserved.</span>
+      <div style="display:flex;gap:18px;">
+        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.25);" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">Privacy Policy</a>
+        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.25);" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="data/rida-data.js"></script>
+<script src="data/sheets.js"></script>
+<script>
+function handleNewsletterSignup(e) {
+  e.preventDefault();
+  var email = e.target.querySelector('input[type="email"]').value;
+  alert('Thank you! We\'ll send updates to ' + email);
+  e.target.reset();
+}
+function getSpeakerObjectPosition(name) {
+  if (/callie ward/i.test(name || '')) return 'center 18%';
+  return 'center';
+}
+// Fallback renderer (for rida-data.js static data)
+var CAL_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+var CLK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+function renderEvents(events) {
+  if (!events || !events.length) return;
+  var grid = document.getElementById('eventsGrid');
+  if (!grid) return;
+  grid.innerHTML = events.map(function(ev) {
+    var dateLabel = ev.day && ev.month_year ? ev.day + ' ' + ev.month_year : (ev.date_iso || '');
+    var typeLabel = ev.type || ev.category || 'Webinar';
+    // Parse "Name : url" speaker lines
+    var rawSpeakers = ev.image_urls || ev.image_url || '';
+    var speakersHtml = '';
+    if (rawSpeakers) {
+      var speakers = rawSpeakers.split('\n').map(function(line) {
+        var sep = line.indexOf(' : ');
+        if (sep === -1) return null;
+        return { name: line.substring(0, sep).trim(), url: line.substring(sep + 3).trim() };
+      }).filter(Boolean);
+      if (speakers.length) {
+        speakersHtml = '<div class="ev-speakers">'
+          + speakers.map(function(s) {
+              return '<div class="ev-speaker">'
+                + '<div class="ev-speaker-photo">'
+                + (s.url ? '<img src="' + s.url + '" alt="' + s.name + '" loading="lazy" style="object-position:' + getSpeakerObjectPosition(s.name) + ';">' : '')
+                + '</div>'
+                + '<span class="ev-speaker-name">' + s.name + '</span>'
+                + '</div>';
+            }).join('')
+          + '</div>';
+      }
     }
-  </script>
+    return '<div class="event-card">'
+      + '<div class="event-card-head">'
+      + '<span class="event-tag">' + typeLabel + '</span>'
+      + '<span class="event-card-date">' + dateLabel + (ev.time ? ' · ' + ev.time : '') + '</span>'
+      + '</div>'
+      + '<div class="event-card-body">'
+      + '<h3>' + ev.title + '</h3>'
+      + '<p class="event-description">' + (ev.description || '') + '</p>'
+      + speakersHtml
+      + '<a href="' + (ev.register_url || '#') + '" target="_blank" rel="noopener" class="event-cta">Register Now &rarr;</a>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+if (typeof RIDA_EVENTS !== 'undefined' && RIDA_EVENTS.length) renderEvents(RIDA_EVENTS);
+document.addEventListener('ridaDataReady', function() {
+  if (typeof RIDA_EVENTS !== 'undefined') renderEvents(RIDA_EVENTS);
+});
+</script>
 <script src="data/site-chrome.js" defer></script>
 </body>
 </html>

@@ -92,6 +92,24 @@ function ridaDriveImg(url, size = 'w900') {
   return id ? `https://drive.google.com/thumbnail?id=${id}&sz=${size}` : value;
 }
 
+// Parse "Name : drive_url" lines (one per line) into [{name, photo}] for event speaker rows
+function ridaParseEventSpeakers(str) {
+  if (!str) return [];
+  return String(str).split(/\r?\n/).map(line => {
+    const sep = line.indexOf(' : ');
+    if (sep === -1) return null;
+    const name  = line.substring(0, sep).trim();
+    const url   = line.substring(sep + 3).trim();
+    const photo = url ? (ridaDriveImg(url, 'w200') || url) : '';
+    return name ? { name, photo } : null;
+  }).filter(Boolean);
+}
+
+function ridaEventSpeakerObjectPosition(name) {
+  if (/callie ward/i.test(name || '')) return 'center 18%';
+  return 'center';
+}
+
 // Parse comma-or-newline-separated Drive image URLs → displayable thumbnail URLs
 function ridaParseImageUrls(str) {
   if (!str) return [];
@@ -1448,22 +1466,62 @@ async function ridaLoadEventsGrid() {
     const calSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
     const clockSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
 
-    grid.innerHTML = list.map(ev => {
+    grid.innerHTML = list.map((ev, idx) => {
+      const featured  = idx === 0;
       const dateLabel = ev.day && ev.month_year ? `${ev.day} ${ev.month_year}` : (ev.date_iso || '');
-      const panelists = (ev.Panelists || ev.panelists || '').split('\n').map(s => s.trim()).filter(Boolean);
-      const panelStr = panelists.length
-        ? `<div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:8px;">With: ${ridaEscapeHtml(panelists.join(' • '))}</div>`
-        : '';
+      const typeLabel = ridaEscapeHtml(ev.type || ev.category || 'Webinar');
+      const speakers  = ridaParseEventSpeakers(ev.image_urls || ev.image_url || '');
+
+      if (featured) {
+        // ── Featured / next-up card ──────────────────────────────────────
+        const portraitsHtml = speakers.length ? speakers.map(s => `
+          <div class="ev-portrait">
+            <div class="ev-portrait-img">
+              ${s.photo ? `<img src="${ridaEscapeHtml(s.photo)}" alt="${ridaEscapeHtml(s.name)}" loading="lazy" style="object-position:${ridaEscapeHtml(ridaEventSpeakerObjectPosition(s.name))}" onerror="this.closest('.ev-portrait').style.display='none'">` : ''}
+            </div>
+            <span class="ev-portrait-name">${ridaEscapeHtml(s.name)}</span>
+          </div>`).join('') : '';
+
+        return `<div class="event-card event-card--featured">
+          <div class="ev-featured-media">
+            <div class="ev-featured-badge">Next Up</div>
+            ${portraitsHtml ? `<div class="ev-portraits">${portraitsHtml}</div>` : '<div class="ev-featured-placeholder"></div>'}
+          </div>
+          <div class="ev-featured-body">
+            <div class="ev-featured-head">
+              <span class="event-tag">${typeLabel}</span>
+              <span class="event-card-date">${ridaEscapeHtml(dateLabel)}${ev.time ? ' · ' + ridaEscapeHtml(ev.time) : ''}</span>
+            </div>
+            <h2 class="ev-featured-title">${ridaEscapeHtml(ev.title)}</h2>
+            <p class="ev-featured-desc">${ridaEscapeHtml(ev.description || '').replace(/\n/g, '<br>')}</p>
+            <a href="${ridaEscapeHtml(ev.register_url || '#')}" target="_blank" rel="noopener" class="event-cta event-cta--lg">Register Now →</a>
+          </div>
+        </div>`;
+      }
+
+      // ── Regular card ────────────────────────────────────────────────────
+      const speakersHtml = speakers.length ? `
+        <div class="ev-speakers">
+          ${speakers.map(s => `
+            <div class="ev-speaker">
+              <div class="ev-speaker-photo">
+                ${s.photo ? `<img src="${ridaEscapeHtml(s.photo)}" alt="${ridaEscapeHtml(s.name)}" loading="lazy" style="object-position:${ridaEscapeHtml(ridaEventSpeakerObjectPosition(s.name))}" onerror="this.style.display='none'">` : ''}
+              </div>
+              <span class="ev-speaker-name">${ridaEscapeHtml(s.name)}</span>
+            </div>`).join('')}
+        </div>` : '';
+
       return `<div class="event-card">
-        <span class="event-tag">Webinar</span>
-        <h3>${ridaEscapeHtml(ev.title)}</h3>
-        <div class="event-meta">
-          <div class="event-meta-item">${calSvg}<span>${ridaEscapeHtml(dateLabel)}</span></div>
-          ${ev.time ? `<div class="event-meta-item">${clockSvg}<span>${ridaEscapeHtml(ev.time)}</span></div>` : ''}
+        <div class="event-card-head">
+          <span class="event-tag">${typeLabel}</span>
+          <span class="event-card-date">${ridaEscapeHtml(dateLabel)}${ev.time ? ' · ' + ridaEscapeHtml(ev.time) : ''}</span>
         </div>
-        <p class="event-description">${ridaEscapeHtml(ev.description || '').replace(/\n/g, '<br>')}</p>
-        ${panelStr}
-        <a href="${ridaEscapeHtml(ev.register_url || '#')}" target="_blank" rel="noopener" class="event-cta">Register Now</a>
+        <div class="event-card-body">
+          <h3>${ridaEscapeHtml(ev.title)}</h3>
+          <p class="event-description">${ridaEscapeHtml(ev.description || '').replace(/\n/g, '<br>')}</p>
+          ${speakersHtml}
+          <a href="${ridaEscapeHtml(ev.register_url || '#')}" target="_blank" rel="noopener" class="event-cta">Register Now →</a>
+        </div>
       </div>`;
     }).join('');
   } catch (e) {
@@ -1823,13 +1881,19 @@ async function ridaLoadWebinarPage() {
     document.title = `${webinar.title} | Webinar Replay | RID Academy`;
 
     hero.innerHTML = `
+      <nav class="breadcrumb" aria-label="breadcrumb">
+        <a href="../webinar-archive.html">Webinar Archive</a>
+        <span aria-hidden="true"> / </span>
+        <span>${ridaEscapeHtml(webinar.title.length > 48 ? webinar.title.substring(0, 48) + '…' : webinar.title)}</span>
+      </nav>
       <div class="ep-num-badge">Webinar Replay</div>
       <h1 class="ep-hero-title">${ridaEscapeHtml(webinar.title)}</h1>
       <div class="ep-meta-tags">
         ${webinar.category ? `<span class="ep-tag">${ridaEscapeHtml(webinar.category)}</span>` : ''}
-        ${webinar.date ? `<span class="ep-tag">${ridaEscapeHtml(webinar.date)}</span>` : ''}
-        ${webinar.duration ? `<span class="ep-tag">${ridaEscapeHtml(webinar.duration)}</span>` : ''}
+        ${webinar.date    ? `<span class="ep-tag">${ridaEscapeHtml(webinar.date)}</span>`     : ''}
+        ${webinar.duration? `<span class="ep-tag">${ridaEscapeHtml(webinar.duration)}</span>` : ''}
       </div>
+      ${webinar.presenter ? `<p class="wb-presenter-line"><span class="wb-presenter-badge">Presenter</span>&nbsp;${ridaEscapeHtml(webinar.presenter)}</p>` : ''}
     `;
 
     const shareBar = document.getElementById('wb-share-bar');
