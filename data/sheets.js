@@ -2,7 +2,7 @@
 // Tabs:
 //   events   - date_iso, day, month_year, time, title, description, register_url, Panelists, image_urls, popup_banner
 //   webinars - date, title, category, duration, description, description_doc_url, vimeo_embed_src, vimeo_full_embed, transcript_url, gated
-//   podcast  - episode, title, guest_name, description, audio_source, spotify_url, apple_url, youtube_url, date, transcript_url, contact_info
+//   podcast  - episode, title, guest_name, description, audio_source, spotify_url, apple_url, youtube_url, date, transcript_url, contact_info, guest_photo_url
 
 const RIDA_SHEET_ID = '1FOeB6lyOCKzj4u9caLPxModWYrpCILE0h4-7O_0yR4s';
 
@@ -90,6 +90,28 @@ function ridaDriveImg(url, size = 'w900') {
   }
   const id = ridaDriveId(value);
   return id ? `https://drive.google.com/thumbnail?id=${id}&sz=${size}` : value;
+}
+
+// Parse comma-or-newline-separated Drive image URLs → displayable thumbnail URLs
+function ridaParseImageUrls(str) {
+  if (!str) return [];
+  return String(str).split(/[,\n]+/)
+    .map(s => s.trim())
+    .filter(Boolean)
+    .map(s => ridaDriveImg(s, 'w400'))
+    .filter(Boolean);
+}
+
+// Convert any Google Drive sharing/view URL to a format usable in <img src>
+// Non-Drive URLs are returned unchanged
+function ridaNormalizeDriveUrl(url) {
+  if (!url) return '';
+  const v = String(url).trim();
+  if (!v.includes('drive.google.com') && !v.includes('googleusercontent.com')) return v;
+  const id = ridaDriveId(v);
+  if (!id) return v;
+  // Default: return preview URL (works for audio embeds, docs, etc.)
+  return `https://drive.google.com/file/d/${id}/preview`;
 }
 
 function ridaDriveAudio(url) {
@@ -517,6 +539,63 @@ function ridaEscapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * Formats podcast descriptions with section headings and bullet points
+ * Converts multi-paragraph text with section headers into styled HTML
+ * Example input:
+ *   "In this episode...description paragraph.\n\nKey Takeaways\nFirst point here\nSecond point here"
+ * Returns HTML with proper heading and list formatting
+ */
+function ridaFormatPodcastDescription(descriptionText) {
+  if (!descriptionText) return '';
+  
+  const lines = String(descriptionText).split('\n');
+  let html = '<div class="ep-desc-full">';
+  let i = 0;
+  let currentList = [];
+  let inList = false;
+
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    i++;
+
+    if (!line) continue;
+
+    // Check if this looks like a section heading (all caps, short, followed by bullet-like content)
+    const isSectionHead = /^[A-Z][A-Z\s&\-]+$/.test(line) && line.length < 50;
+
+    if (isSectionHead) {
+      // Flush any pending list
+      if (currentList.length > 0) {
+        html += '<ul>' + currentList.map(item => `<li>${ridaEscapeHtml(item)}</li>`).join('') + '</ul>';
+        currentList = [];
+        inList = false;
+      }
+      html += `<h3>${ridaEscapeHtml(line)}</h3>`;
+      inList = true;
+    } else if (inList) {
+      // We're in a section, collect list items
+      currentList.push(line);
+    } else {
+      // Regular paragraph outside of a section
+      if (currentList.length > 0) {
+        html += '<ul>' + currentList.map(item => `<li>${ridaEscapeHtml(item)}</li>`).join('') + '</ul>';
+        currentList = [];
+        inList = false;
+      }
+      html += `<p>${ridaEscapeHtml(line)}</p>`;
+    }
+  }
+
+  // Flush any remaining list
+  if (currentList.length > 0) {
+    html += '<ul>' + currentList.map(item => `<li>${ridaEscapeHtml(item)}</li>`).join('') + '</ul>';
+  }
+
+  html += '</div>';
+  return html;
+}
+
 function ridaDecodeHtml(value) {
   const textarea = document.createElement('textarea');
   textarea.innerHTML = String(value || '');
@@ -738,6 +817,15 @@ function ridaNormalizeWebinarRow(row, index) {
       'transcript',
       'transcript_url_doc'
     ]),
+    presenter: String(ridaPickRowValue(row, [
+      'presenter',
+      'speaker',
+      'guest',
+      'host',
+      'instructor',
+      'facilitator',
+      'presented_by'
+    ]) || '').trim(),
     gated: /^(true|1|yes)$/i.test(String(row.gated || row.access_gate || ''))
   };
 }
@@ -799,33 +887,89 @@ function ridaExtractOverviewSummary(text) {
 }
 
 function ridaParseDescriptionBlocks(text) {
-  if (!text) return { keyPoints: [], bioTitle: '', bioPoints: [] };
-  const lines = String(text).split(/\r?\n/).map(line => line.trim()).filter(Boolean);
-  const keyPoints = [];
-  const bioPoints = [];
-  let bioTitle = '';
-  let mode = 'key';
+  if (!text) return { intro: [], takeaways: [], keyPoints: [], bioTitle: '', bioPoints: [] };
 
-  lines.forEach(line => {
-    if (/^more about/i.test(line) || /^about /i.test(line)) {
+  const raw = String(text).split(/\r?\n/).map(l => l.trim());
+  const intro     = [];
+  const takeaways = [];   // [{title, desc}]
+  const keyPoints = [];   // flat list for backward-compat
+  const bioPoints = [];
+  let bioTitle     = '';
+  let mode         = 'intro';   // 'intro' | 'takeaways' | 'bio'
+  let pendingTitle = null;
+
+  const stripBullet = l => l.replace(/^[•*\-–—>]\s+/, '').replace(/^\d+[.)]\s+/, '').trim();
+  const hasBullet   = l => /^[•*\-–—>]\s/.test(l) || /^\d+[.)]\s/.test(l);
+
+  for (const line of raw) {
+    if (!line) {
+      // flush unpaired title on blank line
+      if (mode === 'takeaways' && pendingTitle !== null) {
+        takeaways.push({ title: pendingTitle, desc: '' });
+        pendingTitle = null;
+      }
+      continue;
+    }
+
+    // ── Section-switch lines ──────────────────────────────────────────
+    if (/^key takeaways?$/i.test(line) || /^key points?$/i.test(line)) {
+      if (mode === 'takeaways' && pendingTitle !== null) {
+        takeaways.push({ title: pendingTitle, desc: '' });
+        pendingTitle = null;
+      }
+      mode = 'takeaways';
+      continue;
+    }
+    if (/^(more about|about )/i.test(line)) {
+      if (mode === 'takeaways' && pendingTitle !== null) {
+        takeaways.push({ title: pendingTitle, desc: '' });
+        pendingTitle = null;
+      }
       bioTitle = line.replace(/:$/, '');
       mode = 'bio';
-      return;
+      continue;
     }
-    const cleaned = line.replace(/^[•*\-\u2013\u2014>]\s*/, '').replace(/^\d+\.\s+/, '').trim();
-    if (!cleaned) return;
-    if (mode === 'bio') {
-      bioPoints.push(cleaned);
-    } else if (!/^key points/i.test(cleaned)) {
-      keyPoints.push(cleaned);
-    }
-  });
 
-  if (!keyPoints.length) {
-    String(text).split(/\.\s+/).map(part => part.trim()).filter(Boolean).forEach(part => keyPoints.push(part));
+    const isBullet = hasBullet(line);
+    const cleaned  = stripBullet(line);
+    if (!cleaned) continue;
+
+    if (mode === 'intro') {
+      intro.push(cleaned);
+    } else if (mode === 'takeaways') {
+      keyPoints.push(cleaned); // always add to flat list
+      if (isBullet) {
+        // bullet-prefixed → standalone item, no paired description
+        if (pendingTitle !== null) {
+          takeaways.push({ title: pendingTitle, desc: '' });
+          pendingTitle = null;
+        }
+        takeaways.push({ title: cleaned, desc: '' });
+      } else {
+        // plain line → alternating title / description pairs
+        if (pendingTitle === null) {
+          pendingTitle = cleaned;
+        } else {
+          takeaways.push({ title: pendingTitle, desc: cleaned });
+          pendingTitle = null;
+        }
+      }
+    } else if (mode === 'bio') {
+      bioPoints.push(cleaned);
+    }
   }
 
-  return { keyPoints, bioTitle, bioPoints };
+  // flush unpaired title at end
+  if (mode === 'takeaways' && pendingTitle !== null) {
+    takeaways.push({ title: pendingTitle, desc: '' });
+  }
+
+  // backward-compat: if no takeaways section, use intro lines as key points
+  if (!keyPoints.length && intro.length) {
+    intro.forEach(l => keyPoints.push(l));
+  }
+
+  return { intro, takeaways, keyPoints, bioTitle, bioPoints };
 }
 
 function ridaParseContactInfo(str) {
@@ -838,6 +982,62 @@ function ridaParseContactInfo(str) {
     }
     return { type: 'Link', value: trimmed };
   }).filter(item => item.value);
+}
+
+function ridaPodcastGuestImages(ep) {
+  if (!ep || typeof ep !== 'object') return [];
+  const rawStr = ep.guest_photo_url || ep.guest_photo || ep.image_url || ep.image_urls || ep.photo_url || ep.thumbnail_url || '';
+  return ridaParseImageUrls(rawStr);
+}
+
+function ridaPodcastBannerMarkup(ep, options) {
+  const settings = options || {};
+  const images = ridaPodcastGuestImages(ep);
+  if (!images.length) return '';
+
+  const visible = images.slice(0, 4);
+  const guestName = ridaEscapeHtml(ep && ep.guest_name ? ep.guest_name : 'Featured Guest');
+  const countClass = `count-${Math.min(visible.length, 4)}`;
+  const extraCount = Math.max(0, images.length - visible.length);
+  const tileMarkup = visible.map((url, index) => `
+    <div class="pod-banner-tile pod-banner-tile-${index + 1}">
+      <img src="${ridaEscapeHtml(url)}" alt="" loading="lazy" onerror="this.closest('.pod-banner-tile').style.display='none'">
+    </div>
+  `).join('');
+
+  return `
+    <div class="pod-banner ${settings.compact ? 'pod-banner-compact' : ''} ${settings.featured ? 'pod-banner-featured' : ''} ${countClass}">
+      <div class="pod-banner-grid">${tileMarkup}</div>
+      <div class="pod-banner-overlay"></div>
+      <div class="pod-banner-copy">
+        <span class="pod-banner-chip">Podcast Guest</span>
+        <div class="pod-banner-name">${guestName}</div>
+        <div class="pod-banner-brand">Less Insurance Dependence</div>
+      </div>
+      ${extraCount ? `<div class="pod-banner-more">+${extraCount}</div>` : ''}
+    </div>
+  `;
+}
+
+function ridaGuestHeroMarkup(ep) {
+  const images = ridaPodcastGuestImages(ep);
+  if (!images.length) return '';
+  const visible = images.slice(0, 4);
+  const moreCount = Math.max(0, images.length - visible.length);
+  const isSingle = visible.length === 1;
+  const tiles = visible.map((url, index) => `
+    <div class="ep-guest-tile ep-guest-tile-${index + 1}">
+      <img src="${ridaEscapeHtml(url)}" alt="${ridaEscapeHtml(ep && ep.guest_name ? ep.guest_name : 'Guest speaker')}" loading="lazy" onerror="this.closest('.ep-guest-tile').style.display='none'">
+    </div>
+  `).join('');
+  return `
+    <div class="ep-guest-visual ${isSingle ? 'is-single' : 'is-multi'} count-${Math.min(visible.length, 4)}">
+      <div class="ep-guest-grid">
+        ${tiles}
+      </div>
+      ${moreCount ? `<div class="ep-guest-more">+${moreCount}</div>` : ''}
+    </div>
+  `;
 }
 
 function ridaPodcastHref(ep) {
@@ -1283,13 +1483,19 @@ async function ridaLoadLatestPodcastSection() {
     const titleEl = document.getElementById('latestEpisodeTitle');
     const guestEl = document.getElementById('latestEpisodeGuest');
     const descEl = document.getElementById('latestEpisodeDescription');
+    const visualEl = document.getElementById('latestEpisodeVisual');
     const playerWrap = document.getElementById('latestEpisodePlayerWrap') || card.querySelector('.ep-audio-wrap');
     const linksWrap = card.querySelector('.episode-links');
 
+    if (visualEl) {
+      visualEl.innerHTML = ridaPodcastBannerMarkup(latest, { featured: true }) || '';
+      visualEl.style.display = visualEl.innerHTML ? 'block' : 'none';
+    }
     if (numberEl) numberEl.textContent = `Episode ${latest.episode}`;
     if (titleEl) titleEl.textContent = latest.title || 'Latest Episode';
     if (guestEl) guestEl.textContent = latest.guest_name ? `Guest: ${latest.guest_name}` : 'Latest RID Academy episode';
-    if (descEl) descEl.textContent = latest.description || 'Listen to the latest podcast episode from RID Academy.';
+    // Description is hidden from latest episode card - remove this to show it
+    if (descEl) descEl.style.display = 'none';
 
     if (playerWrap) {
       if (latest.audio_source) {
@@ -1383,6 +1589,7 @@ async function ridaLoadPodcastGrid() {
       const pageEps = all.slice(start, start + perPage);
       grid.innerHTML = pageEps.map(ep => `
         <a class="ep-card" href="${ridaPodcastHref(ep)}">
+          ${ridaPodcastBannerMarkup(ep, { compact: true }) || (ep.thumbnail_url ? `<div class="ep-card-thumb" style="height:140px;overflow:hidden;background:var(--bg-subtle);border-bottom:1px solid var(--border);"><img src="${ridaEscapeHtml(ep.thumbnail_url)}" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>` : '')}
           <div class="ep-card-top">
             <span class="ep-num">Ep ${ridaEscapeHtml(ep.episode)}</span>
             <span class="ep-date">${ridaEscapeHtml(ep.date || '')}</span>
@@ -1459,11 +1666,16 @@ async function ridaLoadEpisodePage() {
 
     document.title = `${ep.title} | Podcast Episode | RID Academy`;
     heroEl.innerHTML = `
-      <div class="ep-num-badge">Episode ${ridaEscapeHtml(ep.episode)}</div>
-      <h1 class="ep-hero-title">${ridaEscapeHtml(ep.title)}</h1>
-      <div class="ep-meta-tags">
-        ${ep.guest_name ? `<span class="ep-tag">Guest: ${ridaEscapeHtml(ep.guest_name)}</span>` : ''}
-        ${ep.date ? `<span class="ep-tag">${ridaEscapeHtml(ep.date)}</span>` : ''}
+      <div class="ep-hero-layout">
+        <div class="ep-hero-copy">
+          <div class="ep-num-badge">Episode ${ridaEscapeHtml(ep.episode)}</div>
+          <h1 class="ep-hero-title">${ridaEscapeHtml(ep.title)}</h1>
+          <div class="ep-meta-tags">
+            ${ep.guest_name ? `<span class="ep-tag">Guest: ${ridaEscapeHtml(ep.guest_name)}</span>` : ''}
+            ${ep.date ? `<span class="ep-tag">${ridaEscapeHtml(ep.date)}</span>` : ''}
+          </div>
+        </div>
+        ${ridaGuestHeroMarkup(ep)}
       </div>
     `;
 
@@ -1499,11 +1711,36 @@ async function ridaLoadEpisodePage() {
     }
 
     const parsed = ridaParseDescriptionBlocks(ep.description);
-    const keyList = document.getElementById('ep-keypoints-list');
-    if (keyList) {
-      keyList.innerHTML = parsed.keyPoints.length
-        ? parsed.keyPoints.map(point => `<li>${ridaEscapeHtml(point)}</li>`).join('')
-        : '<li>Show notes will be added soon.</li>';
+
+    // ① Overview / intro paragraphs
+    const overviewWrap = document.getElementById('ep-overview-wrap');
+    if (overviewWrap && parsed.intro.length) {
+      overviewWrap.style.display = 'block';
+      overviewWrap.innerHTML = parsed.intro
+        .map(p => `<p class="ep-overview-para">${ridaEscapeHtml(p)}</p>`)
+        .join('');
+    }
+
+    // ② Key Takeaways cards (when structured description)
+    const takeawaysWrap  = document.getElementById('ep-takeaways-wrap');
+    const takeawaysList  = document.getElementById('ep-takeaways-list');
+    const keypointsWrap  = document.getElementById('ep-keypoints-wrap');
+    if (takeawaysWrap && takeawaysList && parsed.takeaways.length) {
+      takeawaysWrap.style.display = 'block';
+      if (keypointsWrap) keypointsWrap.style.display = 'none';
+      takeawaysList.innerHTML = parsed.takeaways.map(item => `
+        <div class="ep-takeaway-card">
+          <div class="ep-takeaway-title">${ridaEscapeHtml(item.title)}</div>
+          ${item.desc ? `<div class="ep-takeaway-desc">${ridaEscapeHtml(item.desc)}</div>` : ''}
+        </div>`).join('');
+    } else {
+      // Fallback: simple bulleted list
+      const keyList = document.getElementById('ep-keypoints-list');
+      if (keyList) {
+        keyList.innerHTML = parsed.keyPoints.length
+          ? parsed.keyPoints.map(point => `<li>${ridaEscapeHtml(point)}</li>`).join('')
+          : '<li>Show notes will be added soon.</li>';
+      }
     }
 
     const bioWrap = document.getElementById('ep-bio-wrap');
@@ -1621,7 +1858,48 @@ async function ridaLoadWebinarPage() {
     }
 
     const summary = document.getElementById('wb-summary');
-    if (summary) summary.textContent = webinar.description || 'Detailed webinar notes and transcript are available below.';
+
+    // Parse description into structured blocks
+    const wbParsed = ridaParseDescriptionBlocks(webinar.description);
+
+    // Populate summary text (first intro line or full description)
+    if (summary) {
+      const summaryText = wbParsed.intro.length
+        ? wbParsed.intro[0]
+        : (webinar.description || 'Detailed webinar notes and transcript are available below.');
+      summary.textContent = summaryText;
+    }
+
+    // ① Overview / intro paragraphs
+    const wbOverviewWrap = document.getElementById('wb-overview-wrap');
+    if (wbOverviewWrap && wbParsed.intro.length) {
+      wbOverviewWrap.style.display = 'block';
+      wbOverviewWrap.innerHTML = wbParsed.intro
+        .map(p => `<p class="ep-overview-para">${ridaEscapeHtml(p)}</p>`)
+        .join('');
+    }
+
+    // ② Key Takeaways cards
+    const wbTakeawaysWrap = document.getElementById('wb-takeaways-wrap');
+    const wbTakeawaysList = document.getElementById('wb-takeaways-list');
+    if (wbTakeawaysWrap && wbTakeawaysList && wbParsed.takeaways.length) {
+      wbTakeawaysWrap.style.display = 'block';
+      wbTakeawaysList.innerHTML = wbParsed.takeaways.map(item => `
+        <div class="ep-takeaway-card">
+          <div class="ep-takeaway-title">${ridaEscapeHtml(item.title)}</div>
+          ${item.desc ? `<div class="ep-takeaway-desc">${ridaEscapeHtml(item.desc)}</div>` : ''}
+        </div>`).join('');
+    } else if (wbParsed.keyPoints.length) {
+      // Fallback: render as a simple bullet list inside wb-notes-content
+      const wbFallbackList = document.getElementById('wb-keypoints-list');
+      const wbFallbackWrap = document.getElementById('wb-keypoints-wrap');
+      if (wbFallbackList && wbFallbackWrap) {
+        wbFallbackWrap.style.display = 'block';
+        wbFallbackList.innerHTML = wbParsed.keyPoints
+          .map(pt => `<li>${ridaEscapeHtml(pt)}</li>`)
+          .join('');
+      }
+    }
 
     const notes = document.getElementById('wb-notes-content');
     if (notes) {
@@ -1650,7 +1928,9 @@ async function ridaLoadWebinarPage() {
     const body = document.getElementById('wb-body');
     if (body) body.style.display = 'block';
 
-    await ridaLoadTranscript('wb-transcript-content', webinar.transcript_url, webinar.title, 'Webinar Guest');
+    // Use real presenter name for speaker badge; fall back to 'Webinar Guest'
+    const wbGuestName = webinar.presenter || 'Webinar Guest';
+    await ridaLoadTranscript('wb-transcript-content', webinar.transcript_url, webinar.title, wbGuestName);
   } catch (e) {
     console.warn('RIDA Sheets: Could not load webinar page', e);
     hero.innerHTML = `<div class="ep-not-found"><h2>Could Not Load Webinar</h2><p>Please try again in a moment.</p><a href="../webinar-archive.html" class="ep-cta-btn">Back to Webinar Archive →</a></div>`;

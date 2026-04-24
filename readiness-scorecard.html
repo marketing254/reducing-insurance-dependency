@@ -76,7 +76,7 @@
     .nav-links a { color: rgba(255,255,255,0.70); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
     .nav-links a:hover { color: #f5f5f5; }
     .nav-cta { background: #E2D603; color: #000 !important; padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
-    .nav-cta:hover { background: #F0E440 !important; }
+    .nav-cta:hover { background: #F0E440 !important; color: #000 !important; }
     .nav-toggle { display: none; background: none; border: none; color: #f5f5f5; font-size: 1.5rem; cursor: pointer; padding: 8px; }
 
     @media (max-width: 900px) {
@@ -1207,13 +1207,13 @@ s", value: 3 },
   </script>
 
 
-<footer style="background:#111111;border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 40px;">
-  <div style="max-width:1000px;margin:0 auto;padding:0 40px;">
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);">
+<footer style="background:#101010;border-top:1px solid rgba(255,255,255,0.06);padding:40px 0 24px;">
+  <div style="max-width:980px;margin:0 auto;padding:0 32px;">
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.06);align-items:start;">
       <div>
-        <div style="font-size:0;height:28px;margin-bottom:16px;">
-          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:28px;width:auto;filter:brightness(1.1);">
-          <div style="display:flex;gap:14px;margin-top:18px;align-items:center;">
+        <div style="font-size:0;height:24px;margin-bottom:12px;">
+          <img src="images/RIDA%20Logo%202.svg" alt="RIDA Academy" style="height:24px;width:auto;filter:brightness(1.08);">
+          <div style="display:flex;gap:12px;margin-top:14px;align-items:center;">
             <a href="https://www.instagram.com/ridacademy/" target="_blank" rel="noopener" title="Instagram" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
             <a href="https://www.facebook.com/profile.php?id=100064228176993" target="_blank" rel="noopener" title="Facebook" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
             <a href="https://www.linkedin.com/company/reducing-insurance-dependence-academy/" target="_blank" rel="noopener" title="LinkedIn" style="color:rgba(255,255,255,0.55);transition:color 0.2s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.55)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
@@ -1221,25 +1221,27 @@ s", value: 3 },
         </div>
       </div>
       <div>
-        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">Navigation</h3>
-        <a href="index.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Home</a>
-        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Tools</a>
-        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Podcast</a>
-        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Resources</a>
+        <h3 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;color:#f5f5f5;">Navigation</h3>
+        <a href="index.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Home</a>
+        <a href="tools.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Tools</a>
+        <a href="podcast.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Podcast</a>
+        <a href="resources.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Resources</a>
       </div>
       <div>
-        <h3 style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:20px;color:#f5f5f5;">More</h3>
-        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Webinar Archive</a>
-        <a href="about.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">About</a>
-        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Marketing Consultation</a>
-        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Partner With Us</a>
-        <a href="events.html" style="display:block;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;margin-bottom:12px;">Events</a>
+        <h3 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;color:#f5f5f5;">More</h3>
+        <a href="webinar-archive.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Webinar Archive</a>
+        <a href="about.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">About</a>
+        <a href="growth-engine.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Marketing Consultation</a>
+        <a href="partner.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Partner With Us</a>
+        <a href="events.html" style="display:block;color:rgba(255,255,255,0.68);text-decoration:none;font-size:13px;margin-bottom:9px;line-height:1.5;">Events</a>
       </div>
     </div>
-    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:13px;">
+    <div style="text-align:center;color:rgba(255,255,255,0.45);font-size:12px;line-height:1.6;">
       © 2026 RID Academy by Ekwa Marketing. All rights reserved | <a href="mailto:team@rid.academy" style="color:#E2D603;text-decoration:none;">team@rid.academy</a>
     </div>
   </div>
 </footer>
+<script src="data/site-chrome.js" defer></script>
 </body>
 </html>
+
