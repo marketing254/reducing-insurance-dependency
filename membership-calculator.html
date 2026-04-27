@@ -400,6 +400,7 @@ footer img { height: 28px; margin-bottom: 1rem; filter: brightness(1.15); }
 
 @media (max-width: 640px) {
   .form-card { padding: 1.5rem; }
+}
 /* FOOTER */
 footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padding: 60px 0 40px; }
 
@@ -856,8 +857,17 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How does membership revenue compare to PPO?</button>
-      <div class=
-NH:1.05, NJ:1.14, NM:0.91, NY:1.18,
+      <div class="faq-a"><div class="faq-a-inner">Membership revenue is predictable and recurring — patients pay monthly or annually regardless of visit frequency. PPO revenue fluctuates with reimbursement rates, write-offs, and claim denials. Most practices find that membership patients generate significantly higher per-visit revenue than PPO patients once write-offs are factored in, often 30–50% more per appointment.</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+var COL = {
+  AL:0.88, AK:0.97, AZ:0.97, AR:0.86, CA:1.18, CO:1.04, CT:1.15, DE:1.02,
+  DC:1.22, FL:0.98, GA:0.93, HI:1.16, ID:0.93, IL:1.02, IN:0.90, IA:0.90,
+  KS:0.89, KY:0.89, LA:0.91, ME:0.97, MD:1.10, MA:1.18, MI:0.93, MN:0.97,
+  MS:0.85, MO:0.90, MT:0.96, NE:0.92, NV:0.98, NH:1.05, NJ:1.14, NM:0.91, NY:1.18,
   NC:0.94, ND:0.90, OH:0.88, OK:0.86, OR:1.03, PA:0.98, RI:1.06, SC:0.92,
   SD:0.89, TN:0.89, TX:0.95, UT:0.97, VT:1.04, VA:1.02, WA:1.10, WV:0.84,
   WI:0.92, WY:0.92, DC:1.22

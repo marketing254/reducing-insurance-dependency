@@ -1059,8 +1059,47 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
   </section>
 
   <!-- Footer -->
-  
-lan-input-group';
+
+<script>
+  let selectedPlans = 1;
+  let selectedTimeline = 12;
+  let selectedMembership = 'yes';
+  let selectedScenario = 'expected';
+
+  // Toggle buttons
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const group = this.closest('.toggle-group, .scenario-buttons');
+      if (group) {
+        group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      }
+      if (this.dataset.plans !== undefined) {
+        selectedPlans = parseInt(this.dataset.plans);
+        updatePlanInputs(selectedPlans);
+      }
+      if (this.dataset.timeline !== undefined) selectedTimeline = parseInt(this.dataset.timeline);
+      if (this.dataset.membership !== undefined) {
+        selectedMembership = this.dataset.membership;
+        document.getElementById('membersGroup').classList.toggle('active', selectedMembership === 'yes');
+        document.getElementById('memberFeeGroup').classList.toggle('active', selectedMembership === 'yes');
+      }
+      if (this.dataset.scenario !== undefined) selectedScenario = this.dataset.scenario;
+    });
+  });
+
+  function updateSliderBackground(el) {
+    const val = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.setProperty('--value', val + '%');
+  }
+
+  function updatePlanInputs(plans) {
+    const container = document.getElementById('planInputs');
+    container.innerHTML = '';
+    const defaults = [30, 20, 15];
+    for (let i = 0; i < plans; i++) {
+      const group = document.createElement('div');
+      group.className = 'plan-input-group';
         group.innerHTML = `
           <div>
             <label>Plan ${i + 1}</label>
