@@ -59,6 +59,13 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,0.92)
 .wb-video-outer{border-radius:14px;overflow:hidden;background:#0e0e0e;box-shadow:0 14px 48px rgba(0,0,0,.5);border:1px solid var(--border)}
 #wb-video-section{display:none}
 .wb-video-intro-msg{padding:40px;text-align:center;color:var(--text-3);font-size:.88rem}
+.wb-current-clip-card{display:none;margin-top:18px;padding:20px 22px;background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--border);border-radius:12px}
+.wb-current-clip-kicker{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(226,214,3,.08);border:1px solid rgba(226,214,3,.22);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.wb-current-clip-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.wb-current-clip-top h2{font-family:var(--ff-serif);font-size:1.25rem;font-weight:600;line-height:1.35;color:var(--text);margin:0}
+.wb-current-clip-count{font-size:.74rem;font-weight:700;color:var(--text-3);white-space:nowrap}
+.wb-current-clip-meta{margin:10px 0 0;color:var(--text-3);font-size:.8rem}
+.wb-current-clip-summary{margin:10px 0 0;color:var(--text-2);font-size:.9rem;line-height:1.8}
 
 /* ── Summary block ── */
 .wb-summary-block{margin:18px 0 0;padding:16px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-left:3px solid rgba(226,214,3,.3);border-radius:0 10px 10px 0;display:none}
@@ -138,6 +145,13 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,0.92)
 .wb-meta-text{display:flex;flex-direction:column;gap:1px;min-width:0}
 .wb-meta-label{font-size:.63rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
 .wb-meta-val{color:var(--text-2);font-size:.84rem;line-height:1.4}
+.wb-clip-list{display:flex;flex-direction:column;gap:10px}
+.wb-clip-item{width:100%;text-align:left;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:11px;padding:14px 14px 13px;display:flex;flex-direction:column;gap:6px;color:var(--text-2);transition:border-color .18s,background .18s,transform .18s}
+.wb-clip-item:hover{border-color:rgba(226,214,3,.32);background:rgba(226,214,3,.05);transform:translateY(-1px)}
+.wb-clip-item.active{border-color:rgba(226,214,3,.42);background:rgba(226,214,3,.08)}
+.wb-clip-item-badge{font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.wb-clip-item-title{font-size:.84rem;font-weight:600;color:var(--text);line-height:1.45}
+.wb-clip-item-meta{font-size:.73rem;color:var(--text-3);line-height:1.45}
 /* CTA card */
 .wb-s-cta{background:linear-gradient(135deg,rgba(226,214,3,.07),rgba(226,214,3,.02));border:1px solid rgba(226,214,3,.15);border-radius:13px;padding:20px}
 .wb-s-cta h4{font-family:var(--ff-serif);font-size:.96rem;font-weight:600;color:var(--text);margin-bottom:7px;line-height:1.4}
@@ -153,6 +167,16 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,0.92)
 .wb-bottom-cta p{color:var(--text-2);max-width:480px;margin:0 auto 24px;font-size:.92rem;line-height:1.75}
 .ep-cta-btn{display:inline-block;background:var(--accent);color:#000;padding:.7rem 1.8rem;border-radius:7px;font-weight:700;font-size:.88rem;transition:background .2s}.ep-cta-btn:hover{background:var(--accent-2)}
 .ep-cta-btn-ghost{display:inline-block;border:1px solid var(--border-2);color:var(--text-2);padding:.7rem 1.8rem;border-radius:7px;font-weight:600;font-size:.88rem;margin-left:10px;transition:border-color .2s,color .2s}.ep-cta-btn-ghost:hover{border-color:rgba(255,255,255,.22);color:var(--text)}
+.wb-guide-intro{margin-bottom:18px;padding:18px 20px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:12px}
+.wb-guide-intro p{font-size:.88rem;color:var(--text-2);line-height:1.8}
+.wb-guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.wb-guide-card{width:100%;text-align:left;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;transition:border-color .18s,transform .18s,box-shadow .18s}
+.wb-guide-card:hover{border-color:rgba(226,214,3,.32);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.wb-guide-card.active{border-color:rgba(226,214,3,.42);background:linear-gradient(135deg,rgba(226,214,3,.06),rgba(255,255,255,.02))}
+.wb-guide-card h3{font-family:var(--ff-serif);font-size:1rem;font-weight:600;line-height:1.4;color:var(--text);margin:0}
+.wb-guide-card p{font-size:.84rem;color:var(--text-2);line-height:1.7;margin:0}
+.wb-guide-badge{font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.wb-guide-meta{font-size:.72rem;color:var(--text-3)}
 
 /* ── Mobile ── */
 @media(max-width:800px){
@@ -161,11 +185,14 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,0.92)
   .wb-sidebar-col{position:static;flex-direction:row;flex-wrap:wrap;margin-top:36px}
   .wb-s-card,.wb-s-cta{flex:1;min-width:240px}
   .ep-hero-right{display:none}
+  .wb-current-clip-top{flex-direction:column}
+  .wb-current-clip-count{white-space:normal}
 }
 @media(max-width:520px){
   .wb-sidebar-col{flex-direction:column}
   .ep-transcript-search input{width:90px}
   .ep-takeaway-cards{grid-template-columns:1fr}
+  .wb-guide-grid{grid-template-columns:1fr}
 }
   </style>
 </head>
@@ -234,6 +261,16 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,0.92)
         </div>
       </div>
 
+      <div class="wb-current-clip-card" id="wb-current-clip-card">
+        <div class="wb-current-clip-kicker">Now Playing</div>
+        <div class="wb-current-clip-top">
+          <h2 id="wb-current-clip-title"></h2>
+          <span class="wb-current-clip-count" id="wb-current-clip-count"></span>
+        </div>
+        <p class="wb-current-clip-meta" id="wb-current-clip-meta"></p>
+        <p class="wb-current-clip-summary" id="wb-current-clip-summary"></p>
+      </div>
+
       <!-- Body: summary + tabs (hidden until data loads) -->
       <div id="wb-body" style="display:none">
 
@@ -296,8 +333,13 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,0.92)
 
       <!-- Webinar details (populated by JS) -->
       <div class="wb-s-card" id="wb-sidebar-info" style="display:none">
-        <span class="wb-s-heading">Webinar Details</span>
+        <span class="wb-s-heading">Replay Details</span>
         <div id="wb-meta-sidebar"></div>
+      </div>
+
+      <div class="wb-s-card" id="wb-clip-sidebar" style="display:none">
+        <span class="wb-s-heading">Replay Timeline</span>
+        <div class="wb-clip-list" id="wb-clip-list"></div>
       </div>
 
       <!-- Static CTA card -->

@@ -18,6 +18,110 @@ const RIDA_TEXT_PROXY = 'https://corsproxy.io/?url={url}';
 const RIDA_TEXT_PROXY_2 = 'https://api.allorigins.win/raw?url={url}';
 window.RIDA_SHEETS_ACTIVE = true;
 
+const RIDA_SUPPLEMENTAL_WEBINARS = [
+  {
+    id: 'summit-2025-full-replay',
+    date: '2025',
+    title: 'RIDA Annual Summit 2025 - Full Replay',
+    category: 'summit',
+    duration: '11 Clips',
+    description: 'Watch the full RIDA Annual Summit 2025 replay in a clean, session-by-session format. Every segment is organized in presentation order so you can move from opening remarks through keynote sessions, guest segments, expert panels, and closing remarks without losing the flow of the event.\n\nKey Takeaways\nFollow the summit in the same sequence attendees experienced it live\nJump directly to keynote sessions, guest presentations, and panel discussions\nReview the clinical and business conversations in an ordered, easy-to-navigate replay timeline',
+    presenter: 'RID Academy speakers and guest experts',
+    vimeo_embed_src: 'https://player.vimeo.com/video/1131555189?badge=0&autopause=0&player_id=0&app_id=58479',
+    clips: [
+      {
+        title: 'Opening Remarks',
+        label: 'Clip 01',
+        type: 'Opening',
+        speaker: 'RID Academy',
+        summary: 'The welcome segment that opens the summit and sets the direction for the sessions that follow.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131555189?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Naren Arulrajah Keynote',
+        label: 'Clip 02',
+        type: 'Keynote',
+        speaker: 'Naren Arulrajah',
+        summary: 'Naren Arulrajah\'s keynote session and strategic framing for the summit.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131555209?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Jordan Comstock Segment',
+        label: 'Clip 03',
+        type: 'Featured Session',
+        speaker: 'Jordan Comstock',
+        summary: 'Jordan Comstock\'s featured summit segment.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131555746?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Gary Takacs Introduction',
+        label: 'Clip 04',
+        type: 'Introduction',
+        speaker: 'RID Academy',
+        summary: 'A short introduction leading into Gary Takacs\'s featured session.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131555805?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Gary Takacs Segment',
+        label: 'Clip 05',
+        type: 'Featured Session',
+        speaker: 'Gary Takacs',
+        summary: 'Gary Takacs\'s main summit presentation.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131555824?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Gary Segment Close by Naren',
+        label: 'Clip 06',
+        type: 'Transition',
+        speaker: 'Naren Arulrajah',
+        summary: 'Closing remarks and transition after Gary Takacs\'s session.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131555925?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Clinical Panel Segment',
+        label: 'Clip 07',
+        type: 'Clinical Panel',
+        speaker: 'Panel Discussion',
+        summary: 'The clinical panel conversation from the summit replay.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131555944?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Business Panel Introduction',
+        label: 'Clip 08',
+        type: 'Introduction',
+        speaker: 'RID Academy',
+        summary: 'A brief lead-in to the business panel session.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131556164?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Business Panel Segment',
+        label: 'Clip 09',
+        type: 'Business Panel',
+        speaker: 'Panel Discussion',
+        summary: 'The full business panel conversation from the summit.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131556170?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Sarah Beth Herman Introduction',
+        label: 'Clip 10',
+        type: 'Introduction',
+        speaker: 'RID Academy',
+        summary: 'A short introduction to Sarah Beth Herman\'s closing feature.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131556841?badge=0&autopause=0&player_id=0&app_id=58479'
+      },
+      {
+        title: 'Sarah Beth Herman TED Talk and Closing Remarks',
+        label: 'Clip 11',
+        type: 'Closing Session',
+        speaker: 'Sarah Beth Herman',
+        summary: 'Sarah Beth Herman\'s featured talk followed by the summit close.',
+        vimeo_embed_src: 'https://player.vimeo.com/video/1131556867?badge=0&autopause=0&player_id=0&app_id=58479'
+      }
+    ]
+  }
+];
+window.RIDA_SUPPLEMENTAL_WEBINARS = RIDA_SUPPLEMENTAL_WEBINARS;
+
 function ridaPopupDismissKey() {
   const path = (window.location && window.location.pathname) ? window.location.pathname : 'global';
   return `rida_popup_dismissed:${path}`;
@@ -546,6 +650,41 @@ function ridaSlugify(value) {
     .replace(/&/g, ' and ')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+function ridaWebinarCategoryLabel(category) {
+  const labels = {
+    summit: 'Summit Replay',
+    workshop: 'Workshop',
+    masterclass: 'Masterclass',
+    qa: 'Q&A Session'
+  };
+  const key = String(category || '').trim().toLowerCase();
+  return labels[key] || (key ? key.charAt(0).toUpperCase() + key.slice(1) : 'Replay');
+}
+
+function ridaMergeWebinars(webinars) {
+  const merged = new Map();
+
+  (Array.isArray(webinars) ? webinars : []).forEach((webinar, index) => {
+    const safeWebinar = webinar && webinar.id !== undefined ? webinar : { ...webinar, id: index + 1 };
+    merged.set(ridaSlugify(safeWebinar && safeWebinar.title), safeWebinar);
+  });
+
+  RIDA_SUPPLEMENTAL_WEBINARS.forEach((extra, index) => {
+    const slug = ridaSlugify(extra && extra.title);
+    const existing = merged.get(slug);
+    if (existing) {
+      merged.set(slug, { ...existing, ...extra, id: existing.id || extra.id || `supplemental-${index + 1}` });
+    } else {
+      merged.set(slug, { ...extra, id: extra.id || `supplemental-${index + 1}` });
+    }
+  });
+
+  return Array.from(merged.values()).map((item, index) => ({
+    ...item,
+    id: item && item.id !== undefined ? item.id : index + 1
+  }));
 }
 
 function ridaEscapeHtml(value) {
@@ -1108,6 +1247,148 @@ function ridaVideoEmbedMarkup(webinar) {
     return `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="${ridaEscapeHtml(webinar.vimeo_embed_src)}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;" title="${ridaEscapeHtml(webinar.title)}"></iframe></div>`;
   }
   return '';
+}
+
+function ridaRenderWebinarSidebarMeta(webinar) {
+  const sidebar = document.getElementById('wb-sidebar-info');
+  const target = document.getElementById('wb-meta-sidebar');
+  if (!sidebar || !target || !webinar) return;
+
+  const rows = [];
+  if (webinar.category) rows.push({ icon: 'stack', label: 'Category', value: ridaWebinarCategoryLabel(webinar.category) });
+  if (webinar.date) rows.push({ icon: 'calendar', label: 'Replay', value: webinar.date });
+  if (webinar.duration) rows.push({ icon: 'play', label: 'Format', value: webinar.duration });
+  if (Array.isArray(webinar.clips) && webinar.clips.length) rows.push({ icon: 'list', label: 'Sessions', value: `${webinar.clips.length} ordered clips` });
+  if (webinar.presenter) rows.push({ icon: 'user', label: 'Featuring', value: webinar.presenter });
+
+  if (!rows.length) {
+    sidebar.style.display = 'none';
+    target.innerHTML = '';
+    return;
+  }
+
+  const icons = {
+    stack: '<svg class="wb-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/></svg>',
+    calendar: '<svg class="wb-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>',
+    play: '<svg class="wb-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z" fill="currentColor" stroke="none"/></svg>',
+    list: '<svg class="wb-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>',
+    user: '<svg class="wb-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="5"/></svg>'
+  };
+
+  target.innerHTML = rows.map(row => `
+    <div class="wb-meta-row">
+      <div class="wb-meta-icon-wrap">${icons[row.icon] || icons.stack}</div>
+      <div class="wb-meta-text">
+        <span class="wb-meta-label">${ridaEscapeHtml(row.label)}</span>
+        <span class="wb-meta-val">${ridaEscapeHtml(row.value)}</span>
+      </div>
+    </div>
+  `).join('');
+  sidebar.style.display = 'block';
+}
+
+function ridaRenderWebinarPlaylist(webinar) {
+  const clips = Array.isArray(webinar && webinar.clips) ? webinar.clips.filter(clip => clip && clip.vimeo_embed_src) : [];
+  if (!clips.length) return false;
+
+  const videoWrap = document.getElementById('wb-video-embed');
+  const currentCard = document.getElementById('wb-current-clip-card');
+  const currentTitle = document.getElementById('wb-current-clip-title');
+  const currentCount = document.getElementById('wb-current-clip-count');
+  const currentMeta = document.getElementById('wb-current-clip-meta');
+  const currentSummary = document.getElementById('wb-current-clip-summary');
+  const sidebar = document.getElementById('wb-clip-sidebar');
+  const sidebarList = document.getElementById('wb-clip-list');
+  const transcriptWrap = document.getElementById('wb-transcript-content');
+  const notesBtn = document.querySelector('.ep-tab-btn[data-tab="notes"]');
+  const transcriptBtn = document.querySelector('.ep-tab-btn[data-tab="transcript"]');
+  const hasTranscript = Boolean(webinar && webinar.transcript_url);
+
+  if (!videoWrap || !sidebar || !sidebarList || !transcriptWrap) return false;
+  if (notesBtn) notesBtn.textContent = 'Overview';
+
+  let activeIndex = 0;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = parseInt(params.get('clip') || '', 10);
+    if (!Number.isNaN(fromQuery) && fromQuery >= 1 && fromQuery <= clips.length) activeIndex = fromQuery - 1;
+  } catch (_) {}
+
+  function clipMeta(clip) {
+    return [clip.label, clip.type, clip.speaker].filter(Boolean).join(' • ');
+  }
+
+  function renderSidebar() {
+    sidebarList.innerHTML = clips.map((clip, index) => `
+      <button type="button" class="wb-clip-item${index === activeIndex ? ' active' : ''}" data-clip-index="${index}">
+        <span class="wb-clip-item-badge">${ridaEscapeHtml(clip.label || `Clip ${String(index + 1).padStart(2, '0')}`)}</span>
+        <span class="wb-clip-item-title">${ridaEscapeHtml(clip.title || `Session ${index + 1}`)}</span>
+        <span class="wb-clip-item-meta">${ridaEscapeHtml([clip.type, clip.speaker].filter(Boolean).join(' • ') || 'Summit replay segment')}</span>
+      </button>
+    `).join('');
+    sidebar.style.display = 'block';
+  }
+
+  function renderGuide() {
+    if (hasTranscript) return;
+    if (transcriptBtn) transcriptBtn.textContent = 'Session Guide';
+    transcriptWrap.innerHTML = `
+      <div class="wb-guide-intro">
+        <h3 class="wb-rich-heading" style="margin-top:0;">Summit Session Guide</h3>
+        <p>Use the ordered replay cards below to jump directly to any segment from the event.</p>
+      </div>
+      <div class="wb-guide-grid">
+        ${clips.map((clip, index) => `
+          <button type="button" class="wb-guide-card${index === activeIndex ? ' active' : ''}" data-clip-index="${index}">
+            <span class="wb-guide-badge">${ridaEscapeHtml(clip.label || `Clip ${String(index + 1).padStart(2, '0')}`)}</span>
+            <h3>${ridaEscapeHtml(clip.title || `Session ${index + 1}`)}</h3>
+            <p>${ridaEscapeHtml(clip.summary || 'Watch this replay segment from the summit playlist.')}</p>
+            <span class="wb-guide-meta">${ridaEscapeHtml([clip.type, clip.speaker].filter(Boolean).join(' • ') || 'Summit replay')}</span>
+          </button>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function setClip(index) {
+    const clip = clips[index];
+    if (!clip) return;
+    activeIndex = index;
+    videoWrap.innerHTML = ridaVideoEmbedMarkup({ title: clip.title || webinar.title, vimeo_embed_src: clip.vimeo_embed_src });
+
+    if (currentCard && currentTitle && currentCount && currentMeta && currentSummary) {
+      currentTitle.textContent = clip.title || `Session ${index + 1}`;
+      currentCount.textContent = `${index + 1} of ${clips.length}`;
+      currentMeta.textContent = clipMeta(clip);
+      currentSummary.textContent = clip.summary || 'Part of the full summit replay.';
+      currentCard.style.display = 'block';
+    }
+
+    renderSidebar();
+    renderGuide();
+
+    try {
+      const params = new URLSearchParams(window.location.search);
+      params.set('title', webinar.title);
+      params.set('clip', String(index + 1));
+      history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+    } catch (_) {}
+  }
+
+  sidebarList.addEventListener('click', event => {
+    const btn = event.target.closest('[data-clip-index]');
+    if (!btn) return;
+    setClip(parseInt(btn.getAttribute('data-clip-index'), 10));
+  });
+
+  transcriptWrap.addEventListener('click', event => {
+    const btn = event.target.closest('[data-clip-index]');
+    if (!btn) return;
+    setClip(parseInt(btn.getAttribute('data-clip-index'), 10));
+  });
+
+  setClip(activeIndex);
+  return true;
 }
 
 // ── Helper: detect WebVTT format ───────────────────────────────────
@@ -1954,13 +2235,13 @@ async function ridaLoadWebinarsGrid() {
   try {
     const rows = await ridaFetchSheet('webinars');
     const sheetWebinars = rows.map(ridaNormalizeWebinarRow);
-    window.RIDA_WEBINARS = sheetWebinars;
+    window.RIDA_WEBINARS = ridaMergeWebinars(sheetWebinars);
     document.dispatchEvent(new CustomEvent('ridaDataReady'));
 
     if (typeof renderWebinars === 'function') renderWebinars('all');
   } catch (e) {
     console.warn('RIDA Sheets: Could not load webinars', e);
-    window.RIDA_WEBINARS = [];
+    window.RIDA_WEBINARS = ridaMergeWebinars([]);
     document.dispatchEvent(new CustomEvent('ridaDataReady'));
     if (typeof renderWebinars === 'function') renderWebinars('all');
   }
@@ -1972,13 +2253,19 @@ async function ridaLoadWebinarPage() {
   try {
     const params = new URLSearchParams(window.location.search);
     const titleParam = params.get('title');
-    const rows = await ridaFetchSheet('webinars');
-    if (!rows.length) throw new Error('No webinars found');
+    let rows = [];
+    try {
+      rows = await ridaFetchSheet('webinars');
+    } catch (sheetError) {
+      console.warn('RIDA Sheets: Could not fetch webinar rows, using fallback data', sheetError);
+    }
 
-    const webinars = rows.map(ridaNormalizeWebinarRow);
+    const webinars = ridaMergeWebinars(rows.map(ridaNormalizeWebinarRow));
+    if (!webinars.length) throw new Error('No webinars found');
 
     const webinar = webinars.find(item => ridaSlugify(item.title) === ridaSlugify(titleParam)) || webinars[0];
-    document.title = `${webinar.title} | Webinar Replay | RID Academy`;
+    const replayLabel = webinar.category === 'summit' ? 'Summit Replay' : 'Webinar Replay';
+    document.title = `${webinar.title} | ${replayLabel} | RID Academy`;
 
     hero.innerHTML = `
       <nav class="breadcrumb" aria-label="breadcrumb">
@@ -1986,10 +2273,10 @@ async function ridaLoadWebinarPage() {
         <span aria-hidden="true"> / </span>
         <span>${ridaEscapeHtml(webinar.title.length > 48 ? webinar.title.substring(0, 48) + '…' : webinar.title)}</span>
       </nav>
-      <div class="ep-num-badge">Webinar Replay</div>
+      <div class="ep-num-badge">${ridaEscapeHtml(replayLabel)}</div>
       <h1 class="ep-hero-title">${ridaEscapeHtml(webinar.title)}</h1>
       <div class="ep-meta-tags">
-        ${webinar.category ? `<span class="ep-tag">${ridaEscapeHtml(webinar.category)}</span>` : ''}
+        ${webinar.category ? `<span class="ep-tag">${ridaEscapeHtml(ridaWebinarCategoryLabel(webinar.category))}</span>` : ''}
         ${webinar.date    ? `<span class="ep-tag">${ridaEscapeHtml(webinar.date)}</span>`     : ''}
         ${webinar.duration? `<span class="ep-tag">${ridaEscapeHtml(webinar.duration)}</span>` : ''}
       </div>
@@ -2009,9 +2296,12 @@ async function ridaLoadWebinarPage() {
       if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
     }
 
+    ridaRenderWebinarSidebarMeta(webinar);
+
     const videoWrap = document.getElementById('wb-video-embed');
     const videoSection = document.getElementById('wb-video-section');
-    if (videoWrap && videoSection) {
+    const hasPlaylist = Array.isArray(webinar.clips) && webinar.clips.length > 0;
+    if (videoWrap && videoSection && !hasPlaylist) {
       const embedMarkup = ridaVideoEmbedMarkup(webinar);
       if (embedMarkup) {
         videoWrap.innerHTML = embedMarkup;
@@ -2019,9 +2309,12 @@ async function ridaLoadWebinarPage() {
         videoWrap.innerHTML = `<div class="ep-transcript-unavailable"><p>Replay video is not available for this webinar yet.</p></div>`;
       }
       videoSection.style.display = 'block';
+    } else if (videoSection) {
+      videoSection.style.display = 'block';
     }
 
     const summary = document.getElementById('wb-summary');
+    const summaryBlock = document.getElementById('wb-summary-block');
 
     // Parse description into structured blocks
     const wbParsed = ridaParseDescriptionBlocks(webinar.description);
@@ -2032,6 +2325,7 @@ async function ridaLoadWebinarPage() {
         ? wbParsed.intro[0]
         : (webinar.description || 'Detailed webinar notes and transcript are available below.');
       summary.textContent = summaryText;
+      if (summaryBlock && summaryText) summaryBlock.style.display = 'block';
     }
 
     // ① Overview / intro paragraphs
@@ -2084,6 +2378,21 @@ async function ridaLoadWebinarPage() {
           console.warn('RIDA Sheets: Could not load webinar notes', e);
           notes.innerHTML = `<div class="ep-transcript-unavailable"><p>Replay notes could not be loaded automatically.</p></div>`;
         }
+      } else if (hasPlaylist) {
+        notes.innerHTML = `
+          <div class="wb-doc-actions">
+            <span class="wb-doc-label">Replay Overview</span>
+          </div>
+          <div class="wb-rich-text">
+            <h3 class="wb-rich-heading">How to use this replay</h3>
+            <p>This full replay is arranged in summit order so you can watch it straight through or jump directly to a session from the replay timeline.</p>
+            <ul class="wb-rich-list">
+              <li>Use the timeline in the sidebar to move between keynote talks, featured segments, and panel discussions.</li>
+              <li>Keep your place with the ordered clip sequence shown throughout the page.</li>
+              <li>Come back to specific sessions later without scrubbing through one long recording.</li>
+            </ul>
+          </div>
+        `;
       } else {
         notes.innerHTML = `<div class="ep-transcript-unavailable"><p>Replay notes are not available for this webinar yet.</p></div>`;
       }
@@ -2092,9 +2401,15 @@ async function ridaLoadWebinarPage() {
     const body = document.getElementById('wb-body');
     if (body) body.style.display = 'block';
 
-    // Use real presenter name for speaker badge; fall back to 'Webinar Guest'
-    const wbGuestName = webinar.presenter || 'Webinar Guest';
-    await ridaLoadTranscript('wb-transcript-content', webinar.transcript_url, webinar.title, wbGuestName);
+    if (hasPlaylist) {
+      ridaRenderWebinarPlaylist(webinar);
+    }
+
+    if (!hasPlaylist || webinar.transcript_url) {
+      // Use real presenter name for speaker badge; fall back to 'Webinar Guest'
+      const wbGuestName = webinar.presenter || 'Webinar Guest';
+      await ridaLoadTranscript('wb-transcript-content', webinar.transcript_url, webinar.title, wbGuestName);
+    }
   } catch (e) {
     console.warn('RIDA Sheets: Could not load webinar page', e);
     hero.innerHTML = `<div class="ep-not-found"><h2>Could Not Load Webinar</h2><p>Please try again in a moment.</p><a href="../webinar-archive.html" class="ep-cta-btn">Back to Webinar Archive →</a></div>`;
