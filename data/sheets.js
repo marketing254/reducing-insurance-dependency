@@ -10,7 +10,7 @@ const RIDA_SHEET_ID = '1FOeB6lyOCKzj4u9caLPxModWYrpCILE0h4-7O_0yR4s';
 // After deploying data/proxy.gs as a Google Apps Script Web App, paste the URL below.
 // Leave empty to skip (transcript tab will show setup instructions instead).
 // Example: 'https://script.google.com/macros/s/AKfy...xyz/exec'
-const RIDA_APPS_SCRIPT_PROXY = 'https://script.google.com/macros/s/AKfycbzcUPyfPzVW4CUe1LSMvaqjN9xfLx1SWDXckglLzgykT9_NyRfzTIfkeuOo8VEOIE8OEA/exec';
+const RIDA_APPS_SCRIPT_PROXY = 'https://script.google.com/macros/s/AKfycbyyq2Nyj32ipMLghR74aC9c3SCW7C_6zN-Ok-5pKHiSpOjlczigl_F41_D8nLIUl3RrQQ/exec';
 
 // Public CORS proxy — wraps any URL and adds Access-Control-Allow-Origin: *
 // corsproxy.io is used as primary; add a second constant for chain fallback
@@ -1445,6 +1445,106 @@ window.ridaClosePopup = function ridaClosePopup() {
   sessionStorage.setItem(ridaPopupDismissKey(), '1');
 };
 
+async function ridaLoadReviewsGrid() {
+  const grid = document.getElementById('rv-track') || document.getElementById('reviewsGrid');
+  if (!grid) return;
+  try {
+    const rows = await ridaFetchSheet('reviews');
+    if (!rows.length) { grid.innerHTML = '<p style="text-align:center;color:rgba(255,255,255,.4);padding:60px 0">No reviews yet.</p>'; return; }
+
+    // Expose globally so the page filter function can use it
+    window.allReviews = rows;
+
+    // Helper: resolve source from either column name variant
+    const rSrcVal = r => (r.source || r.platform || '').trim();
+
+    // Compute average rating
+    const ratings = rows.map(r => parseFloat(r.rating) || 5).filter(Boolean);
+    const avg = ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1) : '5.0';
+    const avgEl   = document.getElementById('rv-avg');
+    const countEl = document.getElementById('rv-count');
+    const starsEl = document.getElementById('rv-stars');
+    if (avgEl) avgEl.textContent = avg;
+    if (countEl) countEl.textContent = rows.length + '+';
+    if (starsEl) {
+      const fullStars = Math.round(parseFloat(avg));
+      starsEl.textContent = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+      starsEl.style.visibility = 'visible';
+    }
+
+    const formatReviewDate = raw => {
+      if (!raw) return '';
+      let d = new Date(raw);
+      if (Number.isNaN(d.getTime())) d = new Date(String(raw).replace(/\//g, '-'));
+      if (Number.isNaN(d.getTime())) return String(raw).trim();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    };
+    const reviewDate = r => {
+      const direct = formatReviewDate((r.date || '').trim());
+      if (direct) return direct;
+      const source = rSrcVal(r);
+      const match = source.match(/(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2})(?:st|nd|rd|th)?(?:,)?\s+(\d{4})/i);
+      if (!match) return '';
+      return formatReviewDate(`${match[3]}-${match[1]}-${match[2]}`);
+    };
+
+    // Build source filter pills dynamically
+    const sources = [...new Set(rows.map(rSrcVal).filter(Boolean))];
+    const filtersEl = document.getElementById('rvFilters');
+    if (filtersEl && sources.length) {
+      const existing = filtersEl.querySelectorAll('.rv-filter:not([data-source="all"])');
+      existing.forEach(el => el.remove());
+      sources.forEach(src => {
+        const btn = document.createElement('button');
+        btn.className = 'rv-filter';
+        btn.textContent = src;
+        btn.setAttribute('data-source', src.toLowerCase());
+        btn.onclick = function() { filterReviews(src.toLowerCase(), btn); };
+        filtersEl.appendChild(btn);
+      });
+    }
+
+    // Render all reviews
+    if (typeof window.filterReviews === 'function') {
+      window.filterReviews('all', document.querySelector('.rv-filter.active'));
+    } else {
+      grid.innerHTML = '<div class="rv-grid">' + rows.map(r => {
+        const name    = (r.name || r.reviewer_name || '').trim();
+        const source  = rSrcVal(r);
+        const text    = (r.review || r.review_text || r.testimonial || '').trim();
+        const rating  = Math.min(5, Math.max(1, parseInt(r.rating) || 5));
+        const stars   = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+        const initials = (name || '?').split(' ').map(w => w[0] || '').join('').substring(0, 2).toUpperCase();
+        const roleStr = [r.role, r.practice, r.location].filter(Boolean).join(' · ');
+        const src = source.toLowerCase();
+        const isWebinar = /webinar|rida|march/i.test(src);
+        const srcKey = isWebinar ? 'webinar' : (src.replace(/\s+/g, '') || 'direct');
+        const featured = /true|yes|1/i.test(r.featured || '');
+        const dateStr = reviewDate(r);
+        return `<div class="rv-card${featured ? ' rv-card--featured' : ''}${isWebinar ? ' rv-card--webinar' : ''}">
+          <div class="rv-stars">${stars}</div>
+          <p class="rv-text">${ridaEscapeHtml(text)}</p>
+          <div class="rv-author">
+            <div class="rv-initial">${ridaEscapeHtml(initials)}</div>
+            <div class="rv-author-info">
+              <div class="rv-name">${ridaEscapeHtml(name || 'Anonymous')}</div>
+              ${roleStr ? `<div class="rv-role">${ridaEscapeHtml(roleStr)}</div>` : ''}
+              ${source ? `<span class="rv-source rv-source-${srcKey}">${ridaEscapeHtml(source)}</span>` : ''}
+            </div>
+            ${dateStr ? `<div class="rv-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>${ridaEscapeHtml(dateStr)}</div>` : ''}
+          </div>
+        </div>`;
+      }).join('') + '</div>';
+    }
+  } catch (e) {
+    console.warn('RIDA Sheets: Could not load reviews', e);
+    grid.innerHTML = '<p style="text-align:center;color:rgba(255,255,255,.4);padding:60px 0">Reviews could not be loaded.</p>';
+  }
+}
+
 async function ridaLoadEventsGrid() {
   const grid = document.getElementById('eventsGrid');
   if (!grid) return;
@@ -2016,6 +2116,8 @@ async function ridaLoadWebinarPage() {
     ridaLoadWebinarPage();
   } else if (path.includes('events')) {
     ridaLoadEventsGrid();
+  } else if (path.includes('reviews')) {
+    ridaLoadReviewsGrid();
   } else if (path.includes('podcast')) {
     ridaLoadPodcastGrid();
   }

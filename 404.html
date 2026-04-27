@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | RID Academy</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#f5f5f5;overflow-x:hidden;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}
+:root{--bg:#0a0a0a;--bg-card:#161616;--border:rgba(255,255,255,.06);--text:#f5f5f5;--text-2:rgba(255,255,255,.7);--text-3:rgba(255,255,255,.45);--accent:#E2D603;--accent-2:#F0E440;--ff-serif:'Lora',Georgia,serif}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,4vw,3rem);flex-shrink:0}
+.nav-logo img{height:34px;filter:brightness(1.15)}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center}.nav-links a{color:var(--text-2);font-size:.875rem;font-weight:500;transition:color .2s}.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#000!important;padding:.55rem 1.25rem;border-radius:6px;font-size:.82rem;font-weight:700}.nav-cta:hover{background:var(--accent-2)!important}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer;padding:8px}
+@media(max-width:900px){.nav-toggle{display:block}.nav-links{display:none;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(10,10,10,.97);padding:20px 40px;gap:16px;z-index:999}.nav-links.active{display:flex}.nav-cta{width:100%;text-align:center}}
+
+/* 404 Main */
+.not-found{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;position:relative;overflow:hidden}
+.not-found::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(226,214,3,.05),transparent 65%);pointer-events:none}
+.not-found-inner{text-align:center;position:relative;z-index:2;max-width:580px}
+
+/* Large 404 */
+.nf-code{font-family:var(--ff-serif);font-size:clamp(6rem,18vw,10rem);font-weight:600;line-height:1;color:transparent;background:linear-gradient(135deg,rgba(226,214,3,.5),rgba(226,214,3,.15));-webkit-background-clip:text;background-clip:text;letter-spacing:-.02em;margin-bottom:8px;user-select:none}
+
+.nf-label{display:inline-flex;align-items:center;gap:7px;font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.nf-label::before,.nf-label::after{content:'';width:20px;height:1px;background:rgba(226,214,3,.4)}
+
+.not-found-inner h1{font-family:var(--ff-serif);font-size:clamp(1.4rem,3.5vw,2rem);font-weight:600;color:var(--text);margin-bottom:14px;line-height:1.3}
+.not-found-inner p{color:var(--text-2);font-size:.95rem;line-height:1.75;margin-bottom:40px;max-width:420px;margin-left:auto;margin-right:auto}
+
+/* Quick links */
+.nf-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:40px}
+.nf-link{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:18px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;transition:border-color .2s,transform .2s}
+.nf-link:hover{border-color:rgba(226,214,3,.25);transform:translateY(-3px)}
+.nf-link-icon{width:40px;height:40px;border-radius:10px;background:rgba(226,214,3,.08);border:1px solid rgba(226,214,3,.15);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.nf-link-icon svg{width:20px;height:20px}
+.nf-link-label{font-size:.82rem;font-weight:600;color:var(--text-2)}
+
+/* Home button */
+.nf-home{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;font-weight:700;font-size:.875rem;padding:.7rem 1.75rem;border-radius:8px;transition:background .2s,transform .2s}
+.nf-home:hover{background:var(--accent-2);transform:translateY(-2px)}
+.nf-home svg{width:16px;height:16px}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/RIDA%20Logo%202.svg" alt="RID Academy"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">About</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="webinar-archive.html">Webinar Archive</a></li>
+    <li><a href="growth-engine.html">Marketing Consultation</a></li>
+    <li><a href="partner.html">Partner With Us</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<main class="not-found">
+  <div class="not-found-inner">
+    <div class="nf-code">404</div>
+    <div class="nf-label">Page Not Found</div>
+    <h1>This page doesn't exist</h1>
+    <p>The page you're looking for may have been moved, renamed, or never existed. Here are some helpful places to start:</p>
+
+    <div class="nf-links">
+      <a href="index.html" class="nf-link">
+        <div class="nf-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <span class="nf-link-label">Home</span>
+      </a>
+      <a href="webinar-archive.html" class="nf-link">
+        <div class="nf-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <span class="nf-link-label">Webinars</span>
+      </a>
+      <a href="podcast.html" class="nf-link">
+        <div class="nf-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+        <span class="nf-link-label">Podcast</span>
+      </a>
+      <a href="events.html" class="nf-link">
+        <div class="nf-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <span class="nf-link-label">Events</span>
+      </a>
+      <a href="tools.html" class="nf-link">
+        <div class="nf-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <span class="nf-link-label">Free Tools</span>
+      </a>
+      <a href="reviews.html" class="nf-link">
+        <div class="nf-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <span class="nf-link-label">Reviews</span>
+      </a>
+    </div>
+
+    <a href="index.html" class="nf-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Back to Home
+    </a>
+  </div>
+</main>
+
+<script src="data/site-chrome.js" defer></script>
+<script src="data/cookie-consent.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews & Testimonials | RID Academy</title>
+  <meta name="description" content="Hear from dental practice owners who have successfully reduced insurance dependence with RID Academy webinars and events.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:#0a0a0a;color:#f5f5f5;overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}
+:root{--bg:#0a0a0a;--bg-card:#161616;--bg-elevated:#1a1a1a;--border:rgba(255,255,255,.06);--border-2:rgba(255,255,255,.10);--text:#f5f5f5;--text-2:rgba(255,255,255,.7);--text-3:rgba(255,255,255,.45);--accent:#E2D603;--accent-2:#F0E440;--ff-serif:'Lora',Georgia,serif}
+
+/* ── NAV ──────────────────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,4vw,3rem)}
+.nav-logo img{height:34px;filter:brightness(1.15)}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center}.nav-links a{color:var(--text-2);font-size:.875rem;font-weight:500;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{background:var(--accent);color:#000!important;padding:.55rem 1.25rem;border-radius:6px;font-size:.82rem;font-weight:700}.nav-cta:hover{background:var(--accent-2)!important}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer;padding:8px}
+.res-dd{position:relative}.res-dd-trigger{display:inline-flex;align-items:center;gap:5px;color:var(--text-2);font-size:.875rem;font-weight:500;cursor:pointer;background:none;border:none;transition:color .2s}.res-dd-trigger:hover,.res-dd:hover .res-dd-trigger,.res-dd:focus-within .res-dd-trigger{color:var(--text)}.res-dd-trigger svg{width:10px;height:6px;transition:transform .18s}.res-dd:hover .res-dd-trigger svg,.res-dd:focus-within .res-dd-trigger svg{transform:rotate(180deg)}.res-dd-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:300px;margin-top:8px;padding:10px;background:#111;border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 18px 44px rgba(0,0,0,.55);list-style:none;z-index:9999}.res-dd-menu::before{content:'';position:absolute;left:0;right:0;top:-12px;height:12px}.res-dd:hover .res-dd-menu,.res-dd:focus-within .res-dd-menu{display:block}.res-dd-menu li+li{margin-top:6px}.res-dd-menu li a{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;padding:12px;color:rgba(255,255,255,.82)!important;border-radius:10px;transition:background .15s,color .15s,transform .15s}.res-dd-menu li a:hover{color:#E2D603!important;background:rgba(255,255,255,.04);transform:translateX(2px)}.res-dd-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(226,214,3,.08);border:1px solid rgba(226,214,3,.16);color:#E2D603}.res-dd-icon svg{width:18px;height:18px}.res-dd-body{display:flex;flex-direction:column;gap:2px}.res-dd-title{font-size:.84rem;font-weight:600}.res-dd-sub{font-size:.73rem;color:rgba(255,255,255,.52)}
+@media(max-width:900px){.nav-toggle{display:block}.nav-links{display:none;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(10,10,10,.97);backdrop-filter:blur(20px);padding:20px 40px;gap:16px;z-index:999}.nav-links.active{display:flex}.nav-cta{width:100%;text-align:center}.res-dd-menu{display:none!important}.res-dd-trigger svg{display:none}}
+
+/* ── LAYOUT ───────────────────────────────────────────────── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem)}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.rv-hero{padding:72px 0 60px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.rv-hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:440px;background:radial-gradient(ellipse,rgba(226,214,3,.07),transparent 68%);pointer-events:none}
+.rv-hero-inner{position:relative;z-index:2;text-align:center}
+.rv-hero-label{display:inline-flex;align-items:center;gap:8px;font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.rv-hero-label::before,.rv-hero-label::after{content:'';width:24px;height:2px;background:var(--accent);border-radius:1px}
+.rv-hero h1{font-family:var(--ff-serif);font-size:clamp(1.9rem,4.5vw,3rem);font-weight:600;line-height:1.2;margin-bottom:14px;max-width:700px;margin-left:auto;margin-right:auto}
+.rv-hero p{color:var(--text-2);font-size:.98rem;line-height:1.8;max-width:500px;margin:0 auto}
+
+/* ── STATS STRIP ──────────────────────────────────────────── */
+.rv-stats-strip{border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(226,214,3,.03),transparent,rgba(226,214,3,.03))}
+.rv-stats-inner{display:grid;grid-template-columns:repeat(4,1fr)}
+.rv-strip-stat{text-align:center;padding:28px 16px;border-right:1px solid var(--border)}
+.rv-strip-stat:last-child{border-right:none}
+.rv-strip-num{font-family:var(--ff-serif);font-size:2.1rem;font-weight:600;color:var(--text);display:block;line-height:1}
+.rv-strip-stars{font-size:1rem;color:var(--accent);letter-spacing:3px;display:block;margin-top:4px;visibility:hidden}
+.rv-strip-label{font-size:.68rem;color:var(--text-3);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:6px;display:block}
+@media(max-width:640px){.rv-stats-inner{grid-template-columns:1fr 1fr}.rv-strip-stat:nth-child(2){border-right:none}.rv-strip-stat:nth-child(3){border-right:none;border-top:1px solid var(--border)}.rv-strip-stat:nth-child(4){border-top:1px solid var(--border)}}
+
+/* ── FILTER PILLS ─────────────────────────────────────────── */
+.rv-filters-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:36px 0 0}
+.rv-filter{padding:7px 20px;border-radius:100px;font-size:.79rem;font-weight:600;cursor:pointer;background:none;border:1px solid var(--border);color:var(--text-3);transition:all .2s;font-family:inherit}
+.rv-filter:hover{border-color:var(--border-2);color:var(--text-2)}
+.rv-filter.active{background:rgba(226,214,3,.1);border-color:rgba(226,214,3,.3);color:var(--accent)}
+
+/* ── WEBINAR SPOTLIGHT ────────────────────────────────────── */
+.rv-webinar-spotlight{background:linear-gradient(135deg,rgba(226,214,3,.06),rgba(226,214,3,.02));border:1px solid rgba(226,214,3,.2);border-radius:16px;padding:28px 32px;margin:28px 0 0;display:none;align-items:center;gap:24px}
+.rv-ws-icon{width:52px;height:52px;background:rgba(226,214,3,.1);border:1px solid rgba(226,214,3,.25);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)}
+.rv-ws-icon svg{width:24px;height:24px}
+.rv-ws-body{flex:1;min-width:0}
+.rv-ws-eyebrow{font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.rv-ws-title{font-family:var(--ff-serif);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:3px}
+.rv-ws-sub{font-size:.81rem;color:var(--text-3);line-height:1.5}
+.rv-ws-count{margin-left:auto;flex-shrink:0;text-align:center;padding-left:24px;border-left:1px solid var(--border)}
+.rv-ws-count-num{display:block;font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+.rv-ws-count-label{font-size:.65rem;color:var(--text-3);font-weight:600;letter-spacing:.07em;text-transform:uppercase;display:block;margin-top:4px}
+@media(max-width:640px){.rv-webinar-spotlight{flex-wrap:wrap;gap:16px}.rv-ws-count{margin-left:0;border-left:none;border-top:1px solid var(--border);padding:16px 0 0;width:100%;text-align:left;display:flex;align-items:center;gap:12px}.rv-ws-count-num{font-size:1.4rem}}
+
+/* ── CAROUSEL SECTION ─────────────────────────────────────── */
+.rv-section{padding:56px 0 80px}
+.rv-story-intro{max-width:760px;margin:0 auto 36px;text-align:center}
+.rv-story-label{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.rv-story-label::before,.rv-story-label::after{content:'';width:28px;height:1px;background:rgba(226,214,3,.5)}
+.rv-story-intro h2{font-family:var(--ff-serif);font-size:clamp(1.5rem,3.5vw,2.35rem);font-weight:600;line-height:1.24;margin-bottom:12px}
+.rv-story-intro p{color:var(--text-2);font-size:.95rem;line-height:1.8;max-width:620px;margin:0 auto}
+.rv-section-intro{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:36px;flex-wrap:wrap}
+.rv-section-label{font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-3)}
+.rv-section-rule{flex:1;height:1px;background:var(--border);margin:0 16px}
+.rv-count-badge{font-size:.75rem;font-weight:600;color:var(--text-3);background:var(--bg-card);border:1px solid var(--border);padding:4px 12px;border-radius:100px;white-space:nowrap}
+
+.rv-carousel-wrap{position:relative;display:flex;align-items:center;gap:14px}
+.rv-viewport{overflow:hidden;flex:1;min-width:0}
+.rv-track{display:flex;gap:20px;transition:transform .42s cubic-bezier(.4,0,.2,1);will-change:transform;align-items:stretch}
+.rv-arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);color:var(--text-2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;padding:0}
+.rv-arrow:hover:not(:disabled){background:var(--accent);border-color:var(--accent);color:#000}
+.rv-arrow:disabled{opacity:.28;cursor:not-allowed}
+.rv-arrow svg{width:18px;height:18px}
+.rv-dots{display:flex;justify-content:center;gap:8px;margin-top:28px}
+.rv-dot{width:8px;height:8px;border-radius:50%;background:var(--border-2);cursor:pointer;border:none;transition:background .2s,transform .2s;padding:0}
+.rv-dot.active{background:var(--accent);transform:scale(1.35)}
+
+/* ── REVIEW CARDS ─────────────────────────────────────────── */
+.rv-track .rv-card{flex:0 0 calc(33.333% - 14px);min-width:0}
+.rv-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;transition:border-color .25s,transform .22s,box-shadow .25s}
+.rv-card:hover{border-color:rgba(255,255,255,.12);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.rv-card--featured{border-color:rgba(226,214,3,.2);background:linear-gradient(150deg,rgba(226,214,3,.05),var(--bg-card))}
+.rv-card--webinar{border-left:3px solid rgba(226,214,3,.35)}
+.rv-stars{font-size:1rem;color:var(--accent);letter-spacing:3px;margin-bottom:16px}
+.rv-text{font-family:var(--ff-serif);font-size:.97rem;color:var(--text-2);line-height:1.9;margin-bottom:auto;padding-bottom:20px;font-style:italic;flex-grow:1}
+.rv-text::before{content:'\201C';font-size:1.8rem;color:var(--accent);opacity:.45;line-height:0;vertical-align:-.45em;margin-right:3px}
+
+/* Author row */
+.rv-author{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid var(--border)}
+.rv-initial{width:38px;height:38px;border-radius:10px;background:rgba(226,214,3,.09);border:1px solid rgba(226,214,3,.18);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--accent);flex-shrink:0;letter-spacing:.02em}
+.rv-author-info{flex:1;min-width:0}
+.rv-name{font-size:.9rem;font-weight:700;color:var(--text);line-height:1.3}
+.rv-role{font-size:.76rem;color:var(--text-3);margin-top:2px;line-height:1.4}
+.rv-source{display:inline-flex;align-items:center;margin-top:7px;font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:5px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.rv-source-google{background:rgba(66,133,244,.12);color:#5b9cf6;border:1px solid rgba(66,133,244,.2)}
+.rv-source-facebook{background:rgba(24,119,242,.12);color:#5b8ef6;border:1px solid rgba(24,119,242,.18)}
+.rv-source-yelp{background:rgba(215,52,52,.1);color:#e07070;border:1px solid rgba(215,52,52,.18)}
+.rv-source-rida,.rv-source-direct,.rv-source-webinar,[class*="rv-source-march"]{background:rgba(226,214,3,.1);color:var(--accent);border:1px solid rgba(226,214,3,.22)}
+.rv-date{display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:var(--text-3);font-weight:500;letter-spacing:.02em;margin-left:auto;flex-shrink:0;white-space:nowrap}
+.rv-date svg{width:11px;height:11px;opacity:.55;flex-shrink:0}
+
+/* ── LOADING ──────────────────────────────────────────────── */
+.rv-loading{text-align:center;padding:80px 0;color:var(--text-3);width:100%}
+.rv-spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,.08);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── CTA ──────────────────────────────────────────────────── */
+.rv-cta{background:linear-gradient(135deg,rgba(226,214,3,.08),rgba(226,214,3,.02));border-top:1px solid rgba(226,214,3,.12);padding:72px 0;text-align:center;position:relative;overflow:hidden}
+.rv-cta::before{content:'RIDA';position:absolute;right:-10px;bottom:-24px;font-family:var(--ff-serif);font-size:clamp(6rem,18vw,12rem);font-weight:600;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none}
+.rv-cta-inner{position:relative;z-index:2}
+.rv-cta-inner h2{font-family:var(--ff-serif);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:600;margin-bottom:14px;line-height:1.25}
+.rv-cta-inner p{color:var(--text-2);font-size:.95rem;line-height:1.8;max-width:520px;margin:0 auto 36px}
+.rv-cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.rv-btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;font-weight:700;font-size:.9rem;padding:.75rem 1.9rem;border-radius:8px;transition:background .2s,transform .2s}
+.rv-btn-primary:hover{background:var(--accent-2);transform:translateY(-2px)}
+.rv-btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text-2);font-weight:600;font-size:.9rem;padding:.75rem 1.9rem;border-radius:8px;border:1px solid var(--border-2);transition:all .2s}
+.rv-btn-secondary:hover{border-color:rgba(255,255,255,.25);color:var(--text)}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:900px){.rv-track .rv-card{flex:0 0 calc(50% - 10px)}}
+@media(max-width:560px){.rv-track .rv-card{flex:0 0 100%}.rv-arrow{width:38px;height:38px}.wrap{padding:0 20px}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="images/RIDA%20Logo%202.svg" alt="RID Academy"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">About</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li class="res-dd">
+      <button class="res-dd-trigger" aria-haspopup="true">Resources<svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <ul class="res-dd-menu">
+        <li><a href="resources.html"><span class="res-dd-icon"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="res-dd-body"><span class="res-dd-title">Articles</span><span class="res-dd-sub">Guides, downloads, and insights</span></span></a></li>
+        <li><a href="tools.html"><span class="res-dd-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.4"/><path d="M5 6h6M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span><span class="res-dd-body"><span class="res-dd-title">Tools</span><span class="res-dd-sub">Free calculators and simulators</span></span></a></li>
+      </ul>
+    </li>
+    <li><a href="webinar-archive.html">Webinar Archive</a></li>
+    <li><a href="growth-engine.html">Marketing Consultation</a></li>
+    <li><a href="partner.html">Partner With Us</a></li>
+    <li><a href="reviews.html" style="color:var(--accent)">Reviews</a></li>
+    <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Hero -->
+<section class="rv-hero">
+  <div class="wrap rv-hero-inner">
+    <div class="rv-hero-label">Attendee Reviews</div>
+    <h1>What Practice Owners Are Saying</h1>
+    <p>Real feedback from dentists who've attended RID Academy webinars and events — in their own words.</p>
+  </div>
+</section>
+
+<!-- Stats Strip -->
+<div class="rv-stats-strip">
+  <div class="wrap">
+    <div class="rv-stats-inner">
+      <div class="rv-strip-stat">
+        <span class="rv-strip-num" id="rv-avg">—</span>
+        <span class="rv-strip-stars" id="rv-stars">★★★★★</span>
+        <span class="rv-strip-label">Average Rating</span>
+      </div>
+      <div class="rv-strip-stat">
+        <span class="rv-strip-num" id="rv-count">—</span>
+        <span class="rv-strip-label">Verified Reviews</span>
+      </div>
+      <div class="rv-strip-stat">
+        <span class="rv-strip-num">100%</span>
+        <span class="rv-strip-label">Would Recommend</span>
+      </div>
+      <div class="rv-strip-stat">
+        <span class="rv-strip-num">Free</span>
+        <span class="rv-strip-label">All Events &amp; Webinars</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Filters + Spotlight + Carousel -->
+<section class="rv-section">
+  <div class="wrap">
+    <div class="rv-story-intro">
+      <div class="rv-story-label">Attendee Stories</div>
+      <h2>See how webinar attendees describe the RID Academy experience</h2>
+      <p>We pulled in the strongest review-page pattern from the Dominate Law layout here too: a clearer section intro, a cleaner review rail, and visible review dates on every RIDA card.</p>
+    </div>
+
+    <!-- Filter pills -->
+    <div class="rv-filters-row" id="rvFilters">
+      <button class="rv-filter active" data-source="all" onclick="filterReviews('all', this)">All Reviews</button>
+    </div>
+
+    <!-- Webinar spotlight -->
+    <div id="rvWebinarSpotlight" class="rv-webinar-spotlight">
+      <div class="rv-ws-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="rv-ws-body">
+        <div class="rv-ws-eyebrow">Featured Webinar</div>
+        <div class="rv-ws-title">RIDA March 31st, 2026 Webinar</div>
+        <div class="rv-ws-sub">Live Q&amp;A · Insurance Independence Strategies · Attendee Reviews</div>
+      </div>
+      <div class="rv-ws-count">
+        <span class="rv-ws-count-num" id="rvWsCount">—</span>
+        <span class="rv-ws-count-label">Attendee Reviews</span>
+      </div>
+    </div>
+
+    <!-- Section heading -->
+    <div class="rv-section-intro" style="margin-top:40px">
+      <span class="rv-section-label" id="rv-section-label">All Reviews</span>
+      <span class="rv-section-rule"></span>
+      <span class="rv-count-badge" id="rv-section-count"></span>
+    </div>
+
+    <!-- Carousel -->
+    <div class="rv-carousel-wrap">
+      <button class="rv-arrow" id="rv-prev" aria-label="Previous reviews" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="rv-viewport">
+        <div class="rv-track" id="rv-track">
+          <div class="rv-loading"><div class="rv-spinner"></div><p>Loading reviews…</p></div>
+        </div>
+      </div>
+      <button class="rv-arrow" id="rv-next" aria-label="Next reviews" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="rv-dots" id="rv-dots"></div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="rv-cta">
+  <div class="wrap rv-cta-inner">
+    <h2>Join Our Next Free Webinar</h2>
+    <p>Learn proven strategies to reduce PPO dependence and build a more profitable dental practice — completely free.</p>
+    <div class="rv-cta-actions">
+      <a href="events.html" class="rv-btn-primary">See Upcoming Events →</a>
+      <a href="webinar-archive.html" class="rv-btn-secondary">Watch Past Webinars</a>
+    </div>
+  </div>
+</section>
+
+<footer></footer>
+
+<script src="data/sheets.js"></script>
+<script>
+var allReviews = [];
+var carouselIdx = 0;
+var carouselTotal = 0;
+
+/* ── Date formatter ───────────────────────────────────── */
+function formatReviewDate(raw) {
+  if (!raw) return '';
+  var rawStr = String(raw).trim();
+  
+  // Handle Google Sheets Date(YYYY,M,D) format
+  var dateMatch = rawStr.match(/^Date\((\d{4}),(\d{1,2}),(\d{1,2})\)$/);
+  if (dateMatch) {
+    var y = dateMatch[1];
+    var m = String(dateMatch[2]).padStart(2, '0');
+    var day = String(dateMatch[3]).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+  }
+  
+  var d = new Date(raw);
+  if (isNaN(d.getTime())) d = new Date(rawStr.replace(/\//g, '-'));
+  if (isNaN(d.getTime())) return rawStr;
+  var y = d.getFullYear();
+  var m = String(d.getMonth() + 1).padStart(2, '0');
+  var day = String(d.getDate()).padStart(2, '0');
+  return y + '-' + m + '-' + day;
+}
+
+function extractFallbackReviewDate(r) {
+  var direct = formatReviewDate(r.date);
+  if (direct) return direct;
+  var source = String(r.source || r.platform || '').trim();
+  if (!source) return '';
+  var match = source.match(/(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2})(?:st|nd|rd|th)?(?:,)?\s+(\d{4})/i);
+  if (!match) return '';
+  return formatReviewDate(match[3] + '-' + match[1] + '-' + match[2]);
+}
+
+/* ── Card renderer ────────────────────────────────────── */
+function renderReviewCard(r) {
+  var name    = (r.name || r.reviewer_name || '').trim();
+  var source  = (r.source || r.platform || '').trim();
+  var text    = (r.review || r.review_text || r.testimonial || '').trim();
+  var rating  = Math.min(5, Math.max(1, parseInt(r.rating) || 5));
+  var stars   = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  var initials = (name || '?').split(' ').map(function(w){ return w[0] || ''; }).join('').substring(0, 2).toUpperCase();
+  var src     = source.toLowerCase();
+  var isWebinar = /webinar|rida|march/i.test(src);
+  var sourceCls = 'rv-source rv-source-' + (isWebinar ? 'webinar' : (src.replace(/\s+/g, '') || 'direct'));
+  var roleStr = [r.role, r.practice, r.location].filter(Boolean).join(' · ');
+  var featured = /true|yes|1/i.test(r.featured || '');
+  var dateStr = extractFallbackReviewDate(r);
+  return '<div class="rv-card'
+    + (featured ? ' rv-card--featured' : '')
+    + (isWebinar ? ' rv-card--webinar' : '')
+    + '">'
+    + '<div class="rv-stars">' + stars + '</div>'
+    + '<p class="rv-text">' + text + '</p>'
+    + '<div class="rv-author">'
+    + '<div class="rv-initial">' + initials + '</div>'
+    + '<div class="rv-author-info">'
+    +   '<div class="rv-name">' + (name || 'Anonymous') + '</div>'
+    +   (roleStr ? '<div class="rv-role">' + roleStr + '</div>' : '')
+    +   (source ? '<span class="' + sourceCls + '">' + source + '</span>' : '')
+    + '</div>'
+    + (dateStr
+        ? '<div class="rv-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>' + dateStr + '</div>'
+        : '')
+    + '</div>'
+    + '</div>';
+}
+
+/* ── Carousel engine ──────────────────────────────────── */
+function visibleCount() {
+  return window.innerWidth <= 560 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+}
+
+function carouselUpdate() {
+  var track  = document.getElementById('rv-track');
+  var prev   = document.getElementById('rv-prev');
+  var next   = document.getElementById('rv-next');
+  var dotsEl = document.getElementById('rv-dots');
+  if (!track) return;
+
+  var vis  = visibleCount();
+  var maxI = Math.max(0, carouselTotal - vis);
+  carouselIdx = Math.max(0, Math.min(carouselIdx, maxI));
+
+  var vp   = track.parentElement;
+  var vpW  = vp ? vp.offsetWidth : 0;
+  var gap  = 20;
+  var cardW = vpW > 0 ? (vpW - (vis - 1) * gap) / vis : 0;
+  track.style.transform = 'translateX(' + (-carouselIdx * (cardW + gap)) + 'px)';
+
+  if (prev) prev.disabled = carouselIdx === 0;
+  if (next) next.disabled = carouselIdx >= maxI;
+
+  if (dotsEl && maxI > 0) {
+    var html = '';
+    for (var i = 0; i <= maxI; i++) {
+      html += '<button class="rv-dot' + (i === carouselIdx ? ' active' : '') + '" data-i="' + i + '"></button>';
+    }
+    dotsEl.innerHTML = html;
+    dotsEl.querySelectorAll('.rv-dot').forEach(function(d) {
+      d.addEventListener('click', function() {
+        carouselIdx = parseInt(this.getAttribute('data-i'));
+        carouselUpdate();
+      });
+    });
+  } else if (dotsEl) {
+    dotsEl.innerHTML = '';
+  }
+}
+
+function carouselInit(count) {
+  carouselTotal = count;
+  carouselIdx   = 0;
+  carouselUpdate();
+  var prev = document.getElementById('rv-prev');
+  var next = document.getElementById('rv-next');
+  if (prev) prev.onclick = function() { carouselIdx = Math.max(0, carouselIdx - 1); carouselUpdate(); };
+  if (next) next.onclick = function() { carouselIdx = Math.min(carouselTotal - visibleCount(), carouselIdx + 1); carouselUpdate(); };
+}
+
+window.addEventListener('resize', function() { carouselUpdate(); });
+
+/* ── Filter + render ──────────────────────────────────── */
+function rSrc(r) { return (r.source || r.platform || '').toLowerCase().trim(); }
+
+function filterReviews(source, btn) {
+  document.querySelectorAll('.rv-filter').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+
+  var spotlight = document.getElementById('rvWebinarSpotlight');
+  var track     = document.getElementById('rv-track');
+  var labelEl   = document.getElementById('rv-section-label');
+  var countEl   = document.getElementById('rv-section-count');
+
+  var filtered = source === 'all'
+    ? allReviews
+    : allReviews.filter(function(r) {
+        var rs = rSrc(r);
+        return rs === source || rs.indexOf(source) !== -1 || source.indexOf(rs) !== -1;
+      });
+
+  if (!filtered.length) {
+    track.innerHTML = '<div class="rv-loading"><p style="color:var(--text-3)">No reviews found.</p></div>';
+    if (spotlight) spotlight.style.display = 'none';
+    if (countEl) countEl.textContent = '';
+    carouselInit(0);
+    return;
+  }
+
+  // Webinar reviews first, then others
+  var webinar = filtered.filter(function(r) { return /webinar|rida|march/i.test(rSrc(r)); });
+  var others  = filtered.filter(function(r) { return !/webinar|rida|march/i.test(rSrc(r)); });
+  var sorted  = webinar.concat(others);
+  var isWebinarFilter = /webinar|rida|march/i.test(source);
+
+  // Spotlight
+  if (spotlight) {
+    var showSpot = webinar.length > 0 && (source === 'all' || isWebinarFilter);
+    spotlight.style.display = showSpot ? 'flex' : 'none';
+    var wsCount = document.getElementById('rvWsCount');
+    if (wsCount) wsCount.textContent = webinar.length;
+  }
+
+  // Section label
+  if (labelEl) labelEl.textContent = source === 'all' ? 'All Reviews' : source;
+  if (countEl) countEl.textContent = sorted.length + ' review' + (sorted.length !== 1 ? 's' : '');
+
+  // Render into track
+  track.innerHTML = sorted.map(renderReviewCard).join('');
+  carouselInit(sorted.length);
+}
+</script>
+<script src="data/site-chrome.js" defer></script>
+</body>
+</html>

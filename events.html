@@ -41,9 +41,9 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
 
 /* ── Section header ── */
 .ev-section{padding:72px 0}
-.ev-section-label{font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
-.ev-section h2{font-family:var(--ff-serif);font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:600;margin-bottom:10px}
-.ev-section-sub{font-size:.95rem;color:var(--text-2);max-width:500px;line-height:1.75;margin-bottom:44px}
+.ev-section-label{font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;text-align:center}
+.ev-section h2{font-family:var(--ff-serif);font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:600;margin-bottom:10px;text-align:center}
+.ev-section-sub{font-size:.95rem;color:var(--text-2);max-width:500px;line-height:1.75;margin-bottom:44px;text-align:center;margin-left:auto;margin-right:auto}
 
 /* ── Events grid ── */
 .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -101,14 +101,14 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
 .ev-summit-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
 
 /* ── Benefits ── */
-.ev-benefits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px;border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.ev-benefit{padding:24px 26px;background:var(--bg-card);transition:background .2s}
-.ev-benefit:hover{background:var(--bg-elevated)}
-.ev-benefit-icon{width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(226,214,3,.1);border:1px solid rgba(226,214,3,.18);color:var(--accent);margin-bottom:16px}
+.ev-benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ev-benefit{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;transition:border-color .3s,transform .2s}
+.ev-benefit:hover{border-color:rgba(226,214,3,.4);transform:translateY(-4px)}
+.ev-benefit-icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(226,214,3,.08);border:1px solid rgba(226,214,3,.18);color:var(--accent);margin-bottom:16px}
 .ev-benefit-icon svg{width:22px;height:22px}
-.ev-benefit-num{font-size:.65rem;font-weight:800;letter-spacing:.1em;color:var(--accent);margin-bottom:10px}
-.ev-benefit h3{font-family:var(--ff-serif);font-size:1rem;font-weight:600;margin-bottom:7px}
-.ev-benefit p{font-size:.855rem;color:var(--text-3);line-height:1.7}
+.ev-benefit h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+.ev-benefit p{font-size:.875rem;color:var(--text-3);line-height:1.65}
+@media(max-width:768px){.ev-benefits-grid{grid-template-columns:1fr}}
 
 /* ── Archive strip ── */
 .ev-archive{padding:56px 0;text-align:center;border-top:1px solid var(--border)}
@@ -151,6 +151,7 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
     <li><a href="webinar-archive.html">Webinar Archive</a></li>
     <li><a href="growth-engine.html">Marketing Consultation</a></li>
     <li><a href="partner.html">Partner With Us</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
     <li><a href="events.html" class="nav-cta active">Join Our Events</a></li>
   </ul>
   <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')" aria-label="Menu">&#9776;</button>
@@ -210,52 +211,46 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
     <p class="ev-section-sub">Every RID Academy event is built around one goal — giving you what you need to act.</p>
     <div class="ev-benefits-grid">
       <div class="ev-benefit">
-        <div class="ev-benefit-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 9.2 17 19 7"/><path d="M19 12v7H5V5h10"/></svg>
+        <div class="ev-benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 9.2 17 19 7"/><path d="M19 12v7H5V5h10"/></svg>
         </div>
-        <div class="ev-benefit-num">01</div>
         <h3>Proven Strategies</h3>
         <p>Battle-tested approaches from practices that have reduced insurance dependence by 50–80%.</p>
       </div>
       <div class="ev-benefit">
-        <div class="ev-benefit-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 19c1.5-3.4 4-5 7-5s5.5 1.6 7 5"/><path d="M18 6l1.5 1.5L22 5"/></svg>
+        <div class="ev-benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 19c1.5-3.4 4-5 7-5s5.5 1.6 7 5"/><path d="M18 6l1.5 1.5L22 5"/></svg>
         </div>
-        <div class="ev-benefit-num">02</div>
         <h3>Expert Instructors</h3>
         <p>Learn from practice owners, financial advisors, and consultants who've built thriving businesses.</p>
       </div>
       <div class="ev-benefit">
-        <div class="ev-benefit-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h8l4 4v12H7z"/><path d="M15 4v4h4"/><path d="M10 13h4M10 17h6"/></svg>
+        <div class="ev-benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h8l4 4v12H7z"/><path d="M15 4v4h4"/><path d="M10 13h4M10 17h6"/></svg>
         </div>
-        <div class="ev-benefit-num">03</div>
         <h3>Actionable Resources</h3>
         <p>Templates, financial models, and playbooks you can implement immediately in your practice.</p>
       </div>
       <div class="ev-benefit">
-        <div class="ev-benefit-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.5"/><circle cx="16" cy="9" r="2.5"/><path d="M3.5 18c1.2-2.5 3-3.8 4.5-3.8S11.3 15.5 12.5 18"/><path d="M11.5 18c1.2-2.5 3-3.8 4.5-3.8s3.3 1.3 4.5 3.8"/></svg>
+        <div class="ev-benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.5"/><circle cx="16" cy="9" r="2.5"/><path d="M3.5 18c1.2-2.5 3-3.8 4.5-3.8S11.3 15.5 12.5 18"/><path d="M11.5 18c1.2-2.5 3-3.8 4.5-3.8s3.3 1.3 4.5 3.8"/></svg>
         </div>
-        <div class="ev-benefit-num">04</div>
         <h3>Peer Network</h3>
         <p>Connect with like-minded practice owners and build lasting professional relationships.</p>
       </div>
       <div class="ev-benefit">
-        <div class="ev-benefit-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.4 8.5 8 9 4.6-.5 8-4 8-9V7z"/><path d="M9.5 12.5 11.5 14.5 15.5 10.5"/></svg>
+        <div class="ev-benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.4 8.5 8 9 4.6-.5 8-4 8-9V7z"/><path d="M9.5 12.5 11.5 14.5 15.5 10.5"/></svg>
         </div>
-        <div class="ev-benefit-num">05</div>
         <h3>Personalized Guidance</h3>
         <p>Get direct feedback on your situation and tailored recommendations for your practice.</p>
       </div>
       <div class="ev-benefit">
-        <div class="ev-benefit-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M6.5 7.5 12 3l5.5 4.5"/><path d="M6.5 16.5 12 21l5.5-4.5"/></svg>
+        <div class="ev-benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         </div>
-        <div class="ev-benefit-num">06</div>
         <h3>Stay Current</h3>
-        <p>Keep up with industry trends and market changes that affect your revenue model.</p>
+        <p>Keep up with industry trends and market changes that affect your revenue model and patient mix.</p>
       </div>
     </div>
   </div>
@@ -328,12 +323,22 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
 
 <script src="data/rida-data.js"></script>
 <script src="data/sheets.js"></script>
+<script src="data/forms.js"></script>
 <script>
 function handleNewsletterSignup(e) {
   e.preventDefault();
-  var email = e.target.querySelector('input[type="email"]').value;
-  alert('Thank you! We\'ll send updates to ' + email);
-  e.target.reset();
+  var btn   = e.target.querySelector('button[type="submit"]');
+  var email = e.target.querySelector('input[type="email"]').value.trim();
+  if (!email) return;
+  var origText = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Subscribing…'; }
+  ridaSubmitForm({ email: email }, 'newsletter').then(function() {
+    if (btn) { btn.textContent = '✓ Subscribed!'; }
+    e.target.querySelector('input[type="email"]').value = '';
+    setTimeout(function() {
+      if (btn) { btn.disabled = false; btn.textContent = origText; }
+    }, 3500);
+  });
 }
 function getSpeakerObjectPosition(name) {
   if (/callie ward/i.test(name || '')) return 'center 18%';

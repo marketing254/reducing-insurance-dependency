@@ -270,6 +270,22 @@
       flex: 1;
     }
 
+    /* Rich description */
+    .wb-intro-para { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-bottom: 12px; }
+    /* Presenter row — accent-tinted pill */
+    .wb-presenter-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-2); font-weight: 600; margin-bottom: 12px; padding: 6px 12px; background: rgba(226,214,3,.05); border: 1px solid rgba(226,214,3,.15); border-radius: 7px; width: fit-content; }
+    .wb-presenter-tag svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--accent); opacity: .85; }
+    .wb-presenter-label { font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin-right: 2px; }
+    /* Section label with rule — same as podcast keynotes heading */
+    .wb-takeaways-label { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 14px 0 10px; }
+    .wb-takeaways-label::after { content: ''; flex: 1; height: 1px; background: rgba(226,214,3,.15); }
+    /* Key-point items — styled like podcast ep-content-list */
+    .wb-points { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 6px; }
+    .wb-points li { font-size: 12px; color: var(--text-2); padding: 8px 10px 8px 30px; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 7px; position: relative; line-height: 1.65; transition: border-color .18s, background .18s; }
+    .wb-points li:hover { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.10); }
+    .wb-points li::before { content: '→'; position: absolute; left: 10px; top: 8px; color: var(--accent); font-weight: 700; font-size: 10px; }
+    .wb-desc-divider { height: 1px; background: var(--border); margin: 10px 0 14px; }
+
     .webinar-duration {
       color: var(--text-3);
       font-size: 13px;
@@ -668,6 +684,7 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
       <li><a href="webinar-archive.html" style="color: var(--accent)">Webinar Archive</a></li>
       <li><a href="growth-engine.html">Marketing Consultation</a></li>
       <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
       <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
     </ul>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
@@ -780,12 +797,40 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
       filtered.forEach(w => {
         const card = document.createElement('div');
         card.className = 'webinar-card';
+        // Parse description into intro + key points
+        var desc = w.description || '';
+        var lines = desc.split(/\r?\n/).map(function(l){ return l.trim(); }).filter(Boolean);
+        var intro = [], points = [];
+        var inPoints = false;
+        lines.forEach(function(l) {
+          if (/^key (takeaways?|points?)/i.test(l)) { inPoints = true; return; }
+          if (inPoints) points.push(l.replace(/^[•\-*–—>]\s+/,'').replace(/^\d+[.)]\s+/,''));
+          else intro.push(l);
+        });
+        var introHtml = intro.slice(0,2).map(function(p){ return '<p class="wb-intro-para">' + p + '</p>'; }).join('');
+        var pointsHtml = points.length
+          ? '<div class="wb-takeaways-label">Key Takeaways</div><ul class="wb-points">'
+            + points.slice(0,4).map(function(p){ return '<li>' + p + '</li>'; }).join('')
+            + '</ul>'
+          : '';
+        var descHtml = (introHtml || pointsHtml)
+          ? (introHtml ? '<div class="wb-desc-divider"></div>' + introHtml : '') + pointsHtml
+          : '<p class="wb-intro-para">' + (desc || 'Watch the replay and explore the key takeaways from this session.') + '</p>';
+        var presenterSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+        var presenterHtml = w.presenter ? '<div class="wb-presenter-tag">' + presenterSvg + '<span class="wb-presenter-label">Presenter</span><span>' + w.presenter + '</span></div>' : '';
+
         card.innerHTML = '<div class="webinar-gradient"></div><div class="webinar-content">'
-          + '<div class="webinar-badge">' + (labels[w.category] || w.category) + '</div>'
+          + '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">'
+          +   '<div class="webinar-badge">' + (labels[w.category] || w.category) + '</div>'
+          +   (w.duration ? '<span style="font-size:11px;color:var(--text-3);font-weight:500;">' + w.duration + '</span>' : '')
+          + '</div>'
           + '<h3>' + w.title + '</h3>'
-          + '<p>' + (w.description || 'Watch the replay and explore the key takeaways from this session.') + '</p>'
-          + '<div class="webinar-duration">' + w.duration + '</div>'
-          + '<a class="webinar-btn" href="webinar/?title=' + encodeURIComponent(w.title) + '">Watch Replay &rarr;</a>'
+          + presenterHtml
+          + descHtml
+          + '<a class="webinar-btn" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;" href="webinar/?title=' + encodeURIComponent(w.title) + '">'
+          +   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
+          +   'Watch Replay'
+          + '</a>'
           + '</div>';
         grid.appendChild(card);
       });
@@ -819,9 +864,13 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
 
     function submitForm(e) {
       e.preventDefault();
-      var name  = document.getElementById('wbName').value;
-      var email = document.getElementById('wbEmail').value;
-      console.log('Webinar access:', { name: name, email: email, webinar: selectedWebinar ? selectedWebinar.title : '' });
+      var name    = document.getElementById('wbName').value.trim();
+      var email   = document.getElementById('wbEmail').value.trim();
+      var webinar = selectedWebinar ? selectedWebinar.title : '';
+      // Save to Google Sheets
+      if (typeof ridaSubmitForm === 'function') {
+        ridaSubmitForm({ name: name, email: email, webinar: webinar }, 'webinar_access');
+      }
 
       if (selectedWebinar && selectedWebinar.gated && selectedWebinar.vimeo_full_embed) {
         document.getElementById('modalFormContent').style.display = 'none';
@@ -902,6 +951,7 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
 }
 </style>
 <script src="data/sheets.js"></script>
+<script src="data/forms.js"></script>
 
 <script src="data/site-chrome.js" defer></script>
 </body>

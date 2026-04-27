@@ -310,41 +310,21 @@
     }
 
     .speaker-avatar {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 24px;
+      overflow: hidden;
+      border: 3px solid rgba(226,214,3,0.25);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+      background: var(--bg-elevated);
     }
 
-    .speaker-card:nth-child(1) .speaker-avatar {
-      background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
-    }
-
-    .speaker-card:nth-child(2) .speaker-avatar {
-      background: linear-gradient(135deg, #4ECDC4, #6EE7DE);
-    }
-
-    .speaker-card:nth-child(3) .speaker-avatar {
-      background: linear-gradient(135deg, #FFD93D, #FFE66D);
-    }
-
-    .speaker-card:nth-child(4) .speaker-avatar {
-      background: linear-gradient(135deg, #6C5CE7, #A29BFE);
-    }
-
-    .speaker-card:nth-child(5) .speaker-avatar {
-      background: linear-gradient(135deg, #00B894, #55EFC4);
-    }
-
-    .speaker-card:nth-child(6) .speaker-avatar {
-      background: linear-gradient(135deg, #FD79A8, #FDCB6E);
+    .speaker-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .speaker-name {
@@ -528,6 +508,44 @@
       font-size: 14px;
       line-height: 1.6;
     }
+
+    /* ═══ Stats Bar ═══ */
+    .sm-stats{display:flex;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg-card);margin:0 0 70px}
+    .sm-stat{flex:1;padding:26px 14px;text-align:center;border-right:1px solid var(--border);position:relative}
+    .sm-stat:last-child{border-right:none}
+    .sm-stat-n{display:block;font-size:30px;font-weight:800;color:var(--accent);line-height:1;margin-bottom:6px;letter-spacing:-0.02em}
+    .sm-stat-l{display:block;font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em}
+
+    /* ═══ Section eyebrow ═══ */
+    .sm-eyebrow{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:14px}
+    .section-title{text-align:center}
+
+    /* ═══ Summit benefit cards ═══ */
+    .sm-benefits{margin:0 0 100px}
+    .sm-benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:0}
+    .sm-benefit-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:28px 22px;transition:border-color .3s,transform .2s}
+    .sm-benefit-card:hover{border-color:rgba(226,214,3,.4);transform:translateY(-4px)}
+    .sm-benefit-icon{width:46px;height:46px;background:var(--accent-bg);border:1px solid rgba(226,214,3,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:16px}
+    .sm-benefit-icon svg{width:22px;height:22px}
+    .sm-benefit-card h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+    .sm-benefit-card p{font-size:.875rem;color:var(--text-3);line-height:1.65}
+
+    /* ═══ Speaker overrides ═══ */
+    .speakers-grid{grid-template-columns:repeat(3,1fr)!important;gap:24px!important}
+    .speaker-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px 20px 22px;transition:border-color .3s,transform .3s}
+    .speaker-card:hover{border-color:rgba(226,214,3,.3);transform:translateY(-6px)}
+    .speaker-avatar{width:150px!important;height:150px!important}
+
+    @media(max-width:800px){
+      .sm-stats{flex-wrap:wrap}
+      .sm-stat{flex:1 1 calc(50% - 1px);min-width:120px}
+      .sm-benefits-grid,.sessions-grid{grid-template-columns:1fr}
+      .speakers-grid{grid-template-columns:repeat(2,1fr)!important}
+    }
+    @media(max-width:480px){.speakers-grid{grid-template-columns:1fr!important}}
+
+    /* ═══ Section accent rule ═══ */
+    .sm-section-rule{width:48px;height:3px;background:var(--accent);border-radius:3px;margin:0 auto 40px}
 
     /* Footer */
 
@@ -728,6 +746,7 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
       <li><a href="webinar-archive.html" style="color: var(--accent)">Webinar Archive</a></li>
       <li><a href="growth-engine.html">Marketing Consultation</a></li>
       <li><a href="partner.html">Partner With Us</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
       <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
     </ul>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
@@ -746,6 +765,17 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
       </div>
     </div>
   </section>
+
+  <!-- Stats Bar -->
+  <div class="container">
+    <div class="sm-stats">
+      <div class="sm-stat"><span class="sm-stat-n">10K+</span><span class="sm-stat-l">Annual Registrants</span></div>
+      <div class="sm-stat"><span class="sm-stat-n">5+</span><span class="sm-stat-l">CE Credits</span></div>
+      <div class="sm-stat"><span class="sm-stat-n">6</span><span class="sm-stat-l">Expert Speakers</span></div>
+      <div class="sm-stat"><span class="sm-stat-n">3</span><span class="sm-stat-l">Days of Sessions</span></div>
+      <div class="sm-stat"><span class="sm-stat-n">100%</span><span class="sm-stat-l">Free to Attend</span></div>
+    </div>
+  </div>
 
   <!-- Event Details -->
   <div class="container">
@@ -767,7 +797,9 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
 
   <!-- Session Tracks -->
   <div class="container">
+    <div class="sm-eyebrow">What You'll Learn</div>
     <h2 class="section-title">Summit Session Tracks</h2>
+    <div class="sm-section-rule"></div>
     <div class="sessions-grid">
       <div class="session-card">
         <div class="session-content">
@@ -818,45 +850,47 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
 
   <!-- Speakers -->
   <div class="container">
+    <div class="sm-eyebrow">2026 Lineup</div>
     <h2 class="section-title">Featured Speakers</h2>
+    <div class="sm-section-rule"></div>
     <div class="speakers-grid">
       <div class="speaker-card">
-        <div class="speaker-avatar">G</div>
+        <div class="speaker-avatar"><img src="https://lh3.googleusercontent.com/d/1YOEwOqQZWno-18d8r_oBoW6hv14rfmWm=w400" alt="Gary Takacs" loading="lazy"></div>
         <div class="speaker-name">Gary Takacs</div>
         <div class="speaker-title">Thriving Dentist Podcast Founder</div>
         <div class="speaker-topic">PPO Negotiation & Practice Philosophy</div>
       </div>
 
       <div class="speaker-card">
-        <div class="speaker-avatar">P</div>
+        <div class="speaker-avatar"><img src="https://lh3.googleusercontent.com/d/1sYzpqf96L0CyJ03ihBqBrCKm3afTLqrC=w400" alt="Dr. Paul Henny" loading="lazy"></div>
         <div class="speaker-name">Dr. Paul Henny</div>
         <div class="speaker-title">Practice Growth Expert</div>
         <div class="speaker-topic">Building 100% Fee-For-Service Practices</div>
       </div>
 
       <div class="speaker-card">
-        <div class="speaker-avatar">N</div>
+        <div class="speaker-avatar"><img src="https://lh3.googleusercontent.com/d/1IsFAUGJKgBV3L8PdRk7t5VHzFoYMa150=w400" alt="Nikkie" loading="lazy"></div>
         <div class="speaker-name">Dr. Nikki Green</div>
         <div class="speaker-title">Practice Owner & Consultant</div>
         <div class="speaker-topic">Patient Retention During Transitions</div>
       </div>
 
       <div class="speaker-card">
-        <div class="speaker-avatar">U</div>
+        <div class="speaker-avatar"><img src="https://lh3.googleusercontent.com/d/1UDV3vV_8BswlbuiTFCqvM-Th1fUplBbK=w400" alt="Uche Odiatu" loading="lazy"></div>
         <div class="speaker-name">Uche Odiatu</div>
         <div class="speaker-title">Business Coach & Author</div>
         <div class="speaker-topic">The Business of Dentistry</div>
       </div>
 
       <div class="speaker-card">
-        <div class="speaker-avatar">A</div>
+        <div class="speaker-avatar"><img src="https://lh3.googleusercontent.com/d/1n3G96gvZM9XvGNzvHqgLhyO1wqw2rvjb=w400" alt="Art Wiederman" loading="lazy"></div>
         <div class="speaker-name">Art Wiederman, CPA</div>
         <div class="speaker-title">American Dental CPA Association</div>
         <div class="speaker-topic">Financial Planning & Tax Strategy</div>
       </div>
 
       <div class="speaker-card">
-        <div class="speaker-avatar">N</div>
+        <div class="speaker-avatar"><img src="https://lh3.googleusercontent.com/d/1s2lJStGhPhDg1kfzlL_T-qTTR6NUhGre=w400" alt="Niara" loading="lazy"></div>
         <div class="speaker-name">Naiara Wireman</div>
         <div class="speaker-title">Practice Consultant</div>
         <div class="speaker-topic">Team Communication & Leadership</div>
@@ -867,20 +901,64 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
   <!-- Testimonial -->
   <div class="container">
     <div class="testimonial">
-      <p class="testimonial-text">"The summit gave me the confidence to finally resign from two PPO plans. The financial planning session alone was worth it - I knew exactly what to expect in months 1-6. Three months in and revenue is already recovering."</p>
-      <p class="testimonial-author">- Dr. Michelle T., General Dentist, California</p>
+      <div style="font-size:28px;color:var(--accent);opacity:.5;margin-bottom:16px;font-family:Georgia,serif;line-height:1">&ldquo;</div>
+      <p class="testimonial-text">"The summit gave me the confidence to finally resign from two PPO plans. The financial planning session alone was worth it — I knew exactly what to expect in months 1–6. Three months in and revenue is already recovering."</p>
+      <div style="width:40px;height:2px;background:var(--accent);margin:20px auto;opacity:.4;border-radius:2px"></div>
+      <p class="testimonial-author">Dr. Michelle T. — General Dentist, California</p>
+      <p style="font-size:11px;color:var(--text-4);margin-top:6px;letter-spacing:.04em">RID Academy Summit Alumni</p>
     </div>
   </div>
 
   <!-- Waitlist CTA -->
   <div class="container">
-    <div class="waitlist-cta" id="waitlist">
+    <div class="waitlist-cta" id="waitlist" style="background:linear-gradient(135deg,var(--bg-card),var(--bg-elevated));border-color:rgba(226,214,3,.15)">
       <h2 class="waitlist-title">Registration Opens Soon</h2>
       <form class="waitlist-form" onsubmit="handleWaitlist(event)">
         <input type="email" class="waitlist-input" placeholder="Enter your email" required>
         <button type="submit" class="waitlist-button">Notify Me →</button>
       </form>
       <p class="waitlist-note">Join 10,000+ dental professionals preparing for independence</p>
+    </div>
+  </div>
+
+  <!-- Why Attend -->
+  <div class="container">
+    <div class="sm-benefits">
+      <div class="sm-eyebrow">Why Attend</div>
+      <h2 class="section-title" style="margin-bottom:12px;">6 Reasons Not to Miss This Summit</h2>
+      <div class="sm-section-rule"></div>
+      <div class="sm-benefits-grid">
+        <div class="sm-benefit-card">
+          <div class="sm-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <h3>Real, Actionable Strategies</h3>
+          <p>Every session is built around steps you can implement in your practice the week after the summit ends — not theory, not fluff.</p>
+        </div>
+        <div class="sm-benefit-card">
+          <div class="sm-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3>Targeted Expert Lineup</h3>
+          <p>Six hand-picked speakers — all with proven track records helping dental practices successfully reduce or eliminate insurance dependence.</p>
+        </div>
+        <div class="sm-benefit-card">
+          <div class="sm-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Community of Peers</h3>
+          <p>Connect with 10,000+ dental professionals on the same journey. Build relationships that extend far beyond the three days.</p>
+        </div>
+        <div class="sm-benefit-card">
+          <div class="sm-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3>Live + On-Demand Access</h3>
+          <p>Attend sessions live and ask questions in real time — or watch the recordings on demand for 30 days after the event closes.</p>
+        </div>
+        <div class="sm-benefit-card">
+          <div class="sm-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <h3>CE Credits Included</h3>
+          <p>Earn 5+ AGD-PACE approved continuing education credits — recognized by dental boards nationwide. No extra cost, no separate signup.</p>
+        </div>
+        <div class="sm-benefit-card">
+          <div class="sm-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Completely Free</h3>
+          <p>No registration fee, no premium tier, no hidden upsells. We believe every dentist serious about independence deserves access to this education.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -941,17 +1019,36 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
   </div>
 
   <!-- Footer -->
-  
-gation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+
+  <script src="data/forms.js"></script>
+  <script>
+  // Smooth-scroll navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+  });
+
+  // Waitlist form → Google Sheets via Apps Script
+  function handleWaitlist(e) {
+    e.preventDefault();
+    var btn   = e.target.querySelector('button[type="submit"]');
+    var email = e.target.querySelector('input[type="email"]').value.trim();
+    if (!email) return;
+    var origText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+    ridaSubmitForm({ email: email }, 'waitlist').then(function() {
+      btn.textContent = '✓ You\'re on the list!';
+      e.target.querySelector('input[type="email"]').value = '';
+      setTimeout(function() {
+        btn.disabled = false;
+        btn.textContent = origText;
+      }, 3500);
+    });
+  }
   </script>
 
 

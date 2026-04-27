@@ -414,6 +414,7 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
       <li><a href="webinar-archive.html">Webinar Archive</a></li>
       <li><a href="growth-engine.html">Marketing Consultation</a></li>
       <li><a href="partner.html" style="color: var(--accent)">Partner With Us</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
       <li><a href="events.html" class="nav-cta">Join Our Events</a></li>
     </ul>
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
@@ -583,103 +584,55 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
   </div>
 </footer>
 
+<script src="data/forms.js"></script>
 <script>
-// ===== GOOGLE APPS SCRIPT INTEGRATION =====
-// WEBMASTER: Follow these steps to connect the form to Google Sheets:
-// 1. Create a Google Sheet with columns: Timestamp, First Name, Last Name, Email, Phone, Company, Role, Interested In, Topic, LinkedIn
-// 2. Go to Extensions > Apps Script and paste:
-//    function doPost(e) {
-//      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-//      var data = JSON.parse(e.postData.contents);
-//      sheet.appendRow([
-//        new Date(),
-//        data.firstName,
-//        data.lastName,
-//        data.email,
-//        data.phone,
-//        data.company,
-//        data.role,
-//        data.type,
-//        data.topic,
-//        data.linkedin
-//      ]);
-//      var subject = 'New Speaker/Partner Application: ' + data.firstName + ' ' + data.lastName;
-//      var body = 'New application received:\n\n' +
-//        'Name: ' + data.firstName + ' ' + data.lastName + '\n' +
-//        'Email: ' + data.email + '\n' +
-//        'Phone: ' + data.phone + '\n' +
-//        'Company: ' + data.company + '\n' +
-//        'Role: ' + data.role + '\n' +
-//        'Interested In: ' + data.type + '\n' +
-//        'Topic: ' + data.topic + '\n' +
-//        'LinkedIn: ' + data.linkedin;
-//      var recipients = 'chamika.p@ekwa.com,lester@ekwa.com,shezaan@ekwa.com';
-//      MailApp.sendEmail(recipients, subject, body);
-//      return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
-//    }
-// 3. Deploy as Web App (execute as you, access: anyone), copy the URL
-// 4. Replace GOOGLE_APPS_SCRIPT_URL below with that URL
-
-const GOOGLE_APPS_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
-const SPEAKER_FALLBACK_EMAIL = 'team@rid.academy';
-
-document.getElementById('speakerForm').addEventListener('submit', async function(e) {
+document.getElementById('speakerForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const form = document.getElementById('speakerForm');
-  const btn = document.getElementById('speakerSubmitBtn');
-  const message = document.getElementById('speakerFormMessage');
+  var form    = document.getElementById('speakerForm');
+  var btn     = document.getElementById('speakerSubmitBtn');
+  var message = document.getElementById('speakerFormMessage');
   btn.disabled = true;
-  btn.textContent = 'Submitting...';
+  btn.textContent = 'Submitting…';
   message.className = 'form-message';
   message.textContent = '';
 
-  const formData = {
-    firstName: document.getElementById('spkFirstName').value,
-    lastName: document.getElementById('spkLastName').value,
-    email: document.getElementById('spkEmail').value,
-    phone: document.getElementById('spkPhone').value,
-    company: document.getElementById('spkCompany').value,
-    role: document.getElementById('spkRole').value,
-    type: document.getElementById('spkType').value,
-    topic: document.getElementById('spkTopic').value,
-    linkedin: document.getElementById('spkLinkedin').value
+  var formData = {
+    first_name: document.getElementById('spkFirstName').value,
+    last_name:  document.getElementById('spkLastName').value,
+    email:      document.getElementById('spkEmail').value,
+    phone:      document.getElementById('spkPhone').value,
+    company:    document.getElementById('spkCompany').value,
+    role:       document.getElementById('spkRole').value,
+    type:       document.getElementById('spkType').value,
+    topic:      document.getElementById('spkTopic').value,
+    linkedin:   document.getElementById('spkLinkedin').value
   };
 
-  try {
-    if (GOOGLE_APPS_SCRIPT_URL !== 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
-      await fetch(GOOGLE_APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+  ridaSubmitForm(formData, 'partner').then(function(ok) {
+    if (ok) {
       form.style.display = 'none';
       document.getElementById('speakerSuccess').classList.add('show');
     } else {
-      const subject = encodeURIComponent(`Partner Application: ${formData.firstName} ${formData.lastName}`);
-      const body = encodeURIComponent(
-        `First Name: ${formData.firstName}\n` +
-        `Last Name: ${formData.lastName}\n` +
-        `Email: ${formData.email}\n` +
-        `Phone: ${formData.phone || 'Not provided'}\n` +
-        `Company: ${formData.company}\n` +
-        `Role: ${formData.role}\n` +
-        `Interested In: ${formData.type}\n` +
-        `Topic / Expertise:\n${formData.topic}\n\n` +
-        `LinkedIn: ${formData.linkedin || 'Not provided'}`
+      // Fallback: open mailto
+      var subject = encodeURIComponent('Partner Application: ' + formData.first_name + ' ' + formData.last_name);
+      var body = encodeURIComponent(
+        'First Name: ' + formData.first_name + '\n' +
+        'Last Name: '  + formData.last_name  + '\n' +
+        'Email: '      + formData.email      + '\n' +
+        'Phone: '      + (formData.phone || 'Not provided') + '\n' +
+        'Company: '    + formData.company    + '\n' +
+        'Role: '       + formData.role       + '\n' +
+        'Interested In: ' + formData.type    + '\n' +
+        'Topic / Expertise:\n' + formData.topic + '\n\n' +
+        'LinkedIn: '   + (formData.linkedin || 'Not provided')
       );
-
-      window.location.href = `mailto:${SPEAKER_FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+      window.location.href = 'mailto:team@rid.academy?subject=' + subject + '&body=' + body;
       message.classList.add('show', 'is-info');
-      message.textContent = 'Your email app should open with this application prefilled. If it does not, send your details to team@rid.academy.';
+      message.textContent = 'Your email app should open with this application prefilled. If it does not, send details to team@rid.academy.';
+      btn.disabled = false;
+      btn.textContent = 'Submit Application →';
     }
-  } catch (err) {
-    console.log('Form submission note:', err);
-    message.classList.add('show', 'is-error');
-    message.textContent = 'We could not submit the form automatically. Please send your application details to team@rid.academy.';
-  }
-  btn.disabled = false;
-  btn.textContent = 'Submit Application →';
+  });
 });
 </script>
 
