@@ -1,0 +1,56 @@
+﻿# RID Academy — Reducing Insurance Dependence Academy
+# https://rid.academy/
+# llms.txt — AI crawler index for Generative Engine Optimization (GEO)
+# Format: https://llmstxt.org/
+
+# About
+RID Academy is an educational platform that helps dental practice owners reduce dependence on PPO insurance plans and transition to fee-for-service or membership-based practices. Founded by Gary Takacs and Naren Arulrajah (CEO of Ekwa Marketing).
+
+> RID Academy provides practical guidance, free tools, expert webinars, and a podcast — all focused on helping dentists build independent, profitable practices free from insurance company control.
+
+## Core Mission
+Dental practices that participate in PPO insurance plans typically write off 38–44% of their collected revenue as insurance discounts. RID Academy teaches dentists how to reduce this dependence through strategic patient communication, membership plan implementation, fee-for-service transition, and digital marketing.
+
+## Key Pages
+
+- [Home](https://rid.academy/): Overview of RID Academy's mission, tools, podcast, and events.
+- [Podcast](https://rid.academy/podcast): "Less Insurance Dependence" — expert interviews with dental practice owners, consultants, and industry leaders. Hosted by Gary Takacs and Naren Arulrajah.
+- [Webinar Archive](https://rid.academy/webinars): On-demand recordings of past webinars and workshops on PPO reduction strategies, fee-for-service transition, and dental practice growth.
+- [Events](https://rid.academy/events): Upcoming free webinars, workshops, and dental summits hosted by RID Academy.
+- [Resources](https://rid.academy/resources): 30+ free guides, templates, scripts, and playbooks for dental practices reducing insurance dependence.
+- [About](https://rid.academy/about): Mission, team, and the story behind RID Academy.
+- [Reviews](https://rid.academy/reviews): Testimonials from dental practice owners who have reduced PPO dependence using RID Academy tools and training.
+- [Marketing Consultation](https://rid.academy/marketing-consultation): Free 90-minute dental marketing strategy session to help practices attract fee-for-service patients and replace PPO write-offs with digital marketing.
+- [Partner With Us](https://rid.academy/partner): Speaker and partnership applications for dental professionals and industry vendors.
+
+## Free Tools
+
+- [PPO Write-Off Calculator](https://rid.academy/ppo-calculator): Calculate the exact dollar amount your dental practice loses to PPO write-offs annually.
+- [Insurance Independence Readiness Scorecard](https://rid.academy/readiness-scorecard): Free 15-question assessment that evaluates a practice's readiness to reduce PPO dependence and provides a personalized action plan.
+- [Revenue Impact Simulator](https://rid.academy/revenue-simulator): Month-by-month revenue projection model showing the financial impact of dropping PPO plans, with adjustable retention rates, fee increases, and membership revenue variables.
+- [Membership Plan Pricing Calculator](https://rid.academy/membership-calculator): Calculates optimal monthly and annual pricing for dental in-house membership plans, factoring in state cost-of-living, practice type, included services, and break-even member count.
+
+## Key Concepts Covered
+
+- **PPO write-offs**: The difference between a dentist's full fee and the reduced amount accepted from insurance plans. Typically 38–44% of billed revenue.
+- **Fee-for-service dentistry**: Patients pay the dentist directly without insurance involvement, at full or slightly adjusted fees.
+- **In-house membership plans**: Monthly or annual subscription plans where patients pay the dental practice directly for a defined set of services and discounts, bypassing insurance entirely.
+- **Insurance independence**: The strategic process of reducing or eliminating reliance on insurance reimbursements for dental practice revenue.
+- **PPO drop strategy**: A phased approach to leaving insurance networks while retaining patients and maintaining revenue.
+
+## Content Focus Areas
+
+1. How to calculate and visualize PPO write-off losses
+2. Step-by-step processes for leaving PPO networks
+3. Patient communication strategies for fee-for-service transitions
+4. How to build and price dental membership plans
+5. Digital marketing strategies to replace PPO-driven patient flow
+6. Financial modeling for insurance-independent practices
+7. Case studies from dentists who have successfully reduced insurance dependence
+
+## Contact
+- Email: team@rid.academy
+- Website: https://rid.academy/
+- Instagram: https://www.instagram.com/ridacademy/
+- LinkedIn: https://www.linkedin.com/company/reducing-insurance-dependence-academy/
+- Facebook: https://www.facebook.com/profile.php?id=100064228176993

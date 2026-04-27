@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const path = window.location.pathname || '';
   const inSubdir = /\/(podcast-episode|webinar)\//.test(path);
   const prefix = inSubdir ? '../' : '';
@@ -31,7 +31,7 @@
         <h3 style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:16px;">More</h3>
         <a href="${prefix}webinar-archive.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Webinar Archive</a>
         <a href="${prefix}about.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a>
-        <a href="${prefix}growth-engine.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Marketing Consultation</a>
+        <a href="${prefix}marketing-consultation.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Marketing Consultation</a>
         <a href="${prefix}events.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Events</a>
       </div>
     </div>

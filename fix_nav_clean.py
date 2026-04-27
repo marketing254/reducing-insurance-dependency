@@ -1,4 +1,4 @@
-import os, re
+﻿import os, re
 
 RIDA = 'D:/RIDA'
 
@@ -56,7 +56,7 @@ FILES_ACTIVE = {
     'podcast.html': False,
     'resources.html': True,
     'webinar-archive.html': False,
-    'growth-engine.html': False,
+    'marketing-consultation.html': False,
     'partner.html': False,
     'tools.html': True,
     'events.html': False,
