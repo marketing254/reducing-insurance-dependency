@@ -76,7 +76,7 @@
     banner.id = 'rida-cookie-banner';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Cookie consent');
-    banner.innerHTML = '<p>We use cookies to analyse site traffic and improve your experience. By clicking <strong>Accept</strong> you consent to our use of cookies. Read our <a href="' + prefix + 'privacy-policy.html">Privacy Policy</a> for details.</p>'
+    banner.innerHTML = '<p>We use cookies to analyse site traffic and improve your experience. By clicking <strong>Accept</strong> you consent to our use of cookies. Read our <a href="/privacy-policy">Privacy Policy</a> for details.</p>'
       + '<div class="rida-cb-actions"><button class="rida-cb-btn rida-cb-decline" id="rida-cb-decline">Decline</button><button class="rida-cb-btn rida-cb-accept" id="rida-cb-accept">Accept Cookies</button></div>';
     document.body.appendChild(banner);
 
