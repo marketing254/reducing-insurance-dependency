@@ -29,7 +29,7 @@
       </div>
       <div>
         <h3 style="font-size:10px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:16px;">More</h3>
-        <a href="${prefix}webinar-archive.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Webinar Archive</a>
+        <a href="${prefix}webinars.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Webinar Archive</a>
         <a href="${prefix}about.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a>
         <a href="${prefix}marketing-consultation.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Marketing Consultation</a>
         <a href="${prefix}events.html" style="display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#E2D603'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Events</a>
@@ -39,7 +39,7 @@
       <span style="font-size:11px;color:rgba(255,255,255,0.25);">© 2026 RID Academy by Ekwa Marketing. All rights reserved.</span>
       <div style="display:flex;gap:18px;">
         <a href="${prefix}privacy-policy.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">Privacy Policy</a>
-        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">Terms of Use</a>
+        <a href="${prefix}privacy-policy.html" style="font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">Privacy Policy</a>
       </div>
     </div>
   </div>

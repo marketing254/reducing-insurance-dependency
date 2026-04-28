@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
 # Block admin panel from indexing
@@ -19,6 +19,9 @@ User-agent: PerplexityBot
 Allow: /
 
 User-agent: anthropic-ai
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ClaudeBot
