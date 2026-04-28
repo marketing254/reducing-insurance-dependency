@@ -8,6 +8,11 @@ Disallow: /admin/
 Disallow: /resources_backup.html
 Disallow: /rid-academy-dark.html
 
+# Block internal dev / migration scripts
+Disallow: /_migrate_links.py
+Disallow: /fix_nav_clean.py
+Disallow: /fix_popup_and_data.py
+
 # AI crawlers — allow full access for GEO/AI citation
 User-agent: GPTBot
 Allow: /

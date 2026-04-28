@@ -10,7 +10,7 @@ const RIDA_SHEET_ID = '1FOeB6lyOCKzj4u9caLPxModWYrpCILE0h4-7O_0yR4s';
 // After deploying data/proxy.gs as a Google Apps Script Web App, paste the URL below.
 // Leave empty to skip (transcript tab will show setup instructions instead).
 // Example: 'https://script.google.com/macros/s/AKfy...xyz/exec'
-const RIDA_APPS_SCRIPT_PROXY = 'https://script.google.com/macros/s/AKfycbyyq2Nyj32ipMLghR74aC9c3SCW7C_6zN-Ok-5pKHiSpOjlczigl_F41_D8nLIUl3RrQQ/exec';
+const RIDA_APPS_SCRIPT_PROXY = 'https://script.google.com/macros/s/AKfycbwWT5_D6fRC74i6xXRsyOnAsE0l4rkg8K11Oe5So7Pr2UqRxLEQkxHJduKzYtYvmSRggw/exec';
 
 // Public CORS proxy — wraps any URL and adds Access-Control-Allow-Origin: *
 // corsproxy.io is used as primary; add a second constant for chain fallback
@@ -2227,7 +2227,7 @@ async function ridaLoadEpisodePage() {
     }
   } catch (e) {
     console.warn('RIDA Sheets: Could not load episode page', e);
-    heroEl.innerHTML = `<div class="ep-not-found"><h2>Could Not Load Episode</h2><p>Please try again in a moment.</p><a href="../podcast.html" class="ep-cta-btn">Browse Podcast →</a></div>`;
+    heroEl.innerHTML = `<div class="ep-not-found"><h2>Could Not Load Episode</h2><p>Please try again in a moment.</p><a href="/podcast" class="ep-cta-btn">Browse Podcast →</a></div>`;
   }
 }
 
@@ -2269,7 +2269,7 @@ async function ridaLoadWebinarPage() {
 
     hero.innerHTML = `
       <nav class="breadcrumb" aria-label="breadcrumb">
-        <a href="../webinar-archive.html">Webinar Archive</a>
+        <a href="/webinars">Webinar Archive</a>
         <span aria-hidden="true"> / </span>
         <span>${ridaEscapeHtml(webinar.title.length > 48 ? webinar.title.substring(0, 48) + '…' : webinar.title)}</span>
       </nav>
@@ -2412,7 +2412,7 @@ async function ridaLoadWebinarPage() {
     }
   } catch (e) {
     console.warn('RIDA Sheets: Could not load webinar page', e);
-    hero.innerHTML = `<div class="ep-not-found"><h2>Could Not Load Webinar</h2><p>Please try again in a moment.</p><a href="../webinar-archive.html" class="ep-cta-btn">Back to Webinar Archive →</a></div>`;
+    hero.innerHTML = `<div class="ep-not-found"><h2>Could Not Load Webinar</h2><p>Please try again in a moment.</p><a href="/webinars" class="ep-cta-btn">Back to Webinar Archive →</a></div>`;
   }
 }
 

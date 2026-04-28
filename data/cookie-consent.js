@@ -8,9 +8,6 @@
   var STORAGE_KEY = 'rida_cookie_consent';
   if (localStorage.getItem(STORAGE_KEY)) return;
 
-  var inSubdir = /\/(podcast-episode|webinar)\//.test(window.location.pathname);
-  var prefix   = inSubdir ? '../' : '';
-
   var style = document.createElement('style');
   style.textContent = `
     #rida-cookie-banner {
@@ -64,7 +61,7 @@
     <p>
       We use cookies to analyse site traffic and improve your experience.
       By clicking <strong>Accept</strong> you consent to our use of cookies.
-      Read our <a href="${prefix}privacy-policy.html">Privacy Policy</a> for details.
+      Read our <a href="/privacy-policy">Privacy Policy</a> for details.
     </p>
     <div class="rida-cb-actions">
       <button class="rida-cb-btn rida-cb-decline" id="rida-cb-decline">Decline</button>

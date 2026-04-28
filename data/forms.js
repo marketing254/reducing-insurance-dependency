@@ -11,7 +11,7 @@
  * 4. Copy the Web App URL and paste it below as RIDA_FORM_ENDPOINT
  */
 
-var RIDA_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyyq2Nyj32ipMLghR74aC9c3SCW7C_6zN-Ok-5pKHiSpOjlczigl_F41_D8nLIUl3RrQQ/exec';
+var RIDA_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwWT5_D6fRC74i6xXRsyOnAsE0l4rkg8K11Oe5So7Pr2UqRxLEQkxHJduKzYtYvmSRggw/exec';
 
 /**
  * Submit form data to the Apps Script endpoint.
