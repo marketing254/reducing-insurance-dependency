@@ -38,5 +38,19 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+
+# Additional AI crawlers
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
 # Sitemap
-Sitemap: https://rid.academy/sitemap.xml
+Sitemap: https://www.rid.academy/sitemap.xml
