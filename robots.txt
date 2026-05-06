@@ -13,6 +13,12 @@ Disallow: /_migrate_links.py
 Disallow: /fix_nav_clean.py
 Disallow: /fix_popup_and_data.py
 
+# Force consolidation on clean URLs — block *.html duplicates.
+# Canonicals + this directive eliminate /page.html ↔ /page duplicates.
+# /404.html is allowed (GitHub Pages serves it as the error page).
+Allow: /404.html
+Disallow: /*.html$
+
 # AI crawlers — allow full access for GEO/AI citation
 User-agent: GPTBot
 Allow: /
