@@ -25,12 +25,12 @@
   <meta name="theme-color" content="#0a0a0a">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Marketing Consultation for Dental Practices | RID Academy</title>
-<meta name="description" content="Insurance takes 38–44% of every dollar. Book a free dental marketing strategy session and learn how to attract better patients without PPO directories.">
-<meta name="keywords" content="dental marketing consultation, dental SEO, PPO alternative marketing, dental patient acquisition, dental digital marketing, insurance-free dental practice">
+<title>Complimentary Marketing Audit for Dentists | RID Academy</title>
+<meta name="description" content="Insurance takes 38–44% of every dollar. Book a complimentary dental marketing audit and learn how to attract better patients without PPO directories.">
+<meta name="keywords" content="dental marketing audit, dental marketing consultation, dental SEO, PPO alternative marketing, dental patient acquisition, dental digital marketing, insurance-free dental practice">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Free Marketing Consultation for Dental Practices | RID Academy">
-<meta property="og:description" content="Insurance companies take 38–44% of every dollar. Book a free strategy session and discover how digital marketing attracts better patients at a fraction of the cost.">
+<meta property="og:title" content="Complimentary Marketing Audit for Dentists | RID Academy">
+<meta property="og:description" content="Insurance companies take 38–44% of every dollar. Book a complimentary marketing audit and discover how digital marketing attracts better patients at a fraction of the cost.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.rid.academy/marketing-consultation">
 <meta property="og:image" content="https://www.rid.academy/images/og-marketing-consultation.jpg">
@@ -38,8 +38,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="RID Academy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Free Marketing Consultation for Dental Practices | RID Academy">
-<meta name="twitter:description" content="Insurance companies take 38–44% of every dollar. Book a free strategy session — attract better patients without PPO directories.">
+<meta name="twitter:title" content="Complimentary Marketing Audit for Dentists | RID Academy">
+<meta name="twitter:description" content="Insurance companies take 38–44% of every dollar. Book a complimentary marketing audit — attract better patients without PPO directories.">
 <meta name="twitter:image" content="https://www.rid.academy/images/og-marketing-consultation.jpg">
 <link rel="canonical" href="https://www.rid.academy/marketing-consultation">
 <script type="application/ld+json">
@@ -49,16 +49,16 @@
     {
       "@type": "Service",
       "@id": "https://www.rid.academy/marketing-consultation#service",
-      "name": "Free Marketing Consultation for Dental Practices",
-      "description": "A free dental marketing strategy session to help practices replace PPO insurance revenue with digital marketing that attracts higher-value fee-for-service patients.",
+      "name": "Complimentary Marketing Audit for Dental Practices",
+      "description": "A complimentary dental marketing audit and strategy session to help practices replace PPO insurance revenue with digital marketing that attracts higher-value fee-for-service patients.",
       "url": "https://www.rid.academy/marketing-consultation",
       "provider": { "@id": "https://www.rid.academy/#organization" },
-      "serviceType": "Free Marketing Consultation",
+      "serviceType": "Complimentary Marketing Audit",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "description": "Free strategy session"
+        "description": "Complimentary marketing audit and strategy session"
       }
     },
     {
@@ -226,6 +226,117 @@ nav {
   margin-left: 1.5rem; transition: color 0.2s;
 }
 .hero-secondary:hover { color: var(--accent); }
+
+/* Hero scroll-down affordance */
+.hero-scroll-wrap { margin-top: 2.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
+.hero-scroll {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--border-2); border-radius: 100px;
+  color: var(--text-2); text-decoration: none;
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em;
+  transition: border-color 0.25s, color 0.25s, transform 0.25s;
+}
+.hero-scroll:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.hero-scroll-arrow {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(226,214,3,0.12); color: var(--accent);
+  font-size: 0.8rem; line-height: 1;
+  animation: hero-bob 1.8s ease-in-out infinite;
+}
+@keyframes hero-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+.hero-scroll-hint { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-4); }
+@media (prefers-reduced-motion: reduce) { .hero-scroll-arrow { animation: none; } }
+
+/* ===== MSM BOOKING SECTION (copy + calendar, below hero) ===== */
+.msm-hero { padding: 64px 0 90px; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
+.msm-hero .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 75% 15%, rgba(226,214,3,0.07), transparent 65%); }
+.msm-grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: start;
+}
+.msm-copy { display: flex; flex-direction: column; gap: 1.6rem; text-align: left; }
+.msm-copy .hero-eyebrow { align-self: flex-start; margin-bottom: 0; padding: 6px 14px; border: 1px solid rgba(226,214,3,0.3); border-radius: 100px; }
+.msm-copy h2 {
+  font-family: var(--ff-serif); font-weight: 600;
+  font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08;
+  letter-spacing: -0.03em; margin: 0;
+}
+.msm-copy h2 em { font-style: italic; color: var(--accent); }
+.msm-copy .hero-sub { font-size: 1.08rem; color: var(--text-2); max-width: 520px; margin: 0; line-height: 1.65; text-align: left; }
+
+.msm-features {
+  display: flex; flex-direction: column; gap: 0.85rem;
+  padding: 1.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.msm-feature { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.92rem; color: var(--text-2); }
+.msm-feature strong { color: var(--text); font-weight: 600; }
+.msm-feature-icon {
+  flex-shrink: 0; width: 20px; height: 20px; border-radius: 6px; margin-top: 1px;
+  background: rgba(226,214,3,0.12); border: 1px solid rgba(226,214,3,0.3);
+  display: flex; align-items: center; justify-content: center; color: var(--accent);
+  font-size: 0.7rem; font-weight: 800;
+}
+.msm-signal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.msm-signal-item {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  padding: 1.05rem 1.1rem; border: 1px solid var(--border); border-radius: 12px;
+  background: rgba(255,255,255,0.015);
+}
+.msm-signal-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(226,214,3,0.1); border: 1px solid rgba(226,214,3,0.22);
+  display: flex; align-items: center; justify-content: center; color: var(--accent);
+}
+.msm-signal-icon svg { width: 15px; height: 15px; }
+.msm-signal-val { font-family: var(--ff-serif); font-weight: 600; font-size: 1.1rem; color: #fff; line-height: 1.1; letter-spacing: -0.01em; }
+.msm-signal-lbl { font-size: 0.72rem; color: var(--text-3); line-height: 1.45; }
+@media (max-width: 520px) { .msm-signal { grid-template-columns: 1fr; } }
+.msm-trust { display: flex; align-items: center; gap: 0.7rem; }
+.msm-trust-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: msm-pulse 2s ease-in-out infinite; }
+@keyframes msm-pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.04); } }
+.msm-trust-text { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); font-weight: 600; }
+.msm-seenum { display: flex; justify-content: center; margin-top: 0.5rem; }
+
+/* Booking card */
+.msm-booking {
+  position: sticky; top: 90px;
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border-2); border-radius: 18px; padding: 6px;
+  box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+.msm-booking-header {
+  padding: 20px 24px 18px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  background: rgba(226,214,3,0.03); border-radius: 12px 12px 0 0;
+}
+.msm-booking-title { font-family: var(--ff-serif); font-size: 1.1rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 0.6rem; }
+.msm-booking-title-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.msm-booking-meta { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.msm-booking-wrap { position: relative; background: #fff; border-radius: 0 0 12px 12px; overflow: hidden; min-height: 560px; }
+.msm-booking-wrap iframe { width: 100%; height: 560px; border: 0; display: block; }
+.msm-booking-loading { position: absolute; inset: 0; background: var(--bg-card); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.9rem; z-index: 1; transition: opacity 0.4s ease; }
+.msm-booking-loading.hidden { opacity: 0; pointer-events: none; }
+.msm-spinner { width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(226,214,3,0.15); border-top-color: var(--accent); animation: spin 0.8s linear infinite; }
+.msm-booking-loading-text { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.msm-booking-foot { padding: 13px 22px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(0,0,0,0.2); }
+.msm-booking-foot-text { font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
+.msm-booking-foot-text strong { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 980px) {
+  .msm-grid { grid-template-columns: 1fr; gap: 44px; }
+  .msm-booking { position: static; }
+  .msm-copy { text-align: center; align-items: center; }
+  .msm-copy .hero-eyebrow, .msm-copy .hero-sub { align-self: center; text-align: center; }
+  .msm-features { width: 100%; max-width: 460px; }
+  .msm-signal { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .msm-hero { padding: 90px 0 60px; }
+  .msm-booking-wrap, .msm-booking-wrap iframe { min-height: 540px; height: 540px; }
+}
 
 /* COST COMPARISON */
 .comparison {
@@ -731,16 +842,92 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
 </nav>
 
-<!-- Hero -->
+<!-- Hero (original — kept) -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="wrap hero-inner">
-    <div class="hero-eyebrow">FREE MARKETING CONSULTATION</div>
+    <div class="hero-eyebrow">COMPLIMENTARY MARKETING AUDIT</div>
     <h1>Stop Paying <em>40%</em> to Insurance<br>Companies for Your Patients</h1>
     <p class="hero-sub">Every dollar you earn through insurance costs you 38–44 cents in write-offs. Digital marketing attracts better patients at a fraction of the cost — and you keep every dollar of your fee.</p>
-    <div>
-      <a href="#book" class="hero-cta">Book a Free Strategy Session →</a>
-      <a href="#comparison" class="hero-secondary">See the numbers ↓</a>
+    <div class="hero-scroll-wrap">
+      <a href="#comparison" class="hero-scroll">
+        See the numbers
+        <span class="hero-scroll-arrow" aria-hidden="true">&#8595;</span>
+      </a>
+      <span class="hero-scroll-hint">Scroll to see the real math</span>
+    </div>
+  </div>
+</section>
+
+<!-- Booking Section (calendar + audit details) -->
+<section class="msm-hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="msm-grid">
+
+      <!-- LEFT: copy -->
+      <div class="msm-copy">
+        <div class="hero-eyebrow">Complimentary · Booked 7 of 10 · 3 Sessions Left</div>
+        <h2>Book your <em>complimentary</em> marketing audit</h2>
+        <p class="hero-sub">A private, research-driven session built to show you exactly where your practice can grow — <strong>without insurance dictating your fees.</strong> Pick a time on the right; we'll handle the rest.</p>
+
+        <div class="msm-features">
+          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span><strong>4–5 hours</strong> of research before your call</span></div>
+          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>Full <strong>local competitor</strong> &amp; market analysis</span></div>
+          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>Audit of your <strong>search presence, reviews &amp; booking flow</strong></span></div>
+          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>A <strong>custom growth blueprint</strong> — yours to keep</span></div>
+          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>No contract. No obligation. <strong>No upsell pressure.</strong></span></div>
+        </div>
+
+        <div class="msm-signal">
+          <div class="msm-signal-item">
+            <span class="msm-signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <span class="msm-signal-val">90 min</span>
+            <span class="msm-signal-lbl">Session length</span>
+          </div>
+          <div class="msm-signal-item">
+            <span class="msm-signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5"/><path d="M12 21V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+            <span class="msm-signal-val">Complimentary</span>
+            <span class="msm-signal-lbl">Typically $900 · for qualifying practices</span>
+          </div>
+          <div class="msm-signal-item">
+            <span class="msm-signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20c1.4-3.5 4-5 7-5s5.6 1.5 7 5"/></svg></span>
+            <span class="msm-signal-val">1:1</span>
+            <span class="msm-signal-lbl">Private consultation</span>
+          </div>
+        </div>
+
+        <div class="msm-trust">
+          <div class="msm-trust-dot"></div>
+          <span class="msm-trust-text">Limited sessions available this month</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: booking calendar -->
+      <div class="msm-booking" id="book">
+        <div class="msm-booking-header">
+          <div class="msm-booking-title"><span class="msm-booking-title-dot"></span> Select a date &amp; time</div>
+          <div class="msm-booking-meta">Pick a time · Confirm · Done</div>
+        </div>
+        <div class="msm-booking-wrap">
+          <div class="msm-booking-loading" id="bookingLoader">
+            <div class="msm-spinner"></div>
+            <div class="msm-booking-loading-text">Loading availability…</div>
+          </div>
+          <iframe
+            src="https://ridacademy.youcanbook.me?embed=true"
+            title="Book your complimentary marketing audit"
+            loading="lazy"
+            allow="payment"
+            onload="var l=document.getElementById('bookingLoader'); if(l) l.classList.add('hidden');"
+          ></iframe>
+        </div>
+        <div class="msm-booking-foot">
+          <span class="msm-booking-foot-text">Booking confirmation sent instantly</span>
+          <span class="msm-booking-foot-text"><strong>Doctor/owner attendance required</strong></span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -783,49 +970,33 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
   </div>
 </section>
 
-<!-- Results + Scheduler Side-by-Side -->
+<!-- Proven Results -->
 <section class="results-scheduler" id="results-scheduler">
   <div class="wrap">
-    <div class="rs-grid">
-      <!-- Left: Results -->
-      <div class="results-card">
-        <span class="section-eyebrow">PROVEN RESULTS</span>
-        <h2 class="section-title" style="font-size:clamp(1.5rem,2.5vw,2rem);">What Happens When Marketing Replaces Insurance</h2>
-        <div class="rs-stat-grid">
-          <div class="result-stat">
-            <div class="number">90+</div>
-            <div class="label">New patients/month — insurance-free</div>
-          </div>
-          <div class="result-stat">
-            <div class="number">&lt;1.4%</div>
-            <div class="label">Marketing cost as % of revenue</div>
-          </div>
-          <div class="result-stat">
-            <div class="number">38%</div>
-            <div class="label">Saved per dollar (no write-offs)</div>
-          </div>
-          <div class="result-stat">
-            <div class="number">0</div>
-            <div class="label">Insurance companies dictating treatment</div>
-          </div>
+    <div class="results-card" style="max-width:880px;margin:0 auto;text-align:center;">
+      <span class="section-eyebrow">PROVEN RESULTS</span>
+      <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.3rem);">What Happens When Marketing Replaces Insurance</h2>
+      <div class="rs-stat-grid" style="margin-top:2rem;">
+        <div class="result-stat">
+          <div class="number">90+</div>
+          <div class="label">New patients/month — insurance-free</div>
         </div>
-        <p class="results-quote">"New patients are the lifeblood of any dental practice. But the way you attract them determines the health of your practice for years to come."</p>
+        <div class="result-stat">
+          <div class="number">&lt;1.4%</div>
+          <div class="label">Marketing cost as % of revenue</div>
+        </div>
+        <div class="result-stat">
+          <div class="number">38%</div>
+          <div class="label">Saved per dollar (no write-offs)</div>
+        </div>
+        <div class="result-stat">
+          <div class="number">0</div>
+          <div class="label">Insurance companies dictating treatment</div>
+        </div>
       </div>
-      <!-- Right: Scheduler CTA -->
-      <div class="scheduler-card" id="book">
-        <span class="section-eyebrow">FREE STRATEGY SESSION</span>
-        <h2 style="font-size:clamp(1.5rem,2.5vw,2rem);">See How Your Practice Can Grow Without Insurance</h2>
-        <p class="subtitle">Book a complimentary 90-minute marketing strategy session. We'll research your market, analyze your competition, and show you exactly how digital marketing can replace your write-offs.</p>
-        <div class="scheduler-features" style="flex-direction:column;align-items:center;gap:0.75rem;">
-          <div class="scheduler-feature"><span class="check">✓</span> 90-minute deep dive</div>
-          <div class="scheduler-feature"><span class="check">✓</span> 4 hours of competitive research</div>
-          <div class="scheduler-feature"><span class="check">✓</span> Custom growth roadmap</div>
-          <div class="scheduler-feature"><span class="check">✓</span> No obligation</div>
-        </div>
-        <div style="width:100%;margin-top:1.25rem;">
-          <iframe src="https://ridacademy.youcanbook.me?embed=true" loading="lazy" title="Book a free marketing consultation" frameborder="0" allow="payment" style="width: 100%; min-height: 300px; border: 0px; background-color: transparent; height: 428px; border-radius: 12px;"></iframe>
-        </div>
-        <p class="scheduler-note">Sessions are with our Marketing Director. Doctor/owner attendance required.</p>
+      <p class="results-quote" style="margin-top:2rem;">"New patients are the lifeblood of any dental practice. But the way you attract them determines the health of your practice for years to come."</p>
+      <div style="margin-top:2rem;">
+        <a href="#book" class="hero-cta">Book your complimentary audit ↑</a>
       </div>
     </div>
   </div>
@@ -927,9 +1098,9 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
 <!-- CTA -->
 <section style="padding:80px 0;text-align:center;">
   <div style="max-width:700px;margin:0 auto;padding:0 40px;">
-    <h2 style="font-family:var(--ff-serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;margin-bottom:1rem;">Ready for Your Free Marketing Consultation?</h2>
-    <p style="color:var(--text-2);font-size:1.05rem;margin-bottom:2rem;line-height:1.7;">Book a free strategy session to see how digital marketing can replace your insurance write-offs and attract better patients.</p>
-    <a href="https://youcanbook.me/" class="cta-btn" style="display:inline-block;background:var(--accent);color:#000;padding:16px 40px;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;transition:all 0.2s;">Book Free Strategy Session →</a>
+    <h2 style="font-family:var(--ff-serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;margin-bottom:1rem;">Ready for Your Complimentary Marketing Audit?</h2>
+    <p style="color:var(--text-2);font-size:1.05rem;margin-bottom:2rem;line-height:1.7;">Book a complimentary strategy session to see how digital marketing can replace your insurance write-offs and attract better patients.</p>
+    <a href="#book" class="cta-btn" style="display:inline-block;background:var(--accent);color:#000;padding:16px 40px;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;transition:all 0.2s;">Book Your Complimentary Audit ↑</a>
   </div>
 </section>
 

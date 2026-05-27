@@ -52,6 +52,14 @@
   const footer = document.querySelector('footer');
   if (footer) footer.outerHTML = footerHtml;
 
+  // ── GA4 custom event tracking (auto-loaded on every page) ────────────────
+  (function () {
+    var s = document.createElement('script');
+    s.src = '/data/analytics-events.js';
+    s.defer = true;
+    document.body.appendChild(s);
+  })();
+
   // ── Cookie consent banner (auto-injected on every page) ──────────────────
   (function () {
     var STORAGE_KEY = 'rida_cookie_consent';
