@@ -12,6 +12,8 @@ Disallow: /rid-academy-dark.html
 Disallow: /_migrate_links.py
 Disallow: /fix_nav_clean.py
 Disallow: /fix_popup_and_data.py
+Disallow: /_serve.py
+Disallow: /indexnow.py
 
 # Force consolidation on clean URLs — block *.html duplicates.
 # Canonicals + this directive eliminate /page.html ↔ /page duplicates.

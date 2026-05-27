@@ -1,15 +1,52 @@
+# ─── OS / editor junk ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# ─── Python ─────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+
+# ─── Local dev / one-off migration scripts (not part of the site) ─
+_serve.py
+_*.py
+fix_nav_clean.py
+fix_popup_and_data.py
+
+# ─── Google Apps Script source (server-side, not served) ────────
+*.gs
+
+# ─── Internal docs / data / handover files (not web assets) ─────
+TODO.md
+scroll-stop-builder-guide.md
 *.pdf
 *.docx
 *.xlsx
-__pycache__/
-*.pyc
-.DS_Store
-Thumbs.db
-proxy.gs
-TODO.md
-admin
-form-handler.gs
-combined.gs
-RIDA — Website Data - reviews.csv
-seo-audit
-_serve.py
+*.csv
+*.zip
+
+# ─── Large media not used by the site ───────────────────────────
+*.mp4
+*.mov
+*.webm
+
+# ─── Internal SEO audit reports (local-only, not deployed) ──────
+seo-audit/
+
+# ─── Admin panel (separate, noindex) ────────────────────────────
+admin/
+
+# ─── Unused / test / backup images (0 references in the site) ───
+images/naren.jpg
+images/naren_test.jpg
+images/gary-takacs.png
+images/gary-takacs.jpg
+images/Naren-Arulrajah - HD.jpg
+images/favicon-original-446x403.png
+images/*.vtt
+images/*.txt
+
+# ─── Kept intentionally (NOT ignored): ──────────────────────────
+#   robots.txt, llms.txt, sitemap.xml, CNAME, the IndexNow key *.txt,
+#   indexnow.py (prod tool), all site HTML/CSS/JS and real images.
