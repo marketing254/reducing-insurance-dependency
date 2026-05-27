@@ -15,11 +15,9 @@ Disallow: /fix_popup_and_data.py
 Disallow: /_serve.py
 Disallow: /indexnow.py
 
-# Force consolidation on clean URLs — block *.html duplicates.
-# Canonicals + this directive eliminate /page.html ↔ /page duplicates.
-# /404.html is allowed (GitHub Pages serves it as the error page).
-Allow: /404.html
-Disallow: /*.html$
+# Note: legacy /page.html URLs are intentionally crawlable so that search
+# engines can read their rel=canonical (which points to the clean /page URL)
+# and consolidate the duplicate. Blocking them would prevent consolidation.
 
 # AI crawlers — allow full access for GEO/AI citation
 User-agent: GPTBot
