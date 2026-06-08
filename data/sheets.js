@@ -2523,9 +2523,11 @@ async function ridaLoadWebinarPage() {
 
   if (path.includes('podcast-episode')) {
     ridaLoadEpisodePage();
-  } else if (path.includes('webinar-archive')) {
+  } else if (document.getElementById('webinarGrid')) {
+    // Archive grid present (webinars.html) — fetch and render the full list
     ridaLoadWebinarsGrid();
-  } else if (path.includes('webinar')) {
+  } else if (document.getElementById('wb-hero-content')) {
+    // Detail page (webinar/index.html) — render a single replay
     ridaLoadWebinarPage();
   } else if (path.includes('events')) {
     ridaLoadEventsGrid();
