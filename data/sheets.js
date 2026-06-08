@@ -187,7 +187,10 @@ function ridaDriveImg(url, size = 'w900') {
     return value;
   }
   const id = ridaDriveId(value);
-  return id ? `https://drive.google.com/thumbnail?id=${id}&sz=${size}` : value;
+  // lh3.googleusercontent.com returns the image directly (Content-Type: image/jpeg)
+  // and is reliable in <img src>. drive.google.com/thumbnail returns a 302 with
+  // Content-Type: application/binary which browsers often refuse to render.
+  return id ? `https://lh3.googleusercontent.com/d/${id}=${size}` : value;
 }
 
 // Parse "Name : drive_url" lines (one per line) into [{name, photo}] for event speaker rows
