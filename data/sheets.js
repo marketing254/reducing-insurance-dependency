@@ -83,19 +83,33 @@ function ridaParseWebinarUrl(cellValue) {
   };
 }
 
-// Fetch BOTH `webinars` and `summits` tabs and return combined rows.
-// Rows from the summits tab are tagged with category='summit' if missing.
+// Tab-name → category registry. Each sheet tab listed here is fetched and
+// every row from that tab is tagged with the corresponding category. No
+// `category` column needed in the sheet — the tab name IS the category.
+// To add a new replay type (e.g. "Workshops"), just create a new tab named
+// `workshops` and add a row to this list. The filter pill on /webinars will
+// auto-pick it up (renderWebinars filters by w.category).
+const RIDA_REPLAY_TABS = [
+  { sheet: 'webinars', category: 'webinar' },
+  { sheet: 'summits',  category: 'summit'  }
+];
+
 async function ridaFetchReplays() {
-  const [webinarRows, summitRows] = await Promise.all([
-    ridaFetchSheet('webinars').catch(() => []),
-    ridaFetchSheet('summits').catch(() => [])
-  ]);
-  const taggedSummits = (Array.isArray(summitRows) ? summitRows : []).map(r => {
-    const out = Object.assign({}, r);
-    if (!out.category && !out.type) out.category = 'summit';
-    return out;
-  });
-  return (Array.isArray(webinarRows) ? webinarRows : []).concat(taggedSummits);
+  const results = await Promise.all(
+    RIDA_REPLAY_TABS.map(t =>
+      ridaFetchSheet(t.sheet)
+        .catch(function () { return []; })
+        .then(function (rows) {
+          return (Array.isArray(rows) ? rows : []).map(function (r) {
+            const out = Object.assign({}, r);
+            // Tab name overrides any stray category value — single source of truth
+            out.category = t.category;
+            return out;
+          });
+        })
+    )
+  );
+  return results.reduce(function (acc, arr) { return acc.concat(arr); }, []);
 }
 
 function ridaPopupDismissKey() {
@@ -634,6 +648,7 @@ function ridaSlugify(value) {
 
 function ridaWebinarCategoryLabel(category) {
   const labels = {
+    webinar: 'Webinar',
     summit: 'Summit Replay',
     workshop: 'Workshop',
     masterclass: 'Masterclass',
