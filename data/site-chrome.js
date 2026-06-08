@@ -52,6 +52,16 @@
   const footer = document.querySelector('footer');
   if (footer) footer.outerHTML = footerHtml;
 
+  // ── Form submission helper (defines ridaSubmitForm) ─────────────────────
+  // Load FIRST so subsequent scripts (access-gate.js etc.) see ridaSubmitForm.
+  (function () {
+    if (typeof window.ridaSubmitForm !== 'function') {
+      var s = document.createElement('script');
+      s.src = '/data/forms.js';
+      document.body.appendChild(s);
+    }
+  })();
+
   // ── GA4 custom event tracking (auto-loaded on every page) ────────────────
   (function () {
     var s = document.createElement('script');

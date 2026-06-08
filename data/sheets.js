@@ -104,8 +104,12 @@ function ridaPopupDismissKey() {
 }
 
 async function ridaFetchSheet(sheetName) {
-  const url = `https://docs.google.com/spreadsheets/d/${RIDA_SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=${encodeURIComponent(sheetName)}`;
-  const res = await fetch(url);
+  // Cache-buster (`_=` changes every minute) defeats browser caching of the
+  // gviz JSON response so newly added/edited rows show up within ~1 minute
+  // of a hard refresh. Google's own gviz edge cache (~5 min) we cannot bypass.
+  const cb = Math.floor(Date.now() / 60000);
+  const url = `https://docs.google.com/spreadsheets/d/${RIDA_SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=${encodeURIComponent(sheetName)}&_=${cb}`;
+  const res = await fetch(url, { cache: 'no-store' });
   const text = await res.text();
   const jsonStr = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1];
   const json = JSON.parse(jsonStr);

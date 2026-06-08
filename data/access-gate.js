@@ -165,22 +165,24 @@
   };
 
   // ── Auto-listeners ──────────────────────────────────────────────
+  // Any anchor linking to a podcast-episode page gets gated.
   document.addEventListener('click', function (e) {
-    var link = e.target && e.target.closest && e.target.closest('a.ep-listen, a.ep-cta-btn, .ep-row');
-    if (!link) return;
-    var href = link.getAttribute && link.getAttribute('href');
+    var anchor = e.target && e.target.closest && e.target.closest('a[href]');
+    if (!anchor) return;
+    var href = anchor.getAttribute('href');
     if (!href) return;
-    // Only intercept podcast-episode links
-    if (href.indexOf('podcast-episode') < 0 && href.indexOf('/podcast-episode') < 0) return;
+    if (!/podcast-episode/i.test(href)) return;          // only podcast-episode links
+    if (anchor.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;  // let "open in new tab" pass
     e.preventDefault();
-    var card = link.closest('.ep-card, .episode-card, .ep-row');
+    var card = anchor.closest('.ep-card, .episode-card, .ep-row, .home-podcast-card, .pod-latest');
     var titleEl = card && (card.querySelector('h3') || card.querySelector('.ep-title') || card.querySelector('.episode-title'));
-    var epTitle = titleEl ? titleEl.textContent.trim() : 'Podcast Episode';
+    var epTitle = (titleEl && titleEl.textContent.trim()) || anchor.textContent.trim() || 'Podcast Episode';
     window.ridaAccessGate({
       title: 'Listen to this episode',
       subtitle: epTitle,
       formType: 'podcast_access',
       ctaLabel: 'Listen',
+      extra: { episode: epTitle },
       onUnlock: function () { window.location.href = href; }
     });
   }, true);
