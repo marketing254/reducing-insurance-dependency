@@ -193,17 +193,48 @@ function ridaDriveImg(url, size = 'w900') {
   return id ? `https://lh3.googleusercontent.com/d/${id}=${size}` : value;
 }
 
-// Parse "Name : drive_url" lines (one per line) into [{name, photo}] for event speaker rows
+// Parse event speaker cells into [{name, photo}]. Supports THREE input formats:
+//   1.  "Name : https://..."           (one line, space-colon-space)
+//   2.  "Name: https://..."            (one line, no leading space before colon)
+//   3.  "Name:"  then  "https://..."   (name and URL on separate lines)
 function ridaParseEventSpeakers(str) {
   if (!str) return [];
-  return String(str).split(/\r?\n/).map(line => {
-    const sep = line.indexOf(' : ');
-    if (sep === -1) return null;
-    const name  = line.substring(0, sep).trim();
-    const url   = line.substring(sep + 3).trim();
-    const photo = url ? (ridaDriveImg(url, 'w200') || url) : '';
-    return name ? { name, photo } : null;
-  }).filter(Boolean);
+  const lines = String(str).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  const speakers = [];
+  const urlRe = /^https?:\/\//i;
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i];
+
+    // Format 1: "Name : URL" (space-colon-space anywhere)
+    const sepSpaced = line.indexOf(' : ');
+    if (sepSpaced > -1) {
+      const name = line.substring(0, sepSpaced).trim();
+      const url  = line.substring(sepSpaced + 3).trim();
+      if (name) speakers.push({ name, photo: url ? (ridaDriveImg(url, 'w200') || url) : '' });
+      continue;
+    }
+
+    // Format 2: "Name: URL" (no space before colon, URL on same line)
+    const inlineMatch = line.match(/^([^:]+?):\s*(https?:\/\/\S+)\s*$/);
+    if (inlineMatch) {
+      const name = inlineMatch[1].trim();
+      const url  = inlineMatch[2].trim();
+      if (name) speakers.push({ name, photo: ridaDriveImg(url, 'w200') || url });
+      continue;
+    }
+
+    // Format 3: "Name:" on this line, URL on the next line
+    if (/:\s*$/.test(line) && i + 1 < lines.length && urlRe.test(lines[i + 1])) {
+      const name = line.replace(/:\s*$/, '').trim();
+      const url  = lines[i + 1].trim();
+      if (name) speakers.push({ name, photo: ridaDriveImg(url, 'w200') || url });
+      i += 1; // consume the URL line
+      continue;
+    }
+  }
+
+  return speakers;
 }
 
 function ridaEventSpeakerObjectPosition(name) {
