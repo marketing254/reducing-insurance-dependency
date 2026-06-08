@@ -451,10 +451,10 @@ function renderEvents(events) {
       + '</div>';
   }).join('');
 }
+// Events are fetched + rendered by data/sheets.js → ridaLoadEventsGrid().
+// The hardcoded RIDA_EVENTS array is empty; this manual fallback render is
+// kept only for the rare case where data/sheets.js fails to load entirely.
 if (typeof RIDA_EVENTS !== 'undefined' && RIDA_EVENTS.length) renderEvents(RIDA_EVENTS);
-document.addEventListener('ridaDataReady', function() {
-  if (typeof RIDA_EVENTS !== 'undefined') renderEvents(RIDA_EVENTS);
-});
 </script>
 <script src="data/site-chrome.js" defer></script>
 </body>
