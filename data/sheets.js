@@ -1337,7 +1337,12 @@ function ridaRenderWebinarPlaylist(webinar) {
     const clip = clips[index];
     if (!clip) return;
     activeIndex = index;
-    videoWrap.innerHTML = ridaVideoEmbedMarkup({ title: clip.title || webinar.title, vimeo_embed_src: clip.vimeo_embed_src });
+    const clipEmbed = ridaVideoEmbedMarkup({ title: clip.title || webinar.title, vimeo_embed_src: clip.vimeo_embed_src });
+    if (typeof window.__ridaInjectGatedVideo === 'function') {
+      window.__ridaInjectGatedVideo(videoWrap, clipEmbed, 'clip');
+    } else {
+      videoWrap.innerHTML = clipEmbed;
+    }
 
     if (currentCard && currentTitle && currentCount && currentMeta && currentSummary) {
       currentTitle.textContent = clip.title || `Session ${index + 1}`;
@@ -2335,10 +2340,47 @@ async function ridaLoadWebinarPage() {
     const videoWrap = document.getElementById('wb-video-embed');
     const videoSection = document.getElementById('wb-video-section');
     const hasPlaylist = Array.isArray(webinar.clips) && webinar.clips.length > 0;
+
+    // ── Gated video reveal (block form before playback) ─────────────────
+    // Renders a "click-to-watch" poster; on click → ridaAccessGate; on unlock
+    // (or returning visitor) → the real iframe replaces the poster.
+    function ridaInjectGatedVideo(targetEl, embedMarkup, label) {
+      if (!targetEl || !embedMarkup) return;
+      targetEl.innerHTML = '<div class="wb-gate-poster" role="button" tabindex="0" aria-label="Watch replay" '
+        + 'style="position:relative;width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a12 0%,#161616 100%);border:1px solid rgba(226,214,3,0.25);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;transition:border-color .2s,transform .2s;overflow:hidden;">'
+        + '<div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(226,214,3,0.06),transparent 70%);"></div>'
+        + '<div style="position:relative;width:72px;height:72px;border-radius:50%;background:rgba(226,214,3,0.95);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 36px rgba(226,214,3,0.25);">'
+        +   '<svg width="28" height="28" viewBox="0 0 24 24" fill="#0a0a0a" style="margin-left:4px;"><polygon points="5,3 19,12 5,21"/></svg>'
+        + '</div>'
+        + '<div style="position:relative;text-align:center;">'
+        +   '<div style="font-family:var(--ff-serif,\'Lora\',Georgia,serif);font-size:1.1rem;font-weight:600;color:#f5f5f5;margin-bottom:4px;">Watch the replay</div>'
+        +   '<div style="font-size:0.78rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;text-transform:uppercase;">Enter your details to unlock</div>'
+        + '</div>'
+        + '</div>';
+      const poster = targetEl.querySelector('.wb-gate-poster');
+      const open = function () {
+        if (typeof window.ridaAccessGate === 'function') {
+          window.ridaAccessGate({
+            title: 'Watch the ' + (label || 'replay'),
+            subtitle: webinar.title,
+            formType: 'webinar_access',
+            ctaLabel: 'Watch replay',
+            extra: { webinar: webinar.title, category: webinar.category || '' },
+            onUnlock: function () { targetEl.innerHTML = embedMarkup; }
+          });
+        } else {
+          // access-gate hasn't loaded yet — fall through to immediate playback
+          targetEl.innerHTML = embedMarkup;
+        }
+      };
+      poster.addEventListener('click', open);
+      poster.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    }
+
     if (videoWrap && videoSection && !hasPlaylist) {
       const embedMarkup = ridaVideoEmbedMarkup(webinar);
       if (embedMarkup) {
-        videoWrap.innerHTML = embedMarkup;
+        ridaInjectGatedVideo(videoWrap, embedMarkup, webinar.category === 'summit' ? 'summit' : 'replay');
       } else {
         videoWrap.innerHTML = `<div class="ep-transcript-unavailable"><p>Replay video is not available for this webinar yet.</p></div>`;
       }
@@ -2346,6 +2388,9 @@ async function ridaLoadWebinarPage() {
     } else if (videoSection) {
       videoSection.style.display = 'block';
     }
+
+    // Expose the gated injector to the clip-playlist click handler
+    window.__ridaInjectGatedVideo = ridaInjectGatedVideo;
 
     const summary = document.getElementById('wb-summary');
     const summaryBlock = document.getElementById('wb-summary-block');
