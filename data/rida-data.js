@@ -11,24 +11,14 @@
  */
 
 // ─── WEBINAR REPLAYS ────────────────────────────────────────────────────────
-// Columns: date_iso | day | month_year | title | description_doc_url |
-//          vimeo_embed_src | transcript_url
-const RIDA_WEBINARS = [
-  {
-    id: 1,
-    date: "March 31, 2026",
-    title: "Stop Working Harder for Less: The Anti-PPO Growth System",
-    category: "workshop",
-    duration: "2 Hours",
-    description: "A deep-dive session covering the Anti-PPO Growth System — the exact framework our top-performing practices use to attract fee-for-service patients, reduce insurance dependence, and grow revenue without working harder. Includes live Q&A.",
-    description_doc_url: "https://docs.google.com/document/d/1MiJn87wJ_i3xpZFG-uZ1L-t6KYZgurxHG2IC3tWBEU4/edit?tab=t.3sffcyvnrlxe",
-    vimeo_embed_src: "https://player.vimeo.com/video/1184000298?badge=0&autopause=0&player_id=0&app_id=58479",
-    vimeo_full_embed: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1184000298?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="RIDA March 31st - Stop Working Harder for Less: The Anti-PPO Growth System"></iframe></div><script src="https://player.vimeo.com/api/player.js"><\/script>`,
-    transcript_url: "https://drive.google.com/file/d/15skRzyh8LBvyW_w4njeMdp85rn13j_NN/view?usp=drive_link",
-    gated: true
-  }
-  // Add new webinars here as rows are added to the Excel sheet
-];
+// Webinars now live in the Google Sheet (`webinars` tab) and are loaded by
+// data/sheets.js. This array is intentionally empty — kept as a back-compat
+// shim for any code that still references window.RIDA_WEBINARS at startup.
+// To add a webinar, edit the `webinars` (or `summits`) sheet tab. Multi-clip
+// replays use the `webinar_url` cell with one clip per line:
+//   Clip 01 - Opening Remarks - https://player.vimeo.com/video/123
+//   Clip 02 - Keynote - https://player.vimeo.com/video/456
+const RIDA_WEBINARS = [];
 
 // ─── UPCOMING EVENTS ─────────────────────────────────────────────────────────
 // Columns: date_iso | day | month_year | time | title | description |

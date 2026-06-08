@@ -15,7 +15,8 @@ Dental practices that participate in PPO insurance plans typically write off 38�
 
 - [Home](https://www.rid.academy/): Overview of RID Academy's mission, tools, podcast, and events.
 - [Podcast](https://www.rid.academy/podcast): "Less Insurance Dependence" — expert interviews with dental practice owners, consultants, and industry leaders. Hosted by Gary Takacs and Naren Arulrajah.
-- [Webinar Archive](https://www.rid.academy/webinars): On-demand recordings of past webinars and workshops on PPO reduction strategies, fee-for-service transition, and dental practice growth.
+- [Webinar Archive](https://www.rid.academy/webinars): On-demand recordings of past webinars, workshops, and full Annual Summit replays (session-by-session clips) on PPO reduction strategies, fee-for-service transition, and dental practice growth. Individual replays at https://www.rid.academy/webinar/?title=…
+- [Annual Summit](https://www.rid.academy/summit): The annual RIDA Summit — live event and on-demand replays of all summit sessions (keynotes, expert panels, guest segments). Past summit replays appear under the "Summit Replays" filter in the Webinar Archive.
 - [Events](https://www.rid.academy/events): Upcoming free webinars, workshops, and dental summits hosted by RID Academy.
 - [Resources](https://www.rid.academy/resources): 30+ free guides, templates, scripts, and playbooks for dental practices reducing insurance dependence.
 - [About](https://www.rid.academy/about): Mission, team, and the story behind RID Academy.

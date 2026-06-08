@@ -18,109 +18,80 @@ const RIDA_TEXT_PROXY = 'https://corsproxy.io/?url={url}';
 const RIDA_TEXT_PROXY_2 = 'https://api.allorigins.win/raw?url={url}';
 window.RIDA_SHEETS_ACTIVE = true;
 
+// Hardcoded summit descriptions (overlay only — clips, dates, URLs come from
+// the Google Sheet). The merge logic spreads this object OVER the sheet row
+// matching the same title, so only the fields listed here override the sheet.
+// Add the actual summit row (title, vimeo_embed_src multi-line clips, category,
+// date, etc.) to the `summits` Google Sheet tab. Future summits don't need
+// any entry here — let the sheet's `description_doc_url` provide the description.
 const RIDA_SUPPLEMENTAL_WEBINARS = [
   {
     id: 'summit-2025-full-replay',
-    date: '2025',
     title: 'RIDA Annual Summit 2025 - Full Replay',
-    category: 'summit',
-    duration: '11 Clips',
-    description: 'Watch the full RIDA Annual Summit 2025 replay in a clean, session-by-session format. Every segment is organized in presentation order so you can move from opening remarks through keynote sessions, guest segments, expert panels, and closing remarks without losing the flow of the event.\n\nKey Takeaways\nFollow the summit in the same sequence attendees experienced it live\nJump directly to keynote sessions, guest presentations, and panel discussions\nReview the clinical and business conversations in an ordered, easy-to-navigate replay timeline',
-    presenter: 'RID Academy speakers and guest experts',
-    vimeo_embed_src: 'https://player.vimeo.com/video/1131555189?badge=0&autopause=0&player_id=0&app_id=58479',
-    clips: [
-      {
-        title: 'Opening Remarks',
-        label: 'Clip 01',
-        type: 'Opening',
-        speaker: 'RID Academy',
-        summary: 'The welcome segment that opens the summit and sets the direction for the sessions that follow.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131555189?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Naren Arulrajah Keynote',
-        label: 'Clip 02',
-        type: 'Keynote',
-        speaker: 'Naren Arulrajah',
-        summary: 'Naren Arulrajah\'s keynote session and strategic framing for the summit.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131555209?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Jordan Comstock Segment',
-        label: 'Clip 03',
-        type: 'Featured Session',
-        speaker: 'Jordan Comstock',
-        summary: 'Jordan Comstock\'s featured summit segment.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131555746?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Gary Takacs Introduction',
-        label: 'Clip 04',
-        type: 'Introduction',
-        speaker: 'RID Academy',
-        summary: 'A short introduction leading into Gary Takacs\'s featured session.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131555805?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Gary Takacs Segment',
-        label: 'Clip 05',
-        type: 'Featured Session',
-        speaker: 'Gary Takacs',
-        summary: 'Gary Takacs\'s main summit presentation.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131555824?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Gary Segment Close by Naren',
-        label: 'Clip 06',
-        type: 'Transition',
-        speaker: 'Naren Arulrajah',
-        summary: 'Closing remarks and transition after Gary Takacs\'s session.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131555925?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Clinical Panel Segment',
-        label: 'Clip 07',
-        type: 'Clinical Panel',
-        speaker: 'Panel Discussion',
-        summary: 'The clinical panel conversation from the summit replay.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131555944?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Business Panel Introduction',
-        label: 'Clip 08',
-        type: 'Introduction',
-        speaker: 'RID Academy',
-        summary: 'A brief lead-in to the business panel session.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131556164?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Business Panel Segment',
-        label: 'Clip 09',
-        type: 'Business Panel',
-        speaker: 'Panel Discussion',
-        summary: 'The full business panel conversation from the summit.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131556170?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Sarah Beth Herman Introduction',
-        label: 'Clip 10',
-        type: 'Introduction',
-        speaker: 'RID Academy',
-        summary: 'A short introduction to Sarah Beth Herman\'s closing feature.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131556841?badge=0&autopause=0&player_id=0&app_id=58479'
-      },
-      {
-        title: 'Sarah Beth Herman TED Talk and Closing Remarks',
-        label: 'Clip 11',
-        type: 'Closing Session',
-        speaker: 'Sarah Beth Herman',
-        summary: 'Sarah Beth Herman\'s featured talk followed by the summit close.',
-        vimeo_embed_src: 'https://player.vimeo.com/video/1131556867?badge=0&autopause=0&player_id=0&app_id=58479'
-      }
-    ]
+    description: 'Watch the full RIDA Annual Summit 2025 replay in a clean, session-by-session format. Every segment is organized in presentation order so you can move from opening remarks through keynote sessions, guest segments, expert panels, and closing remarks without losing the flow of the event.\n\nKey Takeaways\nFollow the summit in the same sequence attendees experienced it live\nJump directly to keynote sessions, guest presentations, and panel discussions\nReview the clinical and business conversations in an ordered, easy-to-navigate replay timeline'
   }
 ];
 window.RIDA_SUPPLEMENTAL_WEBINARS = RIDA_SUPPLEMENTAL_WEBINARS;
+
+// ─── Multi-clip webinar_url parser ───────────────────────────────────────────
+// Cell value can be:
+//   a) a single Vimeo / player URL
+//   b) one clip per line:  "Clip 01 - Opening Remarks - https://player.vimeo.com/video/123"
+// Returns { url, clips[] } where url is the first/primary URL and clips[] is the
+// per-clip array (empty for single-URL cells).
+function ridaParseWebinarUrl(cellValue) {
+  const raw = String(cellValue || '').trim();
+  if (!raw) return { url: '', clips: [] };
+
+  const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+
+  // Single URL (no "Clip N - … - URL" structure)
+  if (lines.length === 1 && !/\s-\s+https?:/i.test(lines[0])) {
+    return { url: lines[0], clips: [] };
+  }
+
+  const clips = lines.map((line, i) => {
+    const parts = line.split(/\s-\s+/);
+    let label, title, url;
+    if (parts.length >= 3) {
+      // "Clip 01 - Title - URL"
+      url = parts[parts.length - 1].trim();
+      label = parts[0].trim();
+      title = parts.slice(1, -1).join(' - ').trim();
+    } else if (parts.length === 2) {
+      // "Title - URL"
+      label = 'Clip ' + String(i + 1).padStart(2, '0');
+      title = parts[0].trim();
+      url = parts[1].trim();
+    } else {
+      // bare URL
+      label = 'Clip ' + String(i + 1).padStart(2, '0');
+      title = '';
+      url = parts[0].trim();
+    }
+    return { label: label, title: title, vimeo_embed_src: url };
+  }).filter(c => c.vimeo_embed_src);
+
+  return {
+    url: clips.length ? clips[0].vimeo_embed_src : '',
+    clips: clips
+  };
+}
+
+// Fetch BOTH `webinars` and `summits` tabs and return combined rows.
+// Rows from the summits tab are tagged with category='summit' if missing.
+async function ridaFetchReplays() {
+  const [webinarRows, summitRows] = await Promise.all([
+    ridaFetchSheet('webinars').catch(() => []),
+    ridaFetchSheet('summits').catch(() => [])
+  ]);
+  const taggedSummits = (Array.isArray(summitRows) ? summitRows : []).map(r => {
+    const out = Object.assign({}, r);
+    if (!out.category && !out.type) out.category = 'summit';
+    return out;
+  });
+  return (Array.isArray(webinarRows) ? webinarRows : []).concat(taggedSummits);
+}
 
 function ridaPopupDismissKey() {
   const path = (window.location && window.location.pathname) ? window.location.pathname : 'global';
@@ -958,16 +929,23 @@ function ridaNormalizeWebinarRow(row, index) {
       'doc_url',
       'description - Key notes'
     ]),
-    vimeo_embed_src: ridaDecodeHtml(ridaPickRowValue(row, [
-      'vimeo_embed_src',
-      'vimeo_url',
-      'webinar_url'
-    ])),
+    // vimeo_embed_src accepts EITHER a single URL OR one clip per line
+    // ("Clip 01 - Title - https://player.vimeo.com/video/123"). The parser
+    // handles both formats. webinar_url is supported as a legacy alias.
+    vimeo_embed_src: ridaParseWebinarUrl(
+      ridaDecodeHtml(ridaPickRowValue(row, ['vimeo_embed_src','vimeo_url','webinar_url']))
+    ).url,
     vimeo_full_embed: ridaPickRowValue(row, [
       'vimeo_full_embed',
       'video_embed',
       'embed_html'
     ]),
+    clips: (function(){
+      const clips = ridaParseWebinarUrl(
+        ridaDecodeHtml(ridaPickRowValue(row, ['vimeo_embed_src','vimeo_url','webinar_url']))
+      ).clips;
+      return clips.length ? clips : undefined;
+    })(),
     transcript_url: ridaPickRowValue(row, [
       'transcript_url',
       'transcript_doc_url',
@@ -2233,7 +2211,7 @@ async function ridaLoadEpisodePage() {
 
 async function ridaLoadWebinarsGrid() {
   try {
-    const rows = await ridaFetchSheet('webinars');
+    const rows = await ridaFetchReplays();
     const sheetWebinars = rows.map(ridaNormalizeWebinarRow);
     window.RIDA_WEBINARS = ridaMergeWebinars(sheetWebinars);
     document.dispatchEvent(new CustomEvent('ridaDataReady'));
@@ -2255,9 +2233,9 @@ async function ridaLoadWebinarPage() {
     const titleParam = params.get('title');
     let rows = [];
     try {
-      rows = await ridaFetchSheet('webinars');
+      rows = await ridaFetchReplays();
     } catch (sheetError) {
-      console.warn('RIDA Sheets: Could not fetch webinar rows, using fallback data', sheetError);
+      console.warn('RIDA Sheets: Could not fetch webinar/summit rows, using fallback data', sheetError);
     }
 
     const webinars = ridaMergeWebinars(rows.map(ridaNormalizeWebinarRow));
@@ -2266,6 +2244,57 @@ async function ridaLoadWebinarPage() {
     const webinar = webinars.find(item => ridaSlugify(item.title) === ridaSlugify(titleParam)) || webinars[0];
     const replayLabel = webinar.category === 'summit' ? 'Summit Replay' : 'Webinar Replay';
     document.title = `${webinar.title} | ${replayLabel} | RID Academy`;
+
+    // ── SEO / AI: inject per-replay meta + VideoObject schema ─────────────
+    try {
+      const pageUrl = window.location.origin + window.location.pathname + window.location.search;
+      const descShort = ridaEscapeHtml(String(webinar.description || '').replace(/\n+/g, ' ').slice(0, 160));
+      // dynamic <meta name="description">
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.setAttribute('name','description'); document.head.appendChild(metaDesc); }
+      metaDesc.setAttribute('content', descShort || (webinar.title + ' — RID Academy ' + replayLabel.toLowerCase()));
+      // canonical
+      let canon = document.querySelector('link[rel="canonical"]');
+      if (!canon) { canon = document.createElement('link'); canon.setAttribute('rel','canonical'); document.head.appendChild(canon); }
+      canon.setAttribute('href', pageUrl);
+      // og:title + og:description
+      ['og:title','twitter:title'].forEach(p => {
+        let m = document.querySelector(`meta[property="${p}"]`) || document.querySelector(`meta[name="${p}"]`);
+        if (!m) { m = document.createElement('meta'); m.setAttribute(p.startsWith('og:')?'property':'name', p); document.head.appendChild(m); }
+        m.setAttribute('content', document.title);
+      });
+      ['og:description','twitter:description'].forEach(p => {
+        let m = document.querySelector(`meta[property="${p}"]`) || document.querySelector(`meta[name="${p}"]`);
+        if (!m) { m = document.createElement('meta'); m.setAttribute(p.startsWith('og:')?'property':'name', p); document.head.appendChild(m); }
+        m.setAttribute('content', descShort);
+      });
+      // VideoObject JSON-LD (uses first clip URL if multi-clip)
+      const videoUrl = webinar.vimeo_embed_src || (webinar.clips && webinar.clips[0] && webinar.clips[0].vimeo_embed_src) || '';
+      if (videoUrl) {
+        const vid = {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": webinar.title,
+          "description": String(webinar.description || webinar.title).replace(/\s+/g,' ').slice(0,500),
+          "thumbnailUrl": "https://www.rid.academy/images/og-webinars.jpg",
+          "uploadDate": webinar.date || new Date().toISOString().slice(0,10),
+          "embedUrl": videoUrl,
+          "publisher": { "@type": "Organization", "@id": "https://www.rid.academy/#organization", "name": "RID Academy" }
+        };
+        if (webinar.clips && webinar.clips.length > 1) {
+          vid.hasPart = webinar.clips.map((c, i) => ({
+            "@type": "VideoObject", "name": c.title || c.label || ('Clip ' + (i+1)), "embedUrl": c.vimeo_embed_src
+          }));
+        }
+        const old = document.querySelector('script[type="application/ld+json"][data-rida-video]');
+        if (old) old.remove();
+        const s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.setAttribute('data-rida-video','1');
+        s.textContent = JSON.stringify(vid);
+        document.head.appendChild(s);
+      }
+    } catch (e) { /* schema injection is best-effort */ }
 
     hero.innerHTML = `
       <nav class="breadcrumb" aria-label="breadcrumb">

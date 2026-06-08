@@ -754,7 +754,7 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
       <p class="subtitle">Access recordings from past summits, workshops, and exclusive training sessions. Learn at your own pace.</p>
     </section>
 
-    <!-- Featured Webinars -->
+    <!-- Featured Webinars (titles must match `webinars`/`summits` sheet titles) -->
     <section class="container">
       <h2>Featured Webinars</h2>
       <div class="featured-grid">
@@ -929,10 +929,17 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
         ridaSubmitForm({ name: name, email: email, webinar: webinar }, 'webinar_access');
       }
 
-      if (selectedWebinar && selectedWebinar.gated && selectedWebinar.vimeo_full_embed) {
+      // Block-form pattern (no `gated` column required): after submit,
+      // always reveal the video inline if we have one. Otherwise show the
+      // "we've emailed you" confirmation as a fallback.
+      var embed = selectedWebinar && (selectedWebinar.vimeo_full_embed
+        || (selectedWebinar.vimeo_embed_src
+            ? '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="' + selectedWebinar.vimeo_embed_src + '" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;" title="' + selectedWebinar.title + '"></iframe></div>'
+            : ''));
+      if (embed) {
         document.getElementById('modalFormContent').style.display = 'none';
         document.getElementById('videoModalTitle').textContent = selectedWebinar.title;
-        document.getElementById('videoEmbed').innerHTML = selectedWebinar.vimeo_full_embed;
+        document.getElementById('videoEmbed').innerHTML = embed;
         if (selectedWebinar.transcript_url) {
           document.getElementById('transcriptLink').href = selectedWebinar.transcript_url;
           document.getElementById('transcriptLink').style.display = 'inline-block';
