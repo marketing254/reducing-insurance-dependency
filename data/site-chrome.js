@@ -60,6 +60,14 @@
     document.body.appendChild(s);
   })();
 
+  // ── Lead-capture access gate (block forms) — podcast/webinar/articles ───
+  (function () {
+    var s = document.createElement('script');
+    s.src = '/data/access-gate.js';
+    s.defer = true;
+    document.body.appendChild(s);
+  })();
+
   // ── Cookie consent banner (auto-injected on every page) ──────────────────
   (function () {
     var STORAGE_KEY = 'rida_cookie_consent';

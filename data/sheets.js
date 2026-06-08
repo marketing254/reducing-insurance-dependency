@@ -27,8 +27,13 @@ window.RIDA_SHEETS_ACTIVE = true;
 const RIDA_SUPPLEMENTAL_WEBINARS = [
   {
     id: 'summit-2025-full-replay',
-    title: 'RIDA Annual Summit 2025 - Full Replay',
-    description: 'Watch the full RIDA Annual Summit 2025 replay in a clean, session-by-session format. Every segment is organized in presentation order so you can move from opening remarks through keynote sessions, guest segments, expert panels, and closing remarks without losing the flow of the event.\n\nKey Takeaways\nFollow the summit in the same sequence attendees experienced it live\nJump directly to keynote sessions, guest presentations, and panel discussions\nReview the clinical and business conversations in an ordered, easy-to-navigate replay timeline'
+    // Title MUST match the row in the `summits` sheet exactly (slug-compared)
+    title: 'RIDA Annual Summit 2025',
+    // Description is fetched from this Google Doc via the Apps Script proxy and
+    // rendered through the same intro / Key Takeaways / bio formatter that
+    // every other webinar uses. The sheet's `description_doc_url` overrides
+    // this if set — so future edits can be done entirely in Sheets.
+    description_doc_url: 'https://docs.google.com/document/d/1LigrZP1xhHdjFpR9wRJXBNavoZSpzh9aHZHWVq_nEE8/edit?tab=t.0'
   }
 ];
 window.RIDA_SUPPLEMENTAL_WEBINARS = RIDA_SUPPLEMENTAL_WEBINARS;
