@@ -28,6 +28,36 @@
   <title>Webinar Replay | RID Academy</title>
   <meta name="description" content="Watch RID Academy webinar replays with notes and full transcripts.">
   <meta name="robots" content="index, follow">
+
+  <!-- Canonical placeholder — sheets.js rewrites this with the normalized per-replay URL once data loads. -->
+  <link rel="canonical" href="https://www.rid.academy/webinars">
+
+  <!-- Static Open Graph defaults — sheets.js overrides title/description per-replay. -->
+  <meta property="og:type" content="video.other">
+  <meta property="og:site_name" content="RID Academy">
+  <meta property="og:title" content="Webinar Replay | RID Academy">
+  <meta property="og:description" content="Watch RID Academy webinar replays with notes and full transcripts.">
+  <meta property="og:image" content="https://www.rid.academy/images/og-webinars.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Webinar Replay | RID Academy">
+  <meta name="twitter:description" content="Watch RID Academy webinar replays with notes and full transcripts.">
+  <meta name="twitter:image" content="https://www.rid.academy/images/og-webinars.jpg">
+
+  <!-- Static breadcrumb JSON-LD — visible to crawlers before JS executes. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.rid.academy/" },
+      { "@type": "ListItem", "position": 2, "name": "Webinar Archive", "item": "https://www.rid.academy/webinars" },
+      { "@type": "ListItem", "position": 3, "name": "Replay" }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">

@@ -26,8 +26,28 @@ ROOT = Path(__file__).resolve().parent
 
 
 def sitemap_urls():
+    """Collect every <loc> from sitemap.xml. If sitemap.xml is a
+    sitemap-index (which it is now — root references child sitemaps for
+    core pages, podcast episodes, and webinar replays), recurse into each
+    child sitemap and return the union of every page URL."""
     sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    return re.findall(r"<loc>(.*?)</loc>", sm)
+    locs = re.findall(r"<loc>(.*?)</loc>", sm)
+    is_index = "<sitemapindex" in sm
+    if not is_index:
+        return locs
+
+    page_urls = []
+    for child_url in locs:
+        # Resolve child sitemap to a local path. All child sitemaps live at
+        # the repo root and have predictable filenames.
+        name = child_url.rsplit("/", 1)[-1]
+        child_path = ROOT / name
+        if not child_path.exists():
+            print(f"  warn: child sitemap {name} not found locally — skipping")
+            continue
+        child_xml = child_path.read_text(encoding="utf-8")
+        page_urls.extend(re.findall(r"<loc>(.*?)</loc>", child_xml))
+    return page_urls
 
 
 def main():

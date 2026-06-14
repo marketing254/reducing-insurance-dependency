@@ -2212,7 +2212,12 @@ async function ridaLoadEpisodePage() {
 
     // ── SEO: inject per-episode canonical + meta + PodcastEpisode JSON-LD ─
     try {
-      const pageUrl = window.location.origin + window.location.pathname + window.location.search;
+      // Canonical keeps only `ep`; UTM/fbclid/gclid get stripped so Google
+      // doesn't index dozens of tracker-tagged duplicates of the same episode.
+      const canonParams = new URLSearchParams();
+      if (ep.episode) canonParams.set('ep', String(ep.episode));
+      const canonQuery = canonParams.toString();
+      const pageUrl = window.location.origin + window.location.pathname + (canonQuery ? '?' + canonQuery : '');
       const descShort = String(ep.description || '').replace(/\s+/g, ' ').slice(0, 160) || (ep.title + ' — Less Insurance Dependence Podcast');
       const upsertMeta = (sel, attr, key, val) => {
         let m = document.querySelector(sel);
@@ -2414,7 +2419,12 @@ async function ridaLoadWebinarPage() {
 
     // ── SEO / AI: inject per-replay meta + VideoObject schema ─────────────
     try {
-      const pageUrl = window.location.origin + window.location.pathname + window.location.search;
+      // Canonical keeps only `title`; UTM/fbclid/gclid get stripped so Google
+      // doesn't index dozens of tracker-tagged duplicates of the same replay.
+      const canonParams = new URLSearchParams();
+      if (webinar.title) canonParams.set('title', webinar.title);
+      const canonQuery = canonParams.toString();
+      const pageUrl = window.location.origin + window.location.pathname + (canonQuery ? '?' + canonQuery : '');
       const descShort = ridaEscapeHtml(String(webinar.description || '').replace(/\n+/g, ' ').slice(0, 160));
       // dynamic <meta name="description">
       let metaDesc = document.querySelector('meta[name="description"]');

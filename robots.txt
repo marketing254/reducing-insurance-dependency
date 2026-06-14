@@ -58,5 +58,12 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-# Sitemap
+# Sitemaps
+# sitemap.xml is a sitemap-index that references the three child sitemaps
+# below. Crawlers that support sitemap-indexes (Google, Bing) only need
+# the index; child sitemaps are listed explicitly as well for crawlers
+# that ignore indexes.
 Sitemap: https://www.rid.academy/sitemap.xml
+Sitemap: https://www.rid.academy/sitemap-core.xml
+Sitemap: https://www.rid.academy/sitemap-podcast.xml
+Sitemap: https://www.rid.academy/sitemap-webinars.xml
