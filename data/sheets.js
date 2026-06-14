@@ -1298,11 +1298,20 @@ function ridaGuestHeroMarkup(ep) {
 }
 
 function ridaPodcastHref(ep) {
-  return `podcast-episode/?ep=${encodeURIComponent(ep.episode)}`;
+  // Prefer the slug URL (matches the pre-rendered page at
+  // /podcast/<ep>-<slug>/). Falls back to the legacy query-param URL if
+  // the title isn't available — those pages still resolve and redirect.
+  const epNum = String(ep && ep.episode || '').replace(/\.0$/, '');
+  const slug = ep && ep.title ? ridaSlugify(ep.title) : '';
+  if (epNum && slug) return `/podcast/${epNum}-${slug}/`;
+  return `/podcast-episode/?ep=${encodeURIComponent(epNum)}`;
 }
 
 function ridaWebinarHref(webinar) {
-  return `webinar/?title=${encodeURIComponent(webinar.title || '')}`;
+  // Prefer the slug URL (matches the pre-rendered page at /webinar/<slug>/).
+  const slug = webinar && webinar.title ? ridaSlugify(webinar.title) : '';
+  if (slug) return `/webinar/${slug}/`;
+  return `/webinar/?title=${encodeURIComponent((webinar && webinar.title) || '')}`;
 }
 
 function ridaFormatDocHtml(text) {
@@ -2197,8 +2206,18 @@ async function ridaLoadEpisodePage() {
   const heroEl = document.getElementById('ep-hero-content');
   if (!heroEl) return;
   try {
+    // Routing priority:
+    //   1. window.RIDA_EPISODE_NUMBER — set by pre-rendered slug pages at
+    //      /podcast/<ep>-<slug>/ (one static file per episode, built by
+    //      build_sitemaps.py).
+    //   2. ?ep= — legacy URL pattern still served by /podcast-episode/.
+    //      Those visits are also redirected to the slug URL once
+    //      data/podcast-slugs.js loads, but reading this here keeps the
+    //      page functional during the brief render before redirect fires.
     const params = new URLSearchParams(window.location.search);
-    const targetEpisode = params.get('ep');
+    const targetEpisode = (typeof window.RIDA_EPISODE_NUMBER !== 'undefined' && window.RIDA_EPISODE_NUMBER !== '')
+      ? String(window.RIDA_EPISODE_NUMBER)
+      : params.get('ep');
     const rows = ridaSortPodcastEpisodes(await ridaFetchSheet('podcast'));
     if (!rows.length) throw new Error('No episodes found');
 
@@ -2212,12 +2231,14 @@ async function ridaLoadEpisodePage() {
 
     // ── SEO: inject per-episode canonical + meta + PodcastEpisode JSON-LD ─
     try {
-      // Canonical keeps only `ep`; UTM/fbclid/gclid get stripped so Google
-      // doesn't index dozens of tracker-tagged duplicates of the same episode.
-      const canonParams = new URLSearchParams();
-      if (ep.episode) canonParams.set('ep', String(ep.episode));
-      const canonQuery = canonParams.toString();
-      const pageUrl = window.location.origin + window.location.pathname + (canonQuery ? '?' + canonQuery : '');
+      // Canonical always points to the slug URL — even when the visitor
+      // landed on a legacy /podcast-episode/?ep=N URL — so Google
+      // consolidates link equity to the slug version.
+      const epNum = String(ep.episode || '').replace(/\.0$/, '');
+      const slug = (typeof ridaSlugify === 'function') ? ridaSlugify(ep.title) : '';
+      const pageUrl = (epNum && slug)
+        ? `${window.location.origin}/podcast/${epNum}-${slug}/`
+        : window.location.origin + window.location.pathname + (epNum ? `?ep=${epNum}` : '');
       const descShort = String(ep.description || '').replace(/\s+/g, ' ').slice(0, 160) || (ep.title + ' — Less Insurance Dependence Podcast');
       const upsertMeta = (sel, attr, key, val) => {
         let m = document.querySelector(sel);
@@ -2368,10 +2389,10 @@ async function ridaLoadEpisodePage() {
     if (navSection && prevNext) {
       navSection.style.display = 'block';
       const prevCard = prev
-        ? `<a href="?ep=${encodeURIComponent(prev.episode)}" class="ep-nav-card"><div class="ep-nav-dir">← Previous Episode</div><div class="ep-nav-ep">Episode ${ridaEscapeHtml(prev.episode)}</div><div class="ep-nav-title">${ridaEscapeHtml(prev.title)}</div></a>`
+        ? `<a href="${ridaPodcastHref(prev)}" class="ep-nav-card"><div class="ep-nav-dir">← Previous Episode</div><div class="ep-nav-ep">Episode ${ridaEscapeHtml(prev.episode)}</div><div class="ep-nav-title">${ridaEscapeHtml(prev.title)}</div></a>`
         : `<div class="ep-nav-card ep-nav-placeholder"><div class="ep-nav-dir">← Previous</div><div class="ep-nav-title">This is the oldest available episode.</div></div>`;
       const nextCard = next
-        ? `<a href="?ep=${encodeURIComponent(next.episode)}" class="ep-nav-card ep-nav-right"><div class="ep-nav-dir">Next Episode →</div><div class="ep-nav-ep">Episode ${ridaEscapeHtml(next.episode)}</div><div class="ep-nav-title">${ridaEscapeHtml(next.title)}</div></a>`
+        ? `<a href="${ridaPodcastHref(next)}" class="ep-nav-card ep-nav-right"><div class="ep-nav-dir">Next Episode →</div><div class="ep-nav-ep">Episode ${ridaEscapeHtml(next.episode)}</div><div class="ep-nav-title">${ridaEscapeHtml(next.title)}</div></a>`
         : `<div class="ep-nav-card ep-nav-right ep-nav-placeholder"><div class="ep-nav-dir">Next →</div><div class="ep-nav-title">This is the latest episode.</div></div>`;
       prevNext.innerHTML = prevCard + nextCard;
     }
@@ -2401,8 +2422,18 @@ async function ridaLoadWebinarPage() {
   const hero = document.getElementById('wb-hero-content');
   if (!hero) return;
   try {
+    // Routing priority:
+    //   1. window.RIDA_WEBINAR_SLUG — set by pre-rendered slug pages at
+    //      /webinar/<slug>/ (one static file per replay, built by
+    //      build_sitemaps.py).
+    //   2. ?title= — legacy URL pattern still served by /webinar/.
+    //      Those visits are also redirected to the slug URL once
+    //      data/webinar-slugs.js loads.
     const params = new URLSearchParams(window.location.search);
     const titleParam = params.get('title');
+    const targetSlug = (typeof window.RIDA_WEBINAR_SLUG !== 'undefined' && window.RIDA_WEBINAR_SLUG !== '')
+      ? String(window.RIDA_WEBINAR_SLUG)
+      : ridaSlugify(titleParam);
     let rows = [];
     try {
       rows = await ridaFetchReplays();
@@ -2413,18 +2444,19 @@ async function ridaLoadWebinarPage() {
     const webinars = ridaMergeWebinars(rows.map(ridaNormalizeWebinarRow));
     if (!webinars.length) throw new Error('No webinars found');
 
-    const webinar = webinars.find(item => ridaSlugify(item.title) === ridaSlugify(titleParam)) || webinars[0];
+    const webinar = webinars.find(item => ridaSlugify(item.title) === targetSlug) || webinars[0];
     const replayLabel = webinar.category === 'summit' ? 'Summit Replay' : 'Webinar Replay';
     document.title = `${webinar.title} | ${replayLabel} | RID Academy`;
 
     // ── SEO / AI: inject per-replay meta + VideoObject schema ─────────────
     try {
-      // Canonical keeps only `title`; UTM/fbclid/gclid get stripped so Google
-      // doesn't index dozens of tracker-tagged duplicates of the same replay.
-      const canonParams = new URLSearchParams();
-      if (webinar.title) canonParams.set('title', webinar.title);
-      const canonQuery = canonParams.toString();
-      const pageUrl = window.location.origin + window.location.pathname + (canonQuery ? '?' + canonQuery : '');
+      // Canonical always points to the slug URL — even when the visitor
+      // landed on a legacy /webinar/?title=Foo URL — so Google consolidates
+      // link equity to the slug version.
+      const webSlug = (typeof ridaSlugify === 'function') ? ridaSlugify(webinar.title) : '';
+      const pageUrl = webSlug
+        ? `${window.location.origin}/webinar/${webSlug}/`
+        : window.location.origin + window.location.pathname + (webinar.title ? '?title=' + encodeURIComponent(webinar.title) : '');
       const descShort = ridaEscapeHtml(String(webinar.description || '').replace(/\n+/g, ' ').slice(0, 160));
       // dynamic <meta name="description">
       let metaDesc = document.querySelector('meta[name="description"]');

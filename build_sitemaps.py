@@ -1,30 +1,41 @@
 """
-Generate sitemap-podcast.xml and sitemap-webinars.xml from the live Google
-Sheet, so every podcast episode and webinar/summit replay is discoverable
-by search engines (instead of relying on JS-rendered internal links).
+build_sitemaps.py — generate SEO-optimized slug URLs for podcast & webinars.
 
-Why this exists
----------------
-GitHub Pages can't render dynamic URLs server-side, so episode and replay
-pages all share one HTML shell at /podcast-episode/ and /webinar/. The
-canonical query-param URLs (/podcast-episode/?ep=388, /webinar/?title=...)
-are valid but Google won't crawl what it can't find — and without a
-sitemap entry per item, discovery depends on the homepage / podcast index
-linking each one (which itself loads via JS).
+What this does
+--------------
+GitHub Pages can't rewrite URLs server-side, so the only way to get clean
+slug-based URLs (with the title as a keyword in the path) is to pre-render
+one static HTML file per episode/replay at build time.
 
-Listing every item in a sitemap fixes that: Bing/Google read the sitemap
-directly and queue each URL for crawl, no JS execution required.
+For each row in the podcast / webinars / summits sheet tabs, this script:
+
+1. Computes a slug from the title (matches data/sheets.js → ridaSlugify())
+2. Renders a per-row HTML file under:
+       /podcast/<episode_number>-<slug>/index.html
+       /webinar/<slug>/index.html
+   These files share the shell of the existing dynamic templates
+   (/podcast-episode/index.html and /webinar/index.html) but with per-row
+   <title>, <meta description>, <link canonical>, OG/Twitter, and a
+   `window.RIDA_EPISODE_NUMBER` / `window.RIDA_WEBINAR_SLUG` set so
+   sheets.js knows which row to render dynamic content from.
+
+3. Writes data/podcast-slugs.js and data/webinar-slugs.js — small maps the
+   old query-param shells (/podcast-episode/, /webinar/) read to redirect
+   legacy URLs (`?ep=388`, `?title=Foo`) to the new slug URL.
+
+4. Writes sitemap-podcast.xml and sitemap-webinars.xml listing the slug
+   URLs only.
+
+5. Writes sitemap.xml as a sitemap-index of three children
+   (sitemap-core.xml, sitemap-podcast.xml, sitemap-webinars.xml).
+
+Run this after adding/editing rows in the Google Sheet, then commit and
+push the generated files. Run `python indexnow.py` after deploy to ping
+Bing/Yandex with the new URLs.
 
 Usage
 -----
     python build_sitemaps.py
-
-Writes:
-    sitemap-podcast.xml      one <url> per episode
-    sitemap-webinars.xml     one <url> per webinar/summit replay
-
-The root sitemap.xml is a sitemap-index that references both, plus the
-hand-curated list of core pages.
 """
 import json
 import re
@@ -32,6 +43,7 @@ import sys
 import urllib.parse
 import urllib.request
 from datetime import date
+from html import escape as html_escape
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
@@ -39,13 +51,41 @@ SHEET_ID = "1FOeB6lyOCKzj4u9caLPxModWYrpCILE0h4-7O_0yR4s"
 HOST = "https://www.rid.academy"
 ROOT = Path(__file__).resolve().parent
 
-# Tab name → (output file, URL builder)
 PODCAST_TAB = "podcast"
 REPLAY_TABS = ["webinars", "summits"]
 
+PODCAST_EP_TEMPLATE = ROOT / "podcast-episode" / "index.html"
+WEBINAR_TEMPLATE = ROOT / "webinar" / "index.html"
 
+
+# ─── slug ─────────────────────────────────────────────────────────────────
+def slugify(s):
+    """Mirror data/sheets.js → ridaSlugify() so generated URLs match what
+    the client-side slug→row lookup expects."""
+    s = (s or "").lower().strip().replace("&", " and ")
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = re.sub(r"^-+|-+$", "", s)
+    return s
+
+
+def to_int_str(v):
+    """gviz returns numeric cells as floats. Coerce '388.0' → '388'.
+    Non-numeric values pass through unchanged (so a string episode label
+    like 'Bonus 5' isn't mangled)."""
+    raw = str(v or "").strip()
+    if not raw:
+        return ""
+    try:
+        f = float(raw)
+        if f.is_integer():
+            return str(int(f))
+    except (ValueError, TypeError):
+        pass
+    return raw
+
+
+# ─── sheet fetch ──────────────────────────────────────────────────────────
 def fetch_sheet(tab):
-    """Fetch one sheet tab via gviz and return list of dict rows keyed by header label."""
     url = (
         f"https://docs.google.com/spreadsheets/d/{SHEET_ID}"
         f"/gviz/tq?tqx=out:json&headers=1&sheet={urllib.parse.quote(tab)}"
@@ -76,7 +116,6 @@ def fetch_sheet(tab):
 
 
 def parse_sheet_date(raw):
-    """gviz returns dates as 'Date(YYYY,M,D)' (month is 0-indexed)."""
     if not raw:
         return None
     m = re.match(r"Date\((\d+),(\d+),(\d+)\)", raw)
@@ -92,8 +131,176 @@ def parse_sheet_date(raw):
         return None
 
 
+# ─── template rendering ───────────────────────────────────────────────────
+RE_TITLE = re.compile(r"<title>.*?</title>", re.S)
+RE_META_DESC = re.compile(r'<meta name="description" content="[^"]*">')
+RE_CANONICAL = re.compile(r'<link rel="canonical" href="[^"]*">')
+RE_OG_TITLE = re.compile(r'<meta property="og:title" content="[^"]*">')
+RE_OG_DESC = re.compile(r'<meta property="og:description" content="[^"]*">')
+RE_TW_TITLE = re.compile(r'<meta name="twitter:title" content="[^"]*">')
+RE_TW_DESC = re.compile(r'<meta name="twitter:description" content="[^"]*">')
+RE_OG_URL = re.compile(r'<meta property="og:url" content="[^"]*">')
+
+
+def fix_paths(html):
+    """Per-row pages live two levels deep (/podcast/<n>-<slug>/index.html).
+    Existing templates use '../images/' and '../data/' which would break
+    at that depth. Rewrite to absolute paths so they resolve everywhere."""
+    return (
+        html.replace('"../images/', '"/images/')
+            .replace('"../data/', '"/data/')
+    )
+
+
+def swap_or_inject(html, regex, replacement, after_marker=None):
+    """Replace if regex matches; otherwise inject before </head>."""
+    new, n = regex.subn(replacement, html, count=1)
+    if n:
+        return new
+    inject = replacement + "\n  "
+    return html.replace("</head>", inject + "</head>", 1)
+
+
+def render_episode_page(template, title, ep_num, slug, description, date_str):
+    pretty_title = f"{title} | Less Insurance Dependence Podcast | RID Academy"
+    desc_short = re.sub(r"\s+", " ", description or title).strip()[:160]
+    if not desc_short:
+        desc_short = (
+            f"{title} — Less Insurance Dependence Podcast episode "
+            f"{ep_num}, from RID Academy."
+        )
+    pretty_title_esc = html_escape(pretty_title, quote=True)
+    desc_esc = html_escape(desc_short, quote=True)
+    canonical_url = f"{HOST}/podcast/{ep_num}-{slug}/"
+    canonical_esc = html_escape(canonical_url, quote=True)
+
+    html = template
+    html = RE_TITLE.sub(f"<title>{html_escape(pretty_title)}</title>", html, count=1)
+    html = swap_or_inject(
+        html, RE_META_DESC,
+        f'<meta name="description" content="{desc_esc}">',
+    )
+    html = swap_or_inject(
+        html, RE_CANONICAL,
+        f'<link rel="canonical" href="{canonical_esc}">',
+    )
+    html = swap_or_inject(
+        html, RE_OG_URL,
+        f'<meta property="og:url" content="{canonical_esc}">',
+    )
+    html = swap_or_inject(
+        html, RE_OG_TITLE,
+        f'<meta property="og:title" content="{pretty_title_esc}">',
+    )
+    html = swap_or_inject(
+        html, RE_OG_DESC,
+        f'<meta property="og:description" content="{desc_esc}">',
+    )
+    html = swap_or_inject(
+        html, RE_TW_TITLE,
+        f'<meta name="twitter:title" content="{pretty_title_esc}">',
+    )
+    html = swap_or_inject(
+        html, RE_TW_DESC,
+        f'<meta name="twitter:description" content="{desc_esc}">',
+    )
+
+    # Inject per-episode JSON-LD just before </head>
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "PodcastEpisode",
+        "name": title,
+        "description": desc_short,
+        "url": canonical_url,
+        "episodeNumber": ep_num,
+        "partOfSeries": {
+            "@type": "PodcastSeries",
+            "@id": f"{HOST}/podcast#series",
+            "name": "Less Insurance Dependence Podcast",
+        },
+    }
+    if date_str:
+        schema["datePublished"] = date_str
+    schema_tag = (
+        '<script type="application/ld+json" data-rida-ep-static>'
+        + json.dumps(schema, ensure_ascii=False)
+        + "</script>"
+    )
+    html = html.replace("</head>", "  " + schema_tag + "\n</head>", 1)
+
+    # Tell sheets.js which episode to render. Replace the existing
+    # ../data/sheets.js include (which fix_paths will rewrite to absolute)
+    # with our pre-script + absolute include in one shot.
+    html = html.replace(
+        '<script src="../data/sheets.js" defer></script>',
+        f'<script>window.RIDA_EPISODE_NUMBER = "{ep_num}";</script>\n'
+        f'<script src="/data/sheets.js" defer></script>',
+    )
+
+    return fix_paths(html)
+
+
+def render_webinar_page(template, title, slug, description, date_str, category):
+    label = "Summit Replay" if category == "summit" else "Webinar Replay"
+    pretty_title = f"{title} | {label} | RID Academy"
+    desc_short = re.sub(r"\s+", " ", description or title).strip()[:160]
+    if not desc_short:
+        desc_short = f"{title} — full {label.lower()} from RID Academy."
+    pretty_title_esc = html_escape(pretty_title, quote=True)
+    desc_esc = html_escape(desc_short, quote=True)
+    canonical_url = f"{HOST}/webinar/{slug}/"
+    canonical_esc = html_escape(canonical_url, quote=True)
+
+    html = template
+    html = RE_TITLE.sub(f"<title>{html_escape(pretty_title)}</title>", html, count=1)
+    html = swap_or_inject(html, RE_META_DESC,
+        f'<meta name="description" content="{desc_esc}">')
+    html = swap_or_inject(html, RE_CANONICAL,
+        f'<link rel="canonical" href="{canonical_esc}">')
+    html = swap_or_inject(html, RE_OG_URL,
+        f'<meta property="og:url" content="{canonical_esc}">')
+    html = swap_or_inject(html, RE_OG_TITLE,
+        f'<meta property="og:title" content="{pretty_title_esc}">')
+    html = swap_or_inject(html, RE_OG_DESC,
+        f'<meta property="og:description" content="{desc_esc}">')
+    html = swap_or_inject(html, RE_TW_TITLE,
+        f'<meta name="twitter:title" content="{pretty_title_esc}">')
+    html = swap_or_inject(html, RE_TW_DESC,
+        f'<meta name="twitter:description" content="{desc_esc}">')
+
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": title,
+        "description": desc_short,
+        "url": canonical_url,
+        "thumbnailUrl": f"{HOST}/images/og-webinars.jpg",
+        "publisher": {
+            "@type": "Organization",
+            "@id": f"{HOST}/#organization",
+            "name": "RID Academy",
+        },
+    }
+    if date_str:
+        schema["uploadDate"] = date_str
+    schema_tag = (
+        '<script type="application/ld+json" data-rida-video-static>'
+        + json.dumps(schema, ensure_ascii=False)
+        + "</script>"
+    )
+    html = html.replace("</head>", "  " + schema_tag + "\n</head>", 1)
+
+    html = html.replace(
+        '<script src="../data/sheets.js"></script>',
+        f'<script>window.RIDA_WEBINAR_SLUG = {json.dumps(slug)};</script>\n'
+        f'<script src="/data/sheets.js"></script>',
+    )
+
+    return fix_paths(html)
+
+
+# ─── sitemap writer ───────────────────────────────────────────────────────
 def write_sitemap(path, entries):
-    """entries = list of (loc, lastmod, changefreq, priority)."""
     parts = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
@@ -113,57 +320,130 @@ def write_sitemap(path, entries):
     print(f"  Wrote {path.name} ({len(entries)} URLs)")
 
 
-def build_podcast_sitemap():
+# ─── podcast builder ──────────────────────────────────────────────────────
+def build_podcast():
     rows = fetch_sheet(PODCAST_TAB)
-    entries = []
+    template = PODCAST_EP_TEMPLATE.read_text(encoding="utf-8")
     today = date.today().isoformat()
+    sitemap_entries = []
+    slug_map = {}   # ep_num → slug   (for legacy URL redirect)
+
+    pod_root = ROOT / "podcast"
+    pod_root.mkdir(exist_ok=True)
+
     for r in rows:
-        ep = r.get("episode") or r.get("Episode") or r.get("ep")
-        if not ep:
+        raw_ep = r.get("episode") or r.get("Episode") or r.get("ep")
+        title = r.get("title") or r.get("Title")
+        if not raw_ep or not title:
             continue
-        loc = f"{HOST}/podcast-episode/?ep={ep}"
+        ep_num = to_int_str(raw_ep)
+        slug = slugify(title)
+        if not slug:
+            continue
+
         d = parse_sheet_date(r.get("date") or r.get("Date"))
         lastmod = d.isoformat() if d else today
-        entries.append((loc, lastmod, "monthly", "0.7"))
-    write_sitemap(ROOT / "sitemap-podcast.xml", entries)
-    return len(entries)
+
+        out_dir = pod_root / f"{ep_num}-{slug}"
+        out_dir.mkdir(exist_ok=True)
+        html = render_episode_page(
+            template, title, ep_num, slug,
+            r.get("description") or r.get("Description") or "",
+            lastmod,
+        )
+        (out_dir / "index.html").write_text(html, encoding="utf-8")
+
+        sitemap_entries.append((
+            f"{HOST}/podcast/{ep_num}-{slug}/",
+            lastmod, "monthly", "0.7",
+        ))
+        slug_map[ep_num] = f"{ep_num}-{slug}"
+
+    write_sitemap(ROOT / "sitemap-podcast.xml", sitemap_entries)
+
+    # Slug map for legacy /podcast-episode/?ep=N redirect
+    (ROOT / "data" / "podcast-slugs.js").write_text(
+        "/* AUTO-GENERATED by build_sitemaps.py — do not edit by hand. */\n"
+        "window.RIDA_PODCAST_SLUGS = " + json.dumps(slug_map, indent=2, ensure_ascii=False) + ";\n",
+        encoding="utf-8",
+    )
+    print(f"  Wrote data/podcast-slugs.js ({len(slug_map)} entries)")
+    return len(sitemap_entries)
 
 
-def build_webinars_sitemap():
-    all_entries = []
+# ─── webinar builder ──────────────────────────────────────────────────────
+def build_webinars():
+    template = WEBINAR_TEMPLATE.read_text(encoding="utf-8")
     today = date.today().isoformat()
+    sitemap_entries = []
+    slug_map = {}   # ridaSlugify(title) → slug   (for legacy redirect)
+    used_slugs = set()
+
+    web_root = ROOT / "webinar"
+    web_root.mkdir(exist_ok=True)
+
     for tab in REPLAY_TABS:
         rows = fetch_sheet(tab)
+        category = "summit" if tab == "summits" else "webinar"
         for r in rows:
             title = r.get("title") or r.get("Title")
             if not title:
                 continue
-            # URL keeps the title verbatim — matches what sheets.js produces
-            # via window.location.search, so canonical alignment stays exact.
-            loc = f"{HOST}/webinar/?title={urllib.parse.quote(title)}"
+            base_slug = slugify(title)
+            if not base_slug:
+                continue
+
+            # Deduplicate slugs across both tabs
+            slug = base_slug
+            n = 2
+            while slug in used_slugs:
+                slug = f"{base_slug}-{n}"
+                n += 1
+            used_slugs.add(slug)
+
             d = parse_sheet_date(r.get("date") or r.get("Date"))
             lastmod = d.isoformat() if d else today
-            all_entries.append((loc, lastmod, "monthly", "0.7"))
-    write_sitemap(ROOT / "sitemap-webinars.xml", all_entries)
-    return len(all_entries)
+
+            out_dir = web_root / slug
+            out_dir.mkdir(exist_ok=True)
+            html = render_webinar_page(
+                template, title, slug,
+                r.get("description") or r.get("Description") or "",
+                lastmod, category,
+            )
+            (out_dir / "index.html").write_text(html, encoding="utf-8")
+
+            sitemap_entries.append((
+                f"{HOST}/webinar/{slug}/",
+                lastmod, "monthly", "0.7",
+            ))
+            # Lookup key is the *title's* slug (what sheets.js's ridaSlugify
+            # produces), since the legacy URL has the raw title in ?title=
+            slug_map[base_slug] = slug
+
+    write_sitemap(ROOT / "sitemap-webinars.xml", sitemap_entries)
+
+    (ROOT / "data" / "webinar-slugs.js").write_text(
+        "/* AUTO-GENERATED by build_sitemaps.py — do not edit by hand. */\n"
+        "window.RIDA_WEBINAR_SLUGS = " + json.dumps(slug_map, indent=2, ensure_ascii=False) + ";\n",
+        encoding="utf-8",
+    )
+    print(f"  Wrote data/webinar-slugs.js ({len(slug_map)} entries)")
+    return len(sitemap_entries)
 
 
+# ─── sitemap index ────────────────────────────────────────────────────────
 def build_sitemap_index():
-    """Top-level sitemap.xml is a sitemap-index pointing to the three children."""
     today = date.today().isoformat()
-    children = [
-        ("sitemap-core.xml", today),
-        ("sitemap-podcast.xml", today),
-        ("sitemap-webinars.xml", today),
-    ]
+    children = ["sitemap-core.xml", "sitemap-podcast.xml", "sitemap-webinars.xml"]
     parts = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ]
-    for name, lastmod in children:
+    for name in children:
         parts.append("  <sitemap>")
         parts.append(f"    <loc>{HOST}/{name}</loc>")
-        parts.append(f"    <lastmod>{lastmod}</lastmod>")
+        parts.append(f"    <lastmod>{today}</lastmod>")
         parts.append("  </sitemap>")
     parts.append("</sitemapindex>")
     (ROOT / "sitemap.xml").write_text("\n".join(parts) + "\n", encoding="utf-8")
@@ -173,16 +453,16 @@ def build_sitemap_index():
 def main():
     print("Fetching sheets:")
     try:
-        n_pod = build_podcast_sitemap()
-        n_web = build_webinars_sitemap()
+        n_pod = build_podcast()
+        n_web = build_webinars()
     except Exception as e:
         print(f"\nERROR: {e}", file=sys.stderr)
         sys.exit(1)
     print("\nWriting sitemap index:")
     build_sitemap_index()
-    print(f"\nDone. {n_pod} podcast episodes + {n_web} replays now in sitemaps.")
-    print("Next: git add sitemap*.xml && git commit && git push")
-    print("Then: python indexnow.py   (re-pings everything, including new URLs)")
+    print(f"\nDone. {n_pod} podcast episode pages + {n_web} replay pages generated.")
+    print("Next: git add . && git commit && git push")
+    print("Then: python indexnow.py")
 
 
 if __name__ == "__main__":
