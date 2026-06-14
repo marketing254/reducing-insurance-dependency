@@ -193,6 +193,70 @@ function ridaDriveImg(url, size = 'w900') {
   return id ? `https://lh3.googleusercontent.com/d/${id}=${size}` : value;
 }
 
+// Parse the `contact` cell on the featured_speakers tab into [{kind,label,url}].
+// Supports "LinkedIn: url" / "Instagram: url" / "Facebook: url" / "Website: url"
+// (one per line). Unknown labels become category 'website'.
+function ridaParseSpeakerContact(str) {
+  if (!str) return [];
+  const lines = String(str).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  const socials = [];
+  for (const line of lines) {
+    const m = line.match(/^([^:]+):\s*(https?:\/\/\S+)/i);
+    if (!m) continue;
+    const label = m[1].trim();
+    const url   = m[2].trim();
+    const kind  = label.toLowerCase().includes('linkedin')  ? 'linkedin'
+                : label.toLowerCase().includes('instagram') ? 'instagram'
+                : label.toLowerCase().includes('facebook')  ? 'facebook'
+                : 'website';
+    socials.push({ kind, label, url });
+  }
+  return socials;
+}
+
+// Normalize one featured_speakers row → {year, name, role, bio, socials, image}
+function ridaNormalizeSpeakerRow(row, index) {
+  const bioRaw = String(ridaPickRowValue(row, ['bio','description','about']) || '').trim();
+  // Convention: first non-empty line of the bio cell is the role/title;
+  // everything after (separated by a blank line) is the long bio paragraph.
+  const parts = bioRaw.split(/\n\s*\n/);  // split on blank lines
+  let role = '';
+  let bio  = bioRaw;
+  if (parts.length >= 2) {
+    role = parts[0].trim();
+    bio  = parts.slice(1).join('\n\n').trim();
+  }
+  const image = ridaDriveImg(ridaPickRowValue(row, ['image_url','image','photo','image_urls']) || '', 'w400');
+  return {
+    id: index + 1,
+    year: String(row.year || '').trim(),
+    name: String(row.name || '').trim(),
+    role: role,
+    bio: bio,
+    socials: ridaParseSpeakerContact(ridaPickRowValue(row, ['contact','contacts','socials','links']) || ''),
+    image: image
+  };
+}
+
+async function ridaLoadSpeakersGrid() {
+  if (!document.getElementById('spGrid')) return;
+  try {
+    const rows = await ridaFetchSheet('featured_speakers');
+    const speakers = (Array.isArray(rows) ? rows : []).map(ridaNormalizeSpeakerRow).filter(s => s.name);
+    // Sort by year desc, then name
+    speakers.sort((a, b) => {
+      if (a.year !== b.year) return String(b.year).localeCompare(String(a.year));
+      return a.name.localeCompare(b.name);
+    });
+    window.RIDA_SPEAKERS = speakers;
+    document.dispatchEvent(new CustomEvent('ridaDataReady'));
+  } catch (e) {
+    console.warn('RIDA Sheets: Could not load featured_speakers', e);
+    window.RIDA_SPEAKERS = [];
+    document.dispatchEvent(new CustomEvent('ridaDataReady'));
+  }
+}
+
 // Parse event speaker cells into [{name, photo}]. Supports THREE input formats:
 //   1.  "Name : https://..."           (one line, space-colon-space)
 //   2.  "Name: https://..."            (one line, no leading space before colon)
@@ -2145,6 +2209,46 @@ async function ridaLoadEpisodePage() {
     const next = index > -1 ? all[index - 1] : null;
 
     document.title = `${ep.title} | Podcast Episode | RID Academy`;
+
+    // ── SEO: inject per-episode canonical + meta + PodcastEpisode JSON-LD ─
+    try {
+      const pageUrl = window.location.origin + window.location.pathname + window.location.search;
+      const descShort = String(ep.description || '').replace(/\s+/g, ' ').slice(0, 160) || (ep.title + ' — Less Insurance Dependence Podcast');
+      const upsertMeta = (sel, attr, key, val) => {
+        let m = document.querySelector(sel);
+        if (!m) { m = document.createElement('meta'); m.setAttribute(attr, key); document.head.appendChild(m); }
+        m.setAttribute('content', val);
+      };
+      upsertMeta('meta[name="description"]', 'name', 'description', descShort);
+      upsertMeta('meta[property="og:title"]', 'property', 'og:title', document.title);
+      upsertMeta('meta[property="og:description"]', 'property', 'og:description', descShort);
+      upsertMeta('meta[property="og:url"]', 'property', 'og:url', pageUrl);
+      upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', document.title);
+      upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', descShort);
+      // canonical (self-referencing so each episode is its own indexed page)
+      let canon = document.querySelector('link[rel="canonical"]');
+      if (!canon) { canon = document.createElement('link'); canon.setAttribute('rel','canonical'); document.head.appendChild(canon); }
+      canon.setAttribute('href', pageUrl);
+      // PodcastEpisode JSON-LD
+      const old = document.querySelector('script[type="application/ld+json"][data-rida-ep]');
+      if (old) old.remove();
+      const podcastSchema = {
+        "@context": "https://schema.org",
+        "@type": "PodcastEpisode",
+        "name": ep.title,
+        "description": String(ep.description || ep.title).replace(/\s+/g,' ').slice(0,500),
+        "url": pageUrl,
+        "datePublished": ep.date || '',
+        "episodeNumber": ep.episode || '',
+        "partOfSeries": { "@type": "PodcastSeries", "@id": "https://www.rid.academy/podcast#series", "name": "Less Insurance Dependence Podcast" }
+      };
+      const s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.setAttribute('data-rida-ep','1');
+      s.textContent = JSON.stringify(podcastSchema);
+      document.head.appendChild(s);
+    } catch (e) { /* best-effort */ }
+
     heroEl.innerHTML = `
       <div class="ep-hero-layout">
         <div class="ep-hero-copy">
@@ -2557,6 +2661,9 @@ async function ridaLoadWebinarPage() {
 
   if (path.includes('podcast-episode')) {
     ridaLoadEpisodePage();
+  } else if (document.getElementById('spGrid')) {
+    // Featured Speakers archive (/speakers)
+    ridaLoadSpeakersGrid();
   } else if (document.getElementById('webinarGrid')) {
     // Archive grid present (webinars.html) — fetch and render the full list
     ridaLoadWebinarsGrid();
