@@ -2701,7 +2701,14 @@ async function ridaLoadWebinarPage() {
     ridaLoadEventPopup();
   }
 
-  if (path.includes('podcast-episode')) {
+  // DOM-element-based routing beats path matching here. Slug URLs like
+  // /podcast/<ep>-<slug>/ would otherwise hit the podcast-grid branch
+  // because they start with /podcast/, and the episode loader would never
+  // run. Checking for the episode-detail-only #ep-hero-content avoids
+  // that — same pattern as the webinar archive vs. detail distinction.
+  if (document.getElementById('ep-hero-content')) {
+    // Episode detail (legacy /podcast-episode/ shell OR pre-rendered
+    // /podcast/<ep>-<slug>/ static pages).
     ridaLoadEpisodePage();
   } else if (document.getElementById('spGrid')) {
     // Featured Speakers archive (/speakers)
@@ -2710,7 +2717,8 @@ async function ridaLoadWebinarPage() {
     // Archive grid present (webinars.html) — fetch and render the full list
     ridaLoadWebinarsGrid();
   } else if (document.getElementById('wb-hero-content')) {
-    // Detail page (webinar/index.html) — render a single replay
+    // Detail page (legacy /webinar/ shell OR pre-rendered /webinar/<slug>/
+    // static pages).
     ridaLoadWebinarPage();
   } else if (path.includes('events')) {
     ridaLoadEventsGrid();
