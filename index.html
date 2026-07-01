@@ -80,7 +80,15 @@
       "url": "https://www.rid.academy/",
       "name": "RID Academy",
       "description": "Practical guidance for dentists building independent, profitable practices free from PPO dependence.",
-      "publisher": { "@id": "https://www.rid.academy/#organization" }
+      "publisher": { "@id": "https://www.rid.academy/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.rid.academy/resources?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     },
     {
       "@type": "WebPage",
@@ -89,7 +97,58 @@
       "name": "RID Academy — Reduce Insurance Dependence for Dental Practices",
       "isPartOf": { "@id": "https://www.rid.academy/#website" },
       "about": { "@id": "https://www.rid.academy/#organization" },
-      "description": "Free tools, expert training, and proven strategies to help dental practices reduce PPO dependence and increase profitability."
+      "description": "Free tools, expert training, and proven strategies to help dental practices reduce PPO dependence and increase profitability.",
+      "dateModified": "2026-06-27",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.rid.academy/images/og-default.jpg"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rid.academy/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What percentage of revenue do dentists lose to PPO write-offs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most dental practices participating in PPO networks write off 38–44% of their collected revenue as insurance discounts. A practice billing $1M in production typically collects $560,000–$620,000 after PPO adjustments. The exact figure depends on which networks you're in, your fee schedule, and payer mix — the free PPO Write-Off Calculator at rid.academy/ppo-calculator shows the number for a specific practice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do dentists reduce insurance dependence without losing patients?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The proven path combines four moves: (1) transparent patient communication about the true cost of insurance discounts, (2) an in-house membership plan that gives uninsured and out-of-network patients predictable pricing, (3) a phased PPO drop strategy that leaves the lowest-paying networks first, and (4) digital marketing that attracts fee-for-service patients to replace PPO-driven volume. Practices that follow this sequence typically retain 70–85% of PPO patients through the transition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a dental in-house membership plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An in-house membership plan is a monthly or annual subscription patients buy directly from the dental practice — no insurance company involved. It typically includes preventive care (cleanings, exams, X-rays) plus a discount on restorative treatment. Members pay the practice, not an insurer, so there are no write-offs, no claim denials, and no reimbursement delays. Pricing is set by the practice using cost-of-living, service mix, and break-even math."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to drop all PPOs at once to become insurance-independent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Most practices that successfully reduce insurance dependence use a phased drop: they leave the lowest-paying PPO network first, monitor patient retention and revenue for 90 days, then drop the next-lowest. This keeps cash flow stable and lets the team learn the fee-for-service conversation on a small slice of patients before scaling it up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is RID Academy different from other dental consulting programs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RID Academy is a free educational platform focused on one topic — reducing PPO dependence — rather than a paid coaching program covering general practice management. Everything on the site is open and non-gated: the calculators, the podcast, the webinar replays, the summit sessions, and the resource library. There's no membership fee, no consulting retainer, and no upsell to a paid tier."
+          }
+        }
+      ]
     }
   ]
 }

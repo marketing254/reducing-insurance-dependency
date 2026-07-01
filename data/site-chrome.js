@@ -52,8 +52,21 @@
   const footer = document.querySelector('footer');
   if (footer) footer.outerHTML = footerHtml;
 
+  // ── Kit (ConvertKit) form integration (defines ridaSubmitToKit) ─────────
+  // Loaded BEFORE forms.js so the first form submission on the page can
+  // hand off to Kit. ridaSubmitForm() looks for window.ridaSubmitToKit
+  // and skips the Kit hand-off silently if not yet defined.
+  (function () {
+    if (typeof window.ridaSubmitToKit !== 'function') {
+      var s = document.createElement('script');
+      s.src = '/data/kit.js';
+      document.body.appendChild(s);
+    }
+  })();
+
   // ── Form submission helper (defines ridaSubmitForm) ─────────────────────
-  // Load FIRST so subsequent scripts (access-gate.js etc.) see ridaSubmitForm.
+  // Load AFTER kit.js so the Kit hand-off is wired up by the time
+  // subsequent scripts (access-gate.js etc.) call ridaSubmitForm.
   (function () {
     if (typeof window.ridaSubmitForm !== 'function') {
       var s = document.createElement('script');

@@ -25,6 +25,16 @@ function ridaSubmitForm(data, formType) {
     return Promise.resolve(false);
   }
 
+  // Kick off the Kit subscription in parallel with the sheet write.
+  // It MUST run from the browser (not the Apps Script) so the Origin/
+  // Referer headers prove this is a legit signup — server-to-server POSTs
+  // get silently suppressed by Kit's anti-spam. The helper is fire-and-
+  // forget so a Kit outage never blocks the primary flow.
+  // See: data/kit.js and skills/kit-integration/SKILL.md
+  if (typeof window.ridaSubmitToKit === 'function') {
+    try { window.ridaSubmitToKit(data, formType); } catch (e) {}
+  }
+
   var params = new URLSearchParams();
   params.set('form_type', formType || 'general');
   Object.keys(data).forEach(function(k) {

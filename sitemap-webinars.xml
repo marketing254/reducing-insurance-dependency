@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.rid.academy/webinar/stop-working-harder-for-less-the-anti-ppo-growth-system/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <loc>https://www.rid.academy/webinar/?title=Stop%20Working%20Harder%20for%20Less%3A%20The%20Anti-PPO%20Growth%20System</loc>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.rid.academy/webinar/the-modern-dental-practice-clinical-excellence-meets-scalable-growth/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <loc>https://www.rid.academy/webinar/?title=The%20Modern%20Dental%20Practice%3A%20Clinical%20Excellence%20Meets%20Scalable%20Growth</loc>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.rid.academy/webinar/rida-annual-summit-2025/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <loc>https://www.rid.academy/webinar/?title=Own%20Your%20Revenue%3A%20The%20Membership%20Plan%2C%20Case%20Acceptance%2C%20and%20Patient%20Loyalty%20System%20That%20Makes%20Insurance%20Optional</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.rid.academy/webinar/?title=RIDA%20Annual%20Summit%202025</loc>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

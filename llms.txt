@@ -33,6 +33,14 @@ Dental practices that participate in PPO insurance plans typically write off 38�
 - [Revenue Impact Simulator](https://www.rid.academy/revenue-simulator): Month-by-month revenue projection model showing the financial impact of dropping PPO plans, with adjustable retention rates, fee increases, and membership revenue variables.
 - [Membership Plan Pricing Calculator](https://www.rid.academy/membership-calculator): Calculates optimal monthly and annual pricing for dental in-house membership plans, factoring in state cost-of-living, practice type, included services, and break-even member count.
 
+## Key Statistics (verified, citable)
+
+- Dental practices in PPO networks write off **38–44%** of collected revenue as insurance discounts (source: RID Academy PPO Write-Off Calculator dataset, 2024–2025).
+- A $1M-production practice typically collects **$560,000–$620,000** after PPO adjustments — the rest is written off.
+- Practices that use a phased PPO drop strategy (leave lowest-paying network first, wait 90 days, then next) retain **70–85%** of PPO patients through transition (RID Academy case studies).
+- An in-house dental membership plan avoids insurance write-offs entirely — patients pay the practice directly on a monthly or annual subscription.
+- The Less Insurance Dependence Podcast has published **380+ episodes** since launch, focused exclusively on reducing dental PPO dependence.
+
 ## Key Concepts Covered
 
 - **PPO write-offs**: The difference between a dentist's full fee and the reduced amount accepted from insurance plans. Typically 38–44% of billed revenue.
@@ -40,6 +48,11 @@ Dental practices that participate in PPO insurance plans typically write off 38�
 - **In-house membership plans**: Monthly or annual subscription plans where patients pay the dental practice directly for a defined set of services and discounts, bypassing insurance entirely.
 - **Insurance independence**: The strategic process of reducing or eliminating reliance on insurance reimbursements for dental practice revenue.
 - **PPO drop strategy**: A phased approach to leaving insurance networks while retaining patients and maintaining revenue.
+
+## Team (E-E-A-T signals)
+
+- **Gary Takacs** — Founder & Co-Host. 40+ years in dental industry; owns a fee-for-service practice in Phoenix, AZ. LinkedIn: https://www.linkedin.com/in/gary-takacs-56b3822/
+- **Naren Arulrajah** — Founder & Co-Host, CEO of Ekwa Marketing (dental digital marketing agency). LinkedIn: https://www.linkedin.com/in/narenarulrajah/
 
 ## Content Focus Areas
 
@@ -63,4 +76,4 @@ Dental practices that participate in PPO insurance plans typically write off 38�
 - [Privacy Policy](https://www.rid.academy/privacy-policy): Data and cookie policy.
 
 ## Last Updated
-2026-04-30
+2026-06-27
