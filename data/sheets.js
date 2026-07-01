@@ -1942,85 +1942,206 @@ async function ridaLoadReviewsGrid() {
 async function ridaLoadEventsGrid() {
   const grid = document.getElementById('eventsGrid');
   if (!grid) return;
+
+  // Header/subtitle references — flipped between "Upcoming" and "Coming Soon"
+  // based on what the sheet returns, so the top of the section always tells
+  // the truth (was: "Register for live sessions..." even when there were 0).
+  const labelEl    = document.getElementById('eventsLabel');
+  const headingEl  = document.getElementById('eventsHeading');
+  const subtitleEl = document.getElementById('eventsSubtitle');
+  const recentWrap = document.getElementById('eventsRecentWrap');
+  const recentGrid = document.getElementById('eventsRecentGrid');
+
+  const setHeader = (label, heading, subtitle) => {
+    if (labelEl)    labelEl.textContent    = label;
+    if (headingEl)  headingEl.textContent  = heading;
+    if (subtitleEl) subtitleEl.textContent = subtitle;
+  };
+
+  const renderComingSoonCard = () => `
+    <div class="ev-coming-soon" role="status">
+      <div class="ev-coming-soon-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="17" rx="2.5"/>
+          <line x1="8" y1="2.5" x2="8" y2="6.5"/>
+          <line x1="16" y1="2.5" x2="16" y2="6.5"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <circle cx="12" cy="15.5" r="2.4"/>
+        </svg>
+      </div>
+      <h3>More events coming soon</h3>
+      <p>We're finalizing the next round of webinars and workshops. Sign up for the newsletter to be first to know — or catch up on past sessions in the meantime.</p>
+      <div class="ev-coming-soon-actions">
+        <a href="#newsletter" class="ev-btn">Notify Me</a>
+        <a href="/webinars" class="ev-btn-ghost">Browse Past Replays</a>
+      </div>
+    </div>`;
+
   try {
     const events = await ridaFetchSheet('events');
-    if (!events.length) {
-      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,.4);padding:32px">No upcoming events.</div>';
-      return;
-    }
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const upcoming = events.filter(ev => {
+
+    // Split into upcoming (date >= today) and past. Rows without a parseable
+    // date fall into `undated` — we treat those as upcoming so a row the
+    // user just added isn't silently hidden by a bad date field.
+    const upcoming = [];
+    const past     = [];
+    events.forEach(ev => {
       const d = ridaParseDate(ev.date_iso);
-      return d && d >= today;
+      if (!d)               upcoming.push(ev);
+      else if (d >= today)  upcoming.push(ev);
+      else                  past.push(Object.assign({}, ev, { _date: d }));
     });
-    const list = upcoming.length ? upcoming : events.slice(-4);
 
-    const calSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
-    const clockSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+    // Sort past newest-first so "Recent Events" leads with the most recent.
+    past.sort((a, b) => b._date - a._date);
 
-    grid.innerHTML = list.map((ev, idx) => {
-      const featured  = idx === 0;
-      const dateLabel = ev.day && ev.month_year ? `${ev.day} ${ev.month_year}` : (ev.date_iso || '');
-      const typeLabel = ridaEscapeHtml(ev.type || ev.category || 'Webinar');
-      const speakers  = ridaParseEventSpeakers(ev.image_urls || ev.image_url || '');
-
-      if (featured) {
-        // ── Featured / next-up card ──────────────────────────────────────
-        const portraitsHtml = speakers.length ? speakers.map(s => `
-          <div class="ev-portrait">
-            <div class="ev-portrait-img">
-              ${s.photo ? `<img src="${ridaEscapeHtml(s.photo)}" alt="${ridaEscapeHtml(s.name)}" loading="lazy" style="object-position:${ridaEscapeHtml(ridaEventSpeakerObjectPosition(s.name))}" onerror="this.closest('.ev-portrait').style.display='none'">` : ''}
-            </div>
-            <span class="ev-portrait-name">${ridaEscapeHtml(s.name)}</span>
-          </div>`).join('') : '';
-
-        return `<div class="event-card event-card--featured">
-          <div class="ev-featured-media">
-            <div class="ev-featured-badge">Next Up</div>
-            ${portraitsHtml ? `<div class="ev-portraits">${portraitsHtml}</div>` : '<div class="ev-featured-placeholder"></div>'}
-          </div>
-          <div class="ev-featured-body">
-            <div class="ev-featured-head">
-              <span class="event-tag">${typeLabel}</span>
-              <span class="event-card-date">${ridaEscapeHtml(dateLabel)}${ev.time ? ' · ' + ridaEscapeHtml(ev.time) : ''}</span>
-            </div>
-            <h2 class="ev-featured-title">${ridaEscapeHtml(ev.title)}</h2>
-            <p class="ev-featured-desc">${ridaEscapeHtml(ev.description || '').replace(/\n/g, '<br>')}</p>
-            <a href="${ridaEscapeHtml(ev.register_url || '#')}" target="_blank" rel="noopener" class="event-cta event-cta--lg">Register Now →</a>
-          </div>
-        </div>`;
+    // ── Case A: no upcoming events at all ─────────────────────────────────
+    if (!upcoming.length) {
+      setHeader(
+        'Coming Soon',
+        'New events on the way',
+        past.length
+          ? 'The next round is being planned. Here\'s what we ran recently — replays are open to everyone.'
+          : 'The next round is being planned. Sign up for the newsletter and we\'ll email you the moment registration opens.'
+      );
+      grid.innerHTML = renderComingSoonCard();
+      // If we have past events, surface up to 3 as "Recent Events" so the
+      // page doesn't feel empty — helps visitors find replays.
+      if (recentWrap && recentGrid && past.length) {
+        recentGrid.innerHTML = past.slice(0, 3).map(ev => renderPastCard(ev)).join('');
+        recentWrap.style.display = 'block';
+      } else if (recentWrap) {
+        recentWrap.style.display = 'none';
       }
+      return;
+    }
 
-      // ── Regular card ────────────────────────────────────────────────────
-      const speakersHtml = speakers.length ? `
-        <div class="ev-speakers">
-          ${speakers.map(s => `
-            <div class="ev-speaker">
-              <div class="ev-speaker-photo">
-                ${s.photo ? `<img src="${ridaEscapeHtml(s.photo)}" alt="${ridaEscapeHtml(s.name)}" loading="lazy" style="object-position:${ridaEscapeHtml(ridaEventSpeakerObjectPosition(s.name))}" onerror="this.style.display='none'">` : ''}
-              </div>
-              <span class="ev-speaker-name">${ridaEscapeHtml(s.name)}</span>
-            </div>`).join('')}
-        </div>` : '';
+    // ── Case B: at least one upcoming event ───────────────────────────────
+    setHeader(
+      'Upcoming',
+      'Upcoming Events',
+      'Register for live sessions and get direct access to expert Q&A and peer networking.'
+    );
 
-      return `<div class="event-card">
-        <div class="event-card-head">
+    grid.innerHTML = upcoming.map((ev, idx) => renderUpcomingCard(ev, idx === 0)).join('');
+
+    // Show up to 3 recent past events below so returning visitors can find
+    // replays without leaving the page.
+    if (recentWrap && recentGrid && past.length) {
+      recentGrid.innerHTML = past.slice(0, 3).map(ev => renderPastCard(ev)).join('');
+      recentWrap.style.display = 'block';
+    } else if (recentWrap) {
+      recentWrap.style.display = 'none';
+    }
+
+  } catch (e) {
+    console.warn('RIDA Sheets: Could not load events grid', e);
+    grid.innerHTML = renderComingSoonCard();
+    if (recentWrap) recentWrap.style.display = 'none';
+  }
+}
+
+// ── Card renderers ─────────────────────────────────────────────────────────
+function renderUpcomingCard(ev, featured) {
+  const dateLabel = ev.day && ev.month_year ? `${ev.day} ${ev.month_year}` : (ev.date_iso || '');
+  const typeLabel = ridaEscapeHtml(ev.type || ev.category || 'Webinar');
+  const speakers  = ridaParseEventSpeakers(ev.image_urls || ev.image_url || '');
+
+  if (featured) {
+    const portraitsHtml = speakers.length ? speakers.map(s => `
+      <div class="ev-portrait">
+        <div class="ev-portrait-img">
+          ${s.photo ? `<img src="${ridaEscapeHtml(s.photo)}" alt="${ridaEscapeHtml(s.name)}" loading="lazy" style="object-position:${ridaEscapeHtml(ridaEventSpeakerObjectPosition(s.name))}" onerror="this.closest('.ev-portrait').style.display='none'">` : ''}
+        </div>
+        <span class="ev-portrait-name">${ridaEscapeHtml(s.name)}</span>
+      </div>`).join('') : '';
+
+    return `<div class="event-card event-card--featured">
+      <div class="ev-featured-media">
+        <div class="ev-featured-badge">Next Up</div>
+        ${portraitsHtml ? `<div class="ev-portraits">${portraitsHtml}</div>` : '<div class="ev-featured-placeholder"></div>'}
+      </div>
+      <div class="ev-featured-body">
+        <div class="ev-featured-head">
           <span class="event-tag">${typeLabel}</span>
           <span class="event-card-date">${ridaEscapeHtml(dateLabel)}${ev.time ? ' · ' + ridaEscapeHtml(ev.time) : ''}</span>
         </div>
-        <div class="event-card-body">
-          <h3>${ridaEscapeHtml(ev.title)}</h3>
-          <p class="event-description">${ridaEscapeHtml(ev.description || '').replace(/\n/g, '<br>')}</p>
-          ${speakersHtml}
-          <a href="${ridaEscapeHtml(ev.register_url || '#')}" target="_blank" rel="noopener" class="event-cta">Register Now →</a>
-        </div>
-      </div>`;
-    }).join('');
-  } catch (e) {
-    console.warn('RIDA Sheets: Could not load events grid', e);
+        <h2 class="ev-featured-title">${ridaEscapeHtml(ev.title)}</h2>
+        <p class="ev-featured-desc">${ridaEscapeHtml(ev.description || '').replace(/\n/g, '<br>')}</p>
+        <a href="${ridaEscapeHtml(ev.register_url || '#')}" target="_blank" rel="noopener" class="event-cta event-cta--lg">Register Now →</a>
+      </div>
+    </div>`;
   }
+
+  const speakersHtml = speakers.length ? `
+    <div class="ev-speakers">
+      ${speakers.map(s => `
+        <div class="ev-speaker">
+          <div class="ev-speaker-photo">
+            ${s.photo ? `<img src="${ridaEscapeHtml(s.photo)}" alt="${ridaEscapeHtml(s.name)}" loading="lazy" style="object-position:${ridaEscapeHtml(ridaEventSpeakerObjectPosition(s.name))}" onerror="this.style.display='none'">` : ''}
+          </div>
+          <span class="ev-speaker-name">${ridaEscapeHtml(s.name)}</span>
+        </div>`).join('')}
+    </div>` : '';
+
+  return `<div class="event-card">
+    <div class="event-card-head">
+      <span class="event-tag">${typeLabel}</span>
+      <span class="event-card-date">${ridaEscapeHtml(dateLabel)}${ev.time ? ' · ' + ridaEscapeHtml(ev.time) : ''}</span>
+    </div>
+    <div class="event-card-body">
+      <h3>${ridaEscapeHtml(ev.title)}</h3>
+      <p class="event-description">${ridaEscapeHtml(ev.description || '').replace(/\n/g, '<br>')}</p>
+      ${speakersHtml}
+      <a href="${ridaEscapeHtml(ev.register_url || '#')}" target="_blank" rel="noopener" class="event-cta">Register Now →</a>
+    </div>
+  </div>`;
+}
+
+function renderPastCard(ev) {
+  const dateLabel = ev.day && ev.month_year ? `${ev.day} ${ev.month_year}` : (ev.date_iso || '');
+  const typeLabel = ridaEscapeHtml(ev.type || ev.category || 'Webinar');
+  const speakers  = ridaParseEventSpeakers(ev.image_urls || ev.image_url || '');
+
+  // Compact archive row: small overlapping avatar stack (max 4 visible + "+N"
+  // chip), inline meta line (type · date · Ended), title on its own line,
+  // Watch Replay CTA on the right. Whole row is a link to the replay so
+  // users can tap anywhere. If the sheet has no `replay_url` for this row
+  // we fall back to the /webinars archive.
+  const MAX_AVATARS = 4;
+  const shown = speakers.slice(0, MAX_AVATARS);
+  const overflow = Math.max(0, speakers.length - shown.length);
+  const avatarsHtml = speakers.length ? `
+    <div class="ev-past-avatars" aria-hidden="true">
+      ${shown.map(s => `
+        <span class="ev-past-avatar">
+          ${s.photo ? `<img src="${ridaEscapeHtml(s.photo)}" alt="" loading="lazy" style="object-position:${ridaEscapeHtml(ridaEventSpeakerObjectPosition(s.name))}" onerror="this.parentElement.classList.add('ev-past-avatar--empty');this.remove()">` : ''}
+        </span>`).join('')}
+      ${overflow ? `<span class="ev-past-avatar ev-past-avatar--more">+${overflow}</span>` : ''}
+    </div>` : '';
+
+  const replayHref = ev.replay_url || '/webinars';
+  const replayText = ev.replay_url ? 'Watch Replay' : 'See Replays';
+
+  return `<a class="ev-past-row" href="${ridaEscapeHtml(replayHref)}">
+    ${avatarsHtml}
+    <div class="ev-past-body">
+      <div class="ev-past-meta">
+        <span class="ev-past-type">${typeLabel}</span>
+        <span class="ev-past-dot" aria-hidden="true">·</span>
+        <span class="ev-past-date">${ridaEscapeHtml(dateLabel)}</span>
+        <span class="ev-past-ended">Ended</span>
+      </div>
+      <div class="ev-past-title">${ridaEscapeHtml(ev.title)}</div>
+    </div>
+    <span class="ev-past-cta">
+      ${replayText}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </span>
+  </a>`;
 }
 
 async function ridaLoadLatestPodcastSection() {

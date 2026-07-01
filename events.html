@@ -142,6 +142,52 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
 .ev-featured-title{font-family:var(--ff-serif);font-size:clamp(1.3rem,2.2vw,1.75rem);font-weight:600;line-height:1.3;color:var(--text);margin-bottom:14px}
 .ev-featured-desc{font-size:.9rem;color:var(--text-2);line-height:1.8;margin-bottom:28px;flex:1}
 
+/* ── Coming Soon empty state — shown when the sheet has no upcoming events */
+.ev-coming-soon{grid-column:1/-1;position:relative;background:linear-gradient(160deg,rgba(226,214,3,.05) 0%,rgba(226,214,3,0) 55%),var(--bg-card);border:1px solid rgba(226,214,3,.18);border-radius:18px;padding:clamp(40px,6vw,64px) clamp(24px,5vw,56px);text-align:center;overflow:hidden}
+.ev-coming-soon::before{content:'';position:absolute;top:-140px;right:-140px;width:360px;height:360px;background:radial-gradient(circle,rgba(226,214,3,.08),transparent 65%);pointer-events:none}
+.ev-coming-soon-icon{width:64px;height:64px;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;border-radius:16px;background:rgba(226,214,3,.1);border:1px solid rgba(226,214,3,.25);color:var(--accent)}
+.ev-coming-soon-icon svg{width:32px;height:32px}
+.ev-coming-soon h3{font-family:var(--ff-serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:600;margin-bottom:12px;color:var(--text)}
+.ev-coming-soon p{color:var(--text-2);max-width:520px;margin:0 auto 28px;line-height:1.7;font-size:.95rem}
+.ev-coming-soon-actions{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+/* ── Recent Events divider ── */
+.ev-recent-divider{display:flex;align-items:center;gap:20px;margin-bottom:28px;color:var(--text-3)}
+.ev-recent-divider::before,.ev-recent-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border-2),transparent)}
+.ev-recent-divider span{font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+
+/* ── Recent Events — compact archive rows ──
+   Deliberately different visual weight from upcoming-event cards so the
+   past never competes with the future. No card background, no tall
+   description block, just a scannable row people can tap end-to-end. */
+#eventsRecentWrap .events-grid{display:flex;flex-direction:column;gap:0;grid-template-columns:none}
+.ev-past-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;padding:20px 4px;border-top:1px solid var(--border);color:inherit;text-decoration:none;transition:background .18s,padding .18s}
+.ev-past-row:first-child{border-top:none}
+.ev-past-row:hover{background:rgba(255,255,255,.02);padding-left:12px;padding-right:12px}
+.ev-past-row:hover .ev-past-cta{color:var(--accent)}
+.ev-past-row:hover .ev-past-cta svg{transform:translateX(3px)}
+
+/* Overlapping avatar stack */
+.ev-past-avatars{display:flex;align-items:center;flex-shrink:0}
+.ev-past-avatar{width:36px;height:36px;border-radius:50%;overflow:hidden;background:linear-gradient(160deg,#2a2a25,#161613);border:2px solid #0a0a0a;margin-left:-10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:.7rem;font-weight:700;letter-spacing:.02em}
+.ev-past-avatar:first-child{margin-left:0}
+.ev-past-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.ev-past-avatar--more{background:rgba(226,214,3,.08);color:var(--accent);border-color:#0a0a0a}
+.ev-past-avatar--empty{background:linear-gradient(160deg,#2a2a25,#161613)}
+
+/* Meta + title */
+.ev-past-body{min-width:0}
+.ev-past-meta{display:flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;flex-wrap:wrap}
+.ev-past-type{color:var(--accent)}
+.ev-past-dot{opacity:.5}
+.ev-past-date{color:var(--text-3)}
+.ev-past-ended{display:inline-flex;align-items:center;padding:2px 8px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--border-2);color:var(--text-3);letter-spacing:.06em;font-size:.62rem}
+.ev-past-title{font-family:var(--ff-serif);font-size:clamp(1rem,1.4vw,1.15rem);font-weight:600;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Watch replay CTA */
+.ev-past-cta{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:700;color:var(--text-2);white-space:nowrap;transition:color .2s;flex-shrink:0}
+.ev-past-cta svg{width:16px;height:16px;transition:transform .2s}
+
 @media(max-width:860px){
   .events-grid{grid-template-columns:repeat(2,1fr)}
   .event-card--featured{grid-template-columns:1fr;min-height:auto}
@@ -151,6 +197,14 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
   .events-grid{grid-template-columns:1fr}
   .ev-featured-body{padding:24px}
   .ev-portrait-img{width:72px;height:72px}
+  .ev-recent-divider{gap:12px}
+  /* Past-event rows collapse: avatars + title stack; CTA moves under title */
+  .ev-past-row{grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:14px 16px;padding:16px 4px}
+  .ev-past-row:hover{padding-left:8px;padding-right:8px}
+  .ev-past-body{grid-column:2}
+  .ev-past-cta{grid-column:1/-1;justify-self:start;font-size:.78rem;padding-top:2px}
+  .ev-past-avatar{width:32px;height:32px}
+  .ev-past-title{font-size:1rem}
 }
 
 /* ── Summit banner ── */
@@ -235,15 +289,27 @@ nav{position:sticky;top:0;z-index:800;height:72px;background:rgba(10,10,10,.92);
 <!-- Upcoming Events -->
 <section class="ev-section" id="upcoming">
   <div class="ev-wrap">
-    <span class="ev-section-label">Upcoming</span>
-    <h2>Upcoming Events</h2>
-    <p class="ev-section-sub">Register for live sessions and get direct access to expert Q&amp;A and peer networking.</p>
+    <!-- IDs let sheets.js flip these to "Coming Soon" when the sheet has
+         no upcoming events, so the header never lies about what's below. -->
+    <span class="ev-section-label" id="eventsLabel">Upcoming</span>
+    <h2 id="eventsHeading">Upcoming Events</h2>
+    <p class="ev-section-sub" id="eventsSubtitle">Register for live sessions and get direct access to expert Q&amp;A and peer networking.</p>
     <div class="events-grid" id="eventsGrid">
-      <!-- Populated by sheets.js; static placeholders below -->
+      <!-- Populated by sheets.js; static placeholder below -->
       <div class="event-card">
         <div class="event-card-head"><span class="event-tag">Webinar</span><span class="event-card-date">Loading…</span></div>
         <div class="event-card-body"><h3 style="opacity:.4;font-family:inherit;background:rgba(255,255,255,.05);border-radius:6px;height:20px;margin-bottom:8px"></h3><p class="event-description" style="opacity:.3;background:rgba(255,255,255,.04);border-radius:6px;height:60px"></p></div>
       </div>
+    </div>
+
+    <!-- Recent Events — shown when the sheet has past events (with or
+         without upcoming). Cards render with an "Event Ended" state
+         instead of a Register button. sheets.js toggles visibility. -->
+    <div id="eventsRecentWrap" style="display:none;margin-top:56px">
+      <div class="ev-recent-divider">
+        <span>Recent Events</span>
+      </div>
+      <div class="events-grid" id="eventsRecentGrid"></div>
     </div>
   </div>
 </section>
@@ -402,60 +468,10 @@ function handleNewsletterSignup(e) {
     }, 3500);
   });
 }
-function getSpeakerObjectPosition(name) {
-  if (/callie ward/i.test(name || '')) return 'center 18%';
-  return 'center';
-}
-// Fallback renderer (for rida-data.js static data)
-var CAL_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
-var CLK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
-function renderEvents(events) {
-  if (!events || !events.length) return;
-  var grid = document.getElementById('eventsGrid');
-  if (!grid) return;
-  grid.innerHTML = events.map(function(ev) {
-    var dateLabel = ev.day && ev.month_year ? ev.day + ' ' + ev.month_year : (ev.date_iso || '');
-    var typeLabel = ev.type || ev.category || 'Webinar';
-    // Parse "Name : url" speaker lines
-    var rawSpeakers = ev.image_urls || ev.image_url || '';
-    var speakersHtml = '';
-    if (rawSpeakers) {
-      var speakers = rawSpeakers.split('\n').map(function(line) {
-        var sep = line.indexOf(' : ');
-        if (sep === -1) return null;
-        return { name: line.substring(0, sep).trim(), url: line.substring(sep + 3).trim() };
-      }).filter(Boolean);
-      if (speakers.length) {
-        speakersHtml = '<div class="ev-speakers">'
-          + speakers.map(function(s) {
-              return '<div class="ev-speaker">'
-                + '<div class="ev-speaker-photo">'
-                + (s.url ? '<img src="' + s.url + '" alt="' + s.name + '" loading="lazy" style="object-position:' + getSpeakerObjectPosition(s.name) + ';">' : '')
-                + '</div>'
-                + '<span class="ev-speaker-name">' + s.name + '</span>'
-                + '</div>';
-            }).join('')
-          + '</div>';
-      }
-    }
-    return '<div class="event-card">'
-      + '<div class="event-card-head">'
-      + '<span class="event-tag">' + typeLabel + '</span>'
-      + '<span class="event-card-date">' + dateLabel + (ev.time ? ' · ' + ev.time : '') + '</span>'
-      + '</div>'
-      + '<div class="event-card-body">'
-      + '<h3>' + ev.title + '</h3>'
-      + '<p class="event-description">' + (ev.description || '') + '</p>'
-      + speakersHtml
-      + '<a href="' + (ev.register_url || '#') + '" target="_blank" rel="noopener" class="event-cta">Register Now &rarr;</a>'
-      + '</div>'
-      + '</div>';
-  }).join('');
-}
-// Events are fetched + rendered by data/sheets.js → ridaLoadEventsGrid().
-// The hardcoded RIDA_EVENTS array is empty; this manual fallback render is
-// kept only for the rare case where data/sheets.js fails to load entirely.
-if (typeof RIDA_EVENTS !== 'undefined' && RIDA_EVENTS.length) renderEvents(RIDA_EVENTS);
+// Events are fetched + rendered by data/sheets.js → ridaLoadEventsGrid()
+// which splits upcoming vs past, swaps Register for "Event Ended" on past
+// rows, and shows a Coming Soon card when the sheet has no upcoming
+// events (also the failure fallback if sheets.js can't load at all).
 </script>
 <script src="data/site-chrome.js" defer></script>
 </body>
