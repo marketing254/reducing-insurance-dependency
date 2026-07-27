@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────
-//  RID Academy — Form Security Utility
+//  RID Academy | Form Security Utility
 //  Guards all forms against bots, spam, and repeated submissions.
 //  Include on any page with a form:
 //    <script src="data/form-security.js"></script>
@@ -7,7 +7,7 @@
 'use strict';
 (function (w) {
 
-  /* Shannon entropy — measures randomness of a string (higher = more random) */
+  /* Shannon entropy: measures randomness of a string (higher = more random) */
   function entropy(s) {
     if (!s || s.length < 2) return 0;
     var f = {}, l = s.length, e = 0;
@@ -30,13 +30,13 @@
     return false;
   }
 
-  /* Phone validation — digits, spaces, dashes, parens, plus, dots only */
+  /* Phone validation: digits, spaces, dashes, parens, plus, dots only */
   function validPhone(s) {
-    if (!s) return true; // optional field — pass
+    if (!s) return true; // optional field: pass
     return /^[\d\s\-\+\(\)\.]{6,20}$/.test(String(s).trim());
   }
 
-  /* Rate limiting — one submission per form key per 24 hours */
+  /* Rate limiting: one submission per form key per 24 hours */
   function canSubmit(key) {
     try {
       var t = localStorage.getItem('rida_sub_' + key);
@@ -48,10 +48,10 @@
     try { localStorage.setItem('rida_sub_' + key, String(Date.now())); } catch (e) {}
   }
 
-  /* Time check — form must be open at least 3 seconds before submission */
+  /* Time check: form must be open at least 3 seconds before submission */
   function tooFast(ts) { return Date.now() - (ts || w.RIDASec.t0) < 3000; }
 
-  /* Honeypot — hidden field must remain empty; bots fill it automatically */
+  /* Honeypot: hidden field must remain empty; bots fill it automatically */
   function hpFilled(form) {
     var f = form && form.querySelector('.rida-hp');
     return f && f.value.length > 0;

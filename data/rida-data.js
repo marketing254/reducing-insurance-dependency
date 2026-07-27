@@ -1,6 +1,6 @@
 /**
  * RIDA Website Data
- * Source: RIDA — Website Data.xlsx
+ * Source: RIDA Website Data.xlsx
  *
  * HOW TO UPDATE:
  * Option A (Manual): Edit the arrays below whenever the Excel sheet changes.
@@ -12,7 +12,7 @@
 
 // ─── WEBINAR REPLAYS ────────────────────────────────────────────────────────
 // Webinars now live in the Google Sheet (`webinars` tab) and are loaded by
-// data/sheets.js. This array is intentionally empty — kept as a back-compat
+// data/sheets.js. This array is intentionally empty, kept as a back-compat
 // shim for any code that still references window.RIDA_WEBINARS at startup.
 // To add a webinar, edit the `webinars` (or `summits`) sheet tab. Multi-clip
 // replays use the `webinar_url` cell with one clip per line:
@@ -23,7 +23,7 @@ const RIDA_WEBINARS = [];
 // ─── UPCOMING EVENTS ─────────────────────────────────────────────────────────
 // Events now live in the Google Sheet (`events` tab) and are loaded by
 // data/sheets.js → ridaLoadEventsGrid() / ridaLoadEventPopup().
-// This array is intentionally empty — kept as a back-compat shim for any
+// This array is intentionally empty, kept as a back-compat shim for any
 // code that still references window.RIDA_EVENTS.
 const RIDA_EVENTS = [];
 const RIDA_POPUP_EVENT = null;

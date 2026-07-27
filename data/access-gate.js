@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────
-//  RID Academy — Reusable lead-capture (block-form) gate
+//  RID Academy | Reusable lead-capture (block-form) gate
 //  Loaded site-wide via data/site-chrome.js.
 //
 //  Usage from any page:
@@ -74,7 +74,7 @@
       + '<button type="button" class="rida-gate-close" aria-label="Close">&times;</button>'
       + '<div data-view="form">'
       +   '<h3 data-rida-gate-title>Get instant access</h3>'
-      +   '<p class="sub" data-rida-gate-sub>Enter your details to unlock. No spam — unsubscribe anytime.</p>'
+      +   '<p class="sub" data-rida-gate-sub>Enter your details to unlock. No spam, and you can unsubscribe anytime.</p>'
       +   '<form data-rida-gate-form novalidate>'
       +     '<div class="fld"><label>Full Name</label><input type="text" name="name" required autocomplete="name"></div>'
       +     '<div class="fld"><label>Email Address</label><input type="email" name="email" required autocomplete="email"></div>'
@@ -86,7 +86,7 @@
       +   '<div class="rida-gate-success">'
       +     '<div class="ok">&#10003;</div>'
       +     '<h4>You\'re in!</h4>'
-      +     '<p>Enjoy — we\'ve also emailed you a copy.</p>'
+      +     '<p>Enjoy! We\'ve also emailed you a copy.</p>'
       +   '</div>'
       + '</div>'
       + '</div>';
@@ -98,7 +98,7 @@
     opts = opts || {};
     var formType = opts.formType || 'general_access';
 
-    // Returning visitor — skip the form
+    // Returning visitor: skip the form
     if (hasMemory(formType)) {
       if (typeof opts.onUnlock === 'function') {
         try { opts.onUnlock({ cached: true }); } catch (e) {}

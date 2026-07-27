@@ -1,13 +1,13 @@
 // ─────────────────────────────────────────────────────────────────
-//  RID Academy — GA4 custom event tracking
+//  RID Academy | GA4 custom event tracking
 //  Loaded on every page via data/site-chrome.js.
 //  Requires gtag() (GA4 snippet in <head>). Uses event delegation so
 //  it works regardless of per-page markup. Fires:
-//    cta_click                 — clicks on primary CTA buttons/links
-//    marketing_consultation_book — clicks on booking links / "book" CTAs
-//    calculator_engaged        — first meaningful input on a calculator page (once/page)
-//    podcast_play              — first play of any <audio> element
-//    resource_download         — clicks on downloadable files (pdf/doc/xls/zip)
+//    cta_click                 : clicks on primary CTA buttons/links
+//    marketing_consultation_book : clicks on booking links / "book" CTAs
+//    calculator_engaged        : first meaningful input on a calculator page (once/page)
+//    podcast_play              : first play of any <audio> element
+//    resource_download         : clicks on downloadable files (pdf/doc/xls/zip)
 //    outbound_click is handled automatically by GA4 Enhanced Measurement.
 // ─────────────────────────────────────────────────────────────────
 (function () {
@@ -25,7 +25,7 @@
     var label = (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60);
     var href = el.getAttribute('href') || '';
 
-    // Booking — youcanbook.me link OR any CTA whose text mentions booking a session
+    // Booking: youcanbook.me link OR any CTA whose text mentions booking a session
     if (href.indexOf('youcanbook.me') > -1 ||
         /book .*(session|consultation|meeting)|free strategy session/i.test(label)) {
       send('marketing_consultation_book', { cta_label: label, page_path: path });

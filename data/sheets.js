@@ -12,18 +12,18 @@ const RIDA_SHEET_ID = '1FOeB6lyOCKzj4u9caLPxModWYrpCILE0h4-7O_0yR4s';
 // Example: 'https://script.google.com/macros/s/AKfy...xyz/exec'
 const RIDA_APPS_SCRIPT_PROXY = 'https://script.google.com/macros/s/AKfycbwWT5_D6fRC74i6xXRsyOnAsE0l4rkg8K11Oe5So7Pr2UqRxLEQkxHJduKzYtYvmSRggw/exec';
 
-// Public CORS proxy — wraps any URL and adds Access-Control-Allow-Origin: *
+// Public CORS proxy: wraps any URL and adds Access-Control-Allow-Origin: *
 // corsproxy.io is used as primary; add a second constant for chain fallback
 const RIDA_TEXT_PROXY = 'https://corsproxy.io/?url={url}';
 const RIDA_TEXT_PROXY_2 = 'https://api.allorigins.win/raw?url={url}';
 window.RIDA_SHEETS_ACTIVE = true;
 
-// Hardcoded summit descriptions (overlay only — clips, dates, URLs come from
+// Hardcoded summit descriptions (overlay only; clips, dates, URLs come from
 // the Google Sheet). The merge logic spreads this object OVER the sheet row
 // matching the same title, so only the fields listed here override the sheet.
 // Add the actual summit row (title, vimeo_embed_src multi-line clips, category,
 // date, etc.) to the `summits` Google Sheet tab. Future summits don't need
-// any entry here — let the sheet's `description_doc_url` provide the description.
+// any entry here; let the sheet's `description_doc_url` provide the description.
 const RIDA_SUPPLEMENTAL_WEBINARS = [
   {
     id: 'summit-2025-full-replay',
@@ -32,7 +32,7 @@ const RIDA_SUPPLEMENTAL_WEBINARS = [
     // Description is fetched from this Google Doc via the Apps Script proxy and
     // rendered through the same intro / Key Takeaways / bio formatter that
     // every other webinar uses. The sheet's `description_doc_url` overrides
-    // this if set — so future edits can be done entirely in Sheets.
+    // this if set, so future edits can be done entirely in Sheets.
     description_doc_url: 'https://docs.google.com/document/d/1LigrZP1xhHdjFpR9wRJXBNavoZSpzh9aHZHWVq_nEE8/edit?tab=t.0'
   }
 ];
@@ -85,7 +85,7 @@ function ridaParseWebinarUrl(cellValue) {
 
 // Tab-name → category registry. Each sheet tab listed here is fetched and
 // every row from that tab is tagged with the corresponding category. No
-// `category` column needed in the sheet — the tab name IS the category.
+// `category` column needed in the sheet; the tab name IS the category.
 // To add a new replay type (e.g. "Workshops"), just create a new tab named
 // `workshops` and add a row to this list. The filter pill on /webinars will
 // auto-pick it up (renderWebinars filters by w.category).
@@ -102,7 +102,7 @@ async function ridaFetchReplays() {
         .then(function (rows) {
           return (Array.isArray(rows) ? rows : []).map(function (r) {
             const out = Object.assign({}, r);
-            // Tab name overrides any stray category value — single source of truth
+            // Tab name overrides any stray category value (single source of truth)
             out.category = t.category;
             return out;
           });
@@ -668,7 +668,7 @@ function ridaMiniAudioMarkup(ep) {
 
   const PLAY_SVG  = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
 
-  // Libsyn embed — show native player iframe in a compact wrapper
+  // Libsyn embed: show native player iframe in a compact wrapper
   if (ridaIsLibsynAudio(src) && !ridaIsDirectAudioFile(src)) {
     return `
       <div class="rida-mini rida-mini-embed-wrap">
@@ -903,10 +903,10 @@ function ridaGetTextExportCandidates(url) {
   const id = ridaDriveId(value);
   const isGoogleDoc = /docs\.google\.com\/document\/d\/([\w-]+)/.test(value);
 
-  // ── Apps Script proxy (most reliable — no CORS issues) ──
+  // ── Apps Script proxy (most reliable, no CORS issues) ──
   if (RIDA_APPS_SCRIPT_PROXY) {
     if (isGoogleDoc) {
-      // Google Docs cannot be read as raw Drive blobs — proxy the txt-export URL instead
+      // Google Docs cannot be read as raw Drive blobs; proxy the txt-export URL instead
       const docMatch = value.match(/docs\.google\.com\/document\/d\/([\w-]+)/);
       if (docMatch) {
         const exportUrl = `https://docs.google.com/document/d/${docMatch[1]}/export?format=txt`;
@@ -957,7 +957,7 @@ async function ridaFetchTextContent(url) {
     const attempts = [];
 
     if (isProxyCandidate) {
-      // Workspace Apps Script URLs lack CORS headers — try direct first, then
+      // Workspace Apps Script URLs lack CORS headers; try direct first, then
       // wrap in each CORS proxy as fallbacks (corsproxy.io, then allorigins)
       attempts.push(candidate);
       const p1 = ridaBuildProxyUrl(candidate, RIDA_TEXT_PROXY);
@@ -970,7 +970,7 @@ async function ridaFetchTextContent(url) {
       const p1 = ridaBuildProxyUrl(candidate, RIDA_TEXT_PROXY);
       const p2 = ridaBuildProxyUrl(candidate, RIDA_TEXT_PROXY_2);
       if (ridaIsGoogleDriveUrl(candidate)) {
-        // Drive URLs are CORS-blocked — try proxies after direct
+        // Drive URLs are CORS-blocked; try proxies after direct
         if (p1) attempts.push(p1);
         if (p2) attempts.push(p2);
       } else {
@@ -1160,8 +1160,8 @@ function ridaParseDescriptionBlocks(text) {
   let mode         = 'intro';   // 'intro' | 'takeaways' | 'bio'
   let pendingTitle = null;
 
-  const stripBullet = l => l.replace(/^[•*\-–—>]\s+/, '').replace(/^\d+[.)]\s+/, '').trim();
-  const hasBullet   = l => /^[•*\-–—>]\s/.test(l) || /^\d+[.)]\s/.test(l);
+  const stripBullet = l => l.replace(/^[•*\-–>]\s+/, '').replace(/^\d+[.)]\s+/, '').trim();
+  const hasBullet   = l => /^[•*\-–>]\s/.test(l) || /^\d+[.)]\s/.test(l);
 
   for (const line of raw) {
     if (!line) {
@@ -1303,7 +1303,7 @@ function ridaGuestHeroMarkup(ep) {
 }
 
 function ridaPodcastHref(ep) {
-  // gviz returns numeric cells as floats — strip the trailing .0 so the
+  // gviz returns numeric cells as floats; strip the trailing .0 so the
   // URL is `?ep=388` not `?ep=388.0` (Google was indexing the float form).
   const epNum = String(ep && ep.episode || '').replace(/\.0$/, '');
   return `podcast-episode/?ep=${encodeURIComponent(epNum)}`;
@@ -1506,7 +1506,7 @@ function ridaRenderWebinarPlaylist(webinar) {
 
 // ── Helper: detect WebVTT format ───────────────────────────────────
 function ridaIsVTT(text) {
-  // Strip BOM (\uFEFF) before checking — trim() does NOT remove BOM
+  // Strip BOM (\uFEFF) before checking; trim() does NOT remove BOM
   return /^WEBVTT/i.test(String(text || '').replace(/^\uFEFF/, '').trim());
 }
 
@@ -1943,7 +1943,7 @@ async function ridaLoadEventsGrid() {
   const grid = document.getElementById('eventsGrid');
   if (!grid) return;
 
-  // Header/subtitle references — flipped between "Upcoming" and "Coming Soon"
+  // Header/subtitle references, flipped between "Upcoming" and "Coming Soon"
   // based on what the sheet returns, so the top of the section always tells
   // the truth (was: "Register for live sessions..." even when there were 0).
   const labelEl    = document.getElementById('eventsLabel');
@@ -1970,7 +1970,7 @@ async function ridaLoadEventsGrid() {
         </svg>
       </div>
       <h3>More events coming soon</h3>
-      <p>We're finalizing the next round of webinars and workshops. Sign up for the newsletter to be first to know — or catch up on past sessions in the meantime.</p>
+      <p>We're finalizing the next round of webinars and workshops. Sign up for the newsletter to be first to know, or catch up on past sessions in the meantime.</p>
       <div class="ev-coming-soon-actions">
         <a href="#newsletter" class="ev-btn">Notify Me</a>
         <a href="/webinars" class="ev-btn-ghost">Browse Past Replays</a>
@@ -1984,7 +1984,7 @@ async function ridaLoadEventsGrid() {
     today.setHours(0, 0, 0, 0);
 
     // Split into upcoming (date >= today) and past. Rows without a parseable
-    // date fall into `undated` — we treat those as upcoming so a row the
+    // date fall into `undated`; we treat those as upcoming so a row the
     // user just added isn't silently hidden by a bad date field.
     const upcoming = [];
     const past     = [];
@@ -2004,12 +2004,12 @@ async function ridaLoadEventsGrid() {
         'Coming Soon',
         'New events on the way',
         past.length
-          ? 'The next round is being planned. Here\'s what we ran recently — replays are open to everyone.'
+          ? 'The next round is being planned. Here\'s what we ran recently; replays are open to everyone.'
           : 'The next round is being planned. Sign up for the newsletter and we\'ll email you the moment registration opens.'
       );
       grid.innerHTML = renderComingSoonCard();
       // If we have past events, surface up to 3 as "Recent Events" so the
-      // page doesn't feel empty — helps visitors find replays.
+      // page doesn't feel empty and helps visitors find replays.
       if (recentWrap && recentGrid && past.length) {
         recentGrid.innerHTML = past.slice(0, 3).map(ev => renderPastCard(ev)).join('');
         recentWrap.style.display = 'block';
@@ -2350,7 +2350,7 @@ async function ridaLoadEpisodePage() {
       // tracker-tagged duplicates of the same episode.
       const epNum = String(ep.episode || '').replace(/\.0$/, '');
       const pageUrl = window.location.origin + window.location.pathname + (epNum ? `?ep=${epNum}` : '');
-      const descShort = String(ep.description || '').replace(/\s+/g, ' ').slice(0, 160) || (ep.title + ' — Less Insurance Dependence Podcast');
+      const descShort = String(ep.description || '').replace(/\s+/g, ' ').slice(0, 160) || (ep.title + ' | Less Insurance Dependence Podcast');
       const upsertMeta = (sel, attr, key, val) => {
         let m = document.querySelector(sel);
         if (!m) { m = document.createElement('meta'); m.setAttribute(attr, key); document.head.appendChild(m); }
@@ -2562,7 +2562,7 @@ async function ridaLoadWebinarPage() {
       // dynamic <meta name="description">
       let metaDesc = document.querySelector('meta[name="description"]');
       if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.setAttribute('name','description'); document.head.appendChild(metaDesc); }
-      metaDesc.setAttribute('content', descShort || (webinar.title + ' — RID Academy ' + replayLabel.toLowerCase()));
+      metaDesc.setAttribute('content', descShort || (webinar.title + ' | RID Academy ' + replayLabel.toLowerCase()));
       // canonical
       let canon = document.querySelector('link[rel="canonical"]');
       if (!canon) { canon = document.createElement('link'); canon.setAttribute('rel','canonical'); document.head.appendChild(canon); }
@@ -2669,7 +2669,7 @@ async function ridaLoadWebinarPage() {
             onUnlock: function () { targetEl.innerHTML = embedMarkup; }
           });
         } else {
-          // access-gate hasn't loaded yet — fall through to immediate playback
+          // access-gate hasn't loaded yet; fall through to immediate playback
           targetEl.innerHTML = embedMarkup;
         }
       };
@@ -2808,10 +2808,10 @@ async function ridaLoadWebinarPage() {
     // Featured Speakers archive (/speakers)
     ridaLoadSpeakersGrid();
   } else if (document.getElementById('webinarGrid')) {
-    // Archive grid present (webinars.html) — fetch and render the full list
+    // Archive grid present (webinars.html): fetch and render the full list
     ridaLoadWebinarsGrid();
   } else if (document.getElementById('wb-hero-content')) {
-    // Detail page (webinar/index.html) — render a single replay
+    // Detail page (webinar/index.html): render a single replay
     ridaLoadWebinarPage();
   } else if (path.includes('events')) {
     ridaLoadEventsGrid();

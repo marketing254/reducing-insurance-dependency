@@ -1,5 +1,5 @@
 /**
- * RIDA Academy — Shared Form Submission Utility
+ * RIDA Academy | Shared Form Submission Utility
  * Include this script on any page that has a form.
  *
  * HOW TO DEPLOY:
@@ -27,7 +27,7 @@ function ridaSubmitForm(data, formType) {
 
   // Kick off the Kit subscription in parallel with the sheet write.
   // It MUST run from the browser (not the Apps Script) so the Origin/
-  // Referer headers prove this is a legit signup — server-to-server POSTs
+  // Referer headers prove this is a legit signup; server-to-server POSTs
   // get silently suppressed by Kit's anti-spam. The helper is fire-and-
   // forget so a Kit outage never blocks the primary flow.
   // See: data/kit.js and skills/kit-integration/SKILL.md

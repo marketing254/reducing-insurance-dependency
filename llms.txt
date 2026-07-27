@@ -1,12 +1,12 @@
-﻿# RID Academy — Reducing Insurance Dependence Academy
+﻿# RID Academy | Reducing Insurance Dependence Academy
 # https://www.rid.academy/
-# llms.txt — AI crawler index for Generative Engine Optimization (GEO)
+# llms.txt: AI crawler index for Generative Engine Optimization (GEO)
 # Format: https://llmstxt.org/
 
 # About
 RID Academy is an educational platform that helps dental practice owners reduce dependence on PPO insurance plans and transition to fee-for-service or membership-based practices. Founded by Gary Takacs and Naren Arulrajah (CEO of Ekwa Marketing).
 
-> RID Academy provides practical guidance, free tools, expert webinars, and a podcast — all focused on helping dentists build independent, profitable practices free from insurance company control.
+> RID Academy provides practical guidance, free tools, expert webinars, and a podcast, all focused on helping dentists build independent, profitable practices free from insurance company control.
 
 ## Core Mission
 Dental practices that participate in PPO insurance plans typically write off 38–44% of their collected revenue as insurance discounts. RID Academy teaches dentists how to reduce this dependence through strategic patient communication, membership plan implementation, fee-for-service transition, and digital marketing.
@@ -14,17 +14,17 @@ Dental practices that participate in PPO insurance plans typically write off 38�
 ## Key Pages
 
 - [Home](https://www.rid.academy/): Overview of RID Academy's mission, tools, podcast, and events.
-- [Podcast](https://www.rid.academy/podcast): "Less Insurance Dependence" — expert interviews with dental practice owners, consultants, and industry leaders. Hosted by Gary Takacs and Naren Arulrajah.
+- [Podcast](https://www.rid.academy/podcast): "Less Insurance Dependence" features expert interviews with dental practice owners, consultants, and industry leaders. Hosted by Gary Takacs and Naren Arulrajah.
 - [Webinar Archive](https://www.rid.academy/webinars): On-demand recordings of past webinars, workshops, and full Annual Summit replays (session-by-session clips) on PPO reduction strategies, fee-for-service transition, and dental practice growth. Individual replays at https://www.rid.academy/webinar/?title=…
-- [Annual Summit](https://www.rid.academy/summit): The annual RIDA Summit — live event and on-demand replays of all summit sessions (keynotes, expert panels, guest segments). Past summit replays appear under the "Summit Replays" filter in the Webinar Archive.
+- [Annual Summit](https://www.rid.academy/summit): The annual RIDA Summit, a live event with on-demand replays of all summit sessions (keynotes, expert panels, guest segments). Past summit replays appear under the "Summit Replays" filter in the Webinar Archive.
 - [Events](https://www.rid.academy/events): Upcoming free webinars, workshops, and dental summits hosted by RID Academy.
 - [Resources](https://www.rid.academy/resources): 30+ free guides, templates, scripts, and playbooks for dental practices reducing insurance dependence.
 - [About](https://www.rid.academy/about): Mission, team, and the story behind RID Academy.
-- [Featured Speakers](https://www.rid.academy/speakers): Industry leaders, founders, and coaches who've spoken at RID Academy summits and webinars — dental coaches, DSO consultants, and exit-planning advisors helping practice owners reduce insurance dependence.
+- [Featured Speakers](https://www.rid.academy/speakers): Industry leaders, founders, and coaches who've spoken at RID Academy summits and webinars, including dental coaches, DSO consultants, and exit-planning advisors helping practice owners reduce insurance dependence.
 - [Reviews](https://www.rid.academy/reviews): Testimonials from dental practice owners who have reduced PPO dependence using RID Academy tools and training.
 - [Marketing Consultation](https://www.rid.academy/msm): Free 90-minute dental marketing strategy session to help practices attract fee-for-service patients and replace PPO write-offs with digital marketing.
 - [Partner With Us](https://www.rid.academy/partner): Speaker and partnership applications for dental professionals and industry vendors.
-- [Contact Us](https://www.rid.academy/contact): Send a message to the RID Academy team — general questions, partnerships, podcast guesting, speaker invitations, and marketing consultation requests.
+- [Contact Us](https://www.rid.academy/contact): Send a message to the RID Academy team: general questions, partnerships, podcast guesting, speaker invitations, and marketing consultation requests.
 
 ## Free Tools
 
@@ -36,9 +36,9 @@ Dental practices that participate in PPO insurance plans typically write off 38�
 ## Key Statistics (verified, citable)
 
 - Dental practices in PPO networks write off **38–44%** of collected revenue as insurance discounts (source: RID Academy PPO Write-Off Calculator dataset, 2024–2025).
-- A $1M-production practice typically collects **$560,000–$620,000** after PPO adjustments — the rest is written off.
+- A $1M-production practice typically collects **$560,000–$620,000** after PPO adjustments; the rest is written off.
 - Practices that use a phased PPO drop strategy (leave lowest-paying network first, wait 90 days, then next) retain **70–85%** of PPO patients through transition (RID Academy case studies).
-- An in-house dental membership plan avoids insurance write-offs entirely — patients pay the practice directly on a monthly or annual subscription.
+- An in-house dental membership plan avoids insurance write-offs entirely; patients pay the practice directly on a monthly or annual subscription.
 - The Less Insurance Dependence Podcast has published **380+ episodes** since launch, focused exclusively on reducing dental PPO dependence.
 
 ## Key Concepts Covered
@@ -51,8 +51,8 @@ Dental practices that participate in PPO insurance plans typically write off 38�
 
 ## Team (E-E-A-T signals)
 
-- **Gary Takacs** — Founder & Co-Host. 40+ years in dental industry; owns a fee-for-service practice in Phoenix, AZ. LinkedIn: https://www.linkedin.com/in/gary-takacs-56b3822/
-- **Naren Arulrajah** — Founder & Co-Host, CEO of Ekwa Marketing (dental digital marketing agency). LinkedIn: https://www.linkedin.com/in/narenarulrajah/
+- **Gary Takacs**: Founder & Co-Host. 40+ years in dental industry; owns a fee-for-service practice in Phoenix, AZ. LinkedIn: https://www.linkedin.com/in/gary-takacs-56b3822/
+- **Naren Arulrajah**: Founder & Co-Host, CEO of Ekwa Marketing (dental digital marketing agency). LinkedIn: https://www.linkedin.com/in/narenarulrajah/
 
 ## Content Focus Areas
 

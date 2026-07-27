@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────
-//  RID Academy — Cookie Consent Banner
+//  RID Academy | Cookie Consent Banner
 //  Injected automatically via data/site-chrome.js on every page.
 //  Stores preference in localStorage under 'rida_cookie_consent'
 //  Values: 'accepted' | 'declined'

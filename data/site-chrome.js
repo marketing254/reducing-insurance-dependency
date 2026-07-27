@@ -83,7 +83,7 @@
     document.body.appendChild(s);
   })();
 
-  // ── Lead-capture access gate (block forms) — podcast/webinar/articles ───
+  // ── Lead-capture access gate (block forms): podcast/webinar/articles ───
   (function () {
     var s = document.createElement('script');
     s.src = '/data/access-gate.js';

@@ -19,7 +19,7 @@ Disallow: /indexnow.py
 # engines can read their rel=canonical (which points to the clean /page URL)
 # and consolidate the duplicate. Blocking them would prevent consolidation.
 
-# AI crawlers — allow full access for GEO/AI citation
+# AI crawlers: allow full access for GEO/AI citation
 User-agent: GPTBot
 Allow: /
 

@@ -1,5 +1,5 @@
 /**
- * RIDA Academy — Kit (ConvertKit) integration.
+ * RIDA Academy | Kit (ConvertKit) integration.
  *
  * Submits every RIDA form to BOTH the Apps Script sheet (primary) AND the
  * corresponding Kit list (additive), so leads land in Kit's subscriber
@@ -11,7 +11,7 @@
  * Kit's anti-spam reads the Origin and Referer headers on the submission
  * POST. Browser fetch() sends both automatically; a server-to-server POST
  * (e.g. from the Apps Script) sends neither, and Kit silently flags those
- * submissions — the endpoint still returns {status:"success"} but the
+ * submissions; the endpoint still returns {status:"success"} but the
  * subscriber never appears in the list. The skill at
  * skills/kit-integration/SKILL.md documents this trap in detail.
  *
@@ -31,7 +31,7 @@
   //   fields = { kitFieldKey: ridaPayloadKey }
   //
   // `email_address` is always sent (top-level, not wrapped in fields[]).
-  // `timestamp` is always sent (ISO string). Both are implicit — no entry
+  // `timestamp` is always sent (ISO string). Both are implicit; no entry
   // here. Only custom fields the specific Kit form actually accepts are
   // listed; sending an unknown key silently drops it.
   var KIT_FORMS = {
@@ -86,7 +86,7 @@
       }
     }
     // waitlist / growth_engine / general_access have no dedicated Kit
-    // form — the helper no-ops for those form_types.
+    // form; the helper no-ops for those form_types.
   };
 
   function ridaSubmitToKit(data, formType) {
@@ -119,7 +119,7 @@
         body: body
       }).catch(function () {});
     } catch (e) {
-      // Browser blocked the fetch outright (CSP, offline, etc.) — silent.
+      // Browser blocked the fetch outright (CSP, offline, etc.); silent.
     }
   }
 
