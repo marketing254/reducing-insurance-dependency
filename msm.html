@@ -249,93 +249,103 @@ nav {
 .hero-scroll-hint { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-4); }
 @media (prefers-reduced-motion: reduce) { .hero-scroll-arrow { animation: none; } }
 
-/* ===== MSM BOOKING SECTION (copy + calendar, below hero) ===== */
-.msm-hero { padding: 64px 0 90px; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
-.msm-hero .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 75% 15%, rgba(226,214,3,0.07), transparent 65%); }
-.msm-grid {
+/* ===== MSM HERO (centered booking page) ===== */
+.msm-hero { padding: 130px 0 80px; position: relative; overflow: hidden; }
+.msm-hero .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 50% at 50% 8%, rgba(226,214,3,0.07), transparent 65%); }
+.msm-inner {
   position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: start;
+  display: flex; flex-direction: column; align-items: center; gap: 2rem;
 }
-.msm-copy { display: flex; flex-direction: column; gap: 1.6rem; text-align: left; }
-.msm-copy .hero-eyebrow { align-self: flex-start; margin-bottom: 0; padding: 6px 14px; border: 1px solid rgba(226,214,3,0.3); border-radius: 100px; }
-.msm-copy h2 {
+.msm-head { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; text-align: center; max-width: 720px; }
+.msm-head .hero-eyebrow { margin-bottom: 0; padding: 6px 16px; border: 1px solid rgba(226,214,3,0.3); border-radius: 100px; background: rgba(226,214,3,0.06); }
+.msm-head h1 {
   font-family: var(--ff-serif); font-weight: 600;
-  font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08;
+  font-size: clamp(2.2rem, 4.2vw, 3.2rem); line-height: 1.1;
   letter-spacing: -0.03em; margin: 0;
 }
-.msm-copy h2 em { font-style: italic; color: var(--accent); }
-.msm-copy .hero-sub { font-size: 1.08rem; color: var(--text-2); max-width: 520px; margin: 0; line-height: 1.65; text-align: left; }
+.msm-head h1 em { font-style: italic; color: var(--accent); }
+.msm-head .hero-sub { font-size: 1.05rem; color: var(--text-2); max-width: 580px; margin: 0; line-height: 1.65; }
 
-.msm-features {
-  display: flex; flex-direction: column; gap: 0.85rem;
-  padding: 1.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+/* Info bar */
+.msm-meta {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  width: 100%; max-width: 660px;
+  border: 1px solid var(--border-2); border-radius: 16px;
+  background: rgba(255,255,255,0.02); overflow: hidden;
 }
-.msm-feature { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.92rem; color: var(--text-2); }
-.msm-feature strong { color: var(--text); font-weight: 600; }
-.msm-feature-icon {
-  flex-shrink: 0; width: 20px; height: 20px; border-radius: 6px; margin-top: 1px;
-  background: rgba(226,214,3,0.12); border: 1px solid rgba(226,214,3,0.3);
-  display: flex; align-items: center; justify-content: center; color: var(--accent);
-  font-size: 0.7rem; font-weight: 800;
+.msm-meta-item {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 1rem 1.2rem;
 }
-.msm-signal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.msm-signal-item {
-  display: flex; flex-direction: column; gap: 0.6rem;
-  padding: 1.05rem 1.1rem; border: 1px solid var(--border); border-radius: 12px;
-  background: rgba(255,255,255,0.015);
-}
-.msm-signal-icon {
-  width: 32px; height: 32px; border-radius: 8px;
+.msm-meta-item + .msm-meta-item { border-left: 1px solid var(--border); }
+.msm-meta-icon {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px;
   background: rgba(226,214,3,0.1); border: 1px solid rgba(226,214,3,0.22);
   display: flex; align-items: center; justify-content: center; color: var(--accent);
 }
-.msm-signal-icon svg { width: 15px; height: 15px; }
-.msm-signal-val { font-family: var(--ff-serif); font-weight: 600; font-size: 1.1rem; color: #fff; line-height: 1.1; letter-spacing: -0.01em; }
-.msm-signal-lbl { font-size: 0.72rem; color: var(--text-3); line-height: 1.45; }
-@media (max-width: 520px) { .msm-signal { grid-template-columns: 1fr; } }
-.msm-trust { display: flex; align-items: center; gap: 0.7rem; }
-.msm-trust-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: msm-pulse 2s ease-in-out infinite; }
-@keyframes msm-pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.04); } }
-.msm-trust-text { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); font-weight: 600; }
-.msm-seenum { display: flex; justify-content: center; margin-top: 0.5rem; }
+.msm-meta-icon svg { width: 16px; height: 16px; }
+.msm-meta-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; text-align: left; }
+.msm-meta-val { font-size: 0.9rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+.msm-meta-val em { font-style: normal; color: var(--accent); }
+.msm-meta-lbl { font-size: 0.7rem; color: var(--text-3); line-height: 1.35; }
 
 /* Booking card */
 .msm-booking {
-  position: sticky; top: 90px;
+  width: 100%; max-width: 660px;
   background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
-  border: 1px solid var(--border-2); border-radius: 18px; padding: 6px;
-  box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
+  border: 1px solid rgba(226,214,3,0.28); border-radius: 20px; padding: 6px;
+  box-shadow: 0 0 0 1px rgba(226,214,3,0.06), 0 30px 90px -30px rgba(0,0,0,0.75), 0 0 60px -20px rgba(226,214,3,0.12);
   overflow: hidden;
 }
 .msm-booking-header {
   padding: 20px 24px 18px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-  background: rgba(226,214,3,0.03); border-radius: 12px 12px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(226,214,3,0.04); border-radius: 14px 14px 0 0;
 }
-.msm-booking-title { font-family: var(--ff-serif); font-size: 1.1rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 0.6rem; }
+.msm-booking-title { font-family: var(--ff-sans); font-size: 1rem; font-weight: 700; letter-spacing: 0.01em; color: var(--text); display: flex; align-items: center; gap: 0.6rem; }
 .msm-booking-title-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
-.msm-booking-meta { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
-.msm-booking-wrap { position: relative; background: #fff; border-radius: 0 0 12px 12px; overflow: hidden; min-height: 560px; }
-.msm-booking-wrap iframe { width: 100%; height: 560px; border: 0; display: block; }
+.msm-booking-wrap { position: relative; background: var(--bg-card); border-radius: 0 0 14px 14px; overflow: hidden; min-height: 520px; }
+.msm-booking-wrap iframe { width: 100%; height: 520px; border: 0; display: block; }
 .msm-booking-loading { position: absolute; inset: 0; background: var(--bg-card); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.9rem; z-index: 1; transition: opacity 0.4s ease; }
 .msm-booking-loading.hidden { opacity: 0; pointer-events: none; }
 .msm-spinner { width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(226,214,3,0.15); border-top-color: var(--accent); animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .msm-booking-loading-text { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
-.msm-booking-foot { padding: 13px 22px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(0,0,0,0.2); }
-.msm-booking-foot-text { font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
-.msm-booking-foot-text strong { color: var(--accent); font-weight: 600; }
+.msm-booking-foot { padding: 12px 22px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); }
+.msm-booking-foot-text { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
 
-@media (max-width: 980px) {
-  .msm-grid { grid-template-columns: 1fr; gap: 44px; }
-  .msm-booking { position: static; }
-  .msm-copy { text-align: center; align-items: center; }
-  .msm-copy .hero-eyebrow, .msm-copy .hero-sub { align-self: center; text-align: center; }
-  .msm-features { width: 100%; max-width: 460px; }
-  .msm-signal { justify-content: center; }
+/* How it works steps */
+.msm-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 100%; max-width: 980px; margin-top: 0.75rem; }
+.msm-step {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 1.75rem 1.6rem; text-align: left;
+  transition: border-color 0.3s;
 }
-@media (max-width: 600px) {
-  .msm-hero { padding: 90px 0 60px; }
-  .msm-booking-wrap, .msm-booking-wrap iframe { min-height: 540px; height: 540px; }
+.msm-step:hover { border-color: rgba(226,214,3,0.3); }
+.msm-step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--accent-bg); color: var(--accent);
+  font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem;
+}
+.msm-step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.6rem; }
+.msm-step p { font-size: 0.88rem; color: var(--text-3); line-height: 1.65; }
+.msm-step p strong { color: var(--text-2); font-weight: 600; }
+.msm-trust { display: flex; align-items: center; gap: 0.7rem; }
+.msm-trust-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 4px rgba(74,222,128,0.15); animation: msm-pulse 2s ease-in-out infinite; }
+@keyframes msm-pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 8px rgba(74,222,128,0.04); } }
+.msm-trust-text { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .msm-steps { grid-template-columns: 1fr; max-width: 480px; }
+}
+@media (max-width: 640px) {
+  .msm-hero { padding: 104px 0 56px; }
+  .msm-inner { gap: 1.75rem; }
+  .msm-meta { grid-template-columns: 1fr; max-width: 420px; }
+  .msm-meta-item + .msm-meta-item { border-left: none; border-top: 1px solid var(--border); }
+  .msm-booking { border-radius: 16px; }
+  .msm-booking-wrap, .msm-booking-wrap iframe { min-height: 500px; height: 500px; }
 }
 
 /* COST COMPARISON */
@@ -843,72 +853,48 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">&#9776;</button>
 </nav>
 
-<!-- Hero (original — kept) -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="wrap hero-inner">
-    <div class="hero-eyebrow">COMPLIMENTARY MARKETING AUDIT</div>
-    <h1>Stop Paying <em>40%</em> to Insurance<br>Companies for Your Patients</h1>
-    <p class="hero-sub">Every dollar you earn through insurance costs you 38–44 cents in write-offs. Digital marketing attracts better patients at a fraction of the cost — and you keep every dollar of your fee.</p>
-    <div class="hero-scroll-wrap">
-      <a href="#comparison" class="hero-scroll">
-        See the numbers
-        <span class="hero-scroll-arrow" aria-hidden="true">&#8595;</span>
-      </a>
-      <span class="hero-scroll-hint">Scroll to see the real math</span>
-    </div>
-  </div>
-</section>
-
-<!-- Booking Section (calendar + audit details) -->
+<!-- Hero: centered booking page (title → info bar → calendar → how it works) -->
 <section class="msm-hero">
   <div class="hero-bg"></div>
   <div class="wrap">
-    <div class="msm-grid">
+    <div class="msm-inner">
 
-      <!-- LEFT: copy -->
-      <div class="msm-copy">
-        <div class="hero-eyebrow">Complimentary · Booked 7 of 10 · 3 Sessions Left</div>
-        <h2>Book your <em>complimentary</em> marketing audit</h2>
-        <p class="hero-sub">A private, research-driven session built to show you exactly where your practice can grow — <strong>without insurance dictating your fees.</strong> Pick a time on the right; we'll handle the rest.</p>
+      <!-- Title -->
+      <div class="msm-head">
+        <div class="hero-eyebrow">Complimentary Marketing Audit</div>
+        <h1>Book your <em>complimentary</em> marketing audit</h1>
+        <p class="hero-sub">A private, research-driven session showing exactly where your practice can grow — <strong>without insurance dictating your fees.</strong></p>
+      </div>
 
-        <div class="msm-features">
-          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span><strong>4–5 hours</strong> of research before your call</span></div>
-          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>Full <strong>local competitor</strong> &amp; market analysis</span></div>
-          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>Audit of your <strong>search presence, reviews &amp; booking flow</strong></span></div>
-          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>A <strong>custom growth blueprint</strong> — yours to keep</span></div>
-          <div class="msm-feature"><span class="msm-feature-icon">✓</span><span>No contract. No obligation. <strong>No upsell pressure.</strong></span></div>
+      <!-- Info bar -->
+      <div class="msm-meta">
+        <div class="msm-meta-item">
+          <span class="msm-meta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span class="msm-meta-body">
+            <span class="msm-meta-val">90 minutes</span>
+            <span class="msm-meta-lbl">Session length</span>
+          </span>
         </div>
-
-        <div class="msm-signal">
-          <div class="msm-signal-item">
-            <span class="msm-signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <span class="msm-signal-val">90 min</span>
-            <span class="msm-signal-lbl">Session length</span>
-          </div>
-          <div class="msm-signal-item">
-            <span class="msm-signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5"/><path d="M12 21V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
-            <span class="msm-signal-val">Complimentary</span>
-            <span class="msm-signal-lbl">Typically $900 · for qualifying practices</span>
-          </div>
-          <div class="msm-signal-item">
-            <span class="msm-signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20c1.4-3.5 4-5 7-5s5.6 1.5 7 5"/></svg></span>
-            <span class="msm-signal-val">1:1</span>
-            <span class="msm-signal-lbl">Private consultation</span>
-          </div>
+        <div class="msm-meta-item">
+          <span class="msm-meta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5"/><path d="M12 21V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+          <span class="msm-meta-body">
+            <span class="msm-meta-val">$900 value — <em>free</em></span>
+            <span class="msm-meta-lbl">For qualifying practices</span>
+          </span>
         </div>
-
-        <div class="msm-trust">
-          <div class="msm-trust-dot"></div>
-          <span class="msm-trust-text">Limited sessions available this month</span>
+        <div class="msm-meta-item">
+          <span class="msm-meta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20c1.4-3.5 4-5 7-5s5.6 1.5 7 5"/></svg></span>
+          <span class="msm-meta-body">
+            <span class="msm-meta-val">1:1 private</span>
+            <span class="msm-meta-lbl">Direct consultation</span>
+          </span>
         </div>
       </div>
 
-      <!-- RIGHT: booking calendar -->
+      <!-- Booking calendar -->
       <div class="msm-booking" id="book">
         <div class="msm-booking-header">
           <div class="msm-booking-title"><span class="msm-booking-title-dot"></span> Select a date &amp; time</div>
-          <div class="msm-booking-meta">Pick a time · Confirm · Done</div>
         </div>
         <div class="msm-booking-wrap">
           <div class="msm-booking-loading" id="bookingLoader">
@@ -925,8 +911,39 @@ footer { background: var(--bg-subtle); border-top: 1px solid var(--border); padd
         </div>
         <div class="msm-booking-foot">
           <span class="msm-booking-foot-text">Booking confirmation sent instantly</span>
-          <span class="msm-booking-foot-text"><strong>Doctor/owner attendance required</strong></span>
         </div>
+      </div>
+
+      <div class="msm-trust">
+        <div class="msm-trust-dot"></div>
+        <span class="msm-trust-text">Limited sessions available this month</span>
+      </div>
+
+      <!-- How it works -->
+      <div class="msm-steps">
+        <div class="msm-step">
+          <div class="msm-step-num">1</div>
+          <h3>Before your call</h3>
+          <p>We invest <strong>4–5 hours of research</strong> into your practice, local competitors, and market — before we ever meet.</p>
+        </div>
+        <div class="msm-step">
+          <div class="msm-step-num">2</div>
+          <h3>On the call</h3>
+          <p>A private 90-minute walkthrough of your <strong>search presence, reviews &amp; booking flow</strong> — where you're losing patients and why.</p>
+        </div>
+        <div class="msm-step">
+          <div class="msm-step-num">3</div>
+          <h3>After the call</h3>
+          <p>You keep a <strong>custom growth blueprint</strong>. No contract, no obligation, no upsell pressure.</p>
+        </div>
+      </div>
+
+      <div class="hero-scroll-wrap">
+        <a href="#comparison" class="hero-scroll">
+          See the numbers
+          <span class="hero-scroll-arrow" aria-hidden="true">&#8595;</span>
+        </a>
+        <span class="hero-scroll-hint">Scroll to see the real math</span>
       </div>
 
     </div>
