@@ -295,6 +295,46 @@ h2.sh em { font-style: italic; }
 }
 .hero h1 .accent { color: var(--accent); }
 
+/* ── Running letters ──
+   JS wraps each word in .hl-w and each letter in .hl-ch with a --i index.
+   Two animations per letter:
+     1. hl-run   — one-time entrance: letters rise in left→right (staggered)
+     2. hl-wave  — infinite: a gentle lift ripples across the line every
+                   few seconds, so the text visibly keeps "running"
+   Words are nowrap blocks so line-wrapping stays at word boundaries. */
+.hero h1 .hl-w { display: inline-block; white-space: nowrap; }
+.hero h1 .hl-ch {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em);
+  animation:
+    hl-run  0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i) * 26ms) forwards,
+    hl-wave 4.2s  ease-in-out                    calc(2.2s + var(--i) * 42ms) infinite;
+}
+@keyframes hl-run { to { opacity: 1; transform: none; } }
+@keyframes hl-wave {
+  0%, 14%, 100% { transform: none; }
+  7%            { transform: translateY(-0.09em); }
+}
+/* the "42%" letters ride the same wave but glow as it passes */
+.hero h1 .accent .hl-ch {
+  animation-name: hl-run, hl-wave-accent;
+}
+@keyframes hl-wave-accent {
+  0%, 14%, 100% { transform: none; text-shadow: 0 0 0 rgba(226,214,3,0); }
+  7%            { transform: translateY(-0.09em); text-shadow: 0 0 26px rgba(226,214,3,0.6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Reduced motion: letters still run in, but as a pure fade — no
+     vertical movement and no infinite wave. */
+  .hero h1 .hl-ch,
+  .hero h1 .accent .hl-ch {
+    transform: none;
+    animation: hl-fade 0.4s ease-out calc(var(--i) * 20ms) forwards;
+  }
+  @keyframes hl-fade { to { opacity: 1; } }
+}
+
 .hero-sub {
   font-size: 1.08rem; color: var(--text-3);
   max-width: 600px; margin: 0 auto 2.5rem;
@@ -354,15 +394,16 @@ h2.sh em { font-style: italic; }
   color: #fff; margin-bottom: 0.5rem; line-height: 1.35;
 }
 .scroll-card p {
-  font-size: 0.85rem; color: rgba(255,255,255,0.55);
+  font-size: 0.85rem; color: rgba(255,255,255,0.72);
   line-height: 1.65; margin-bottom: 1rem;
 }
 .scroll-card-stat {
   font-size: 1.75rem; font-weight: 700;
   color: var(--accent); line-height: 1;
+  text-shadow: 0 0 20px rgba(226,214,3,0.25);
 }
 .scroll-card-stat-label {
-  font-size: 0.72rem; color: rgba(255,255,255,0.45);
+  font-size: 0.72rem; color: rgba(255,255,255,0.68);
   margin-top: 0.25rem;
 }
 
@@ -852,6 +893,7 @@ audio { width: 100%; height: 34px; border-radius: 4px; }
       .res-dd-trigger svg { display: none; }
     }
     </style>
+  <link rel="stylesheet" href="/data/nav-theme.css">
 </head>
 <body>
 
@@ -899,6 +941,7 @@ audio { width: 100%; height: 34px; border-radius: 4px; }
       <li><a href="/msm">Marketing Consultation</a></li>
       <li><a href="/partner">Partner With Us</a></li>
       <li><a href="/speakers">Speakers</a></li>
+      <li><a href="/community">Community</a></li>
       <li><a href="/reviews">Reviews</a></li>
       <li><a href="/contact">Contact Us</a></li>
       <li><a href="/events" class="nav-cta">Join Our Events</a></li>
@@ -1512,6 +1555,46 @@ audio { width: 100%; height: 34px; border-radius: 4px; }
   to   { opacity:1; transform:scale(1); }
 }
 </style>
+<script>
+// ── Hero running-letters animation ──
+// Splits the h1 into word/letter spans with a per-letter --i stagger index.
+// The original text is preserved for assistive tech via aria-label, and the
+// animated spans are hidden from screen readers so nothing reads letter-by-
+// letter. Runs before first paint (script is at end of body, DOM is ready).
+(function () {
+  var h1 = document.querySelector('.hero h1');
+  if (!h1) return;
+  // Always split — the CSS decides how much motion to apply. Users with
+  // reduced-motion get a fade-only entrance (no vertical movement, no
+  // infinite wave) instead of losing the effect entirely.
+  h1.setAttribute('aria-label', h1.textContent.trim());
+  var idx = 0;
+  function splitNode(node) {
+    if (node.nodeType === 3) { // text node → word spans of letter spans
+      var frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(function (part) {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+        var w = document.createElement('span');
+        w.className = 'hl-w';
+        for (var i = 0; i < part.length; i++) {
+          var c = document.createElement('span');
+          c.className = 'hl-ch';
+          c.style.setProperty('--i', idx++);
+          c.textContent = part[i];
+          w.appendChild(c);
+        }
+        frag.appendChild(w);
+      });
+      node.parentNode.replaceChild(frag, node);
+    } else if (node.nodeType === 1) { // element (e.g. .accent span) → recurse
+      Array.prototype.slice.call(node.childNodes).forEach(splitNode);
+    }
+  }
+  Array.prototype.slice.call(h1.childNodes).forEach(splitNode);
+  h1.querySelectorAll('.hl-w').forEach(function (w) { w.setAttribute('aria-hidden', 'true'); });
+})();
+</script>
 <script src="data/sheets.js"></script>
 <script src="data/site-chrome.js" defer></script>
 </body>

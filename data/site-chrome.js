@@ -1,7 +1,7 @@
 ﻿(() => {
   const footerHtml = `
 <footer style="background:#0d0d0d;border-top:0.5px solid rgba(255,255,255,0.07);">
-  <div style="max-width:960px;margin:0 auto;padding:44px 32px 0;">
+  <div style="max-width:1240px;margin:0 auto;padding:44px 32px 0;">
     <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:36px;padding-bottom:36px;border-bottom:0.5px solid rgba(255,255,255,0.06);">
       <div>
         <img src="/images/RIDA%20Logo%202.svg" alt="RID Academy" style="height:24px;width:auto;filter:brightness(1.1);display:block;margin-bottom:14px;">
@@ -46,8 +46,30 @@
   style.textContent = `
     a.nav-cta, button.nav-cta { color: #000 !important; }
     a.nav-cta:hover, button.nav-cta:hover { color: #000 !important; }
+
+    /* Site-wide readability bump: the dimmest text tiers were reading as
+       near-black on the dark background. Injected after each page's inline
+       :root, so these values win. Pages that hardcode rgba() values are
+       untouched — this only brightens text using the shared tokens. */
+    :root {
+      --text-2: rgba(255,255,255,0.78);
+      --text-3: rgba(255,255,255,0.62);
+      --text-4: rgba(255,255,255,0.42);
+    }
   `;
   document.head.appendChild(style);
+
+  // ── Shared navbar theme (glass pill redesign) ────────────────────────────
+  // One stylesheet restyles the nav on every page — appended to <head> after
+  // each page's inline styles so it wins the cascade without editing 23 files.
+  (function () {
+    if (!document.querySelector('link[href="/data/nav-theme.css"]')) {
+      var l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = '/data/nav-theme.css';
+      document.head.appendChild(l);
+    }
+  })();
 
   const footer = document.querySelector('footer');
   if (footer) footer.outerHTML = footerHtml;
